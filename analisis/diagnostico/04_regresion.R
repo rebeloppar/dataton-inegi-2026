@@ -15,9 +15,15 @@ suppressMessages(library(marginaleffects))
 
 # --- 1. Categorías de referencia ----------------------------------------------
 # Cada efecto se lee "frente a" la primera categoría de su variable:
-# Hombre · 18-24 · No indígena · Sin discapacidad · Primaria o menos ·
+# Hombre · 18-24 · No indígena · Sin discapacidad · Preescolar o primaria ·
 # 100 mil y más · Estrato bajo. Cambiar la referencia no cambia el modelo,
-# solo contra qué grupo se compara cada número (se cambia con relevel()).
+# solo contra qué grupo se compara cada número.
+# Escolaridad: la referencia es "Preescolar o primaria" y no "Sin escolaridad"
+# porque esta última es un grupo pequeño (~570 casos) y daría contrastes ruidosos.
+usu$ESCOLARIDAD       <- relevel(usu$ESCOLARIDAD, ref = "Preescolar o primaria")
+usu$ESCOLARIDAD_INEGI <- relevel(usu$ESCOLARIDAD_INEGI, ref = "Básica")
+dis <- update(dis, ESCOLARIDAD = usu$ESCOLARIDAD,
+              ESCOLARIDAD_INEGI = usu$ESCOLARIDAD_INEGI)
 
 # --- 2. Modelos por bloques ----------------------------------------------------
 # quasibinomial = logit con pesos de encuesta (evita advertencias por pesos no enteros)
@@ -76,8 +82,46 @@ comp <- merge(subset(tabla, modelo == "4 +Estrato")[, c("variable", "contraste",
 cat("\n===== Robustez: modelo completo nacional vs. solo ciudades (pp) =====\n")
 print(comp, row.names = FALSE)
 
-# --- 6. Guardar ----------------------------------------------------------------
+# --- 6. Robustez: ¿la conclusión depende de cómo agrupamos la escolaridad? ----
+# Se repiten los bloques 2 y 4 con otras dos versiones de escolaridad:
+#   - agrupación del INEGI tal cual (básica en un solo bloque)
+#   - años de escolaridad (continua); su efecto se reporta como el cambio de
+#     6 años (primaria completa) a 16 años (licenciatura), para que sea
+#     comparable con los contrastes por categoría
+versiones <- c(principal = "ESCOLARIDAD", inegi = "ESCOLARIDAD_INEGI",
+               anios = "ANIOS_ESC")
+
+robustez_esc <- do.call(rbind, lapply(names(versiones), function(nom) {
+  v  <- versiones[[nom]]
+  f2 <- update(bloques[["2 +Escolaridad"]], as.formula(paste(". ~ . - ESCOLARIDAD +", v)))
+  f4 <- update(bloques[["4 +Estrato"]],     as.formula(paste(". ~ . - ESCOLARIDAD +", v)))
+  m2 <- ajustar(f2, dis); m4 <- ajustar(f4, dis)
+  ind2 <- avg_comparisons(m2, variables = "INDIGENA", wts = "(weights)")
+  ind4 <- avg_comparisons(m4, variables = "INDIGENA", wts = "(weights)")
+  sex4 <- avg_comparisons(m4, variables = "SEXO", wts = "(weights)")
+  if (v == "ANIOS_ESC") {
+    esc <- avg_comparisons(m4, variables = list(ANIOS_ESC = c(6, 16)), wts = "(weights)")
+    esc_txt <- sprintf("16 vs. 6 años: %+.1f", 100 * esc$estimate)
+  } else {
+    esc <- avg_comparisons(m4, variables = v, wts = "(weights)")
+    esc_txt <- paste(sprintf("%s: %+.1f", sub(" - .*", "", esc$contrast),
+                             100 * esc$estimate), collapse = " · ")
+  }
+  data.frame(version = nom,
+             indigena_bloque2 = round(100 * ind2$estimate, 1),
+             indigena_completo = round(100 * ind4$estimate, 1),
+             mujer_completo = round(100 * sex4$estimate, 1),
+             escolaridad_completo = esc_txt)
+}))
+cat("\n===== Robustez: tres versiones de escolaridad (pp) =====\n")
+cat("Brecha indígena sin escolaridad (bloque 1):",
+    subset(tabla, modelo == "1 Grupos" & variable == "INDIGENA")$ame_pp, "pp\n\n")
+print(robustez_esc, row.names = FALSE)
+
+# --- 7. Guardar ----------------------------------------------------------------
 write.csv(tabla, "resultados/E_regresion_bloques.csv", row.names = FALSE,
           fileEncoding = "UTF-8")
 write.csv(comp, "resultados/F_robustez_ciudades.csv", row.names = FALSE,
+          fileEncoding = "UTF-8")
+write.csv(robustez_esc, "resultados/G_robustez_escolaridad.csv", row.names = FALSE,
           fileEncoding = "UTF-8")

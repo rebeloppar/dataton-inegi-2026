@@ -39,13 +39,36 @@ usu$GRUPO_EDAD <- cut(usu$EDAD, breaks = c(17, 24, 34, 44, 54, 64, 97),
                       labels = c("18-24", "25-34", "35-44",
                                  "45-54", "55-64", "65+"))
 
-# NIVEL: 00-02 ninguno a primaria · 03-05 secundaria, normal básica o técnico
-# con secundaria · 06 preparatoria · 07-11 técnico superior a doctorado · 99 NS
+# --- Escolaridad (NIVEL, GRADO) ---------------------------------------------
+# Códigos NIVEL: 00 ninguno · 01 preescolar · 02 primaria · 03 secundaria ·
+# 04 normal básica · 05 técnico terminal con secundaria · 06 preparatoria ·
+# 07 técnico superior con preparatoria · 08 licenciatura · 09 especialidad ·
+# 10 maestría · 11 doctorado · 99 no sabe.
+# Ubicación de cada nivel según el marco conceptual del Censo 2020 (INEGI):
+#   básica = preescolar, primaria, secundaria · media superior = preparatoria,
+#   técnico con secundaria, normal con primaria o secundaria · superior =
+#   técnico con preparatoria, licenciatura y posgrado. Ver decisiones 34-36.
 nivel <- as.numeric(usu$NIVEL)
 nivel[nivel == 99] <- NA
-usu$ESCOLARIDAD <- cut(nivel, breaks = c(-1, 2, 5, 6, 11),
-                       labels = c("Primaria o menos", "Secundaria",
-                                  "Media superior", "Superior o más"))
+grado <- as.numeric(usu$GRADO)
+grado[grado == 9] <- NA
+
+# Principal: reglas del INEGI, con la básica separada en primaria y secundaria
+usu$ESCOLARIDAD <- cut(nivel, breaks = c(-1, 0, 2, 3, 6, 11),
+                       labels = c("Sin escolaridad", "Preescolar o primaria",
+                                  "Secundaria", "Media superior", "Superior"))
+
+# Robustez 1: agrupación del INEGI tal cual (básica en un solo bloque)
+usu$ESCOLARIDAD_INEGI <- cut(nivel, breaks = c(-1, 0, 3, 6, 11),
+                             labels = c("Sin escolaridad", "Básica",
+                                        "Media superior", "Superior"))
+
+# Robustez 2: años de escolaridad = años previos al nivel + grado aprobado
+# (primaria 6, secundaria 3, preparatoria 3, licenciatura antes de posgrado)
+base_anios <- c(`0` = 0, `1` = 0, `2` = 0, `3` = 6, `4` = 9, `5` = 9, `6` = 9,
+                `7` = 12, `8` = 12, `9` = 16, `10` = 16, `11` = 18)
+usu$ANIOS_ESC <- base_anios[as.character(nivel)] +
+                 ifelse(nivel %in% c(0, 1), 0, grado)
 
 # Autoadscripción indígena (P6A_3): 1 Sí, 2 No
 usu$INDIGENA <- factor(usu$P6A_3, levels = c("2", "1"), labels = c("No", "Sí"))

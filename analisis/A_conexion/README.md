@@ -1,0 +1,3 @@
+# A_conexion
+
+Scripts de este frente. Empiezan con `source("R/prep_<fuente>.R")`.

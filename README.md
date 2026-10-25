@@ -1,0 +1,55 @@
+# Datatón INEGI 2026
+
+Diagnóstico del consumo electrónico en México y propuestas para hacerlo incluyente (reto ANTAD–INEGI). Código reproducible en R con datos oficiales del INEGI.
+
+## Empezar (una sola vez)
+
+1. **Clona el repositorio** con GitHub Desktop (File → Clone repository). Guárdalo **fuera de OneDrive**, por ejemplo en `Documentos/GitHub/`: OneDrive y Git se llevan mal.
+2. **Descarga los datos** como indica [`datos/README.md`](datos/README.md).
+3. **Abre `dataton-inegi-2026.Rproj`** en RStudio. Siempre entra por aquí: así el directorio de trabajo es correcto en cualquier computadora.
+4. **Instala los paquetes:** `install.packages(c("survey", "marginaleffects"))`
+5. **Prueba que todo funciona:** `source("analisis/diagnostico/02_cruces.R")`. Debe imprimir tablas sin errores.
+
+## Estructura
+
+```
+R/
+  00_config.R          configuración común: paquetes, rutas, constantes
+  prep_endutih.R       prepara la ENDUTIH 2025 → `usu` y `dis`
+  prep_<fuente>.R      una por cada fuente nueva (ENIGH, EIC…)
+analisis/
+  diagnostico/         primer diagnóstico (cruces, traslape, regresión)
+  A_conexion/          frente A: del acceso a la compra
+  B_barreras/          frente B: barreras y mecanismos
+  C_territorio/        frente C: territorio y mercado
+  D_propuesta/         frente D: síntesis, género y propuesta
+bitacoras/
+  decisiones.md        qué decidimos y por qué
+  hallazgos.md         qué encontramos, con cifra y script
+datos/                 datos crudos (no se suben; ver datos/README.md)
+resultados/            tablas que generan los scripts (no se suben)
+```
+
+## Cómo funciona la preparación de datos
+
+**`R/prep_endutih.R` prepara la ENDUTIH igual para todos:** carga los datos, se queda con usuarios de internet de 18 años o más, etiqueta las variables y define el diseño muestral. Cada script que use la ENDUTIH empieza así:
+
+```r
+source("R/prep_endutih.R")   # deja listos `usu` (datos) y `dis` (diseño muestral)
+```
+
+- **Nadie redefine variables en su propio script.** Si necesitas una variable nueva, se agrega en `prep_endutih.R` y se anota en `bitacoras/decisiones.md`. Si cada quien prepara los datos a su manera, obtendremos cuatro porcentajes distintos para lo mismo.
+- **Siempre se usa `dis`** (el diseño muestral) para calcular, nunca `usu` directo. Sin el diseño, los porcentajes y los intervalos salen mal.
+- **Cada fuente tiene su propio `prep_<fuente>.R`.** No se unen personas entre encuestas distintas: las fuentes se comparan por entidad, tamaño de localidad o grupo.
+
+## Reglas de trabajo
+
+1. **Cada quien trabaja en sus propios scripts**, dentro de la carpeta de su frente. Nadie edita el script de otra persona.
+2. **Antes de empezar:** *Pull* (traer cambios). **Al terminar:** *Commit* con un mensaje claro (qué hiciste) y *Push*.
+3. **`R/` tiene dueño** (frente de ciencia de datos). Los cambios ahí se piden, se hacen y se anotan en la bitácora.
+4. **Toda decisión de análisis** va en `bitacoras/decisiones.md`; **todo hallazgo**, con su cifra y script, en `bitacoras/hallazgos.md`.
+5. **Los datos crudos y los resultados no se suben.** Los resultados se regeneran corriendo los scripts.
+
+## Fuentes
+
+- ENDUTIH 2025, INEGI (datos abiertos, CSV). Universo de análisis: usuarios de internet de 18 años o más. Estimaciones con factores de expansión y diseño muestral; intervalos al 90 %.

@@ -1,0 +1,15 @@
+# Datos crudos: no se suben (ver datos/README.md)
+datos/*
+!datos/README.md
+
+# Resultados: se regeneran corriendo los scripts
+resultados/
+
+# R / RStudio
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+
+# Sistema
+.DS_Store

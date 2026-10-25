@@ -20,6 +20,6 @@ Qué encontramos, con su cifra y el script que lo produce. Universo: usuarios de
 
 _Cifras 1-8 y 11 actualizadas el 2026-10-25 con la escolaridad según el INEGI (decisiones 34-37)._
 
-**Hallazgo principal (borrador):** Entre usuarios adultos de internet, la escolaridad y la edad son los factores más asociados a comprar en línea (~40 pp entre extremos, con todo lo demás igual). La escolaridad además explica la mayor parte de las brechas indígena y por discapacidad, y su efecto se sostiene solo en ciudades.
+**Hallazgo principal (borrador):** Entre usuarios adultos de internet, la escolaridad y la edad son los factores más asociados a comprar en línea (~40 pp entre extremos, con todo lo demás igual). La escolaridad además explica la mayor parte de las brechas indígena y por discapacidad, y su efecto es prácticamente el mismo a nivel nacional que al analizar únicamente las ciudades de 100 mil habitantes o más, y con cualquiera de las tres formas de medir la escolaridad.
 
 **Punto ciego:** todo lo anterior es entre quienes ya usan internet. Falta ver quién no se conecta.

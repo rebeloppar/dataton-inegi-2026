@@ -32,7 +32,9 @@ revisar_datos <- function(ruta) {
 }
 
 # --- Constantes ----------------------------------------------------------------
-z90 <- qnorm(0.95)   # intervalos al 90 % de confianza, como publica el INEGI
+# IC al 90 % (como publica el INEGI): es bilateral, deja 5 % en cada cola,
+# por eso el valor crítico es el percentil 95 de la normal (1.645), no el 90.
+z90 <- qnorm(0.95)
 
 entidades <- c("Aguascalientes", "Baja California", "Baja California Sur",
   "Campeche", "Coahuila", "Colima", "Chiapas", "Chihuahua", "Ciudad de México",

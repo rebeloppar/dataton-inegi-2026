@@ -17,9 +17,15 @@ Qué encontramos, con su cifra y el script que lo produce. Universo: usuarios de
 | 9 | Las razones para no comprar son de preferencia, no de medios de pago | Prefiere en persona ~45 %, no le interesa ~24 %; sin tarjeta ~3 %, sin recursos ~5 % | `analisis/diagnostico/02_cruces.R` (tabla C) |
 | 10 | "No sabe cómo hacerlo" pesa más en mujeres | Mujeres 19.0 % vs. hombres 14.1 % de quienes no compran | `analisis/diagnostico/02_cruces.R` (tabla C) |
 | 11 | Las conclusiones no dependen de cómo se agrupa la escolaridad | Brecha indígena con escolaridad: −5.5 (principal), −5.9 (INEGI tal cual), −5.4 (años); con todo: −1.9, −2.0, −1.8. Años de escolaridad: 16 vs. 6 años, +39.3 pp | `analisis/diagnostico/04_regresion.R` (robustez) |
+| 12 | "No sabe cómo hacerlo" es la barrera que más cambia entre grupos: cae con la escolaridad y sube con la edad | Sin escolaridad 43.5 % → superior 6.9 %; 18-24: 7.0 % → 65+: 32.1 % (de quienes no compran) | `analisis/B_barreras/01_razones_por_grupo.R` |
+| 13 | "Prefiere en persona" va en sentido contrario: sube con la escolaridad | Sin escolaridad 33.2 % → superior 52.0 %; por edad varía poco (41-49 %) | `analisis/B_barreras/01_razones_por_grupo.R` |
+| 14 | La desconfianza en la seguridad es secundaria pero no marginal en escolaridad alta | 13.6 % en superior (segunda razón concreta tras "en persona"); 7.5 % en primaria | `analisis/B_barreras/01_razones_por_grupo.R` |
+| 15 | Limitación: los datos no permiten saber qué esconde "prefiere en persona" | 83 % la da como única razón, pero 87 % de quienes no compran dan una sola razón, sea cual sea: es el patrón de respuesta, no algo propio de esa opción | `analisis/B_barreras/02_coocurrencia_en_persona.R` |
 
 _Cifras 1-8 y 11 actualizadas el 2026-10-25 con la escolaridad según el INEGI (decisiones 34-37)._
 
 **Hallazgo principal (borrador):** Entre usuarios adultos de internet, la escolaridad y la edad son los factores más asociados a comprar en línea (~40 pp entre extremos, con todo lo demás igual). La escolaridad además explica la mayor parte de las brechas indígena y por discapacidad, y su efecto es prácticamente el mismo a nivel nacional que al analizar únicamente las ciudades de 100 mil habitantes o más, y con cualquiera de las tres formas de medir la escolaridad.
+
+**Lectura de las barreras (hallazgos 12-15):** parece haber dos tipos de quienes no compran: quienes **no pueden** (habilidades; personas mayores y de baja escolaridad) y quienes **no quieren** (preferencia por lo presencial; más común con mayor escolaridad). La ENDUTIH no permite separarlo del todo: se presenta como interpretación y limitación.
 
 **Punto ciego:** todo lo anterior es entre quienes ya usan internet. Falta ver quién no se conecta.

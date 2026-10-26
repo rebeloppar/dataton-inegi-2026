@@ -17,6 +17,7 @@ R/
   00_config.R          configuración común: paquetes, rutas, constantes
   prep_endutih.R       prepara la ENDUTIH 2025 → `usu` y `dis`
   prep_<fuente>.R      una por cada fuente nueva (ENIGH, EIC…)
+  exportar_endutih.R   exporta la ENDUTIH preparada a datos/procesados/ (para Python)
 analisis/
   diagnostico/         primer diagnóstico (cruces, traslape, regresión)
   A_conexion/          frente A: del acceso a la compra
@@ -41,6 +42,13 @@ source("R/prep_endutih.R")   # deja listos `usu` (datos) y `dis` (diseño muestr
 - **Nadie redefine variables en su propio script.** Si necesitas una variable nueva, se agrega en `prep_endutih.R` y se anota en `bitacoras/decisiones.md`. Si cada quien prepara los datos a su manera, obtendremos cuatro porcentajes distintos para lo mismo.
 - **Siempre se usa `dis`** (el diseño muestral) para calcular, nunca `usu` directo. Sin el diseño, los porcentajes y los intervalos salen mal.
 - **Cada fuente tiene su propio `prep_<fuente>.R`.** No se unen personas entre encuestas distintas: las fuentes se comparan por entidad, tamaño de localidad o grupo.
+
+## Si trabajas en Python u otro lenguaje
+
+- **No vuelvas a preparar la ENDUTIH:** corre una vez `source("R/exportar_endutih.R")` en R y lee `datos/procesados/endutih_usuarios_18mas.csv`.
+- **Estimaciones puntuales ponderadas** (con `FAC_PER`) sí se pueden hacer en Python. Control: 43.67 % de usuarios de 18+ compra en línea.
+- **Errores estándar, intervalos y modelos de encuestas, en R** (decisión 42): el diseño muestral no se maneja de forma confiable en Python.
+- Dependencias de Python en `requirements.txt`.
 
 ## Reglas de trabajo
 

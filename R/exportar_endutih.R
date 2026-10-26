@@ -3,7 +3,7 @@
 # Para quien trabaja en Python u otro lenguaje: NO se vuelve a preparar la
 # ENDUTIH; se lee este archivo, que sale de R/prep_endutih.R (fuente única).
 # Uso: source("R/exportar_endutih.R")  → datos/procesados/endutih_usuarios_18mas.csv
-# Volver a correrlo cada vez que cambie prep_endutih.R.
+# Volver a correrlo cada vez que cambie prep_endutih.R. Dueña: Rebeca.
 # =============================================================================
 
 source(file.path("R", "prep_endutih.R"))

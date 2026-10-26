@@ -2,7 +2,7 @@
 # Datatón INEGI 2026 — Preparación de la ENDUTIH 2025 (tabla de usuarios)
 # Uso: source("R/prep_endutih.R") al inicio de cada script que use la ENDUTIH.
 # Deja listos: `usu` (usuarios de internet de 18+) y `dis` (diseño muestral).
-# Dueño: [frente de ciencia de datos]. Una variable nueva se agrega AQUÍ (no en
+# Dueña: Rebeca. Una variable nueva se agrega AQUÍ (no en
 # tu script) y se anota en bitacoras/decisiones.md.
 # =============================================================================
 

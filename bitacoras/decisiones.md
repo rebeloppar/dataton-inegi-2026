@@ -50,3 +50,4 @@ Decisiones de análisis y su justificación. La más reciente, al final.
 | 42 | Errores estándar e intervalos de encuestas (ENDUTIH, ENIGH) se calculan en R, no en Python | En Python no hay una opción confiable: `samplics` está archivado y falló en la prueba por un estrato con una sola UPM, que R maneja con `survey.lonely.psu = "adjust"` |
 | 43 | Sincronización 1: viernes 30 de octubre (hora por definir) | Acordado en la reunión del 25 oct |
 | 44 | Citlali explora si se puede incluir un modelo basado en agentes para los escenarios 2030 (bueno, malo, probable) | Acordado en la reunión; respaldo si no es viable a tiempo: proyección simple con supuestos explícitos |
+| 45 | Rebeca es dueña de `R/00_config.R`, `R/prep_endutih.R` y `R/exportar_endutih.R`; cada `prep_<fuente>.R` nuevo sigue siendo de quien incorpora esa fuente | Santiago (ciencia de datos) trabaja en Python; la base común conviene que la mantenga alguien que trabaja en R. Actualiza la 33 |

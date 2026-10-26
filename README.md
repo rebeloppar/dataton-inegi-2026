@@ -54,7 +54,7 @@ source("R/prep_endutih.R")   # deja listos `usu` (datos) y `dis` (diseño muestr
 
 1. **Cada quien trabaja en sus propios scripts**, dentro de la carpeta de su frente. Nadie edita el script de otra persona.
 2. **Antes de empezar:** *Pull* (traer cambios). **Al terminar:** *Commit* con un mensaje claro (qué hiciste) y *Push*.
-3. **Cada archivo de `R/` tiene un solo dueño.** `00_config.R` y `prep_endutih.R` son del frente de ciencia de datos; cada `prep_<fuente>.R` nuevo es de quien incorpora esa fuente. Si necesitas un cambio en un archivo que no es tuyo, se lo pides a su dueño: lo hace, lo anota en la bitácora y avisa para que todos hagan *pull* y vuelvan a correr sus scripts.
+3. **Cada archivo de `R/` tiene un solo dueño.** `00_config.R` y `prep_endutih.R` son de Rebeca; `exportar_endutih.R` también; cada `prep_<fuente>.R` nuevo es de quien incorpora esa fuente. Si necesitas un cambio en un archivo que no es tuyo, se lo pides a su dueño: lo hace, lo anota en la bitácora y avisa para que todos hagan *pull* y vuelvan a correr sus scripts.
 4. **Toda decisión de análisis** va en `bitacoras/decisiones.md`; **todo hallazgo**, con su cifra y script, en `bitacoras/hallazgos.md`.
 5. **Los datos crudos y los resultados no se suben.** Los resultados se regeneran corriendo los scripts.
 

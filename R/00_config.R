@@ -1,7 +1,7 @@
 # =============================================================================
 # Datatón INEGI 2026 — Configuración común
 # Lo cargan todos los archivos prep_*.R. Paquetes, rutas y constantes compartidas.
-# Dueño: [frente de ciencia de datos]. Cambios: pedirlos y anotarlos en
+# Dueña: Rebeca. Cambios: pedirlos y anotarlos en
 # bitacoras/decisiones.md.
 # =============================================================================
 

@@ -21,7 +21,7 @@ Qué encontramos, con su cifra y el script que lo produce. Universo: usuarios de
 | 13 | "Prefiere en persona" va en sentido contrario: sube con la escolaridad | Sin escolaridad 33.2 % → superior 52.0 %; por edad varía poco (41-49 %) | `analisis/B_barreras/01_razones_por_grupo.R` |
 | 14 | La desconfianza en la seguridad es secundaria pero no marginal en escolaridad alta | 13.6 % en superior (segunda razón concreta tras "en persona"); 7.5 % en primaria | `analisis/B_barreras/01_razones_por_grupo.R` |
 | 15 | Limitación: los datos no permiten saber qué esconde "prefiere en persona" | 83 % la da como única razón, pero 87 % de quienes no compran dan una sola razón, sea cual sea: es el patrón de respuesta, no algo propio de esa opción | `analisis/B_barreras/02_coocurrencia_en_persona.R` |
-
+| 16 | Alcance de las brechas candidatas (usuarios de 18+ que no compran en línea, en millones) | Mujeres 25.3 · indígenas 15.5 · primaria o menos 11.3 · rural (< 2,500 hab.) 10.9 · 65+ 5.6 · discapacidad 4.5. Total de usuarios de 18+: 81.4 M | `analisis/D_propuesta/01_alcance.R` |
 _Cifras 1-8 y 11 actualizadas el 2026-10-25 con la escolaridad según el INEGI (decisiones 34-37)._
 
 **Hallazgo principal (borrador):** Entre usuarios adultos de internet, la escolaridad y la edad son los factores más asociados a comprar en línea (~40 pp entre extremos, con todo lo demás igual). La escolaridad además explica la mayor parte de las brechas indígena y por discapacidad, y su efecto es prácticamente el mismo a nivel nacional que al analizar únicamente las ciudades de 100 mil habitantes o más, y con cualquiera de las tres formas de medir la escolaridad.

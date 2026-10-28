@@ -1,5 +1,5 @@
 # =============================================================================
-# Frente B — Razones para no comprar en línea, por escolaridad y por edad
+# Frente B — Razones para no comprar en línea, por escolaridad, edad y estrato
 # Pregunta del reto P4: ¿cómo varían las barreras según el grupo?
 # Universo: usuarios de internet de 18+ que NO compraron en los últimos 12 meses.
 # Cada persona puede dar varias razones: los % de una columna no suman 100.
@@ -36,7 +36,7 @@ razones_por <- function(v) {
   out[order(-rowMeans(pct)), ]
 }
 
-for (v in c("ESCOLARIDAD", "GRUPO_EDAD")) {
+for (v in c("ESCOLARIDAD", "GRUPO_EDAD", "ESTRATO")) {
   tab <- razones_por(v)
   cat("\n=====", v, ": % de quienes no compraron que da cada razón =====\n")
   cat("(* = CV > 30 %, estimación poco precisa; rango_pp = mayor − menor grupo)\n\n")

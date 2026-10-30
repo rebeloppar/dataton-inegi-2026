@@ -581,7 +581,7 @@ server <- function(input, output, session) {
     ggplot(d, aes(estimacion, etiqueta)) +
       geom_vline(xintercept = 0, colour = col$tinta, linewidth = 0.5) +
       geom_col(aes(fill = signo), width = 0.68) +
-      geom_errorbarh(aes(xmin = li90, xmax = ls90), height = 0.25, colour = col$gris, linewidth = 0.45) +
+      geom_errorbar(aes(xmin = li90, xmax = ls90), width = 0.25, orientation = "y", colour = col$gris, linewidth = 0.45) +
       geom_text(aes(x = ifelse(estimacion < 0, li90, ls90), label = pp(estimacion),
                     hjust = ifelse(estimacion < 0, 1.2, -0.2)), size = 3.6, colour = col$tinta, fontface = "bold") +
       facet_grid(factor ~ ., scales = "free_y", space = "free_y", switch = "y") +
@@ -634,7 +634,7 @@ server <- function(input, output, session) {
     d$perfil <- factor(d$perfil, d$perfil[order(d$estimacion)])
     ggplot(d, aes(estimacion, perfil)) +
       geom_segment(aes(x = 0, xend = estimacion, yend = perfil), colour = col$borde, linewidth = 1.4) +
-      geom_errorbarh(aes(xmin = li90, xmax = ls90), height = 0.2, colour = col$gris_claro) +
+      geom_errorbar(aes(xmin = li90, xmax = ls90), width = 0.2, orientation = "y", colour = col$gris_claro) +
       punto(fill = col$azul, size = 11) +
       geom_text(aes(label = sprintf("%.0f", estimacion)), colour = "white", fontface = "bold", size = 3.6) +
       scale_x_continuous(limits = c(0, 100), labels = pct, expand = c(0, 2)) +
@@ -648,7 +648,7 @@ server <- function(input, output, session) {
     d$composicion <- factor(d$composicion, unique(d$composicion[order(d$orden)]))
     ggplot(d, aes(estimacion, composicion)) +
       geom_line(aes(group = composicion), colour = col$borde, linewidth = 1.6) +
-      geom_errorbarh(aes(xmin = li90, xmax = ls90, colour = sexo), height = 0.15, show.legend = FALSE) +
+      geom_errorbar(aes(xmin = li90, xmax = ls90, colour = sexo), width = 0.15, orientation = "y", show.legend = FALSE) +
       punto(aes(fill = sexo), size = 5.5) +
       scale_fill_manual(values = c(Hombre = col$azul, Mujer = col$morado), name = NULL) +
       scale_colour_manual(values = c(Hombre = col$azul, Mujer = col$morado), guide = "none") +
@@ -671,7 +671,7 @@ server <- function(input, output, session) {
     ggplot(d, aes(estimacion, grupo)) +
       annotate("rect", xmin = 0, xmax = Inf, ymin = -Inf, ymax = Inf, fill = col$frio) +
       geom_vline(xintercept = 0, colour = col$tinta, linewidth = 0.5) +
-      geom_errorbarh(aes(xmin = li90, xmax = ls90), height = 0.18, colour = col$morado, linewidth = 0.8) +
+      geom_errorbar(aes(xmin = li90, xmax = ls90), width = 0.18, orientation = "y", colour = col$morado, linewidth = 0.8) +
       punto(fill = col$morado, size = 6) +
       geom_text(aes(label = paste0(pp(estimacion), " pp")), vjust = -1.5, size = 3.8,
                 colour = col$tinta, fontface = "bold") +

@@ -2,13 +2,27 @@
 
 App de Shiny: una portada y las 5 secciones del storyboard. Cada sección: afirmación → gráficas → «Lo que encontramos» → «Cómo se calculó». Dueña: Rebeca.
 
-## Correrlo
+## Correrlo en tu computadora
 
-1. Abre `dataton-inegi-2026.Rproj` en RStudio.
-2. Una sola vez: `install.packages(c("shiny", "bslib", "ggplot2"))`
-3. `shiny::runApp("dashboard")`
+**Necesitas:** R 4.1 o más reciente y RStudio. No hace falta descargar las bases del INEGI: el dashboard solo lee los CSV de `dashboard/datos/`, que ya vienen en el repositorio.
 
-Mientras quede algún archivo de prueba, arriba aparece un aviso amarillo.
+1. En GitHub Desktop, haz *pull* para tener la última versión.
+2. Abre `dataton-inegi-2026.Rproj` en RStudio.
+3. Una sola vez, en la consola: `install.packages(c("shiny", "bslib", "ggplot2"))`
+4. Cada vez: `shiny::runApp("dashboard")`. Se abre en una ventana o en el navegador.
+
+Para cerrarlo, presiona *Stop* en la consola (o Esc).
+
+**Si algo falla:**
+
+- *«there is no package called…»*: falta instalar el paquete del paso 3.
+- *«cannot open file 'dashboard/datos/…'»*: abriste RStudio sin el `.Rproj`; ciérralo y vuelve a entrar por el paso 2.
+- *Una gráfica dice «Error» en rojo*: alguien subió un CSV con columnas distintas a las de la tabla de abajo. Revisa el último *commit* de ese archivo.
+- *Sin internet, la letra se ve distinta*: es normal; la tipografía se descarga de Google y, sin conexión, se usa la del sistema.
+
+**Si trabajas en Python (Santiago):** para ver el dashboard necesitas R y RStudio instalados (solo los pasos 1 a 4; no hay que programar en R). Para *entregar* tus cifras no hace falta R: escribe tu CSV desde Python con las columnas de la tabla de abajo (`df.to_csv(..., index=False, encoding="utf-8")`) y pide a alguien que lo revise en el dashboard.
+
+Probado con R 4.3, shiny 1.8, bslib 0.6 y ggplot2 3.4; funciona también con versiones más recientes. Mientras quede algún archivo de prueba, arriba aparece la insignia «Datos de prueba».
 
 ## Cifras reales que ya están
 

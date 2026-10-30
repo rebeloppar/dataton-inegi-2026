@@ -1,6 +1,5 @@
 "grupo","millones","pct_compra","pct_no_sabe","pct_en_persona","prueba"
 "Primaria o menos",12.7,11,30,30,TRUE
-"Secundaria",14.2,30,22,38,TRUE
-"65 años o más",6.4,13,43,35,TRUE
-"Mujeres",43.5,42,19,42,TRUE
-"Rural",14.5,25,25,33,TRUE
+"Hasta secundaria",27,20,25,34,TRUE
+"Mujeres con primaria o menos",6.8,10,33,28,TRUE
+"Rural (menos de 2,500 hab.)",14.5,25,25,33,TRUE

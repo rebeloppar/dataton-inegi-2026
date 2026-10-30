@@ -117,11 +117,13 @@ s5$ls90[s5$escenario == "Observado"] <- NA
 guardar(s5, "s5_escenarios.csv")
 
 s5sim <- data.frame(
-  grupo          = c("Primaria o menos", "Secundaria", "65 años o más", "Mujeres", "Rural"),
-  millones       = c(12.7, 14.2, 6.4, 43.5, 14.5),
-  pct_compra     = c(11, 30, 13, 42, 25),
-  pct_no_sabe    = c(30, 22, 43, 19, 25),   # % de quienes NO compran que da la razón
-  pct_en_persona = c(30, 38, 35, 42, 33),
+  # Grupos de la decisión 59. Cifras INVENTADAS: Rebeca las reemplaza el sábado
+  grupo          = c("Primaria o menos", "Hasta secundaria", "Mujeres con primaria o menos",
+                     "Rural (menos de 2,500 hab.)"),
+  millones       = c(12.7, 27.0, 6.8, 14.5),
+  pct_compra     = c(11, 20, 10, 25),
+  pct_no_sabe    = c(30, 25, 33, 25),   # % de quienes NO compran que da la razón
+  pct_en_persona = c(30, 34, 28, 33),
   prueba = TRUE)
 guardar(s5sim, "s5_simulador.csv")
 

@@ -1,7 +1,7 @@
 "composicion","orden","sexo","estimacion","li90","ls90","prueba"
-"Vive solo/a",1,"Hombre",30,28.6,31.3,TRUE
-"Hogar sin jóvenes de 18-34",2,"Hombre",33,30.5,33.9,TRUE
-"Hogar con jóvenes de 18-34",3,"Hombre",48,45.8,49.6,TRUE
-"Vive solo/a",1,"Mujer",26.4,24.6,27.1,TRUE
-"Hogar sin jóvenes de 18-34",2,"Mujer",29.9,28.4,30.7,TRUE
-"Hogar con jóvenes de 18-34",3,"Mujer",42.1,40.8,42.8,TRUE
+"Vive solo/a",1,"Hombre",30,28,31.6,TRUE
+"Hogar sin jóvenes de 18-34",2,"Hombre",33,30.8,34.4,TRUE
+"Hogar con jóvenes de 18-34",3,"Hombre",48,45.7,48.8,TRUE
+"Vive solo/a",1,"Mujer",24.9,23.8,27.2,TRUE
+"Hogar sin jóvenes de 18-34",2,"Mujer",30.8,30.1,32,TRUE
+"Hogar con jóvenes de 18-34",3,"Mujer",44.8,43.9,47.1,TRUE

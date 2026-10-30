@@ -1,31 +1,31 @@
 "categoria","anio","estimacion","prueba"
-"Ropa y calzado",2020,45,TRUE
-"Ropa y calzado",2021,46.2,TRUE
-"Ropa y calzado",2022,48.2,TRUE
-"Ropa y calzado",2023,49.2,TRUE
-"Ropa y calzado",2024,50.6,TRUE
-"Ropa y calzado",2025,53.3,TRUE
-"Comida a domicilio",2020,30.7,TRUE
-"Comida a domicilio",2021,33.6,TRUE
-"Comida a domicilio",2022,36,TRUE
-"Comida a domicilio",2023,39.7,TRUE
-"Comida a domicilio",2024,40.8,TRUE
-"Comida a domicilio",2025,43.9,TRUE
-"Electrónicos",2020,28.9,TRUE
-"Electrónicos",2021,28.1,TRUE
-"Electrónicos",2022,29.2,TRUE
-"Electrónicos",2023,31,TRUE
-"Electrónicos",2024,29.7,TRUE
-"Electrónicos",2025,29.7,TRUE
-"Belleza y cuidado personal",2020,19.6,TRUE
+"Ropa y calzado",2020,45.8,TRUE
+"Ropa y calzado",2021,47.2,TRUE
+"Ropa y calzado",2022,48.6,TRUE
+"Ropa y calzado",2023,49.5,TRUE
+"Ropa y calzado",2024,51.7,TRUE
+"Ropa y calzado",2025,51.3,TRUE
+"Comida a domicilio",2020,28.9,TRUE
+"Comida a domicilio",2021,33.9,TRUE
+"Comida a domicilio",2022,35.6,TRUE
+"Comida a domicilio",2023,39.2,TRUE
+"Comida a domicilio",2024,43.5,TRUE
+"Comida a domicilio",2025,44.7,TRUE
+"Electrónicos",2020,27.2,TRUE
+"Electrónicos",2021,26.1,TRUE
+"Electrónicos",2022,28.9,TRUE
+"Electrónicos",2023,29.4,TRUE
+"Electrónicos",2024,30.8,TRUE
+"Electrónicos",2025,30.1,TRUE
+"Belleza y cuidado personal",2020,21.8,TRUE
 "Belleza y cuidado personal",2021,22.9,TRUE
-"Belleza y cuidado personal",2022,23.9,TRUE
-"Belleza y cuidado personal",2023,25.8,TRUE
-"Belleza y cuidado personal",2024,25.6,TRUE
-"Belleza y cuidado personal",2025,26.8,TRUE
-"Supermercado",2020,7.9,TRUE
-"Supermercado",2021,10.1,TRUE
-"Supermercado",2022,12.1,TRUE
-"Supermercado",2023,12.9,TRUE
-"Supermercado",2024,15.4,TRUE
-"Supermercado",2025,17.3,TRUE
+"Belleza y cuidado personal",2022,24.3,TRUE
+"Belleza y cuidado personal",2023,25.5,TRUE
+"Belleza y cuidado personal",2024,25.5,TRUE
+"Belleza y cuidado personal",2025,27.2,TRUE
+"Supermercado",2020,8.3,TRUE
+"Supermercado",2021,9.9,TRUE
+"Supermercado",2022,12.7,TRUE
+"Supermercado",2023,12,TRUE
+"Supermercado",2024,15.7,TRUE
+"Supermercado",2025,18,TRUE

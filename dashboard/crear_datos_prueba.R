@@ -105,8 +105,9 @@ guardar(con_ic(s4r, ancho = 3, acotar = FALSE), "s4_regiones.csv")
 # --- Sección 5: escenarios 2030 y simulador (frentes C y D) ------------------
 hist <- data.frame(anio = 2019:2025, escenario = "Observado",
                    estimacion = round(seq(25, 44, length.out = 7), 1))
-proy <- do.call(rbind, lapply(c("Inercial", "Habilidades", "Omnicanal"), function(e) {
-  extra <- c(Inercial = 0, Habilidades = 4, Omnicanal = 8)[[e]]
+# Los cuatro escenarios son las cuatro posiciones de las palancas (s5_palancas.csv)
+proy <- do.call(rbind, lapply(c("Inercia", "Solo tiendas", "Solo habilidades", "Puerta abierta"), function(e) {
+  extra <- c(Inercia = 0, `Solo tiendas` = 3, `Solo habilidades` = 4, `Puerta abierta` = 9)[[e]]
   data.frame(anio = 2026:2030, escenario = e,
              estimacion = round(44 + (1:5) * 2.2 + (1:5) / 5 * extra, 1))
 }))
@@ -126,6 +127,20 @@ s5sim <- data.frame(
   pct_en_persona = c(30, 34, 28, 33),
   prueba = TRUE)
 guardar(s5sim, "s5_simulador.csv")
+
+# Posición de las palancas en cada escenario (los ejes de la matriz 2 x 2).
+# Valores PROVISIONALES: "bajo" y "alto" se calibran con la literatura del memo.
+s5p <- data.frame(
+  escenario   = c("Inercia", "Solo tiendas", "Solo habilidades", "Puerta abierta"),
+  orden       = 1:4,
+  habilidades = c(5, 5, 40, 40),
+  tienda      = c(5, 40, 5, 40),
+  descripcion = c("Nadie aprende ni cambia la tienda: sigue la tendencia.",
+                  "Las tiendas se integran al canal digital, pero quien no sabe cómo sigue igual.",
+                  "Más personas aprenden, pero no tienen una tienda que las acompañe.",
+                  "Funcionan las dos puertas: el escenario al que apunta la propuesta."),
+  prueba = TRUE)
+guardar(s5p, "s5_palancas.csv")
 
 # --- Opcionales (deseables): si un frente no los entrega, su pestaña queda ----
 # --- como "pendiente". Borra el archivo para ver cómo se ve sin él.         ----
@@ -158,8 +173,8 @@ s4c$prueba <- TRUE
 guardar(s4c, "s4_comercios.csv")
 
 # P7 tamaño del mercado (frente C, ENIGH): rango de gasto digitalizable
-s5m <- data.frame(escenario = c("Hoy (2024)", "Inercial 2030", "Habilidades 2030", "Omnicanal 2030"),
-                  orden = 1:4, minimo = c(180, 260, 285, 310), maximo = c(240, 340, 375, 410), prueba = TRUE)
+s5m <- data.frame(escenario = c("Hoy (2024)", "Inercia 2030", "Solo tiendas 2030", "Solo habilidades 2030", "Puerta abierta 2030"),
+                  orden = 1:5, minimo = c(180, 260, 275, 285, 320), maximo = c(240, 340, 360, 375, 420), prueba = TRUE)
 guardar(s5m, "s5_mercado.csv")
 
 cat("Listo. Estos archivos de prueba llevan cifras INVENTADAS (prueba = TRUE).\n")

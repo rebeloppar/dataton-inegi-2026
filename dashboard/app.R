@@ -32,6 +32,7 @@ robustez   <- leer("s2_robustez.csv")
 perfiles   <- leer("s2_perfiles.csv")
 razones    <- leer("s3_razones.csv")
 problemas  <- leer("s3_problemas.csv")
+genero     <- leer("s3_genero.csv")
 ent_base   <- leer("entidades.csv")
 entidades  <- merge(ent_base, leer("s4_entidades.csv"), by = "cve_ent")
 mapa       <- leer("mapa_estados.csv")
@@ -52,7 +53,7 @@ hallazgos   <- leer("hallazgos.csv")
 propuesta   <- leer("propuesta.csv")
 estrategias <- leer("estrategias.csv")
 
-hay_prueba <- any(sapply(list(embudo, categorias, eslabon, efectos, bloques, robustez, perfiles, razones,
+hay_prueba <- any(sapply(list(embudo, categorias, eslabon, efectos, bloques, robustez, perfiles, razones, genero,
                               problemas, entidades, regiones, escen, simul,
                               tendencia, ingreso, hogar, ritmo, comercios, mercado),
                          function(d) !is.null(d) && isTRUE(any(d$prueba))))
@@ -356,7 +357,8 @@ ui <- page_navbar(
     filtro("s3_grupo", cortes_en(razones, problemas)),
     div(class = "lienzo", navset_underline(
       nav_panel("Por qué no compran", grafica("g_razones", "500px", "s3_razones", "s3_razones.csv")),
-      nav_panel("Problemas de quienes sí compran", grafica("g_problemas", "460px", "s3_problemas", "s3_problemas.csv")))),
+      nav_panel("Problemas de quienes sí compran", grafica("g_problemas", "460px", "s3_problemas", "s3_problemas.csv")),
+      nav_panel("Mujeres y hombres", grafica("g_genero", "380px", "s3_genero", "s3_genero.csv")))),
     lo_que_encontramos("s3"))),
 
   nav_panel("4. ¿Dónde?", value = "s4", seccion(
@@ -657,6 +659,24 @@ server <- function(input, output, session) {
     por_grupo(razones, input$s3_grupo), "razon", "¿Por qué no compran en línea?",
     paste0("% de quienes no compraron que da cada razón, por ", tolower(input$s3_grupo)),
     "Respuesta múltiple: los porcentajes no suman 100. 87 % da una sola razón."))
+
+  output$g_genero <- graficar({
+    d <- genero
+    d$grupo <- factor(d$grupo, rev(d$grupo[order(d$orden)]))
+    ggplot(d, aes(estimacion, grupo)) +
+      annotate("rect", xmin = 0, xmax = Inf, ymin = -Inf, ymax = Inf, fill = col$frio) +
+      geom_vline(xintercept = 0, colour = col$tinta, linewidth = 0.5) +
+      geom_errorbarh(aes(xmin = li90, xmax = ls90), height = 0.18, colour = col$morado, linewidth = 0.8) +
+      punto(fill = col$morado, size = 6) +
+      geom_text(aes(label = paste0(pp(estimacion), " pp")), vjust = -1.5, size = 3.8,
+                colour = col$tinta, fontface = "bold") +
+      scale_x_continuous(limits = c(-1, 9), labels = pp, breaks = seq(0, 8, 2)) +
+      labs(title = "¿Las mujeres dicen más «no sé cómo»? Sí, a cualquier edad",
+           subtitle = "Diferencia mujeres − hombres en el % de quienes no compran que dice «no sé cómo»,\ncomparando personas iguales en todo lo demás",
+           caption = "La brecha en 55+ no es claramente mayor que en 18-54 (diferencia +2.3 pp; IC 90 %: −0.3 a 4.9).\nLíneas: intervalo al 90 %.",
+           x = "Puntos porcentuales (pp)", y = NULL) +
+      theme(panel.grid.major.y = element_blank(), axis.text.y = element_text(colour = col$tinta, size = 11.5))
+  })
 
   output$g_problemas <- graficar(calor(
     por_grupo(problemas, input$s3_grupo), "problema", "Problemas de quienes sí compran",

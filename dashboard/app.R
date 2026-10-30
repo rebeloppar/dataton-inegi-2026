@@ -44,17 +44,18 @@ hay_prueba <- any(sapply(list(embudo, categorias, eslabon, brechas, perfiles, ra
 # Secuencial: un solo tono, de claro a oscuro. Texto siempre en tinta, no en color.
 col <- list(
   tinta = "#1F2937", gris = "#6B7280", gris_claro = "#9CA3AF", borde = "#C9CED6",
-  fondo = "#FCFCFB", reja = "#ECEEF1",
+  fondo = "#FCFBF8", reja = "#ECEEF1",
   azul = "#0F72A8", verde = "#3E9A66", morado = "#6A4C93", ocre = "#B97A1C",
-  calido = "#FBF1E6", frio = "#EEF4FA"
+  calido = "#F8E2CF", frio = "#EEF3EE"
 )
-rampa <- c("#EEF4FA", "#C3DAEC", "#7FB0D6", "#3B86BC", "#0F72A8", "#0A4F75")
+# Rampa cálida de la figura de referencia: muy bajo → extremo
+rampa <- c("#EEF3EE", "#F3F2E2", "#FBEFD0", "#F7DCC0", "#F0BEB2", "#E2928C")
 
 tema <- bs_theme(version = 5, primary = col$azul, bg = "#FFFFFF", fg = col$tinta,
                  base_font = font_google("Inter", local = FALSE),
                  "border-radius" = "0.6rem")
 tema <- bs_add_rules(tema, "
-  body { background: #FCFCFB; }
+  body { background: #FCFBF8; }
   .card { border-color: #E5E7EB; box-shadow: none; }
   .navbar { border-bottom: 1px solid #E5E7EB; }
   .seccion-titulo { font-weight: 700; letter-spacing: -0.01em; }
@@ -277,7 +278,7 @@ server <- function(input, output, session) {
       geom_text(aes(label = sprintf("%.0f", estimacion),
                     colour = estimacion > corte), size = 4.2, fontface = "bold") +
       scale_fill_gradientn(colours = rampa, name = "%", limits = c(0, NA)) +
-      scale_colour_manual(values = c(`TRUE` = "white", `FALSE` = col$tinta), guide = "none") +
+      scale_colour_manual(values = c(`TRUE` = col$tinta, `FALSE` = col$tinta), guide = "none") +
       scale_x_discrete(position = "top") +
       labs(title = titulo, subtitle = subtitulo, caption = nota, x = NULL, y = NULL) +
       theme(panel.grid.major = element_blank(), panel.border = element_blank(),
@@ -307,11 +308,11 @@ server <- function(input, output, session) {
     ggplot() +
       geom_polygon(data = poli, aes(x, y, group = id, fill = eslabon), colour = "white", linewidth = 1) +
       geom_text(data = etiquetas, aes(0, y + 0.1, label = sprintf("%.0f %%", estimacion)),
-                colour = "white", fontface = "bold", size = 4.6) +
+                colour = col$tinta, fontface = "bold", size = 4.6) +
       geom_text(data = etiquetas, aes(0, y - 0.2, label = sprintf("%.0f–%.0f", li90, ls90)),
-                colour = "white", size = 2.9, alpha = 0.9) +
+                colour = col$gris, size = 2.9) +
       facet_wrap(~grupo) +
-      scale_fill_manual(values = c(rampa[3], rampa[4], rampa[6]), name = NULL, drop = FALSE) +
+      scale_fill_manual(values = c(rampa[3], rampa[4], rampa[5]), name = NULL, drop = FALSE) +
       coord_cartesian(xlim = c(-52, 52)) +
       labs(title = "Del hogar conectado a la compra en línea",
            subtitle = paste0("% en cada eslabón, por ", tolower(input$s1_grupo),
@@ -345,7 +346,7 @@ server <- function(input, output, session) {
     d$tipo <- factor(d$tipo, c("Bruta", "Ajustada"))
     pesas(d, "comparacion", "tipo", c(Bruta = col$gris_claro, Ajustada = col$azul),
           "Brechas en la probabilidad de comprar en línea",
-          "Gris: diferencia observada. Azul: con controles. Fondo cálido = desventaja.",
+          "Gris: diferencia observada. Azul: con controles. Fondo durazno = desventaja.",
           "Usuarios de internet de 18+. Controles: sexo, edad, indígena, discapacidad, escolaridad,\nlocalidad y estrato. Líneas: intervalo al 90 %.")
   })
 
@@ -383,8 +384,9 @@ server <- function(input, output, session) {
     d <- merge(mapa, entidades, by = "cve_ent")
     p <- ggplot(d, aes(long, lat, group = pieza))
     if (input$s4_color == "estimacion") {
-      p <- p + geom_polygon(aes(fill = estimacion), colour = "white", linewidth = 0.35) +
-        scale_fill_gradientn(colours = rampa[-1], name = "% que compra",
+      p <- p + geom_polygon(aes(fill = estimacion), colour = "#A8AEB8", linewidth = 0.25) +
+        # Invertida: el rezago (poca compra) es lo que se resalta en salmón
+        scale_fill_gradientn(colours = rev(rampa), name = "% que compra",
                              guide = guide_colourbar(barwidth = 12, barheight = 0.6))
     } else {
       p <- p + geom_polygon(aes(fill = region), colour = "white", linewidth = 0.35) +
@@ -394,7 +396,7 @@ server <- function(input, output, session) {
     p + coord_quickmap(xlim = c(-117.5, -86.5), ylim = c(14.4, 32.8), expand = FALSE) +
       labs(title = "Compra en línea por entidad",
            subtitle = "% de usuarios de internet de 18+ que compró en línea",
-           caption = "Regionalización provisional (frente C).", x = NULL, y = NULL) +
+           caption = "Más salmón = menos compra. Regionalización provisional (frente C).", x = NULL, y = NULL) +
       theme(axis.text = element_blank(), panel.grid.major = element_blank(), panel.border = element_blank())
   })
 
@@ -439,7 +441,7 @@ server <- function(input, output, session) {
     colores <- c(Observado = col$tinta, Inercial = col$gris_claro, Habilidades = col$verde, Omnicanal = col$azul)
     final <- d[d$anio == max(d$anio), ]
     ggplot(d, aes(anio, estimacion, colour = escenario)) +
-      annotate("rect", xmin = max(ultimo$anio), xmax = Inf, ymin = -Inf, ymax = Inf, fill = col$frio) +
+      annotate("rect", xmin = max(ultimo$anio), xmax = Inf, ymin = -Inf, ymax = Inf, fill = rampa[3], alpha = 0.6) +
       geom_ribbon(data = d[!is.na(d$li90), ], aes(ymin = li90, ymax = ls90, fill = escenario),
                   alpha = 0.18, colour = NA, show.legend = FALSE) +
       geom_line(linewidth = 1) +
@@ -452,7 +454,7 @@ server <- function(input, output, session) {
       scale_x_continuous(breaks = 2019:2030, expand = expansion(add = c(0.3, 2.6))) +
       scale_y_continuous(labels = pct) +
       labs(title = "Escenarios 2030",
-           subtitle = "% de usuarios de internet que compra en línea. Fondo azul = proyección.",
+           subtitle = "% de usuarios de internet que compra en línea. Fondo crema = proyección.",
            caption = "Los escenarios son supuestos explícitos, no pronósticos. Bandas: rango del escenario.",
            x = NULL, y = NULL)
   })

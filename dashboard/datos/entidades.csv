@@ -1,0 +1,33 @@
+"cve_ent","abrev","entidad","region","long_c","lat_c"
+1,"AGS","Aguascalientes","Centro Norte",-102.36,22
+2,"BC","Baja California","Norte",-115.257,30.353
+3,"BCS","Baja California Sur","Centro Norte",-111.532,25.368
+4,"CAMP","Campeche","Sur",-89.914,19.304
+5,"COAH","Coahuila","Norte",-102.404,27.17
+6,"COL","Colima","Centro Norte",-104.068,19.151
+7,"CHIS","Chiapas","Sur",-92.268,16.299
+8,"CHIH","Chihuahua","Norte",-106.087,28.722
+9,"CDMX","Ciudad de México","Centro",-99.113,19.302
+10,"DGO","Durango","Centro Norte",-104.665,24.533
+11,"GTO","Guanajuato","Centro",-101.291,20.875
+12,"GRO","Guerrero","Sur",-99.987,17.687
+13,"HGO","Hidalgo","Centro",-99.169,20.492
+14,"JAL","Jalisco","Centro Norte",-103.21,20.803
+15,"MEX","Estado de México","Centro",-99.779,19.306
+16,"MICH","Michoacán","Centro Norte",-101.667,19.141
+17,"MOR","Morelos","Centro",-99.044,18.73
+18,"NAY","Nayarit","Centro Norte",-104.839,21.81
+19,"NL","Nuevo León","Norte",-99.48,25.458
+20,"OAX","Oaxaca","Sur",-96.009,17.144
+21,"PUE","Puebla","Centro",-97.357,19.39
+22,"QRO","Querétaro","Centro",-100.035,20.809
+23,"QROO","Quintana Roo","Sur",-88.501,19.739
+24,"SLP","San Luis Potosí","Centro Norte",-101.137,22.95
+25,"SIN","Sinaloa","Centro Norte",-107.469,24.764
+26,"SON","Sonora","Norte",-110.45,29.371
+27,"TAB","Tabasco","Sur",-92.556,17.946
+28,"TAMPS","Tamaulipas","Norte",-98.421,24.949
+29,"TLAX","Tlaxcala","Centro",-98.024,19.433
+30,"VER","Veracruz","Sur",-96.859,19.733
+31,"YUC","Yucatán","Sur",-89.018,20.716
+32,"ZAC","Zacatecas","Centro Norte",-103.188,23.052

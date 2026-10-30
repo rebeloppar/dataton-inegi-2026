@@ -46,7 +46,10 @@ cat("Creando datos de prueba en", dir_datos, "\n")
 # --- Sección 1: embudo (frente A) --------------------------------------------
 eslabones <- c("Hogar con internet", "Usa internet", "Compra en línea")
 s1 <- merge(grupos_df, data.frame(eslabon = eslabones, paso = 1:3))
-s1$estimacion <- round(c(75, 70, 40)[s1$paso] * runif(nrow(s1), 0.6, 1.15), 1)
+# Embudo de prueba coherente: cada eslabón es una fracción del anterior
+s1 <- s1[order(s1$grupo_var, s1$orden, s1$paso), ]
+s1$estimacion <- ave(runif(nrow(s1)), s1$grupo_var, s1$grupo, FUN = function(u)
+  round(cumprod(c(60 + 30 * u[1], 0.75 + 0.2 * u[2], 0.35 + 0.4 * u[3])), 1))
 s1 <- con_ic(s1[order(s1$grupo_var, s1$orden, s1$paso), ])
 guardar(s1, "s1_embudo.csv")
 
@@ -97,7 +100,7 @@ s3p <- con_ic(s3p[order(s3p$grupo_var, s3p$orden, s3p$k), c("grupo_var", "grupo"
 guardar(s3p, "s3_problemas.csv")
 
 # --- Sección 4: territorio (frente C) ----------------------------------------
-s4 <- read.csv(file.path(dir_datos, "entidades_mosaico.csv"), fileEncoding = "UTF-8")
+s4 <- read.csv(file.path(dir_datos, "entidades.csv"), fileEncoding = "UTF-8")
 s4 <- data.frame(cve_ent = s4$cve_ent, estimacion = round(runif(32, 25, 60), 1))
 guardar(con_ic(s4, ancho = 6), "s4_entidades.csv")
 

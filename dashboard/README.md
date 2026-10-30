@@ -41,10 +41,11 @@ Archivos de texto y fijos (no son de prueba):
 - `hallazgos.csv`: los recuadros «Lo que encontramos» (`seccion, orden, texto`). Rebeca los mantiene; cada frente propone sus 2 o 3 hallazgos con cifra.
 - `propuesta.csv`: los campos de la propuesta en la sección 5 (`campo, texto`).
 - `como_se_calculo.csv`: las tarjetas «Cómo se calculó».
-- `entidades_mosaico.csv`: posición de cada entidad en el mapa de mosaico y región provisional.
+- `entidades.csv`: nombre, abreviatura, región provisional y punto central de cada entidad.
+- `mapa_estados.csv`: contornos simplificados de las 32 entidades (para dibujar el mapa sin paquetes geográficos).
 
 ## Por qué así
 
 - **Un CSV por gráfica:** cada frente es dueño de su archivo y nadie toca el código de la app.
 - **`dashboard/datos/` sí se sube** al repositorio (a diferencia de `resultados/`): la app publicada necesita los datos.
-- **Mapa de mosaico** (un cuadro por entidad) en lugar de un mapa con fronteras: no depende de archivos geográficos y todas las entidades se ven del mismo tamaño, incluidas las pequeñas como CDMX y Tlaxcala.
+- **El mapa se dibuja con contornos guardados en un CSV** (`mapa_estados.csv`), así nadie necesita instalar paquetes geográficos. Pasar el cursor sobre una entidad muestra su cifra.

@@ -1,0 +1,33 @@
+cve_ent,abrev,entidad,region,col,fila
+01,AGS,Aguascalientes,Centro Norte,3,3
+02,BC,Baja California,Norte,1,1
+03,BCS,Baja California Sur,Centro Norte,1,2
+04,CAMP,Campeche,Sur,8,4
+05,COAH,Coahuila,Norte,4,1
+06,COL,Colima,Centro Norte,2,5
+07,CHIS,Chiapas,Sur,6,5
+08,CHIH,Chihuahua,Norte,3,1
+09,CDMX,Ciudad de México,Centro,5,4
+10,DGO,Durango,Centro Norte,3,2
+11,GTO,Guanajuato,Centro,4,3
+12,GRO,Guerrero,Sur,3,5
+13,HGO,Hidalgo,Centro,6,3
+14,JAL,Jalisco,Centro Norte,2,4
+15,MEX,Estado de México,Centro,4,4
+16,MICH,Michoacán,Centro Norte,3,4
+17,MOR,Morelos,Centro,4,5
+18,NAY,Nayarit,Centro Norte,2,3
+19,NL,Nuevo León,Norte,5,1
+20,OAX,Oaxaca,Sur,5,5
+21,PUE,Puebla,Centro,7,4
+22,QRO,Querétaro,Centro,5,3
+23,QROO,Quintana Roo,Sur,9,4
+24,SLP,San Luis Potosí,Centro Norte,5,2
+25,SIN,Sinaloa,Centro Norte,2,2
+26,SON,Sonora,Norte,2,1
+27,TAB,Tabasco,Sur,7,5
+28,TAMPS,Tamaulipas,Norte,6,2
+29,TLAX,Tlaxcala,Centro,6,4
+30,VER,Veracruz,Sur,7,3
+31,YUC,Yucatán,Sur,9,3
+32,ZAC,Zacatecas,Centro Norte,4,2

@@ -1,0 +1,8 @@
+grafica,fuente,universo,tipo,script,nota
+s1_embudo,"ENDUTIH 2025, INEGI","Cada eslabón tiene su propio universo: hogares; residentes de 18+; usuarios de internet de 18+",Observado,"analisis/A_conexion/ (por definir)","No se multiplican porcentajes de universos distintos."
+s2_brechas,"ENDUTIH 2025, INEGI","Usuarios de internet de 18+",Bruta: observado. Ajustada: modelado,"analisis/diagnostico/04_regresion.R","Ajustada = efecto marginal promedio de un modelo logit con sexo, edad, indígena, discapacidad, escolaridad, localidad y estrato. Intervalos al 90 %."
+s2_perfiles,"ENDUTIH 2025, INEGI","Usuarios de internet de 18+",Modelado,"(por definir, frente A)","Probabilidad predicha por el modelo completo para cada perfil."
+s3_razones,"ENDUTIH 2025, INEGI","Usuarios de internet de 18+ que no compraron en línea",Observado,"analisis/B_barreras/01_razones_por_grupo.R","Respuesta múltiple: los porcentajes no suman 100."
+s4_entidades,"ENDUTIH 2025, INEGI","Usuarios de internet de 18+",Observado,"(por definir, frente C)","Regionalización provisional (por definir, frente C)."
+s5_escenarios,"Serie publicada del INEGI (observado) y proyección del equipo (escenarios)","Usuarios de internet de 6+ o 18+ según la serie (por verificar)",Observado y proyectado,"(por definir, frente C)","Los escenarios son supuestos explícitos, no pronósticos."
+s5_simulador,"ENDUTIH 2025, INEGI, y supuestos del usuario","Usuarios de internet de 18+",Simulado,"analisis/D_propuesta/ (por definir)","Supone que cada persona da una sola razón (87 % lo hace, hallazgo 15)."

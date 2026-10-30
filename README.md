@@ -7,7 +7,7 @@ Diagnóstico del consumo electrónico en México y propuestas para hacerlo inclu
 1. **Clona el repositorio** con GitHub Desktop (File → Clone repository). Guárdalo **fuera de OneDrive**, por ejemplo en `Documentos/GitHub/`: OneDrive y Git se llevan mal.
 2. **Descarga los datos** como indica [`datos/README.md`](datos/README.md).
 3. **Abre `dataton-inegi-2026.Rproj`** en RStudio. Siempre entra por aquí: así el directorio de trabajo es correcto en cualquier computadora.
-4. **Instala los paquetes:** `install.packages(c("survey", "marginaleffects"))`
+4. **Instala los paquetes:** `install.packages(c("survey", "marginaleffects", "shiny", "bslib", "ggplot2"))`
 5. **Prueba que todo funciona:** `source("analisis/diagnostico/02_cruces.R")`. Debe imprimir tablas sin errores.
 
 ## Estructura
@@ -24,6 +24,7 @@ analisis/
   B_barreras/          frente B: barreras y mecanismos
   C_territorio/        frente C: territorio y mercado
   D_propuesta/         frente D: síntesis, género y propuesta
+dashboard/              app de Shiny y sus datos (ver dashboard/README.md)
 bitacoras/
   decisiones.md        qué decidimos y por qué
   hallazgos.md         qué encontramos, con cifra y script

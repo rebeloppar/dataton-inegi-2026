@@ -18,7 +18,7 @@ La regresión (sección 2) y el % que compra por entidad (mapa) ya son reales. P
 
 Cada gráfica lee **un CSV** de `dashboard/datos/`. Hoy son datos de prueba hechos por `crear_datos_prueba.R`. Para poner las cifras finales:
 
-1. En **tu** script de análisis, al final, escribe el CSV con **exactamente las mismas columnas** que el de prueba (mismo nombre de archivo, mismos nombres de columna, mismas categorías).
+1. En **tu** script de análisis, al final, escribe el CSV directamente en `dashboard/datos/` (decisión 55; `resultados/` no se sube y el dashboard no lo ve), con **exactamente las mismas columnas** que el de prueba (mismo nombre de archivo, mismos nombres de columna, mismas categorías).
 2. Pon `prueba = FALSE`.
 3. Usa `write.csv(..., row.names = FALSE, fileEncoding = "UTF-8")`.
 4. Actualiza tu fila en `como_se_calculo.csv` (fuente, universo, tipo, script, nota).

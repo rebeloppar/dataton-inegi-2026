@@ -137,12 +137,6 @@ s1t <- do.call(rbind, lapply(seq_along(cats), function(k)
 s1t$prueba <- TRUE
 guardar(s1t, "s1_tendencia.csv")
 
-# P2 con ingreso (frentes A y C, ENIGH por entidad)
-s2i <- data.frame(cve_ent = ent$cve_ent, ingreso_miles = round(runif(32, 12, 32), 1))
-s2i$pct_compra <- round(10 + 1.3 * s2i$ingreso_miles + rnorm(32, 0, 4), 1)
-s2i$prueba <- TRUE
-guardar(s2i, "s2_ingreso_entidad.csv")
-
 # P2 composición del hogar, con lente de género (frente A)
 comp <- c("Vive solo/a", "Hogar sin jóvenes de 18-34", "Hogar con jóvenes de 18-34")
 s2h <- merge(data.frame(composicion = comp, orden = 1:3), data.frame(sexo = c("Hombre", "Mujer")))

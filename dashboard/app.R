@@ -42,7 +42,6 @@ simul      <- leer("s5_simulador.csv")
 
 # Opcionales (deseables)
 tendencia  <- leer_opcional("s1_tendencia.csv")
-ingreso    <- leer_opcional("s2_ingreso_entidad.csv")
 hogar      <- leer_opcional("s2_hogar.csv")
 ritmo      <- leer_opcional("s4_ritmo.csv")
 comercios  <- leer_opcional("s4_comercios.csv")
@@ -55,7 +54,7 @@ estrategias <- leer("estrategias.csv")
 
 hay_prueba <- any(sapply(list(embudo, categorias, eslabon, efectos, bloques, robustez, perfiles, razones, genero,
                               problemas, entidades, regiones, escen, simul,
-                              tendencia, ingreso, hogar, ritmo, comercios, mercado),
+                              tendencia, hogar, ritmo, comercios, mercado),
                          function(d) !is.null(d) && isTRUE(any(d$prueba))))
 
 # --- Estilo de las gráficas --------------------------------------------------
@@ -343,9 +342,6 @@ ui <- page_navbar(
         grafica("g_robustez", "520px", "s2_robustez", "s2_robustez.csv")),
       nav_panel("Perfiles",
         grafica("g_perfiles", "440px", "s2_perfiles", "s2_perfiles.csv")),
-      nav_panel("Ingreso",
-        opcional(ingreso, "g_ingreso", "480px", "s2_ingreso_entidad", "s2_ingreso_entidad.csv",
-                 "Frentes A y C: ingreso de los hogares (ENIGH) frente a la compra, por entidad.")),
       nav_panel("Composición del hogar",
         opcional(hogar, "g_hogar", "360px", "s2_hogar", "s2_hogar.csv",
                  "Frente A: compra según la composición del hogar, por sexo.")))),
@@ -632,11 +628,6 @@ server <- function(input, output, session) {
            caption = "Perfiles por definir (decisión 24).", x = NULL, y = NULL) +
       theme(panel.grid.major.y = element_blank())
   })
-
-  output$g_ingreso <- graficar(dispersion(
-    ingreso, "ingreso_miles", "Ingreso corriente mensual promedio por hogar (miles de pesos)",
-    "¿Se compra más en línea donde hay más ingreso?", "Cada punto es una entidad",
-    "Comparación entre entidades, no entre personas: la ENIGH y la ENDUTIH son encuestas y años distintos."))
 
   output$g_hogar <- graficar({
     d <- hogar

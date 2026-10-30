@@ -245,7 +245,13 @@ filtro <- function(id, opciones, rotulo = "Ver por") {
       div(class = "pastillas",
           radioButtons(id, NULL, opciones, selected = opciones[1], inline = TRUE)))
 }
-opciones_grupo <- c("Escolaridad", "Edad", "Sexo", "Localidad", "Estrato", "Región")
+# Los filtros muestran solo los cortes que vienen en los datos (decisión 56):
+# si un frente entrega menos cortes, no aparece un botón vacío.
+orden_cortes <- c("Nacional", "Escolaridad", "Edad", "Sexo", "Localidad", "Estrato", "Región")
+cortes_en <- function(...) {
+  presentes <- unique(unlist(lapply(list(...), function(d) d$grupo_var)))
+  c(intersect(orden_cortes, presentes), setdiff(presentes, orden_cortes))
+}
 
 lo_que_encontramos <- function(seccion) {
   h <- hallazgos[hallazgos$seccion == seccion, ]
@@ -311,7 +317,7 @@ ui <- page_navbar(
   nav_panel("1. Panorama", value = "s1", seccion(
     cabecera("1", "Del acceso a la compra, la gente se pierde en eslabones distintos",
              "Afirmación provisional. Frente A. Preguntas P1 y P3."),
-    filtro("s1_grupo", c("Nacional", opciones_grupo)),
+    filtro("s1_grupo", cortes_en(embudo, categorias)),
     div(class = "lienzo", navset_underline(
       nav_panel("Embudo", grafica("g_embudo", "560px", "s1_embudo", "s1_embudo.csv")),
       nav_panel("¿Conectarse o comprar?", grafica("g_eslabon", "440px", "s1_brechas_eslabon", "s1_brechas_eslabon.csv")),
@@ -347,7 +353,7 @@ ui <- page_navbar(
   nav_panel("3. ¿Por qué?", value = "s3", seccion(
     cabecera("3", "Unos no pueden (habilidades) y otros no quieren (prefieren lo presencial)",
              "Los medios de pago pesan poco. Frente B. Preguntas P4 y P5."),
-    filtro("s3_grupo", opciones_grupo),
+    filtro("s3_grupo", cortes_en(razones, problemas)),
     div(class = "lienzo", navset_underline(
       nav_panel("Por qué no compran", grafica("g_razones", "500px", "s3_razones", "s3_razones.csv")),
       nav_panel("Problemas de quienes sí compran", grafica("g_problemas", "460px", "s3_problemas", "s3_problemas.csv")))),
@@ -431,7 +437,11 @@ server <- function(input, output, session) {
 
   graficar <- function(expr) renderPlot(expr, res = 110)
 
+  # Si un archivo no trae el corte elegido (p. ej., P5 con grupos más amplios),
+  # la gráfica lo dice en lugar de romperse
   por_grupo <- function(d, g) {
+    validate(need(g %in% d$grupo_var,
+                  paste0("Esta gráfica no tiene el corte «", g, "». Elige otro.")))
     d <- d[d$grupo_var == g, ]
     d$grupo <- factor(d$grupo, unique(d$grupo[order(d$orden)]))
     d

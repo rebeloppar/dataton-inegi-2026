@@ -1,0 +1,7 @@
+"region","referencia","tipo","estimacion","li90","ls90","prueba"
+"Norte","Centro","Bruta",-3,-5.7,-2.1,TRUE
+"Centro Norte","Centro","Bruta",-8,-9.2,-5.2,TRUE
+"Sur","Centro","Bruta",-18,-18.8,-16.6,TRUE
+"Norte","Centro","Ajustada",-1,-1.9,1.8,TRUE
+"Centro Norte","Centro","Ajustada",-4,-5.9,-2.2,TRUE
+"Sur","Centro","Ajustada",-7,-8.6,-4.4,TRUE

@@ -34,7 +34,9 @@ grupos <- list(
   Escolaridad  = c("Sin escolaridad", "Primaria", "Secundaria", "Media superior", "Superior"),
   Edad         = c("18-24", "25-34", "35-44", "45-54", "55-64", "65+"),
   Sexo         = c("Hombre", "Mujer"),
-  Localidad    = c("Menos de 2,500", "2,500-14,999", "15,000-99,999", "100,000 y más")
+  Localidad    = c("Menos de 2,500", "2,500-14,999", "15,000-99,999", "100,000 y más"),
+  Estrato      = c("Bajo", "Medio bajo", "Medio alto", "Alto"),
+  Región       = c("Norte", "Centro Norte", "Centro", "Sur")   # provisional (frente C)
 )
 grupos_df <- do.call(rbind, lapply(names(grupos), function(g)
   data.frame(grupo_var = g, grupo = grupos[[g]], orden = seq_along(grupos[[g]]))))
@@ -48,13 +50,28 @@ s1$estimacion <- round(c(75, 70, 40)[s1$paso] * runif(nrow(s1), 0.6, 1.15), 1)
 s1 <- con_ic(s1[order(s1$grupo_var, s1$orden, s1$paso), ])
 guardar(s1, "s1_embudo.csv")
 
+# P3: qué se compra (% de compradores que compró cada categoría)
+categorias <- c("Ropa y calzado", "Comida a domicilio", "Electrónicos", "Belleza y cuidado personal",
+                "Artículos para el hogar", "Boletos y entretenimiento", "Supermercado", "Libros y música")
+s1c <- merge(grupos_df, data.frame(categoria = categorias, k = seq_along(categorias)))
+s1c$estimacion <- round(c(55, 45, 30, 28, 25, 20, 15, 10)[s1c$k] * runif(nrow(s1c), 0.6, 1.4), 1)
+s1c <- con_ic(s1c[order(s1c$grupo_var, s1c$orden, s1c$k), c("grupo_var", "grupo", "orden", "categoria", "estimacion")])
+guardar(s1c, "s1_categorias.csv")
+
+# Brechas en cada eslabón: ¿se pierde más gente al conectarse o al comprar?
+s1b <- data.frame(
+  comparacion = rep(c("Superior vs. primaria", "65+ vs. 18-24", "Rural vs. 100 mil+", "Mujer vs. hombre"), 2),
+  eslabon = rep(c("Usar internet", "Comprar en línea"), each = 4),
+  estimacion = c(35, -50, -20, -2, 42, -42, -11, -3))
+guardar(con_ic(s1b, ancho = 3, acotar = FALSE), "s1_brechas_eslabon.csv")
+
 # --- Sección 2: brechas brutas vs. ajustadas (frentes A y B) -----------------
 s2 <- data.frame(
-  factor      = c("Escolaridad", "Edad", "Localidad", "Sexo", "Indígena", "Discapacidad"),
-  comparacion = c("Superior vs. primaria", "65+ vs. 18-24", "Rural vs. 100 mil+",
+  factor      = c("Escolaridad", "Edad", "Localidad", "Estrato", "Sexo", "Indígena", "Discapacidad"),
+  comparacion = c("Superior vs. primaria", "65+ vs. 18-24", "Rural vs. 100 mil+", "Alto vs. bajo",
                   "Mujer vs. hombre", "Indígena vs. no indígena", "Con vs. sin discapacidad"))
-s2 <- rbind(transform(s2, tipo = "Bruta",    estimacion = c(50, -45, -25, -4, -13, -4)),
-            transform(s2, tipo = "Ajustada", estimacion = c(42, -42, -11, -3, -2, -1)))
+s2 <- rbind(transform(s2, tipo = "Bruta",    estimacion = c(50, -45, -25, 35, -4, -13, -4)),
+            transform(s2, tipo = "Ajustada", estimacion = c(42, -42, -11, 18, -3, -2, -1)))
 s2 <- con_ic(s2, ancho = 3, acotar = FALSE)
 guardar(s2, "s2_brechas.csv")
 
@@ -71,10 +88,25 @@ s3$estimacion <- round(c(40, 30, 20, 8, 4, 4)[s3$r] * runif(nrow(s3), 0.5, 1.6),
 s3 <- con_ic(s3[order(s3$grupo_var, s3$orden, s3$r), c("grupo_var", "grupo", "orden", "razon", "estimacion")])
 guardar(s3, "s3_razones.csv")
 
+# P5: problemas al comprar (% de compradores que tuvo cada problema)
+problemas <- c("Algún problema", "Producto dañado o distinto", "No llegó o llegó tarde",
+               "Cobro indebido o fraude", "Difícil devolver")
+s3p <- merge(grupos_df, data.frame(problema = problemas, k = seq_along(problemas)))
+s3p$estimacion <- round(c(20, 9, 8, 4, 3)[s3p$k] * runif(nrow(s3p), 0.6, 1.5), 1)
+s3p <- con_ic(s3p[order(s3p$grupo_var, s3p$orden, s3p$k), c("grupo_var", "grupo", "orden", "problema", "estimacion")])
+guardar(s3p, "s3_problemas.csv")
+
 # --- Sección 4: territorio (frente C) ----------------------------------------
 s4 <- read.csv(file.path(dir_datos, "entidades_mosaico.csv"), fileEncoding = "UTF-8")
 s4 <- data.frame(cve_ent = s4$cve_ent, estimacion = round(runif(32, 25, 60), 1))
 guardar(con_ic(s4, ancho = 6), "s4_entidades.csv")
+
+# Brecha por región frente a la región con mayor compra, bruta y con controles
+s4r <- data.frame(region = rep(c("Norte", "Centro Norte", "Sur"), 2),
+                  referencia = "Centro",
+                  tipo = rep(c("Bruta", "Ajustada"), each = 3),
+                  estimacion = c(-3, -8, -18, -1, -4, -7))
+guardar(con_ic(s4r, ancho = 3, acotar = FALSE), "s4_regiones.csv")
 
 # --- Sección 5: escenarios 2030 y simulador (frentes C y D) ------------------
 hist <- data.frame(anio = 2019:2025, escenario = "Observado",

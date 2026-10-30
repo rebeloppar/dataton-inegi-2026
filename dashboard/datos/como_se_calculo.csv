@@ -6,3 +6,7 @@ s3_razones,"ENDUTIH 2025, INEGI","Usuarios de internet de 18+ que no compraron e
 s4_entidades,"ENDUTIH 2025, INEGI","Usuarios de internet de 18+",Observado,"(por definir, frente C)","Regionalización provisional (por definir, frente C)."
 s5_escenarios,"Serie publicada del INEGI (observado) y proyección del equipo (escenarios)","Usuarios de internet de 6+ o 18+ según la serie (por verificar)",Observado y proyectado,"(por definir, frente C)","Los escenarios son supuestos explícitos, no pronósticos."
 s5_simulador,"ENDUTIH 2025, INEGI, y supuestos del usuario","Usuarios de internet de 18+",Simulado,"analisis/D_propuesta/ (por definir)","Supone que cada persona da una sola razón (87 % lo hace, hallazgo 15)."
+s1_categorias,"ENDUTIH 2025, INEGI","Usuarios de internet de 18+ que compraron en línea",Observado,"(por definir, frente A)","Respuesta múltiple: los porcentajes no suman 100."
+s1_brechas_eslabon,"ENDUTIH 2025, INEGI","Usar internet: residentes de 18+. Comprar: usuarios de internet de 18+",Modelado,"(por definir, frente A)","Efectos marginales promedio con los mismos controles en ambos eslabones. Universos distintos: compararlos con cuidado."
+s3_problemas,"ENDUTIH 2025, INEGI","Usuarios de internet de 18+ que compraron en línea",Observado,"(por definir, frente B)","Los tipos de problema son de respuesta múltiple."
+s4_regiones,"ENDUTIH 2025, INEGI","Usuarios de internet de 18+",Bruta: observado. Ajustada: modelado,"(por definir, frente C)","Diferencia frente a la región de referencia. Regionalización provisional."

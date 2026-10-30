@@ -1,12 +1,14 @@
 # =============================================================================
 # Dashboard — Datatón INEGI 2026
-# Una portada y 5 secciones del storyboard. Cada sección: afirmación → gráficas
-# → "Lo que encontramos" → "Cómo se calculó".
+# Portada y 5 secciones del storyboard. Cada sección: afirmación → filtros →
+# gráficas → "Lo que encontramos". Debajo de cada gráfica: "Cómo se calculó" y
+# "Descargar datos".
 #
 # Cada gráfica lee un CSV de dashboard/datos/. Hoy muchos son datos de PRUEBA;
 # cada frente los reemplaza por los finales con las mismas columnas
-# (ver dashboard/README.md). Los textos viven en hallazgos.csv y propuesta.csv,
-# así se editan sin tocar código.
+# (ver dashboard/README.md). Los archivos opcionales pueden faltar: su pestaña
+# muestra "pendiente". Los textos viven en hallazgos.csv, propuesta.csv y
+# estrategias.csv, así se editan sin tocar código.
 #
 # Correr: abrir el proyecto en RStudio y ejecutar shiny::runApp("dashboard")
 # =============================================================================
@@ -17,7 +19,9 @@ library(ggplot2)
 
 # --- Datos -------------------------------------------------------------------
 dir_datos <- if (dir.exists("datos")) "datos" else file.path("dashboard", "datos")
-leer <- function(nombre) read.csv(file.path(dir_datos, nombre), fileEncoding = "UTF-8")
+ruta <- function(nombre) file.path(dir_datos, nombre)
+leer <- function(nombre) read.csv(ruta(nombre), fileEncoding = "UTF-8")
+leer_opcional <- function(nombre) if (file.exists(ruta(nombre))) leer(nombre) else NULL
 
 embudo     <- leer("s1_embudo.csv")
 categorias <- leer("s1_categorias.csv")
@@ -26,221 +30,393 @@ brechas    <- leer("s2_brechas.csv")
 perfiles   <- leer("s2_perfiles.csv")
 razones    <- leer("s3_razones.csv")
 problemas  <- leer("s3_problemas.csv")
-entidades  <- merge(leer("entidades.csv"), leer("s4_entidades.csv"), by = "cve_ent")
+ent_base   <- leer("entidades.csv")
+entidades  <- merge(ent_base, leer("s4_entidades.csv"), by = "cve_ent")
 mapa       <- leer("mapa_estados.csv")
 regiones   <- leer("s4_regiones.csv")
 escen      <- leer("s5_escenarios.csv")
 simul      <- leer("s5_simulador.csv")
-calculo    <- leer("como_se_calculo.csv")
-hallazgos  <- leer("hallazgos.csv")
-propuesta  <- leer("propuesta.csv")
+
+# Opcionales (deseables)
+tendencia  <- leer_opcional("s1_tendencia.csv")
+ingreso    <- leer_opcional("s2_ingreso_entidad.csv")
+hogar      <- leer_opcional("s2_hogar.csv")
+ritmo      <- leer_opcional("s4_ritmo.csv")
+comercios  <- leer_opcional("s4_comercios.csv")
+mercado    <- leer_opcional("s5_mercado.csv")
+
+calculo     <- leer("como_se_calculo.csv")
+hallazgos   <- leer("hallazgos.csv")
+propuesta   <- leer("propuesta.csv")
+estrategias <- leer("estrategias.csv")
 
 hay_prueba <- any(sapply(list(embudo, categorias, eslabon, brechas, perfiles, razones,
-                              problemas, entidades, regiones, escen, simul),
-                         function(d) isTRUE(any(d$prueba))))
+                              problemas, entidades, regiones, escen, simul,
+                              tendencia, ingreso, hogar, ritmo, comercios, mercado),
+                         function(d) !is.null(d) && isTRUE(any(d$prueba))))
 
-# --- Estilo ------------------------------------------------------------------
-# Paleta categórica validada (daltonismo y contraste): azul, verde, morado, ocre.
-# Secuencial: un solo tono, de claro a oscuro. Texto siempre en tinta, no en color.
+# --- Estilo de las gráficas --------------------------------------------------
+# Categórica validada (daltonismo y contraste): azul, verde, morado, ocre.
+# Secuencial: rampa cálida de la figura de referencia. Texto siempre en tinta.
 col <- list(
-  tinta = "#1F2937", gris = "#6B7280", gris_claro = "#9CA3AF", borde = "#C9CED6",
-  fondo = "#FCFBF8", reja = "#ECEEF1",
-  azul = "#0F72A8", verde = "#3E9A66", morado = "#6A4C93", ocre = "#B97A1C",
-  calido = "#F8E2CF", frio = "#EEF3EE"
+  tinta = "#1F2937", gris = "#6B7280", gris_claro = "#9CA3AF", borde = "#D5D9D2",
+  reja = "#ECEEEA", azul = "#0F72A8", verde = "#3E9A66", morado = "#6A4C93",
+  ocre = "#B97A1C", calido = "#F8E2CF", frio = "#EEF3EE"
 )
-# Rampa cálida de la figura de referencia: muy bajo → extremo
 rampa <- c("#EEF3EE", "#F3F2E2", "#FBEFD0", "#F7DCC0", "#F0BEB2", "#E2928C")
-
-tema <- bs_theme(version = 5, primary = col$azul, bg = "#FFFFFF", fg = col$tinta,
-                 base_font = font_google("Inter", local = FALSE),
-                 "border-radius" = "0.6rem")
-tema <- bs_add_rules(tema, "
-  body { background: #FCFBF8; }
-  .card { border-color: #E5E7EB; box-shadow: none; }
-  .navbar { border-bottom: 1px solid #E5E7EB; }
-  .seccion-titulo { font-weight: 700; letter-spacing: -0.01em; }
-  .hallazgos li { margin-bottom: .35rem; }
-  .bslib-value-box .value-box-title { color: #6B7280; }
-")
 
 theme_set(
   theme_minimal(base_size = 13, base_family = "sans") +
     theme(
-      plot.title = element_text(face = "bold", size = 16, colour = col$tinta,
-                                margin = margin(b = 4)),
-      plot.subtitle = element_text(size = 12, colour = col$gris, margin = margin(b = 12)),
-      plot.caption = element_text(size = 10, colour = col$gris, hjust = 0,
+      plot.title = element_text(face = "bold", size = 15, colour = col$tinta, margin = margin(b = 4)),
+      plot.subtitle = element_text(size = 11.5, colour = col$gris, margin = margin(b = 12)),
+      plot.caption = element_text(size = 9.5, colour = col$gris, hjust = 0,
                                   margin = margin(t = 12), lineheight = 1.2),
       plot.title.position = "plot", plot.caption.position = "plot",
       plot.background = element_rect(fill = "white", colour = NA),
-      panel.border = element_rect(colour = col$borde, fill = NA, linewidth = 0.6),
+      panel.border = element_rect(colour = col$borde, fill = NA, linewidth = 0.5),
       panel.grid.major = element_line(colour = col$reja, linewidth = 0.4),
       panel.grid.minor = element_blank(),
-      axis.text = element_text(colour = col$gris, size = 11),
-      axis.title = element_text(face = "bold", colour = col$tinta, size = 12),
-      strip.text = element_text(face = "bold", colour = col$tinta, size = 12),
+      axis.text = element_text(colour = col$gris, size = 10.5),
+      axis.title = element_text(face = "bold", colour = col$tinta, size = 11),
+      strip.text = element_text(face = "bold", colour = col$tinta, size = 11.5),
       legend.position = "bottom", legend.justification = "left",
-      legend.title = element_text(face = "bold", colour = col$tinta, size = 11),
-      legend.text = element_text(colour = col$tinta, size = 11),
-      plot.margin = margin(12, 16, 12, 12)
+      legend.title = element_text(face = "bold", colour = col$tinta, size = 10.5),
+      legend.text = element_text(colour = col$tinta, size = 10.5),
+      plot.margin = margin(10, 14, 10, 10)
     )
 )
 pct <- function(x) paste0(x, " %")
 pp  <- function(x) ifelse(x > 0, paste0("+", x), as.character(x))
-
-# Marcador como en la figura de referencia: círculo relleno con borde blanco
 punto <- function(...) geom_point(shape = 21, colour = "white", stroke = 1.3, ...)
+sin_ejes <- theme(axis.text = element_blank(), panel.grid.major = element_blank(),
+                  panel.border = element_blank())
+
+# --- Estilo de la página -----------------------------------------------------
+tema <- bs_theme(
+  version = 5, primary = col$azul, bg = "#FFFFFF", fg = col$tinta,
+  base_font = font_collection(font_google("Atkinson Hyperlegible", local = FALSE),
+                              "system-ui", "-apple-system", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif"),
+  "border-radius" = "10px", "font-size-base" = "1rem"
+)
+tema <- bs_add_rules(tema, "
+  :root { --tinta:#1F2937; --gris:#6B7280; --borde:#E3E6E0; --menta:#F2F6F1; --azul:#0F72A8;
+          --morado:#6A4C93; --durazno:#F8E2CF; }
+  body { background:#FFFFFF; }
+  .navbar { background:#FFFFFF !important; border-bottom:1px solid var(--borde); padding-top:.6rem; padding-bottom:.6rem; }
+  .navbar-brand { font-weight:700; letter-spacing:-.01em; }
+  .navbar .nav-link { color:var(--gris) !important; font-weight:600; }
+  .navbar .nav-link.active { color:var(--tinta) !important; box-shadow: inset 0 -3px 0 var(--azul); }
+  .insignia-prueba { background:#FDF3D7; color:#7A5A12; border:1px solid #F1DFA6; border-radius:999px;
+                     padding:.2rem .75rem; font-size:.8rem; font-weight:700; white-space:nowrap; }
+  .contenedor { max-width:1180px; margin:0 auto; padding: 0 1rem 3rem; }
+
+  /* Portada */
+  .portada { background:var(--menta); border-bottom:1px solid var(--borde); margin: 0 -1rem 2rem; padding: 3rem 1rem 2.5rem; }
+  .portada-interior { max-width:1180px; margin:0 auto; }
+  .portada .contexto { color:var(--gris); font-size:1.05rem; max-width:62ch; margin-bottom:1.75rem; }
+  .portada h1 { font-size:clamp(2.2rem, 4.5vw, 3.6rem); font-weight:700; letter-spacing:-.025em; line-height:1.05; margin-bottom:.75rem; }
+  .barreras { display:grid; grid-template-columns: 1fr 1fr; gap:0; border:1px solid var(--borde); border-radius:12px; overflow:hidden; background:#fff; margin-top:2rem; }
+  .barrera { padding:1.5rem 1.75rem; }
+  .barrera + .barrera { border-left:1px solid var(--borde); }
+  .barrera h3 { font-size:1.35rem; font-weight:700; margin:.1rem 0 .5rem; }
+  .barrera .quienes { color:var(--gris); margin-bottom:1rem; }
+  .barrera .cifra { font-size:2.6rem; font-weight:700; letter-spacing:-.02em; line-height:1; }
+  .barrera .cifra-nota { color:var(--gris); font-size:.95rem; margin-top:.35rem; max-width:40ch; }
+  .barrera.no-pueden { box-shadow: inset 6px 0 0 var(--azul); }
+  .barrera.no-quieren { box-shadow: inset 6px 0 0 #E2928C; }
+  .datos-clave { display:flex; flex-wrap:wrap; gap:2.5rem; margin-top:1.75rem; }
+  .dato .valor { font-size:1.6rem; font-weight:700; letter-spacing:-.01em; }
+  .dato .etiqueta { color:var(--gris); font-size:.92rem; max-width:24ch; }
+  .recorrido { border-top:1px solid var(--borde); }
+  .recorrido a { display:grid; grid-template-columns: 3rem 1fr auto; align-items:baseline; gap:1rem;
+                 padding:1rem .25rem; border-bottom:1px solid var(--borde); color:var(--tinta); text-decoration:none; }
+  .recorrido a:hover .titulo-paso, .recorrido a:focus .titulo-paso { color:var(--azul); text-decoration:underline; }
+  .recorrido .num { font-size:1.4rem; font-weight:700; color:var(--azul); }
+  .recorrido .titulo-paso { font-weight:700; font-size:1.1rem; }
+  .recorrido .afirm { color:var(--gris); }
+  .recorrido .ir { color:var(--gris); font-size:.9rem; }
+
+  /* Secciones */
+  .cabecera { display:grid; grid-template-columns: auto 1fr; gap:1.25rem; align-items:start; margin: 2.25rem 0 1.25rem; }
+  .cabecera .num { font-size:3.2rem; font-weight:700; line-height:.9; color:var(--azul); }
+  .cabecera h2 { font-size:clamp(1.6rem, 2.8vw, 2.25rem); font-weight:700; letter-spacing:-.02em; line-height:1.1; margin:0 0 .35rem; }
+  .cabecera p { color:var(--gris); margin:0; max-width:75ch; }
+  .filtros { display:flex; flex-wrap:wrap; align-items:center; gap:.75rem; margin-bottom:1rem; }
+  .filtros .rotulo { color:var(--gris); font-weight:600; }
+  .filtros .form-group { margin:0; }
+  .pastillas .shiny-options-group { display:flex; flex-wrap:wrap; gap:.4rem; }
+  .pastillas .radio-inline { margin:0 !important; padding:.35rem .95rem !important; border:1px solid var(--borde); border-radius:999px;
+                             background:#fff; cursor:pointer; font-weight:600; color:var(--gris); }
+  .pastillas .radio-inline input { position:absolute; opacity:0; width:1px; height:1px; }
+  .pastillas .radio-inline:has(input:checked) { background:var(--tinta); border-color:var(--tinta); color:#fff; }
+  .pastillas .radio-inline:has(input:focus-visible) { outline:3px solid var(--azul); outline-offset:2px; }
+  .lienzo { border:1px solid var(--borde); border-radius:12px; background:#fff; padding:.75rem 1rem 1rem; height:100%; }
+  .lienzo .nav-underline, .lienzo .nav-tabs { margin-bottom:.5rem; }
+  .card { border-color:var(--borde); box-shadow:none; }
+  .nav-underline .nav-link { color:var(--gris); font-weight:600; }
+  .nav-underline .nav-link.active { color:var(--tinta); border-bottom-color:var(--azul); }
+  .pie-grafica { display:flex; flex-wrap:wrap; justify-content:space-between; gap:.5rem 1.5rem; align-items:flex-start;
+                 border-top:1px solid var(--borde); padding-top:.6rem; margin-top:.25rem; font-size:.9rem; }
+  .pie-grafica details { flex:1 1 220px; }
+  .pie-grafica summary { color:var(--azul); font-weight:600; cursor:pointer; }
+  .pie-grafica dl { display:grid; grid-template-columns: 7rem 1fr; gap:.25rem .75rem; margin:.6rem 0 0; color:var(--tinta); }
+  .pie-grafica dt { color:var(--gris); font-weight:600; }
+  .pie-grafica dd { margin:0; }
+  .pie-grafica .descarga { color:var(--azul); font-weight:600; white-space:nowrap; }
+  .pendiente { border:1.5px dashed var(--borde); border-radius:12px; padding:2.5rem 1.5rem; text-align:center; color:var(--gris); margin:1rem 0; }
+  .pendiente strong { color:var(--tinta); display:block; margin-bottom:.25rem; }
+  .detalle-mapa { min-height:1.5rem; color:var(--tinta); }
+
+  /* Lo que encontramos */
+  .encontramos { margin-top:2rem; background:var(--menta); border-radius:12px; padding:1.25rem 1.5rem .5rem; }
+  .encontramos h3 { font-size:1.15rem; font-weight:700; margin:0 0 .5rem; }
+  .hallazgo { display:grid; grid-template-columns: 8.5rem 1fr; gap:1.25rem; padding:.9rem 0; border-top:1px solid var(--borde); align-items:baseline; }
+  .hallazgo .cifra { font-size:1.45rem; font-weight:700; color:var(--azul); letter-spacing:-.01em; }
+  .hallazgo .texto { max-width:78ch; }
+  .hallazgo.pendiente-texto .cifra { display:none; }
+  .hallazgo.pendiente-texto .texto { grid-column:1 / -1; color:var(--gris); font-style:italic; }
+
+  /* Propuesta */
+  .ficha { display:grid; grid-template-columns: 13rem 1fr; gap:0; border-top:1px solid var(--borde); }
+  .ficha dt, .ficha dd { padding:.8rem 0; border-bottom:1px solid var(--borde); margin:0; }
+  .ficha dt { font-weight:700; padding-right:1rem; }
+  .ficha dd { max-width:70ch; }
+  .estrategias { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-top:.5rem; }
+  .estrategias h4 { font-size:1.1rem; font-weight:700; margin:0 0 .25rem; }
+  .estrategias .nota { color:var(--gris); font-size:.9rem; margin-bottom:.75rem; }
+  .estrategia { padding:.8rem 1rem; border-left:4px solid var(--azul); background:#fff; border-top:1px solid var(--borde);
+                border-right:1px solid var(--borde); border-bottom:1px solid var(--borde); border-radius:0 10px 10px 0; margin-bottom:.6rem; }
+  .publica .estrategia { border-left-color:var(--morado); }
+  .estrategia .actor { font-weight:700; }
+  .estrategia .porque { color:var(--gris); font-size:.92rem; margin-top:.2rem; }
+  .kpis { display:grid; grid-template-columns: repeat(3, 1fr); gap:1rem; margin-bottom:1rem; }
+  .kpi { border:1px solid var(--borde); border-radius:12px; padding:1rem 1.25rem; background:#fff; }
+  .kpi .etiqueta { color:var(--gris); font-weight:600; }
+  .kpi .valor { font-size:2.2rem; font-weight:700; letter-spacing:-.02em; }
+  .kpi.destacado { background:var(--tinta); color:#fff; border-color:var(--tinta); }
+  .kpi.destacado .etiqueta { color:#D1D5DB; }
+
+  @media (max-width: 768px) {
+    .barreras, .estrategias, .kpis { grid-template-columns:1fr; }
+    .barrera + .barrera { border-left:0; border-top:1px solid var(--borde); }
+    .hallazgo, .ficha { grid-template-columns:1fr; gap:.25rem; }
+    .cabecera .num { font-size:2.4rem; }
+    .datos-clave { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; }
+    .recorrido a { grid-template-columns: 2rem 1fr; }
+    .recorrido .ir { display:none; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition:none !important; } }
+")
 
 # --- Piezas de la interfaz ---------------------------------------------------
-como_se_calculo <- function(id) {
-  m <- calculo[calculo$grafica == id, ]
-  if (nrow(m) == 0) return(NULL)
-  accordion(open = FALSE, class = "mt-2", accordion_panel(
-    "Cómo se calculó", icon = icon("circle-info"),
-    tags$dl(class = "row small mb-0",
-            tags$dt(class = "col-sm-3", "Fuente"),   tags$dd(class = "col-sm-9", m$fuente),
-            tags$dt(class = "col-sm-3", "Universo"), tags$dd(class = "col-sm-9", m$universo),
-            tags$dt(class = "col-sm-3", "Tipo"),     tags$dd(class = "col-sm-9", m$tipo),
-            tags$dt(class = "col-sm-3", "Script"),   tags$dd(class = "col-sm-9", tags$code(m$script)),
-            tags$dt(class = "col-sm-3", "Nota"),     tags$dd(class = "col-sm-9", m$nota))))
+# Pie de cada gráfica: "Cómo se calculó" (desplegable) y descarga del CSV
+pie_grafica <- function(id_calculo, archivo) {
+  m <- calculo[calculo$grafica == id_calculo, ]
+  detalle <- if (nrow(m) == 1) tags$details(
+    tags$summary("Cómo se calculó"),
+    tags$dl(tags$dt("Fuente"), tags$dd(m$fuente), tags$dt("Universo"), tags$dd(m$universo),
+            tags$dt("Tipo"), tags$dd(m$tipo), tags$dt("Script"), tags$dd(tags$code(m$script)),
+            tags$dt("Nota"), tags$dd(m$nota)))
+  div(class = "pie-grafica", detalle,
+      downloadLink(paste0("dl_", sub("\\.csv$", "", archivo)), "Descargar datos (CSV)", class = "descarga"))
 }
+
+grafica <- function(salida, alto, id_calculo, archivo, ...) {
+  tagList(plotOutput(salida, height = alto, ...), pie_grafica(id_calculo, archivo))
+}
+
+# Pestaña opcional: si el frente aún no entrega su archivo, se ve "pendiente"
+opcional <- function(datos, salida, alto, id_calculo, archivo, quien) {
+  if (is.null(datos)) div(class = "pendiente", strong("Pendiente"), quien)
+  else grafica(salida, alto, id_calculo, archivo)
+}
+
+cabecera <- function(num, afirmacion, apoyo) {
+  div(class = "cabecera", div(class = "num", num),
+      div(h2(afirmacion), p(apoyo)))
+}
+
+filtro <- function(id, opciones, rotulo = "Ver por") {
+  div(class = "filtros", span(class = "rotulo", rotulo),
+      div(class = "pastillas",
+          radioButtons(id, NULL, opciones, selected = opciones[1], inline = TRUE)))
+}
+opciones_grupo <- c("Escolaridad", "Edad", "Sexo", "Localidad", "Estrato", "Región")
 
 lo_que_encontramos <- function(seccion) {
   h <- hallazgos[hallazgos$seccion == seccion, ]
   h <- h[order(h$orden), ]
-  card(style = "border: 0; border-left: 4px solid #0F72A8;",
-       card_body(h5(icon("lightbulb"), " Lo que encontramos", class = "fw-bold mb-3"),
-                 tags$ol(class = "hallazgos mb-0", lapply(h$texto, tags$li))))
+  h$cifra[is.na(h$cifra)] <- ""
+  div(class = "encontramos", h3("Lo que encontramos"),
+      lapply(seq_len(nrow(h)), function(i) {
+        pendiente <- grepl("^Pendiente", h$texto[i])
+        div(class = paste("hallazgo", if (pendiente) "pendiente-texto"),
+            div(class = "cifra", h$cifra[i]), div(class = "texto", h$texto[i]))
+      }))
 }
 
-afirmacion <- function(texto, apoyo) {
-  div(class = "mt-3 mb-3", h2(texto, class = "seccion-titulo"),
-      p(apoyo, class = "text-muted mb-0"))
-}
-
-selector_grupo <- function(id, opciones = c("Escolaridad", "Edad", "Sexo", "Localidad",
-                                            "Estrato", "Región"), nacional = FALSE) {
-  if (nacional) opciones <- c("Nacional", opciones)
-  selectInput(id, "Ver por", opciones, selected = "Escolaridad")
-}
-
-grafica <- function(salida, alto, id_calculo, ...) {
-  card(card_body(plotOutput(salida, height = alto, ...), como_se_calculo(id_calculo)))
-}
-
-aviso_prueba <- if (hay_prueba) {
-  div(class = "alert alert-warning py-2 mb-0 rounded-0 text-center small",
-      strong("Datos de prueba: "),
-      "las gráficas usan cifras inventadas. Las cifras de los recuadros «Lo que encontramos» son del diagnóstico preliminar.")
-}
+seccion <- function(...) div(class = "contenedor", ...)
 
 # --- Interfaz ----------------------------------------------------------------
 ui <- page_navbar(
-  title = "¿Quién compra en línea en México?",
+  id = "nav",
+  title = "Comprar en línea en México",
   theme = tema,
-  header = aviso_prueba,
   fillable = FALSE,
+  window_title = "Comprar en línea en México (Datatón INEGI 2026)",
 
-  nav_panel("Inicio",
-    div(class = "py-4",
-      h1("Comprar en línea en México: quién se queda fuera, por qué y qué hacer",
-         class = "seccion-titulo"),
-      p(class = "lead text-muted",
-        "Diagnóstico con datos oficiales del INEGI (ENDUTIH 2025) y una propuesta para que más personas compren en línea.")),
-    layout_columns(fill = FALSE,
-      value_box("Usuarios de internet de 18+ que compran en línea", "43.7 %",
-                showcase = icon("cart-shopping"), theme = "primary"),
-      value_box("Brecha por escolaridad (superior vs. primaria)", "+42.5 pp",
-                showcase = icon("graduation-cap")),
-      value_box("Brecha por edad (65+ vs. 18-24)", "−41.8 pp",
-                showcase = icon("person-cane")),
-      value_box("Usuarios con primaria o menos que no compran", "11.3 millones",
-                showcase = icon("users"))),
-    lo_que_encontramos("inicio"),
-    p(class = "text-muted small mt-3",
-      "Cifras del diagnóstico preliminar; se actualizarán con las finales. Brechas con controles, intervalos al 90 %.")),
+  nav_panel("Inicio", value = "inicio",
+    div(class = "portada", div(class = "portada-interior",
+      p(class = "contexto",
+        "Diagnóstico con datos oficiales del INEGI (ENDUTIH 2025) sobre los adultos que ya usan internet, y una propuesta para que más de ellos compren en línea."),
+      h1("No es una brecha: son dos barreras."),
+      p(class = "contexto mb-0",
+        "Entre quienes ya están conectados, comprar en línea depende sobre todo de la escolaridad, la edad y el territorio. Y quienes no compran no lo hacen por la misma razón."),
+      div(class = "barreras",
+        div(class = "barrera no-pueden",
+          h3("No saben cómo"),
+          div(class = "quienes", "Sube con la edad y baja con la escolaridad."),
+          div(class = "cifra", "43 %"),
+          div(class = "cifra-nota", "de quienes tienen 65+ y primaria o menos, y no compran, dicen «no sé cómo». Entre los de 18-24, 21 %.")),
+        div(class = "barrera no-quieren",
+          h3("Prefieren en persona"),
+          div(class = "quienes", "Más común en el estrato alto; ligada a la confianza."),
+          div(class = "cifra", "52 %"),
+          div(class = "cifra-nota", "de quienes no compran en el estrato alto prefieren hacerlo en persona. En el estrato bajo, 36 %."))),
+      div(class = "datos-clave",
+        div(class = "dato", div(class = "valor", "43.7 %"), div(class = "etiqueta", "de los usuarios de internet de 18+ compró en línea")),
+        div(class = "dato", div(class = "valor", "+42.5 pp"), div(class = "etiqueta", "entre educación superior y primaria, con controles")),
+        div(class = "dato", div(class = "valor", "11.3 millones"), div(class = "etiqueta", "de usuarios con primaria o menos no compran")),
+        div(class = "dato", div(class = "valor", "1–4 %"), div(class = "etiqueta", "dice que no compra por no tener tarjeta"))))),
+    seccion(
+      h2("Recorrido", class = "h4 fw-bold mb-2"),
+      div(class = "recorrido",
+        lapply(list(
+          c("1", "s1", "Panorama", "Del acceso a la compra, dónde se pierde la gente"),
+          c("2", "s2", "¿Quién queda fuera?", "La brecha es de escolaridad, edad y territorio"),
+          c("3", "s3", "¿Por qué?", "Unos no pueden y otros no quieren"),
+          c("4", "s4", "¿Dónde?", "El territorio pesa aun con controles"),
+          c("5", "s5", "¿Qué hacer?", "La tienda como puerta de entrada")), function(x)
+          tags$a(href = "#", onclick = sprintf("Shiny.setInputValue('ir', '%s', {priority: 'event'}); return false;", x[2]),
+                 span(class = "num", x[1]),
+                 span(span(class = "titulo-paso", x[3]), br(), span(class = "afirm", x[4])),
+                 span(class = "ir", "Ver sección")))),
+      p(class = "text-muted small mt-3",
+        "Cifras del diagnóstico preliminar; se actualizarán con las finales. Brechas con controles; intervalos al 90 %."))),
 
-  nav_panel("1. Panorama",
-    afirmacion("Del acceso a la compra, la gente se pierde en eslabones distintos",
-               "Afirmación provisional. Frente A. Preguntas P1 y P3."),
-    layout_sidebar(
-      sidebar = sidebar(selector_grupo("s1_grupo", nacional = TRUE), open = "always", width = 220),
-      navset_card_underline(
-        nav_panel("Embudo", plotOutput("g_embudo", height = "560px"), como_se_calculo("s1_embudo")),
-        nav_panel("¿Conectarse o comprar?",
-          plotOutput("g_eslabon", height = "440px"), como_se_calculo("s1_brechas_eslabon")),
-        nav_panel("¿Qué se compra?",
-          plotOutput("g_categorias", height = "520px"), como_se_calculo("s1_categorias")))),
-    lo_que_encontramos("s1")),
+  nav_panel("1. Panorama", value = "s1", seccion(
+    cabecera("1", "Del acceso a la compra, la gente se pierde en eslabones distintos",
+             "Afirmación provisional. Frente A. Preguntas P1 y P3."),
+    filtro("s1_grupo", c("Nacional", opciones_grupo)),
+    div(class = "lienzo", navset_underline(
+      nav_panel("Embudo", grafica("g_embudo", "560px", "s1_embudo", "s1_embudo.csv")),
+      nav_panel("¿Conectarse o comprar?", grafica("g_eslabon", "440px", "s1_brechas_eslabon", "s1_brechas_eslabon.csv")),
+      nav_panel("¿Qué se compra?", grafica("g_categorias", "520px", "s1_categorias", "s1_categorias.csv")),
+      nav_panel("¿Cómo ha cambiado?", opcional(tendencia, "g_tendencia", "380px", "s1_tendencia", "s1_tendencia.csv",
+                                             "Frente A: tendencia de las categorías con los tabulados publicados.")))),
+    lo_que_encontramos("s1"))),
 
-  nav_panel("2. ¿Quién queda fuera?",
-    afirmacion("La brecha es de escolaridad, edad y territorio",
-               "Otras brechas se explican en buena parte por escolaridad. Frentes A y B. Pregunta P2."),
-    layout_columns(col_widths = c(7, 5),
-      grafica("g_brechas", "520px", "s2_brechas"),
-      grafica("g_perfiles", "520px", "s2_perfiles")),
-    lo_que_encontramos("s2")),
-
-  nav_panel("3. ¿Por qué?",
-    afirmacion("Unos no pueden (habilidades) y otros no quieren (prefieren lo presencial)",
-               "Los medios de pago pesan poco. Frente B. Preguntas P4 y P5."),
-    layout_sidebar(
-      sidebar = sidebar(selector_grupo("s3_grupo"), open = "always", width = 220),
-      navset_card_underline(
-        nav_panel("Por qué no compran",
-          plotOutput("g_razones", height = "500px"), como_se_calculo("s3_razones")),
-        nav_panel("Problemas de quienes sí compran",
-          plotOutput("g_problemas", height = "460px"), como_se_calculo("s3_problemas")))),
-    lo_que_encontramos("s3")),
-
-  nav_panel("4. ¿Dónde?",
-    afirmacion("El territorio pesa aun con controles",
-               "Afirmación provisional. Frente C. Pasa el cursor sobre una entidad para ver su cifra."),
-    layout_sidebar(
-      sidebar = sidebar(open = "always", width = 220,
-        radioButtons("s4_color", "Colorear el mapa por",
-                     c("% que compra" = "estimacion", "Región" = "region"))),
-      layout_columns(col_widths = c(6, 6),
-        card(card_body(
-          plotOutput("g_mapa", height = "520px",
-                     hover = hoverOpts("mapa_hover", delay = 80, delayType = "throttle")),
-          uiOutput("mapa_detalle"),
-          como_se_calculo("s4_entidades"))),
-        grafica("g_regiones", "520px", "s4_regiones"))),
-    lo_que_encontramos("s4")),
-
-  nav_panel("5. ¿Qué hacer?",
-    afirmacion("La tienda como puerta de entrada a la compra en línea",
-               "Propuesta en borrador. Frentes D y C."),
-    navset_card_underline(
-      nav_panel("La propuesta",
+  nav_panel("2. ¿Quién queda fuera?", value = "s2", seccion(
+    cabecera("2", "La brecha es de escolaridad, edad y territorio",
+             "Otras brechas se explican en buena parte por escolaridad. Frentes A y B. Pregunta P2."),
+    div(class = "lienzo", navset_underline(
+      nav_panel("Brechas y perfiles",
         layout_columns(col_widths = c(7, 5),
-          div(class = "mt-3", tags$dl(lapply(seq_len(nrow(propuesta)), function(i)
-            tagList(tags$dt(propuesta$campo[i]), tags$dd(class = "mb-3", propuesta$texto[i]))))),
-          div(class = "mt-3", lo_que_encontramos("s5")))),
+          grafica("g_brechas", "500px", "s2_brechas", "s2_brechas.csv"),
+          grafica("g_perfiles", "500px", "s2_perfiles", "s2_perfiles.csv"))),
+      nav_panel("Ingreso",
+        opcional(ingreso, "g_ingreso", "480px", "s2_ingreso_entidad", "s2_ingreso_entidad.csv",
+                 "Frentes A y C: ingreso de los hogares (ENIGH) frente a la compra, por entidad.")),
+      nav_panel("Composición del hogar",
+        opcional(hogar, "g_hogar", "360px", "s2_hogar", "s2_hogar.csv",
+                 "Frente A: compra según la composición del hogar, por sexo.")))),
+    lo_que_encontramos("s2"))),
+
+  nav_panel("3. ¿Por qué?", value = "s3", seccion(
+    cabecera("3", "Unos no pueden (habilidades) y otros no quieren (prefieren lo presencial)",
+             "Los medios de pago pesan poco. Frente B. Preguntas P4 y P5."),
+    filtro("s3_grupo", opciones_grupo),
+    div(class = "lienzo", navset_underline(
+      nav_panel("Por qué no compran", grafica("g_razones", "500px", "s3_razones", "s3_razones.csv")),
+      nav_panel("Problemas de quienes sí compran", grafica("g_problemas", "460px", "s3_problemas", "s3_problemas.csv")))),
+    lo_que_encontramos("s3"))),
+
+  nav_panel("4. ¿Dónde?", value = "s4", seccion(
+    cabecera("4", "El territorio pesa aun con controles",
+             "Afirmación provisional. Frente C. Pregunta P6."),
+    div(class = "lienzo", navset_underline(
+      nav_panel("Mapa y regiones",
+        filtro("s4_color", c("% que compra" = "estimacion", "Región" = "region"), "Colorear por"),
+        layout_columns(col_widths = c(7, 5),
+          tagList(plotOutput("g_mapa", height = "500px",
+                             hover = hoverOpts("mapa_hover", delay = 80, delayType = "throttle")),
+                  div(class = "detalle-mapa small", uiOutput("mapa_detalle")),
+                  pie_grafica("s4_entidades", "s4_entidades.csv")),
+          grafica("g_regiones", "500px", "s4_regiones", "s4_regiones.csv"))),
+      nav_panel("Ritmo de adopción",
+        opcional(ritmo, "g_ritmo", "780px", "s4_ritmo", "s4_ritmo.csv",
+                 "Frente C: cambio en el % que compra por entidad entre dos levantamientos.")),
+      nav_panel("¿Por qué?",
+        opcional(comercios, "g_comercios", "480px", "s4_comercios", "s4_comercios.csv",
+                 "Frente C: comercios al por menor por habitante (DENUE) frente a la compra en línea.")))),
+    lo_que_encontramos("s4"))),
+
+  nav_panel("5. ¿Qué hacer?", value = "s5", seccion(
+    cabecera("5", "La tienda como puerta de entrada a la compra en línea",
+             "Propuesta en borrador. Frentes D y C. Preguntas P7 y P8."),
+    div(class = "lienzo", navset_underline(
+      nav_panel("La propuesta",
+        div(class = "row g-4 mt-1",
+          div(class = "col-lg-7",
+            tags$dl(class = "ficha", lapply(seq_len(nrow(propuesta)), function(i)
+              tagList(tags$dt(propuesta$campo[i]), tags$dd(propuesta$texto[i]))))),
+          div(class = "col-lg-5", lo_que_encontramos("s5")))),
+      nav_panel("Estrategias públicas y privadas",
+        div(class = "estrategias mt-2",
+          lapply(c("Pública", "Privada"), function(t) {
+            e <- estrategias[estrategias$tipo == t, ]
+            div(class = if (t == "Pública") "publica" else "privada",
+                h4(if (t == "Pública") "Desde lo público" else "Desde lo privado"),
+                div(class = "nota", "Qué haría cada actor y por qué le conviene. Hipótesis por validar."),
+                lapply(seq_len(nrow(e)), function(i)
+                  div(class = "estrategia", div(class = "actor", e$actor[i]),
+                      div(e$accion[i]), div(class = "porque", e$por_que[i]))))
+          }))),
       nav_panel("Simulador",
-        layout_sidebar(
-          sidebar = sidebar(open = "always", width = 280,
+        layout_columns(col_widths = c(4, 8),
+          div(class = "pt-2",
             selectInput("sim_grupo", "Grupo objetivo", simul$grupo),
             sliderInput("sim_sabe", "De quienes dicen «no sé cómo», % que aprende y compra",
                         0, 100, 30, step = 5, post = " %"),
             sliderInput("sim_persona", "De quienes prefieren en persona, % que compra con recoger en tienda",
                         0, 100, 20, step = 5, post = " %")),
-          layout_columns(fill = FALSE,
-            value_box("Compran hoy", textOutput("vb_hoy"), showcase = icon("cart-shopping")),
-            value_box("Comprarían", textOutput("vb_nuevo"), showcase = icon("arrow-trend-up"), theme = "primary"),
-            value_box("Personas nuevas que compran", textOutput("vb_personas"), showcase = icon("users"))),
-          como_se_calculo("s5_simulador"))),
-      nav_panel("Escenarios 2030",
-        plotOutput("g_escenarios", height = "480px"), como_se_calculo("s5_escenarios")))),
+          div(class = "pt-2", uiOutput("sim_kpis"),
+              p(class = "text-muted", style = "max-width:70ch",
+                "Cómo funciona: de las personas del grupo que no compran, toma a quienes dicen «no sé cómo» y a quienes prefieren en persona, y aplica los porcentajes que eliges. El resultado es cuántas empezarían a comprar si la intervención funcionara así. Mueve los controles para ver qué palanca pesa más en cada grupo."),
+              pie_grafica("s5_simulador", "s5_simulador.csv")))),
+      nav_panel("Escenarios 2030", grafica("g_escenarios", "460px", "s5_escenarios", "s5_escenarios.csv")),
+      nav_panel("Tamaño del mercado",
+        opcional(mercado, "g_mercado", "340px", "s5_mercado", "s5_mercado.csv",
+                 "Frente C: rango de gasto de los hogares que podría hacerse en línea (ENIGH).")))))),
 
   nav_spacer(),
-  nav_item(tags$a(icon("github"), "Código",
-                  href = "https://github.com/rebeloppar/dataton-inegi-2026", target = "_blank"))
+  nav_item(if (hay_prueba) span(class = "insignia-prueba", title = "Las gráficas usan cifras inventadas; las de «Lo que encontramos» son del diagnóstico preliminar.", "Datos de prueba")),
+  nav_item(tags$a(icon("github"), "Código", href = "https://github.com/rebeloppar/dataton-inegi-2026",
+                  target = "_blank", class = "nav-link"))
 )
 
 # --- Servidor ----------------------------------------------------------------
 server <- function(input, output, session) {
+
+  observeEvent(input$ir, nav_select("nav", input$ir))
+
+  # Descargas: un enlace por archivo de datos
+  for (archivo in list.files(dir_datos, pattern = "^s[0-9].*\\.csv$")) local({
+    a <- archivo
+    output[[paste0("dl_", sub("\\.csv$", "", a))]] <- downloadHandler(
+      filename = a, content = function(f) file.copy(ruta(a), f))
+  })
 
   graficar <- function(expr) renderPlot(expr, res = 110)
 
@@ -250,9 +426,9 @@ server <- function(input, output, session) {
     d
   }
 
-  # Brechas tipo "pesas": fondo cálido = desventaja, frío = ventaja
+  # Brechas tipo "pesas": fondo durazno = desventaja, menta = ventaja
   pesas <- function(d, y, color, valores, titulo, subtitulo, nota, xlab = "Diferencia en puntos porcentuales") {
-    rango <- range(c(d$li90, d$ls90, 0), na.rm = TRUE); rango <- rango + c(-3, 3)
+    rango <- range(c(d$li90, d$ls90, 0), na.rm = TRUE) + c(-3, 3)
     ggplot(d, aes(estimacion, .data[[y]])) +
       annotate("rect", xmin = rango[1], xmax = 0, ymin = -Inf, ymax = Inf, fill = col$calido) +
       annotate("rect", xmin = 0, xmax = rango[2], ymin = -Inf, ymax = Inf, fill = col$frio) +
@@ -264,26 +440,33 @@ server <- function(input, output, session) {
       scale_fill_manual(values = valores, name = NULL) +
       scale_colour_manual(values = valores, guide = "none") +
       scale_x_continuous(limits = rango, expand = c(0, 0), labels = pp, n.breaks = 5) +
-      labs(title = titulo, subtitle = subtitulo, caption = nota,
-           x = xlab, y = NULL) +
+      labs(title = titulo, subtitle = subtitulo, caption = nota, x = xlab, y = NULL) +
       theme(panel.grid.major.y = element_blank())
   }
 
   calor <- function(d, fila, titulo, subtitulo, nota) {
     prom <- tapply(d$estimacion, d[[fila]], mean)
     d[[fila]] <- factor(d[[fila]], names(sort(prom)))
-    corte <- max(d$estimacion) * 0.55
     ggplot(d, aes(grupo, .data[[fila]], fill = estimacion)) +
       geom_tile(colour = "white", linewidth = 2) +
-      geom_text(aes(label = sprintf("%.0f", estimacion),
-                    colour = estimacion > corte), size = 4.2, fontface = "bold") +
+      geom_text(aes(label = sprintf("%.0f", estimacion)), colour = col$tinta, size = 4.2, fontface = "bold") +
       scale_fill_gradientn(colours = rampa, name = "%", limits = c(0, NA)) +
-      scale_colour_manual(values = c(`TRUE` = col$tinta, `FALSE` = col$tinta), guide = "none") +
       scale_x_discrete(position = "top") +
       labs(title = titulo, subtitle = subtitulo, caption = nota, x = NULL, y = NULL) +
-      theme(panel.grid.major = element_blank(), panel.border = element_blank(),
-            legend.position = "right", axis.text.x = element_text(colour = col$tinta),
-            axis.text.y = element_text(colour = col$tinta))
+      theme(panel.grid.major = element_blank(), panel.border = element_blank(), legend.position = "right",
+            axis.text.x = element_text(colour = col$tinta), axis.text.y = element_text(colour = col$tinta))
+  }
+
+  # Dispersión entre entidades, con abreviaturas
+  dispersion <- function(d, x, xlab, titulo, subtitulo, nota) {
+    d <- merge(d, ent_base, by = "cve_ent")
+    ggplot(d, aes(.data[[x]], pct_compra)) +
+      geom_smooth(method = "lm", formula = y ~ x, se = FALSE, colour = col$gris_claro,
+                  linewidth = 0.7, linetype = "dashed") +
+      punto(fill = col$azul, size = 4) +
+      geom_text(aes(label = abrev), size = 2.8, colour = col$gris, vjust = -1.3) +
+      scale_y_continuous(labels = pct, expand = expansion(mult = c(0.05, 0.12))) +
+      labs(title = titulo, subtitle = subtitulo, caption = nota, x = xlab, y = "% que compra en línea")
   }
 
   # 1. Panorama ---------------------------------------------------------------
@@ -291,7 +474,6 @@ server <- function(input, output, session) {
     d <- por_grupo(embudo, input$s1_grupo)
     pasos <- c("Hogar con internet", "Usa internet", "Compra en línea")
     d$paso <- match(d$eslabon, pasos)
-    # Cada eslabón es un trapecio: arriba su ancho, abajo el del siguiente eslabón
     poli <- do.call(rbind, lapply(split(d, d$grupo), function(g) {
       if (nrow(g) == 0) return(NULL)
       g <- g[order(g$paso), ]
@@ -315,28 +497,42 @@ server <- function(input, output, session) {
       scale_fill_manual(values = c(rampa[3], rampa[4], rampa[5]), name = NULL, drop = FALSE) +
       coord_cartesian(xlim = c(-52, 52)) +
       labs(title = "Del hogar conectado a la compra en línea",
-           subtitle = paste0("% en cada eslabón, por ", tolower(input$s1_grupo),
+           subtitle = paste0("% en cada eslabón, ", if (input$s1_grupo == "Nacional") "a nivel nacional" else paste("por", tolower(input$s1_grupo)),
                              ". Debajo de cada cifra, su intervalo al 90 %."),
            caption = "Cada eslabón tiene su propio universo: hogares, residentes de 18+ y usuarios de internet de 18+.",
-           x = NULL, y = NULL) +
-      theme(axis.text = element_blank(), panel.grid.major = element_blank(), panel.border = element_blank())
+           x = NULL, y = NULL) + sin_ejes
   })
 
   output$g_eslabon <- graficar({
     d <- eslabon
     d$eslabon <- factor(d$eslabon, c("Usar internet", "Comprar en línea"))
-    pesas(d, "comparacion", "eslabon",
-          c(`Usar internet` = col$morado, `Comprar en línea` = col$azul),
+    pesas(d, "comparacion", "eslabon", c(`Usar internet` = col$morado, `Comprar en línea` = col$azul),
           "¿Se pierde más gente al conectarse o al comprar?",
-          "Brecha con controles en cada eslabón, en puntos porcentuales",
+          "Brecha con controles en cada eslabón. No depende del filtro.",
           "Usar internet: residentes de 18+. Comprar: usuarios de internet de 18+. Líneas: intervalo al 90 %.")
   })
 
   output$g_categorias <- graficar(calor(
-    por_grupo(categorias, input$s1_grupo), "categoria",
-    "¿Qué se compra en línea?",
-    paste0("% de quienes compraron en línea que compró cada categoría, por ", tolower(input$s1_grupo)),
+    por_grupo(categorias, input$s1_grupo), "categoria", "¿Qué se compra en línea?",
+    paste0("% de quienes compraron que compró cada categoría", if (input$s1_grupo == "Nacional") "" else paste0(", por ", tolower(input$s1_grupo))),
     "Respuesta múltiple: los porcentajes no suman 100."))
+
+  output$g_tendencia <- graficar({
+    d <- tendencia
+    final <- d[d$anio == max(d$anio), ]
+    ggplot(d, aes(anio, estimacion)) +
+      geom_line(colour = col$azul, linewidth = 1) +
+      punto(fill = col$azul, size = 2.8) +
+      geom_text(data = final, aes(label = sprintf("%.0f %%", estimacion)), colour = col$tinta,
+                fontface = "bold", size = 3.5, vjust = -1.2) +
+      facet_wrap(~categoria, nrow = 1) +
+      scale_y_continuous(labels = pct, expand = expansion(mult = c(0.05, 0.2))) +
+      scale_x_continuous(breaks = range(d$anio)) +
+      labs(title = "¿Cómo ha cambiado lo que se compra?",
+           subtitle = "% de compradores en línea que compró cada categoría, por año",
+           caption = "Solo categorías comparables entre años.", x = NULL, y = NULL) +
+      theme(panel.spacing = unit(1.2, "lines"))
+  })
 
   # 2. ¿Quién queda fuera? ----------------------------------------------------
   output$g_brechas <- graficar({
@@ -346,7 +542,7 @@ server <- function(input, output, session) {
     d$tipo <- factor(d$tipo, c("Bruta", "Ajustada"))
     pesas(d, "comparacion", "tipo", c(Bruta = col$gris_claro, Ajustada = col$azul),
           "Brechas en la probabilidad de comprar en línea",
-          "Gris: diferencia observada. Azul: con controles. Fondo durazno = desventaja.",
+          "Gris: diferencia observada. Azul: con controles.",
           "Usuarios de internet de 18+. Controles: sexo, edad, indígena, discapacidad, escolaridad,\nlocalidad y estrato. Líneas: intervalo al 90 %.")
   })
 
@@ -357,25 +553,42 @@ server <- function(input, output, session) {
       geom_segment(aes(x = 0, xend = estimacion, yend = perfil), colour = col$borde, linewidth = 1.4) +
       geom_errorbarh(aes(xmin = li90, xmax = ls90), height = 0.2, colour = col$gris_claro) +
       punto(fill = col$azul, size = 11) +
-      geom_text(aes(label = sprintf("%.0f", estimacion)), colour = "white",
-                fontface = "bold", size = 3.6) +
+      geom_text(aes(label = sprintf("%.0f", estimacion)), colour = "white", fontface = "bold", size = 3.6) +
       scale_x_continuous(limits = c(0, 100), labels = pct, expand = c(0, 2)) +
-      labs(title = "Probabilidad de comprar, por perfil",
-           subtitle = "Predicha por el modelo completo", x = NULL, y = NULL,
-           caption = "Perfiles por definir (decisión 24).") +
+      labs(title = "Probabilidad de comprar, por perfil", subtitle = "Predicha por el modelo completo",
+           caption = "Perfiles por definir (decisión 24).", x = NULL, y = NULL) +
+      theme(panel.grid.major.y = element_blank())
+  })
+
+  output$g_ingreso <- graficar(dispersion(
+    ingreso, "ingreso_miles", "Ingreso corriente mensual promedio por hogar (miles de pesos)",
+    "¿Se compra más en línea donde hay más ingreso?", "Cada punto es una entidad",
+    "Comparación entre entidades, no entre personas: la ENIGH y la ENDUTIH son encuestas y años distintos."))
+
+  output$g_hogar <- graficar({
+    d <- hogar
+    d$composicion <- factor(d$composicion, unique(d$composicion[order(d$orden)]))
+    ggplot(d, aes(estimacion, composicion)) +
+      geom_line(aes(group = composicion), colour = col$borde, linewidth = 1.6) +
+      geom_errorbarh(aes(xmin = li90, xmax = ls90, colour = sexo), height = 0.15, show.legend = FALSE) +
+      punto(aes(fill = sexo), size = 5.5) +
+      scale_fill_manual(values = c(Hombre = col$azul, Mujer = col$morado), name = NULL) +
+      scale_colour_manual(values = c(Hombre = col$azul, Mujer = col$morado), guide = "none") +
+      scale_x_continuous(labels = pct) +
+      labs(title = "¿Vivir con jóvenes ayuda a comprar en línea?",
+           subtitle = "% que compra en línea según la composición del hogar, por sexo",
+           caption = "Usuarios de internet de 18+. Líneas: intervalo al 90 %.", x = NULL, y = NULL) +
       theme(panel.grid.major.y = element_blank())
   })
 
   # 3. ¿Por qué? --------------------------------------------------------------
   output$g_razones <- graficar(calor(
-    por_grupo(razones, input$s3_grupo), "razon",
-    "¿Por qué no compran en línea?",
+    por_grupo(razones, input$s3_grupo), "razon", "¿Por qué no compran en línea?",
     paste0("% de quienes no compraron que da cada razón, por ", tolower(input$s3_grupo)),
     "Respuesta múltiple: los porcentajes no suman 100. 87 % da una sola razón."))
 
   output$g_problemas <- graficar(calor(
-    por_grupo(problemas, input$s3_grupo), "problema",
-    "Problemas de quienes sí compran",
+    por_grupo(problemas, input$s3_grupo), "problema", "Problemas de quienes sí compran",
     paste0("% de quienes compraron en línea que tuvo cada problema, por ", tolower(input$s3_grupo)),
     "Los tipos de problema son de respuesta múltiple."))
 
@@ -397,17 +610,18 @@ server <- function(input, output, session) {
       labs(title = "Compra en línea por entidad",
            subtitle = "% de usuarios de internet de 18+ que compró en línea",
            caption = "Más salmón = menos compra. Regionalización provisional (frente C).", x = NULL, y = NULL) +
-      theme(axis.text = element_blank(), panel.grid.major = element_blank(), panel.border = element_blank())
+      sin_ejes
   })
 
   output$mapa_detalle <- renderUI({
     h <- input$mapa_hover
-    if (is.null(h)) return(p(class = "small text-muted mb-0", "Pasa el cursor sobre una entidad."))
+    vacio <- span(class = "text-muted", "Pasa el cursor sobre una entidad para ver su cifra.")
+    if (is.null(h)) return(vacio)
     dist <- (entidades$long_c - h$x)^2 + (entidades$lat_c - h$y)^2
+    if (min(dist) > 4) return(vacio)
     e <- entidades[which.min(dist), ]
-    if (min(dist) > 4) return(p(class = "small text-muted mb-0", "Pasa el cursor sobre una entidad."))
-    p(class = "small mb-0", strong(e$entidad), sprintf(" · %.1f %% compra en línea (IC 90 %%: %.1f–%.1f) · región %s",
-                                                    e$estimacion, e$li90, e$ls90, e$region))
+    span(strong(e$entidad), sprintf(": %.1f %% compra en línea (intervalo al 90 %%: %.1f a %.1f). Región %s.",
+                                   e$estimacion, e$li90, e$ls90, e$region))
   })
 
   output$g_regiones <- graficar({
@@ -415,21 +629,45 @@ server <- function(input, output, session) {
     d$etiqueta <- paste(d$region, "vs.", d$referencia)
     d$tipo <- factor(d$tipo, c("Bruta", "Ajustada"))
     pesas(d, "etiqueta", "tipo", c(Bruta = col$gris_claro, Ajustada = col$azul),
-          "Brecha por región", "Bruta (gris) y con controles (azul)",
+          "Brecha por región", "Gris: observada. Azul: con controles.",
           "Frente a la región de referencia.\nLíneas: intervalo al 90 %.", xlab = "pp")
   })
 
+  output$g_ritmo <- graficar({
+    d <- merge(ritmo, ent_base, by = "cve_ent")
+    d$entidad <- factor(d$entidad, d$entidad[order(d$fin - d$inicio)])
+    largo <- rbind(data.frame(entidad = d$entidad, anio = as.character(d$anio_inicio), v = d$inicio),
+                   data.frame(entidad = d$entidad, anio = as.character(d$anio_fin), v = d$fin))
+    ggplot(largo, aes(v, entidad)) +
+      geom_line(aes(group = entidad), colour = col$borde, linewidth = 1.3) +
+      punto(aes(fill = anio), size = 3.4) +
+      geom_text(data = d, aes(x = fin, label = sprintf("+%.0f", fin - inicio)), hjust = -0.6,
+                size = 3, colour = col$gris) +
+      scale_fill_manual(values = setNames(c(col$gris_claro, col$azul), sort(unique(largo$anio))), name = NULL) +
+      scale_x_continuous(labels = pct, expand = expansion(mult = c(0.02, 0.1))) +
+      labs(title = "¿Qué tan rápido se adopta la compra en línea?",
+           subtitle = "% que compra en línea al inicio y al final del periodo; ordenadas por avance (pp)",
+           caption = "Usuarios de internet de 18+.", x = NULL, y = NULL) +
+      theme(panel.grid.major.y = element_blank(), axis.text.y = element_text(colour = col$tinta, size = 9.5))
+  })
+
+  output$g_comercios <- graficar(dispersion(
+    comercios, "comercios_10mil", "Comercios al por menor por cada 10 mil habitantes",
+    "¿Se compra más en línea donde hay más comercio?", "Cada punto es una entidad",
+    "Asociación entre entidades, no causalidad."))
+
   # 5. ¿Qué hacer? ------------------------------------------------------------
-  sim <- reactive({
+  output$sim_kpis <- renderUI({
     g <- simul[simul$grupo == input$sim_grupo, ]
     no_compran <- g$millones * (1 - g$pct_compra / 100)
     nuevos <- no_compran * (g$pct_no_sabe / 100 * input$sim_sabe / 100 +
                             g$pct_en_persona / 100 * input$sim_persona / 100)
-    list(hoy = g$pct_compra, nuevo = g$pct_compra + 100 * nuevos / g$millones, nuevos = nuevos)
+    nuevo <- g$pct_compra + 100 * nuevos / g$millones
+    div(class = "kpis",
+        div(class = "kpi", div(class = "etiqueta", "Compran hoy"), div(class = "valor", sprintf("%.0f %%", g$pct_compra))),
+        div(class = "kpi destacado", div(class = "etiqueta", "Comprarían"), div(class = "valor", sprintf("%.0f %%", nuevo))),
+        div(class = "kpi", div(class = "etiqueta", "Personas nuevas"), div(class = "valor", sprintf("%.1f M", nuevos))))
   })
-  output$vb_hoy      <- renderText(sprintf("%.0f %%", sim()$hoy))
-  output$vb_nuevo    <- renderText(sprintf("%.0f %%", sim()$nuevo))
-  output$vb_personas <- renderText(sprintf("%.1f millones", sim()$nuevos))
 
   output$g_escenarios <- graficar({
     d <- escen
@@ -453,10 +691,23 @@ server <- function(input, output, session) {
       scale_fill_manual(values = colores, guide = "none") +
       scale_x_continuous(breaks = 2019:2030, expand = expansion(add = c(0.3, 2.6))) +
       scale_y_continuous(labels = pct) +
-      labs(title = "Escenarios 2030",
-           subtitle = "% de usuarios de internet que compra en línea. Fondo crema = proyección.",
+      labs(title = "Escenarios 2030", subtitle = "% de usuarios de internet que compra en línea. Fondo crema = proyección.",
            caption = "Los escenarios son supuestos explícitos, no pronósticos. Bandas: rango del escenario.",
            x = NULL, y = NULL)
+  })
+
+  output$g_mercado <- graficar({
+    d <- mercado
+    d$escenario <- factor(d$escenario, rev(d$escenario[order(d$orden)]))
+    ggplot(d, aes(y = escenario)) +
+      geom_segment(aes(x = minimo, xend = maximo, yend = escenario), colour = rampa[5], linewidth = 9, lineend = "round") +
+      geom_text(aes(x = minimo, label = minimo), hjust = 1.6, size = 3.5, colour = col$tinta) +
+      geom_text(aes(x = maximo, label = maximo), hjust = -0.6, size = 3.5, colour = col$tinta) +
+      scale_x_continuous(expand = expansion(mult = 0.15)) +
+      labs(title = "¿Cuánto gasto podría pasar al canal digital?",
+           subtitle = "Rango de gasto anual de los hogares en categorías que se compran en línea (miles de millones de pesos)",
+           caption = "Gasto potencialmente digitalizable, no gasto electrónico observado.", x = NULL, y = NULL) +
+      theme(panel.grid.major.y = element_blank())
   })
 }
 

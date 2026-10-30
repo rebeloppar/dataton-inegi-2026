@@ -34,12 +34,22 @@ Si necesitas una columna o categoría nueva, avisa a Rebeca: cambia la gráfica,
 | `s4_entidades.csv` | C | `cve_ent, estimacion, li90, ls90, prueba` | `cve_ent` como número (1 a 32). En % |
 | `s4_regiones.csv` | C | `region, referencia, tipo, estimacion, li90, ls90, prueba` | `tipo`: Bruta o Ajustada. Diferencia frente a la región de referencia, en pp |
 | `s5_escenarios.csv` | C | `anio, escenario, estimacion, li90, ls90, prueba` | `escenario`: Observado, Inercial, Habilidades, Omnicanal. Observado sin intervalo (NA) |
+| `s1_tendencia.csv` *(opcional)* | A | `categoria, anio, estimacion, prueba` | P3 en el tiempo, con tabulados publicados |
+| `s2_ingreso_entidad.csv` *(opcional)* | A, C | `cve_ent, ingreso_miles, pct_compra, prueba` | P2: ingreso corriente mensual por hogar (ENIGH) y % que compra, por entidad |
+| `s2_hogar.csv` *(opcional)* | A | `composicion, orden, sexo, estimacion, li90, ls90, prueba` | P2: composición del hogar, por sexo |
+| `s4_ritmo.csv` *(opcional)* | C | `cve_ent, inicio, fin, anio_inicio, anio_fin, prueba` | P6: % que compra en dos años |
+| `s4_comercios.csv` *(opcional)* | C | `cve_ent, comercios_10mil, pct_compra, prueba` | P6: DENUE + EIC |
+| `s5_mercado.csv` *(opcional)* | C | `escenario, orden, minimo, maximo, prueba` | P7: rango de gasto digitalizable, miles de millones de pesos |
 | `s5_simulador.csv` | D | `grupo, millones, pct_compra, pct_no_sabe, pct_en_persona, prueba` | Insumos del simulador; `pct_no_sabe` y `pct_en_persona` son % de quienes no compran |
+
+**Opcionales:** si el archivo no existe, su pestaña muestra «Pendiente» en lugar de la gráfica. Cada gráfica tiene un enlace «Descargar datos (CSV)».
 
 Archivos de texto y fijos (no son de prueba):
 
 - `hallazgos.csv`: los recuadros «Lo que encontramos» (`seccion, orden, texto`). Rebeca los mantiene; cada frente propone sus 2 o 3 hallazgos con cifra.
 - `propuesta.csv`: los campos de la propuesta en la sección 5 (`campo, texto`).
+- `estrategias.csv`: estrategias públicas y privadas (`tipo, actor, accion, por_que`).
+- `hallazgos.csv` lleva además una columna `cifra` (la cifra que se destaca a la izquierda; puede ir vacía).
 - `como_se_calculo.csv`: las tarjetas «Cómo se calculó».
 - `entidades.csv`: nombre, abreviatura, región provisional y punto central de cada entidad.
 - `mapa_estados.csv`: contornos simplificados de las 32 entidades (para dibujar el mapa sin paquetes geográficos).

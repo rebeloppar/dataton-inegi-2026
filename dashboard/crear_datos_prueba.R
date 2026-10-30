@@ -134,4 +134,45 @@ s5sim <- data.frame(
   prueba = TRUE)
 guardar(s5sim, "s5_simulador.csv")
 
+# --- Opcionales (deseables): si un frente no los entrega, su pestaña queda ----
+# --- como "pendiente". Borra el archivo para ver cómo se ve sin él.         ----
+ent <- read.csv(file.path(dir_datos, "entidades.csv"), fileEncoding = "UTF-8")
+
+# P3 en el tiempo (frente A, tabulados publicados)
+cats <- c("Ropa y calzado", "Comida a domicilio", "Electrónicos", "Belleza y cuidado personal", "Supermercado")
+s1t <- do.call(rbind, lapply(seq_along(cats), function(k)
+  data.frame(categoria = cats[k], anio = 2020:2025,
+             estimacion = round(c(45, 30, 28, 22, 8)[k] + (0:5) * c(1.5, 3, 0.5, 1, 1.8)[k] + rnorm(6, 0, 0.8), 1))))
+s1t$prueba <- TRUE
+guardar(s1t, "s1_tendencia.csv")
+
+# P2 con ingreso (frentes A y C, ENIGH por entidad)
+s2i <- data.frame(cve_ent = ent$cve_ent, ingreso_miles = round(runif(32, 12, 32), 1))
+s2i$pct_compra <- round(10 + 1.3 * s2i$ingreso_miles + rnorm(32, 0, 4), 1)
+s2i$prueba <- TRUE
+guardar(s2i, "s2_ingreso_entidad.csv")
+
+# P2 composición del hogar, con lente de género (frente A)
+comp <- c("Vive solo/a", "Hogar sin jóvenes de 18-34", "Hogar con jóvenes de 18-34")
+s2h <- merge(data.frame(composicion = comp, orden = 1:3), data.frame(sexo = c("Hombre", "Mujer")))
+s2h$estimacion <- round(c(30, 33, 48)[s2h$orden] - ifelse(s2h$sexo == "Mujer", runif(6, 2, 6), 0), 1)
+guardar(con_ic(s2h, ancho = 2.5), "s2_hogar.csv")
+
+# P6 ritmo de adopción por entidad (frente C)
+s4t <- data.frame(cve_ent = ent$cve_ent, inicio = round(runif(32, 12, 35), 1))
+s4t$fin <- round(s4t$inicio + runif(32, 6, 22), 1)
+s4t$anio_inicio <- 2020; s4t$anio_fin <- 2025; s4t$prueba <- TRUE
+guardar(s4t, "s4_ritmo.csv")
+
+# P6 el porqué: comercios al por menor (frente C, DENUE + EIC)
+s4c <- data.frame(cve_ent = ent$cve_ent, comercios_10mil = round(runif(32, 60, 160)))
+s4c$pct_compra <- round(15 + 0.22 * s4c$comercios_10mil + rnorm(32, 0, 5), 1)
+s4c$prueba <- TRUE
+guardar(s4c, "s4_comercios.csv")
+
+# P7 tamaño del mercado (frente C, ENIGH): rango de gasto digitalizable
+s5m <- data.frame(escenario = c("Hoy (2024)", "Inercial 2030", "Habilidades 2030", "Omnicanal 2030"),
+                  orden = 1:4, minimo = c(180, 260, 285, 310), maximo = c(240, 340, 375, 410), prueba = TRUE)
+guardar(s5m, "s5_mercado.csv")
+
 cat("Listo. Todas las cifras son INVENTADAS (prueba = TRUE).\n")

@@ -31,3 +31,17 @@ _Cifras 1-8 y 11 actualizadas el 2026-10-25 con la escolaridad según el INEGI (
 **Lectura de las barreras (hallazgos 12-15):** parece haber dos tipos de quienes no compran: quienes **no pueden** (habilidades; personas mayores y de baja escolaridad) y quienes **no quieren** (preferencia por lo presencial; más común con mayor escolaridad). La ENDUTIH no permite separarlo del todo: se presenta como interpretación y limitación.
 
 **Punto ciego:** todo lo anterior es entre quienes ya usan internet. Falta ver quién no se conecta.
+
+## 2026-10-30
+
+| # | Hallazgo | Cifra clave | Fuente |
+|---|---|---|---|
+| 19 | La lectura "no pueden / no quieren" se sostiene por estrato, pero es más débil que por escolaridad | "No sabe cómo": bajo 24.7 % → alto 11.2 % (13.5 pp; por escolaridad son 36.6 pp); "prefiere en persona": bajo 36.1 % → alto 51.5 % (de quienes no compran) | `analisis/B_barreras/01_razones_por_grupo.R` |
+| 20 | Por región se repite en los extremos: el Sur se parece a los que "no pueden" y el Norte a los que "no quieren" (preliminar, región temporal) | Sur: "no sabe cómo" 22.1 %, "en persona" 37.4 %; Norte: 14.9 % y 55.3 %. El Centro tiene la mayor desconfianza en la seguridad (13.2 %) | `analisis/B_barreras/01_razones_por_grupo.R` (región TEMPORAL, decisión 48) |
+| 21 | Los medios de pago son una barrera marginal en todos los estratos y regiones | Sin tarjeta o banca en línea ≤ 4.0 %; falta de recursos ≤ 7.3 % (máximo en estrato bajo) | `analisis/B_barreras/01_razones_por_grupo.R` |
+| 22 | Pocos compradores tienen problemas, y los grupos rezagados que compran no tienen más que los demás | 8.8 % de compradores de 18+ tuvo algún problema (IC 90 %: 8.2–9.4). Sin diferencias claras por edad, sexo ni localidad; la única clara va al revés: superior +3.1 pp vs. primaria o menos | `analisis/B_barreras/03_problemas_compradores.R` (secciones 1 y 3a) |
+| 23 | El problema principal al comprar es la entrega, no la seguridad del pago, y pesa más en lo rural | Entrega 58.7 %, calidad 33.1 %, estado del producto 25.3 %, seguridad del pago 17.8 % (de quienes tuvieron problema). Entrega en < 2,500 hab.: 73.3 % vs. 57.1 % (+16.1 pp, clara) | `analisis/B_barreras/03_problemas_compradores.R` (secciones 2 y 3b) |
+| 24 | El tipo de problema cambia con la edad y el sexo: los jóvenes reportan más entrega; 35-54, más calidad; las mujeres, menos problemas con el producto | Entrega: 18-34 65.8 % → 35-54 54.9 % → 55+ 36.9 % (claras); calidad: 18-34 28.3 % vs. 35-54 38.6 % (clara). Mujeres vs. hombres: calidad −6.6 pp, estado del producto −7.9 pp (claras) | `analisis/B_barreras/03_problemas_compradores.R` (sección 3b) |
+| 25 | Limitación: P5 describe a quienes ya compran, un grupo seleccionado | P7_26 solo incluye a quienes compraron en los últimos 12 meses: los rezagados que compran ya superaron la barrera de habilidades, y quien dejó de comprar por una mala experiencia no aparece. Tipos de problema en "primaria o menos": 49 casos, solo indicios | `analisis/B_barreras/03_problemas_compradores.R` |
+
+**Lectura de P5 (hallazgos 22-25):** la experiencia de compra no explica por qué los grupos rezagados compran menos: quienes ya compran tienen pocos problemas y parecidos entre grupos. La barrera está **antes** de la primera compra (habilidades, preferencia). El problema que sí aparece es **logístico** (entrega), sobre todo en lo rural, lo que conecta con la penalización rural (hallazgo 6) y con la recolección en punto de venta (hallazgo 18).

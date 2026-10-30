@@ -39,7 +39,7 @@ Si necesitas una columna o categoría nueva, avisa a Rebeca: cambia la gráfica,
 | `s3_problemas.csv` | B | `grupo_var, grupo, orden, problema, estimacion, li90, ls90, prueba` | P5. Incluir la fila «Algún problema». % de compradores |
 | `s4_entidades.csv` **(real)** | C | `cve_ent, estimacion, li90, ls90, prueba` | `cve_ent` como número (1 a 32). En % |
 | `s4_regiones.csv` | C | `region, referencia, tipo, estimacion, li90, ls90, prueba` | `tipo`: Bruta o Ajustada. Diferencia frente a la región de referencia, en pp |
-| `s5_escenarios.csv` | C | `anio, escenario, estimacion, li90, ls90, prueba` | `escenario`: Observado, Inercial, Habilidades, Omnicanal. Observado sin intervalo (NA) |
+| `s5_escenarios.csv` | C | `anio, escenario, estimacion, li90, ls90, prueba` | `escenario`: Observado, Inercia, Solo tiendas, Solo habilidades, Puerta abierta (los mismos de `s5_palancas.csv`, decisión 60). Observado sin intervalo (NA) |
 | `s1_tendencia.csv` *(opcional)* | A | `categoria, anio, estimacion, prueba` | P3 en el tiempo, con tabulados publicados |
 | `s2_hogar.csv` *(opcional)* | A | `composicion, orden, sexo, estimacion, li90, ls90, prueba` | P2: composición del hogar, por sexo |
 | `s4_ritmo.csv` *(opcional)* | C | `cve_ent, inicio, fin, anio_inicio, anio_fin, prueba` | P6: % que compra en dos años |

@@ -1,0 +1,13 @@
+"etiqueta","version","estimacion","prueba"
+"Con vs. sin discapacidad","Todo el país",-1.3,FALSE
+"Educación superior vs. primaria","Todo el país",42.5,FALSE
+"Estrato alto vs. bajo","Todo el país",17.7,FALSE
+"65+ vs. 18-24 años","Todo el país",-41.8,FALSE
+"Indígena vs. no indígena","Todo el país",-1.9,FALSE
+"Mujer vs. hombre","Todo el país",-3.4,FALSE
+"Con vs. sin discapacidad","Solo ciudades de 100 mil+",-1.1,FALSE
+"Educación superior vs. primaria","Solo ciudades de 100 mil+",41.9,FALSE
+"Estrato alto vs. bajo","Solo ciudades de 100 mil+",14.5,FALSE
+"65+ vs. 18-24 años","Solo ciudades de 100 mil+",-44.8,FALSE
+"Indígena vs. no indígena","Solo ciudades de 100 mil+",-1.3,FALSE
+"Mujer vs. hombre","Solo ciudades de 100 mil+",-2.7,FALSE

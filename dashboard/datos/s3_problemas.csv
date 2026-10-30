@@ -1,131 +1,131 @@
 "grupo_var","grupo","orden","problema","estimacion","li90","ls90","prueba"
-"Edad","18-24",1,"Algún problema",14.8,13.7,15.7,TRUE
-"Edad","18-24",1,"Producto dañado o distinto",9.5,8.2,11.3,TRUE
-"Edad","18-24",1,"No llegó o llegó tarde",6.7,6.1,8.7,TRUE
-"Edad","18-24",1,"Cobro indebido o fraude",5,3,6.4,TRUE
-"Edad","18-24",1,"Difícil devolver",3.6,1.8,4.7,TRUE
-"Edad","25-34",2,"Algún problema",12.5,11.8,14.2,TRUE
-"Edad","25-34",2,"Producto dañado o distinto",12.1,10.2,13,TRUE
-"Edad","25-34",2,"No llegó o llegó tarde",6.5,5.7,8.1,TRUE
-"Edad","25-34",2,"Cobro indebido o fraude",3.4,1.7,5.2,TRUE
-"Edad","25-34",2,"Difícil devolver",2.1,0.7,3.4,TRUE
-"Edad","35-44",3,"Algún problema",12.9,11.3,13.8,TRUE
-"Edad","35-44",3,"Producto dañado o distinto",10.4,9.3,11.1,TRUE
-"Edad","35-44",3,"No llegó o llegó tarde",11,9.7,12.4,TRUE
-"Edad","35-44",3,"Cobro indebido o fraude",5.4,4.6,6.9,TRUE
-"Edad","35-44",3,"Difícil devolver",2.4,1.4,3.8,TRUE
-"Edad","45-54",4,"Algún problema",22.7,21.3,23.7,TRUE
-"Edad","45-54",4,"Producto dañado o distinto",10.7,9.3,11.7,TRUE
-"Edad","45-54",4,"No llegó o llegó tarde",10.9,9.3,12.1,TRUE
-"Edad","45-54",4,"Cobro indebido o fraude",2.6,1.7,3.6,TRUE
-"Edad","45-54",4,"Difícil devolver",2.9,0.9,4.7,TRUE
-"Edad","55-64",5,"Algún problema",25.5,23.9,27.4,TRUE
-"Edad","55-64",5,"Producto dañado o distinto",11.4,9.9,13.4,TRUE
-"Edad","55-64",5,"No llegó o llegó tarde",11.1,9.6,12.3,TRUE
-"Edad","55-64",5,"Cobro indebido o fraude",5.8,4.6,6.5,TRUE
-"Edad","55-64",5,"Difícil devolver",2.9,1.6,4.9,TRUE
-"Edad","65+",6,"Algún problema",21.9,20.6,23.4,TRUE
-"Edad","65+",6,"Producto dañado o distinto",10.2,9.1,11.3,TRUE
-"Edad","65+",6,"No llegó o llegó tarde",11.3,10.7,12.8,TRUE
-"Edad","65+",6,"Cobro indebido o fraude",2.9,1.5,4,TRUE
-"Edad","65+",6,"Difícil devolver",2.4,1.6,3.1,TRUE
-"Escolaridad","Sin escolaridad",1,"Algún problema",17.9,16.3,18.8,TRUE
-"Escolaridad","Sin escolaridad",1,"Producto dañado o distinto",8.3,6.3,9.2,TRUE
-"Escolaridad","Sin escolaridad",1,"No llegó o llegó tarde",10,8.1,10.5,TRUE
-"Escolaridad","Sin escolaridad",1,"Cobro indebido o fraude",4.5,3.6,5.1,TRUE
-"Escolaridad","Sin escolaridad",1,"Difícil devolver",3.4,2.8,3.9,TRUE
-"Escolaridad","Primaria",2,"Algún problema",23.6,22,24.5,TRUE
-"Escolaridad","Primaria",2,"Producto dañado o distinto",10,9.1,11.2,TRUE
-"Escolaridad","Primaria",2,"No llegó o llegó tarde",8,6.8,9,TRUE
-"Escolaridad","Primaria",2,"Cobro indebido o fraude",4.1,2.2,4.9,TRUE
-"Escolaridad","Primaria",2,"Difícil devolver",2.7,1.8,3.7,TRUE
-"Escolaridad","Secundaria",3,"Algún problema",15.4,14.2,17.3,TRUE
-"Escolaridad","Secundaria",3,"Producto dañado o distinto",7.4,6.3,8.2,TRUE
-"Escolaridad","Secundaria",3,"No llegó o llegó tarde",9,7.1,10.4,TRUE
-"Escolaridad","Secundaria",3,"Cobro indebido o fraude",5.9,4,7.5,TRUE
-"Escolaridad","Secundaria",3,"Difícil devolver",3.6,2.8,4.6,TRUE
-"Escolaridad","Media superior",4,"Algún problema",16.3,15.2,17,TRUE
-"Escolaridad","Media superior",4,"Producto dañado o distinto",11.1,9.3,12.9,TRUE
-"Escolaridad","Media superior",4,"No llegó o llegó tarde",11.9,10.2,12.5,TRUE
-"Escolaridad","Media superior",4,"Cobro indebido o fraude",4,3.2,4.9,TRUE
-"Escolaridad","Media superior",4,"Difícil devolver",2.8,1.1,4,TRUE
-"Escolaridad","Superior",5,"Algún problema",28.7,27.9,30.1,TRUE
-"Escolaridad","Superior",5,"Producto dañado o distinto",7.4,6.7,9.2,TRUE
-"Escolaridad","Superior",5,"No llegó o llegó tarde",9.2,7.8,10.8,TRUE
-"Escolaridad","Superior",5,"Cobro indebido o fraude",3.2,2,3.8,TRUE
-"Escolaridad","Superior",5,"Difícil devolver",4.4,3.3,5.7,TRUE
-"Estrato","Bajo",1,"Algún problema",28.4,26.7,30.3,TRUE
-"Estrato","Bajo",1,"Producto dañado o distinto",10.1,9.4,11.2,TRUE
-"Estrato","Bajo",1,"No llegó o llegó tarde",10.9,10.1,12.1,TRUE
-"Estrato","Bajo",1,"Cobro indebido o fraude",5.7,5,6.8,TRUE
-"Estrato","Bajo",1,"Difícil devolver",3.6,2.9,5.3,TRUE
-"Estrato","Medio bajo",2,"Algún problema",29.8,28.4,30.8,TRUE
-"Estrato","Medio bajo",2,"Producto dañado o distinto",7.8,6.2,8.9,TRUE
-"Estrato","Medio bajo",2,"No llegó o llegó tarde",5.4,4.7,7.3,TRUE
-"Estrato","Medio bajo",2,"Cobro indebido o fraude",4.1,3.2,4.7,TRUE
-"Estrato","Medio bajo",2,"Difícil devolver",3.2,1.4,4.5,TRUE
-"Estrato","Medio alto",3,"Algún problema",15.7,13.7,17.1,TRUE
-"Estrato","Medio alto",3,"Producto dañado o distinto",9.9,8,10.7,TRUE
-"Estrato","Medio alto",3,"No llegó o llegó tarde",5.1,4.6,6.3,TRUE
-"Estrato","Medio alto",3,"Cobro indebido o fraude",3.6,2.9,4.5,TRUE
-"Estrato","Medio alto",3,"Difícil devolver",3.3,1.9,3.8,TRUE
-"Estrato","Alto",4,"Algún problema",20.8,20.2,21.5,TRUE
-"Estrato","Alto",4,"Producto dañado o distinto",7.9,6,9.8,TRUE
-"Estrato","Alto",4,"No llegó o llegó tarde",7.1,6.6,8.6,TRUE
-"Estrato","Alto",4,"Cobro indebido o fraude",3.2,1.3,4.9,TRUE
-"Estrato","Alto",4,"Difícil devolver",2,0.3,3.1,TRUE
-"Localidad","Menos de 2,500",1,"Algún problema",25.7,24,27,TRUE
-"Localidad","Menos de 2,500",1,"Producto dañado o distinto",8.6,7.9,10,TRUE
-"Localidad","Menos de 2,500",1,"No llegó o llegó tarde",11.2,9.3,13.2,TRUE
-"Localidad","Menos de 2,500",1,"Cobro indebido o fraude",2.8,1,4.2,TRUE
-"Localidad","Menos de 2,500",1,"Difícil devolver",2.2,1.3,2.9,TRUE
-"Localidad","2,500-14,999",2,"Algún problema",17.9,16.8,18.4,TRUE
-"Localidad","2,500-14,999",2,"Producto dañado o distinto",5.9,5.1,6.4,TRUE
-"Localidad","2,500-14,999",2,"No llegó o llegó tarde",9.6,9,10.4,TRUE
-"Localidad","2,500-14,999",2,"Cobro indebido o fraude",4,2.5,5.1,TRUE
-"Localidad","2,500-14,999",2,"Difícil devolver",3.5,2.7,5.5,TRUE
-"Localidad","15,000-99,999",3,"Algún problema",29.6,28.9,31.1,TRUE
-"Localidad","15,000-99,999",3,"Producto dañado o distinto",10.6,9.3,12,TRUE
-"Localidad","15,000-99,999",3,"No llegó o llegó tarde",10,8.3,11.3,TRUE
-"Localidad","15,000-99,999",3,"Cobro indebido o fraude",2.7,0.7,3.9,TRUE
-"Localidad","15,000-99,999",3,"Difícil devolver",3.3,2.5,4.2,TRUE
-"Localidad","100,000 y más",4,"Algún problema",29,27.5,30.5,TRUE
-"Localidad","100,000 y más",4,"Producto dañado o distinto",6.7,5.1,7.5,TRUE
-"Localidad","100,000 y más",4,"No llegó o llegó tarde",7.6,7,9.2,TRUE
-"Localidad","100,000 y más",4,"Cobro indebido o fraude",3.7,1.9,4.3,TRUE
-"Localidad","100,000 y más",4,"Difícil devolver",4.5,3.5,5.1,TRUE
-"Nacional","Nacional",1,"Algún problema",24,23.1,25.1,TRUE
-"Nacional","Nacional",1,"Producto dañado o distinto",10.4,9.7,11.7,TRUE
-"Nacional","Nacional",1,"No llegó o llegó tarde",8.7,7.1,10.6,TRUE
-"Nacional","Nacional",1,"Cobro indebido o fraude",4.5,3.8,6.2,TRUE
-"Nacional","Nacional",1,"Difícil devolver",3.8,2.8,5.1,TRUE
-"Región","Norte",1,"Algún problema",27.7,26,29.1,TRUE
-"Región","Norte",1,"Producto dañado o distinto",13.2,12.4,14.9,TRUE
-"Región","Norte",1,"No llegó o llegó tarde",6.4,5.4,7.5,TRUE
-"Región","Norte",1,"Cobro indebido o fraude",4.7,3.6,6.2,TRUE
-"Región","Norte",1,"Difícil devolver",3.5,1.7,4.6,TRUE
-"Región","Centro Norte",2,"Algún problema",28,26.2,29.9,TRUE
-"Región","Centro Norte",2,"Producto dañado o distinto",11.5,10.1,12.2,TRUE
-"Región","Centro Norte",2,"No llegó o llegó tarde",11.2,10.1,12,TRUE
-"Región","Centro Norte",2,"Cobro indebido o fraude",2.7,1.4,3.8,TRUE
-"Región","Centro Norte",2,"Difícil devolver",2.5,0.7,3.1,TRUE
-"Región","Centro",3,"Algún problema",16.5,14.6,18,TRUE
-"Región","Centro",3,"Producto dañado o distinto",9,7.1,10.1,TRUE
-"Región","Centro",3,"No llegó o llegó tarde",7.3,6.4,8.2,TRUE
-"Región","Centro",3,"Cobro indebido o fraude",4.8,4.3,6.4,TRUE
-"Región","Centro",3,"Difícil devolver",3.1,1.7,4.4,TRUE
-"Región","Sur",4,"Algún problema",19,17.8,19.6,TRUE
-"Región","Sur",4,"Producto dañado o distinto",12.8,10.8,14.2,TRUE
-"Región","Sur",4,"No llegó o llegó tarde",4.8,3.5,6.3,TRUE
-"Región","Sur",4,"Cobro indebido o fraude",3.8,2.8,5.5,TRUE
-"Región","Sur",4,"Difícil devolver",2.2,1.3,3.9,TRUE
-"Sexo","Hombre",1,"Algún problema",16.1,14.2,16.7,TRUE
-"Sexo","Hombre",1,"Producto dañado o distinto",5.5,3.6,7.4,TRUE
-"Sexo","Hombre",1,"No llegó o llegó tarde",6.5,5.9,7.8,TRUE
-"Sexo","Hombre",1,"Cobro indebido o fraude",5,3.1,6.7,TRUE
-"Sexo","Hombre",1,"Difícil devolver",2.6,1.2,4.4,TRUE
-"Sexo","Mujer",2,"Algún problema",25.8,25.1,27.4,TRUE
-"Sexo","Mujer",2,"Producto dañado o distinto",11.6,10.7,13,TRUE
-"Sexo","Mujer",2,"No llegó o llegó tarde",6.6,5.4,8.5,TRUE
-"Sexo","Mujer",2,"Cobro indebido o fraude",5.5,4.9,6,TRUE
-"Sexo","Mujer",2,"Difícil devolver",4.1,2.1,5.4,TRUE
+"Edad","18-24",1,"Algún problema",14.3,12.8,15.3,TRUE
+"Edad","18-24",1,"Producto dañado o distinto",7.3,6.2,8.4,TRUE
+"Edad","18-24",1,"No llegó o llegó tarde",9.9,8.3,11.7,TRUE
+"Edad","18-24",1,"Cobro indebido o fraude",6,4.6,7.8,TRUE
+"Edad","18-24",1,"Difícil devolver",3,2,4.4,TRUE
+"Edad","25-34",2,"Algún problema",17.6,16.1,18.7,TRUE
+"Edad","25-34",2,"Producto dañado o distinto",12.9,11.8,14.2,TRUE
+"Edad","25-34",2,"No llegó o llegó tarde",6.5,4.6,8.3,TRUE
+"Edad","25-34",2,"Cobro indebido o fraude",4.6,3.1,6.5,TRUE
+"Edad","25-34",2,"Difícil devolver",2.4,1.7,4.3,TRUE
+"Edad","35-44",3,"Algún problema",24.1,23.3,25,TRUE
+"Edad","35-44",3,"Producto dañado o distinto",6.6,5.5,7.1,TRUE
+"Edad","35-44",3,"No llegó o llegó tarde",8.4,7.3,9.8,TRUE
+"Edad","35-44",3,"Cobro indebido o fraude",3.4,2.5,4.6,TRUE
+"Edad","35-44",3,"Difícil devolver",3.8,2.9,5.8,TRUE
+"Edad","45-54",4,"Algún problema",14.1,12.3,15.4,TRUE
+"Edad","45-54",4,"Producto dañado o distinto",5.6,4.9,6.6,TRUE
+"Edad","45-54",4,"No llegó o llegó tarde",10.7,9.3,11.6,TRUE
+"Edad","45-54",4,"Cobro indebido o fraude",3.3,2,5.2,TRUE
+"Edad","45-54",4,"Difícil devolver",2.6,0.6,4.5,TRUE
+"Edad","55-64",5,"Algún problema",29.5,28,30.1,TRUE
+"Edad","55-64",5,"Producto dañado o distinto",5.8,4.5,7.7,TRUE
+"Edad","55-64",5,"No llegó o llegó tarde",9.2,7.9,10.6,TRUE
+"Edad","55-64",5,"Cobro indebido o fraude",5.5,4.9,6.2,TRUE
+"Edad","55-64",5,"Difícil devolver",4,2.6,4.9,TRUE
+"Edad","65+",6,"Algún problema",21.7,20.8,22.9,TRUE
+"Edad","65+",6,"Producto dañado o distinto",10.2,9,10.8,TRUE
+"Edad","65+",6,"No llegó o llegó tarde",9.5,8.8,11.5,TRUE
+"Edad","65+",6,"Cobro indebido o fraude",5.4,4.3,6.3,TRUE
+"Edad","65+",6,"Difícil devolver",1.9,0.6,3.7,TRUE
+"Escolaridad","Sin escolaridad",1,"Algún problema",21.4,20.8,23.4,TRUE
+"Escolaridad","Sin escolaridad",1,"Producto dañado o distinto",11.7,9.7,13.1,TRUE
+"Escolaridad","Sin escolaridad",1,"No llegó o llegó tarde",7.6,5.8,8.7,TRUE
+"Escolaridad","Sin escolaridad",1,"Cobro indebido o fraude",5.7,5,7.4,TRUE
+"Escolaridad","Sin escolaridad",1,"Difícil devolver",1.8,0,2.7,TRUE
+"Escolaridad","Primaria",2,"Algún problema",13.4,12.6,15,TRUE
+"Escolaridad","Primaria",2,"Producto dañado o distinto",10.8,9.1,12.6,TRUE
+"Escolaridad","Primaria",2,"No llegó o llegó tarde",9.2,7.8,10.5,TRUE
+"Escolaridad","Primaria",2,"Cobro indebido o fraude",4.3,2.7,5.2,TRUE
+"Escolaridad","Primaria",2,"Difícil devolver",3.4,2.3,4.1,TRUE
+"Escolaridad","Secundaria",3,"Algún problema",27.7,26.4,29.1,TRUE
+"Escolaridad","Secundaria",3,"Producto dañado o distinto",8.1,7.3,9.6,TRUE
+"Escolaridad","Secundaria",3,"No llegó o llegó tarde",7.4,6.4,8.8,TRUE
+"Escolaridad","Secundaria",3,"Cobro indebido o fraude",5,3.6,6,TRUE
+"Escolaridad","Secundaria",3,"Difícil devolver",3.4,2,4.4,TRUE
+"Escolaridad","Media superior",4,"Algún problema",29.1,27.5,30.3,TRUE
+"Escolaridad","Media superior",4,"Producto dañado o distinto",10.6,9.7,11.6,TRUE
+"Escolaridad","Media superior",4,"No llegó o llegó tarde",8.9,6.9,10.7,TRUE
+"Escolaridad","Media superior",4,"Cobro indebido o fraude",4,2.4,5.9,TRUE
+"Escolaridad","Media superior",4,"Difícil devolver",3.1,1.6,5.1,TRUE
+"Escolaridad","Superior",5,"Algún problema",15.2,13.7,16.4,TRUE
+"Escolaridad","Superior",5,"Producto dañado o distinto",6.9,5.7,7.6,TRUE
+"Escolaridad","Superior",5,"No llegó o llegó tarde",6.6,5.3,8.6,TRUE
+"Escolaridad","Superior",5,"Cobro indebido o fraude",4.5,3.2,6,TRUE
+"Escolaridad","Superior",5,"Difícil devolver",4.5,3.4,5.6,TRUE
+"Estrato","Bajo",1,"Algún problema",21.7,21.1,23.2,TRUE
+"Estrato","Bajo",1,"Producto dañado o distinto",13.3,11.9,14.4,TRUE
+"Estrato","Bajo",1,"No llegó o llegó tarde",9.5,8.7,10.2,TRUE
+"Estrato","Bajo",1,"Cobro indebido o fraude",5,3.4,5.9,TRUE
+"Estrato","Bajo",1,"Difícil devolver",2,0,2.9,TRUE
+"Estrato","Medio bajo",2,"Algún problema",26.9,25,27.4,TRUE
+"Estrato","Medio bajo",2,"Producto dañado o distinto",13.1,12.2,13.7,TRUE
+"Estrato","Medio bajo",2,"No llegó o llegó tarde",5.9,5.3,6.4,TRUE
+"Estrato","Medio bajo",2,"Cobro indebido o fraude",3.8,2.2,4.7,TRUE
+"Estrato","Medio bajo",2,"Difícil devolver",2.8,1.9,4,TRUE
+"Estrato","Medio alto",3,"Algún problema",24.8,23.6,25.8,TRUE
+"Estrato","Medio alto",3,"Producto dañado o distinto",12.8,10.9,13.6,TRUE
+"Estrato","Medio alto",3,"No llegó o llegó tarde",9,8.1,10,TRUE
+"Estrato","Medio alto",3,"Cobro indebido o fraude",5.4,4.2,7.3,TRUE
+"Estrato","Medio alto",3,"Difícil devolver",4.3,3.2,5.1,TRUE
+"Estrato","Alto",4,"Algún problema",29.2,27.3,30.6,TRUE
+"Estrato","Alto",4,"Producto dañado o distinto",13.4,11.5,15,TRUE
+"Estrato","Alto",4,"No llegó o llegó tarde",6.9,6.1,7.9,TRUE
+"Estrato","Alto",4,"Cobro indebido o fraude",2.7,1.6,3.4,TRUE
+"Estrato","Alto",4,"Difícil devolver",3.1,1.3,4.9,TRUE
+"Localidad","Menos de 2,500",1,"Algún problema",18.4,16.7,19,TRUE
+"Localidad","Menos de 2,500",1,"Producto dañado o distinto",7.2,6.4,8.1,TRUE
+"Localidad","Menos de 2,500",1,"No llegó o llegó tarde",4.9,3.2,6.1,TRUE
+"Localidad","Menos de 2,500",1,"Cobro indebido o fraude",3.2,2.4,4.6,TRUE
+"Localidad","Menos de 2,500",1,"Difícil devolver",3.8,3.1,5.6,TRUE
+"Localidad","2,500-14,999",2,"Algún problema",14.6,13.2,16.2,TRUE
+"Localidad","2,500-14,999",2,"Producto dañado o distinto",11.6,10.4,12.2,TRUE
+"Localidad","2,500-14,999",2,"No llegó o llegó tarde",10.3,9.2,11.6,TRUE
+"Localidad","2,500-14,999",2,"Cobro indebido o fraude",3.3,1.6,5.2,TRUE
+"Localidad","2,500-14,999",2,"Difícil devolver",4.2,3.5,5.3,TRUE
+"Localidad","15,000-99,999",3,"Algún problema",16.5,15.7,17.7,TRUE
+"Localidad","15,000-99,999",3,"Producto dañado o distinto",11.6,10.9,12.7,TRUE
+"Localidad","15,000-99,999",3,"No llegó o llegó tarde",7.6,6.9,9.3,TRUE
+"Localidad","15,000-99,999",3,"Cobro indebido o fraude",5.6,4.2,6.6,TRUE
+"Localidad","15,000-99,999",3,"Difícil devolver",2.1,0.5,3.2,TRUE
+"Localidad","100,000 y más",4,"Algún problema",16.5,15.8,18.4,TRUE
+"Localidad","100,000 y más",4,"Producto dañado o distinto",8.1,7.2,8.7,TRUE
+"Localidad","100,000 y más",4,"No llegó o llegó tarde",5.2,3.4,6.5,TRUE
+"Localidad","100,000 y más",4,"Cobro indebido o fraude",4.8,2.8,6.2,TRUE
+"Localidad","100,000 y más",4,"Difícil devolver",3,1.1,3.8,TRUE
+"Nacional","Nacional",1,"Algún problema",24.3,23.8,25.5,TRUE
+"Nacional","Nacional",1,"Producto dañado o distinto",6.1,5.4,7,TRUE
+"Nacional","Nacional",1,"No llegó o llegó tarde",6.6,5.2,7.1,TRUE
+"Nacional","Nacional",1,"Cobro indebido o fraude",4,3.4,4.7,TRUE
+"Nacional","Nacional",1,"Difícil devolver",2.7,0.8,4.6,TRUE
+"Región","Norte",1,"Algún problema",13.2,12.7,14.7,TRUE
+"Región","Norte",1,"Producto dañado o distinto",7.1,5.2,8.8,TRUE
+"Región","Norte",1,"No llegó o llegó tarde",8.8,7.1,9.9,TRUE
+"Región","Norte",1,"Cobro indebido o fraude",2.5,0.8,3.8,TRUE
+"Región","Norte",1,"Difícil devolver",2.7,2,4.1,TRUE
+"Región","Centro Norte",2,"Algún problema",21.4,19.5,23.4,TRUE
+"Región","Centro Norte",2,"Producto dañado o distinto",9.4,7.6,10.8,TRUE
+"Región","Centro Norte",2,"No llegó o llegó tarde",7,6.1,7.7,TRUE
+"Región","Centro Norte",2,"Cobro indebido o fraude",3.5,2.4,4,TRUE
+"Región","Centro Norte",2,"Difícil devolver",2.4,1.6,2.9,TRUE
+"Región","Centro",3,"Algún problema",14.8,14.2,15.6,TRUE
+"Región","Centro",3,"Producto dañado o distinto",12.5,11,13.6,TRUE
+"Región","Centro",3,"No llegó o llegó tarde",11.7,10.9,13.7,TRUE
+"Región","Centro",3,"Cobro indebido o fraude",3.2,2.5,4.7,TRUE
+"Región","Centro",3,"Difícil devolver",3.5,2.2,4.9,TRUE
+"Región","Sur",4,"Algún problema",16.9,15.2,18.2,TRUE
+"Región","Sur",4,"Producto dañado o distinto",12.6,10.6,13.8,TRUE
+"Región","Sur",4,"No llegó o llegó tarde",10.2,9.4,11.1,TRUE
+"Región","Sur",4,"Cobro indebido o fraude",5.6,4.1,7.1,TRUE
+"Región","Sur",4,"Difícil devolver",2,0.4,2.8,TRUE
+"Sexo","Hombre",1,"Algún problema",16.4,15.8,18,TRUE
+"Sexo","Hombre",1,"Producto dañado o distinto",11.5,9.7,12.1,TRUE
+"Sexo","Hombre",1,"No llegó o llegó tarde",10.1,9.1,10.7,TRUE
+"Sexo","Hombre",1,"Cobro indebido o fraude",5.5,4.6,6.6,TRUE
+"Sexo","Hombre",1,"Difícil devolver",4.4,3.7,5.7,TRUE
+"Sexo","Mujer",2,"Algún problema",25.6,24,27.5,TRUE
+"Sexo","Mujer",2,"Producto dañado o distinto",9.9,9.2,11.6,TRUE
+"Sexo","Mujer",2,"No llegó o llegó tarde",9,8,10.3,TRUE
+"Sexo","Mujer",2,"Cobro indebido o fraude",5.6,3.9,7,TRUE
+"Sexo","Mujer",2,"Difícil devolver",2.2,1.4,3.9,TRUE

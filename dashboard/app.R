@@ -26,7 +26,9 @@ leer_opcional <- function(nombre) if (file.exists(ruta(nombre))) leer(nombre) el
 embudo     <- leer("s1_embudo.csv")
 categorias <- leer("s1_categorias.csv")
 eslabon    <- leer("s1_brechas_eslabon.csv")
-brechas    <- leer("s2_brechas.csv")
+efectos    <- leer("s2_efectos.csv")
+bloques    <- leer("s2_bloques.csv")
+robustez   <- leer("s2_robustez.csv")
 perfiles   <- leer("s2_perfiles.csv")
 razones    <- leer("s3_razones.csv")
 problemas  <- leer("s3_problemas.csv")
@@ -50,7 +52,7 @@ hallazgos   <- leer("hallazgos.csv")
 propuesta   <- leer("propuesta.csv")
 estrategias <- leer("estrategias.csv")
 
-hay_prueba <- any(sapply(list(embudo, categorias, eslabon, brechas, perfiles, razones,
+hay_prueba <- any(sapply(list(embudo, categorias, eslabon, efectos, bloques, robustez, perfiles, razones,
                               problemas, entidades, regiones, escen, simul,
                               tendencia, ingreso, hogar, ritmo, comercios, mercado),
                          function(d) !is.null(d) && isTRUE(any(d$prueba))))
@@ -167,6 +169,7 @@ tema <- bs_add_rules(tema, "
   .pendiente { border:1.5px dashed var(--borde); border-radius:12px; padding:2.5rem 1.5rem; text-align:center; color:var(--gris); margin:1rem 0; }
   .pendiente strong { color:var(--tinta); display:block; margin-bottom:.25rem; }
   .detalle-mapa { min-height:1.5rem; color:var(--tinta); }
+  .como-leer { border-left:4px solid var(--azul); background:var(--menta); padding:.9rem 1.1rem; border-radius:0 10px 10px 0; margin-bottom:1rem; max-width:110ch; }
 
   /* Lo que encontramos */
   .encontramos { margin-top:2rem; background:var(--menta); border-radius:12px; padding:1.25rem 1.5rem .5rem; }
@@ -320,11 +323,19 @@ ui <- page_navbar(
   nav_panel("2. ¿Quién queda fuera?", value = "s2", seccion(
     cabecera("2", "La brecha es de escolaridad, edad y territorio",
              "Otras brechas se explican en buena parte por escolaridad. Frentes A y B. Pregunta P2."),
+    div(class = "como-leer",
+      strong("Cómo leer estas cifras. "),
+      "Usamos una regresión: compara a personas que son iguales en todo (edad, sexo, escolaridad, localidad, estrato) excepto en una característica. ",
+      "Así, «Superior: +42.5 pp» quiere decir que, entre dos personas idénticas en todo lo demás, la que tiene educación superior tiene 42.5 puntos porcentuales más de probabilidad de comprar en línea que la que tiene primaria."),
     div(class = "lienzo", navset_underline(
-      nav_panel("Brechas y perfiles",
-        layout_columns(col_widths = c(7, 5),
-          grafica("g_brechas", "500px", "s2_brechas", "s2_brechas.csv"),
-          grafica("g_perfiles", "500px", "s2_perfiles", "s2_perfiles.csv"))),
+      nav_panel("¿Cuánto pesa cada factor?",
+        grafica("g_efectos", "720px", "s2_efectos", "s2_efectos.csv")),
+      nav_panel("La regresión paso a paso",
+        grafica("g_bloques", "680px", "s2_bloques", "s2_bloques.csv")),
+      nav_panel("¿Se sostiene en las ciudades?",
+        grafica("g_robustez", "520px", "s2_robustez", "s2_robustez.csv")),
+      nav_panel("Perfiles",
+        grafica("g_perfiles", "440px", "s2_perfiles", "s2_perfiles.csv")),
       nav_panel("Ingreso",
         opcional(ingreso, "g_ingreso", "480px", "s2_ingreso_entidad", "s2_ingreso_entidad.csv",
                  "Frentes A y C: ingreso de los hogares (ENIGH) frente a la compra, por entidad.")),
@@ -348,7 +359,7 @@ ui <- page_navbar(
     div(class = "lienzo", navset_underline(
       nav_panel("Mapa y regiones",
         filtro("s4_color", c("% que compra" = "estimacion", "Región" = "region"), "Colorear por"),
-        layout_columns(col_widths = c(7, 5),
+        layout_columns(col_widths = c(6, 6),
           tagList(plotOutput("g_mapa", height = "500px",
                              hover = hoverOpts("mapa_hover", delay = 80, delayType = "throttle")),
                   div(class = "detalle-mapa small", uiOutput("mapa_detalle")),
@@ -426,22 +437,25 @@ server <- function(input, output, session) {
     d
   }
 
-  # Brechas tipo "pesas": fondo durazno = desventaja, menta = ventaja
-  pesas <- function(d, y, color, valores, titulo, subtitulo, nota, xlab = "Diferencia en puntos porcentuales") {
-    rango <- range(c(d$li90, d$ls90, 0), na.rm = TRUE) + c(-3, 3)
-    ggplot(d, aes(estimacion, .data[[y]])) +
-      annotate("rect", xmin = rango[1], xmax = 0, ymin = -Inf, ymax = Inf, fill = col$calido) +
-      annotate("rect", xmin = 0, xmax = rango[2], ymin = -Inf, ymax = Inf, fill = col$frio) +
-      geom_vline(xintercept = 0, colour = col$gris_claro, linewidth = 0.5) +
-      geom_line(aes(group = .data[[y]]), colour = col$borde, linewidth = 1.6) +
-      geom_errorbarh(aes(xmin = li90, xmax = ls90, colour = .data[[color]]),
-                     height = 0.18, linewidth = 0.6, show.legend = FALSE) +
-      punto(aes(fill = .data[[color]]), size = 5.5) +
-      scale_fill_manual(values = valores, name = NULL) +
-      scale_colour_manual(values = valores, guide = "none") +
-      scale_x_continuous(limits = rango, expand = c(0, 0), labels = pp, n.breaks = 5) +
-      labs(title = titulo, subtitle = subtitulo, caption = nota, x = xlab, y = NULL) +
-      theme(panel.grid.major.y = element_blank())
+  # Brechas en barras: a la izquierda del 0 es desventaja, a la derecha ventaja.
+  # 'grupo' distingue dos versiones de la misma brecha (p. ej., observada y con controles).
+  barras_brecha <- function(d, y, grupo, valores, titulo, subtitulo, nota) {
+    d$valor_txt <- pp(d$estimacion)
+    # El primer nivel va arriba en cada par (ggplot apila al revés en barras horizontales)
+    d[[grupo]] <- factor(d[[grupo]], rev(levels(factor(d[[grupo]]))))
+    lim <- max(abs(c(d$estimacion, d$li90, d$ls90)), na.rm = TRUE) * 1.25
+    ggplot(d, aes(estimacion, .data[[y]], fill = .data[[grupo]])) +
+      annotate("rect", xmin = -Inf, xmax = 0, ymin = -Inf, ymax = Inf, fill = col$calido, alpha = 0.6) +
+      annotate("rect", xmin = 0, xmax = Inf, ymin = -Inf, ymax = Inf, fill = col$frio) +
+      geom_col(position = position_dodge(width = 0.86), width = 0.82) +
+      geom_vline(xintercept = 0, colour = col$tinta, linewidth = 0.5) +
+      geom_text(aes(label = valor_txt, hjust = ifelse(estimacion < 0, 1.15, -0.15)),
+                position = position_dodge(width = 0.86), size = 3.6, colour = col$tinta) +
+      scale_fill_manual(values = valores, name = NULL, guide = guide_legend(reverse = TRUE)) +
+      scale_x_continuous(limits = c(-lim, lim), labels = pp) +
+      labs(title = titulo, subtitle = subtitulo, caption = nota,
+           x = "Puntos porcentuales (pp)", y = NULL) +
+      theme(panel.grid.major.y = element_blank(), legend.position = "top")
   }
 
   calor <- function(d, fila, titulo, subtitulo, nota) {
@@ -506,9 +520,9 @@ server <- function(input, output, session) {
   output$g_eslabon <- graficar({
     d <- eslabon
     d$eslabon <- factor(d$eslabon, c("Usar internet", "Comprar en línea"))
-    pesas(d, "comparacion", "eslabon", c(`Usar internet` = col$morado, `Comprar en línea` = col$azul),
+    barras_brecha(d, "comparacion", "eslabon", c(`Usar internet` = col$morado, `Comprar en línea` = col$azul),
           "¿Se pierde más gente al conectarse o al comprar?",
-          "Brecha con controles en cada eslabón. No depende del filtro.",
+          "Diferencia con controles en la probabilidad de usar internet y de comprar en línea. No depende del filtro.",
           "Usar internet: residentes de 18+. Comprar: usuarios de internet de 18+. Líneas: intervalo al 90 %.")
   })
 
@@ -535,15 +549,62 @@ server <- function(input, output, session) {
   })
 
   # 2. ¿Quién queda fuera? ----------------------------------------------------
-  output$g_brechas <- graficar({
-    d <- brechas
-    aj <- d[d$tipo == "Ajustada", ]
-    d$comparacion <- factor(d$comparacion, aj$comparacion[order(abs(aj$estimacion))])
-    d$tipo <- factor(d$tipo, c("Bruta", "Ajustada"))
-    pesas(d, "comparacion", "tipo", c(Bruta = col$gris_claro, Ajustada = col$azul),
-          "Brechas en la probabilidad de comprar en línea",
-          "Gris: diferencia observada. Azul: con controles.",
-          "Usuarios de internet de 18+. Controles: sexo, edad, indígena, discapacidad, escolaridad,\nlocalidad y estrato. Líneas: intervalo al 90 %.")
+  output$g_efectos <- graficar({
+    d <- efectos
+    d$factor <- factor(d$factor, unique(d$factor[order(d$orden_factor)]))
+    d <- d[order(d$orden_factor, d$estimacion), ]
+    d$etiqueta <- factor(d$etiqueta, unique(d$etiqueta))
+    d$signo <- ifelse(d$estimacion >= 0, "Más probabilidad", "Menos probabilidad")
+    lim <- max(abs(c(d$li90, d$ls90))) * 1.18
+    ggplot(d, aes(estimacion, etiqueta)) +
+      geom_vline(xintercept = 0, colour = col$tinta, linewidth = 0.5) +
+      geom_col(aes(fill = signo), width = 0.68) +
+      geom_errorbarh(aes(xmin = li90, xmax = ls90), height = 0.25, colour = col$gris, linewidth = 0.45) +
+      geom_text(aes(x = ifelse(estimacion < 0, li90, ls90), label = pp(estimacion),
+                    hjust = ifelse(estimacion < 0, 1.2, -0.2)), size = 3.6, colour = col$tinta, fontface = "bold") +
+      facet_grid(factor ~ ., scales = "free_y", space = "free_y", switch = "y") +
+      scale_fill_manual(values = c(`Más probabilidad` = col$azul, `Menos probabilidad` = "#E2928C"), name = NULL) +
+      scale_x_continuous(limits = c(-lim, lim), labels = pp) +
+      labs(title = "¿Cuánto pesa cada factor en la probabilidad de comprar en línea?",
+           subtitle = "Diferencia frente al grupo de referencia de cada factor, comparando personas iguales en todo lo demás",
+           caption = "Modelo completo (logit con diseño muestral), efectos marginales promedio en puntos porcentuales.\nLíneas: intervalo al 90 %. Si la línea cruza el 0, la diferencia no es clara.",
+           x = "Puntos porcentuales (pp)", y = NULL) +
+      theme(strip.placement = "outside", strip.text.y.left = element_text(angle = 0, hjust = 1, face = "bold", size = 10),
+            panel.grid.major.y = element_blank(), panel.spacing.y = unit(0.35, "lines"), legend.position = "top")
+  })
+
+  output$g_bloques <- graficar({
+    d <- bloques
+    orden <- d[d$paso == 1, ]; d$brecha <- factor(d$brecha, orden$brecha[order(orden$estimacion)])
+    pasos <- unique(d[order(d$paso), c("paso", "nombre_paso")])
+    ggplot(d, aes(paso, estimacion)) +
+      geom_hline(yintercept = 0, colour = col$tinta, linewidth = 0.5) +
+      geom_ribbon(aes(ymin = li90, ymax = ls90), fill = rampa[5], alpha = 0.35) +
+      geom_line(colour = col$azul, linewidth = 1.1) +
+      punto(fill = col$azul, size = 4) +
+      geom_text(aes(label = pp(estimacion)), vjust = -1.1, size = 3.5, colour = col$tinta, fontface = "bold") +
+      facet_wrap(~brecha, scales = "free_y", nrow = 2) +
+      scale_x_continuous(breaks = pasos$paso, labels = sub("Tamaño de ", "Tamaño de\n", pasos$nombre_paso),
+                         expand = expansion(add = 0.35)) +
+      scale_y_continuous(labels = pp, expand = expansion(mult = c(0.15, 0.25))) +
+      expand_limits(y = 0) +
+      labs(title = "La regresión paso a paso: ¿qué explica cada brecha?",
+           subtitle = "Agregamos una explicación a la vez. Si la línea sube hacia el 0, ese paso explica parte de la brecha.",
+           caption = "Lectura: la brecha indígena pasa de −12.9 a −5.5 pp al agregar escolaridad, y a −1.9 con todo; se explica casi toda.\nLa de 65+ apenas cambia: la edad pesa por sí misma. Banda: intervalo al 90 %.",
+           x = NULL, y = "Diferencia en puntos porcentuales") +
+      theme(axis.text.x = element_text(size = 9.5, lineheight = 0.9), panel.spacing = unit(1.2, "lines"))
+  })
+
+  output$g_robustez <- graficar({
+    d <- robustez
+    d$version <- factor(d$version, c("Todo el país", "Solo ciudades de 100 mil+"))
+    o <- d[d$version == "Todo el país", ]; d$etiqueta <- factor(d$etiqueta, o$etiqueta[order(o$estimacion)])
+    d$li90 <- d$estimacion; d$ls90 <- d$estimacion
+    barras_brecha(d, "etiqueta", "version",
+                  c(`Todo el país` = col$gris_claro, `Solo ciudades de 100 mil+` = col$azul),
+                  "¿Los resultados se sostienen si solo vemos ciudades?",
+                  "Mismo modelo completo, en todo el país y solo en ciudades de 100 mil habitantes o más",
+                  "En ciudades el estrato no se confunde con lo rural. El estrato baja (17.7 a 14.5 pp): parte de su efecto era ruralidad.\nEscolaridad, edad y género casi no cambian.")
   })
 
   output$g_perfiles <- graficar({
@@ -627,10 +688,10 @@ server <- function(input, output, session) {
   output$g_regiones <- graficar({
     d <- regiones
     d$etiqueta <- paste(d$region, "vs.", d$referencia)
-    d$tipo <- factor(d$tipo, c("Bruta", "Ajustada"))
-    pesas(d, "etiqueta", "tipo", c(Bruta = col$gris_claro, Ajustada = col$azul),
-          "Brecha por región", "Gris: observada. Azul: con controles.",
-          "Frente a la región de referencia.\nLíneas: intervalo al 90 %.", xlab = "pp")
+    d$tipo <- factor(ifelse(d$tipo == "Bruta", "Observada", "Con controles"), c("Observada", "Con controles"))
+    barras_brecha(d, "etiqueta", "tipo", c(Observada = col$gris_claro, `Con controles` = col$azul),
+          "Brecha por región", "Diferencia en el % que compra frente al Centro",
+          "Con controles: comparando personas iguales\nen escolaridad, edad, sexo y estrato.")
   })
 
   output$g_ritmo <- graficar({

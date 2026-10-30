@@ -1,0 +1,19 @@
+"factor","orden_factor","etiqueta","estimacion","li90","ls90","prueba"
+"Discapacidad (frente a sin discapacidad)",7,"Con discapacidad",-1.3,-3.4,0.8,FALSE
+"Escolaridad (frente a preescolar o primaria)",1,"Media superior",28.2,26.4,30.1,FALSE
+"Escolaridad (frente a preescolar o primaria)",1,"Secundaria",12.4,10.4,14.3,FALSE
+"Escolaridad (frente a preescolar o primaria)",1,"Sin escolaridad",-3.2,-9.3,3,FALSE
+"Escolaridad (frente a preescolar o primaria)",1,"Superior",42.5,40.6,44.3,FALSE
+"Estrato (frente a bajo)",4,"Alto",17.7,15.1,20.3,FALSE
+"Estrato (frente a bajo)",4,"Medio alto",11.1,8.9,13.4,FALSE
+"Estrato (frente a bajo)",4,"Medio bajo",7.2,5.3,9.1,FALSE
+"Edad (frente a 18-24)",2,"25-34 años",-0.9,-2.8,0.9,FALSE
+"Edad (frente a 18-24)",2,"35-44 años",-8.5,-10.4,-6.6,FALSE
+"Edad (frente a 18-24)",2,"45-54 años",-17.7,-19.7,-15.7,FALSE
+"Edad (frente a 18-24)",2,"55-64 años",-30.2,-32.3,-28.1,FALSE
+"Edad (frente a 18-24)",2,"65 años o más",-41.8,-43.8,-39.8,FALSE
+"Indígena (frente a no indígena)",6,"Se considera indígena",-1.9,-3.1,-0.7,FALSE
+"Sexo (frente a hombre)",5,"Mujer",-3.4,-4.4,-2.3,FALSE
+"Localidad (frente a 100 mil hab. o más)",3,"15 mil a 99,999 hab.",-1.5,-3.2,0.1,FALSE
+"Localidad (frente a 100 mil hab. o más)",3,"2,500 a 14,999 hab.",-4.1,-6,-2.2,FALSE
+"Localidad (frente a 100 mil hab. o más)",3,"Menos de 2,500 hab.",-11.2,-13.1,-9.2,FALSE

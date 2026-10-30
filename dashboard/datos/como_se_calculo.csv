@@ -1,9 +1,8 @@
 grafica,fuente,universo,tipo,script,nota
 s1_embudo,"ENDUTIH 2025, INEGI","Cada eslabón tiene su propio universo: hogares; residentes de 18+; usuarios de internet de 18+",Observado,"analisis/A_conexion/ (por definir)","No se multiplican porcentajes de universos distintos."
-s2_brechas,"ENDUTIH 2025, INEGI","Usuarios de internet de 18+",Bruta: observado. Ajustada: modelado,"analisis/diagnostico/04_regresion.R","Ajustada = efecto marginal promedio de un modelo logit con sexo, edad, indígena, discapacidad, escolaridad, localidad y estrato. Intervalos al 90 %."
 s2_perfiles,"ENDUTIH 2025, INEGI","Usuarios de internet de 18+",Modelado,"(por definir, frente A)","Probabilidad predicha por el modelo completo para cada perfil."
 s3_razones,"ENDUTIH 2025, INEGI","Usuarios de internet de 18+ que no compraron en línea",Observado,"analisis/B_barreras/01_razones_por_grupo.R","Respuesta múltiple: los porcentajes no suman 100."
-s4_entidades,"ENDUTIH 2025, INEGI","Usuarios de internet de 18+",Observado,"(por definir, frente C)","Regionalización provisional (por definir, frente C)."
+s4_entidades,"ENDUTIH 2025, INEGI","Usuarios de internet de 18+",Observado,"analisis/diagnostico/02_cruces.R y 05_exportar_dashboard.R","Regionalización provisional (por definir, frente C)."
 s5_escenarios,"Serie publicada del INEGI (observado) y proyección del equipo (escenarios)","Usuarios de internet de 6+ o 18+ según la serie (por verificar)",Observado y proyectado,"(por definir, frente C)","Los escenarios son supuestos explícitos, no pronósticos."
 s5_simulador,"ENDUTIH 2025, INEGI, y supuestos del usuario","Usuarios de internet de 18+",Simulado,"analisis/D_propuesta/ (por definir)","Supone que cada persona da una sola razón (87 % lo hace, hallazgo 15)."
 s1_categorias,"ENDUTIH 2025, INEGI","Usuarios de internet de 18+ que compraron en línea",Observado,"(por definir, frente A)","Respuesta múltiple: los porcentajes no suman 100."
@@ -16,3 +15,6 @@ s2_hogar,"ENDUTIH 2025, INEGI","Usuarios de internet de 18+",Observado,"(por def
 s4_ritmo,"ENDUTIH, INEGI (dos levantamientos)","Usuarios de internet de 18+",Observado,"(por definir, frente C)","Cambio entre dos años en puntos porcentuales."
 s4_comercios,"DENUE, EIC 2025 y ENDUTIH 2025, INEGI","Entidades",Observado,"(por definir, frente C)","Asociación entre entidades, no causalidad."
 s5_mercado,"ENIGH 2024, INEGI, y escenarios del equipo","Gasto de los hogares en categorías que se compran en línea",Proyectado,"(por definir, frente C)","Rango de gasto potencialmente digitalizable, no gasto electrónico observado."
+s2_efectos,"ENDUTIH 2025, INEGI","Usuarios de internet de 18+",Modelado,"analisis/diagnostico/04_regresion.R y 05_exportar_dashboard.R","Logit con diseño muestral (svyglm). Efectos marginales promedio del modelo completo: sexo, edad, indígena, discapacidad, escolaridad, tamaño de localidad y estrato. Intervalos al 90 %."
+s2_bloques,"ENDUTIH 2025, INEGI","Usuarios de internet de 18+",Modelado,"analisis/diagnostico/04_regresion.R y 05_exportar_dashboard.R","Cuatro modelos anidados: 1) sexo, edad, indígena y discapacidad; 2) + escolaridad; 3) + tamaño de localidad; 4) + estrato. Los efectos marginales sí son comparables entre modelos (los coeficientes logit no)."
+s2_robustez,"ENDUTIH 2025, INEGI","Usuarios de internet de 18+: todo el país y solo localidades de 100 mil hab. o más",Modelado,"analisis/diagnostico/04_regresion.R y 05_exportar_dashboard.R","Prueba de robustez: en ciudades, el estrato no se confunde con ruralidad."

@@ -1,0 +1,17 @@
+"brecha","paso","nombre_paso","estimacion","li90","ls90","prueba"
+"Con vs. sin discapacidad",1,"Solo grupos",-4,-6.2,-1.8,FALSE
+"65+ vs. 18-24 años",1,"Solo grupos",-45.3,-47.3,-43.2,FALSE
+"Indígena vs. no indígena",1,"Solo grupos",-12.9,-14.2,-11.6,FALSE
+"Mujer vs. hombre",1,"Solo grupos",-3.8,-4.9,-2.6,FALSE
+"Con vs. sin discapacidad",2,"+ Escolaridad",-1,-3.1,1.1,FALSE
+"65+ vs. 18-24 años",2,"+ Escolaridad",-37.9,-40,-35.7,FALSE
+"Indígena vs. no indígena",2,"+ Escolaridad",-5.5,-6.7,-4.3,FALSE
+"Mujer vs. hombre",2,"+ Escolaridad",-3.6,-4.6,-2.5,FALSE
+"Con vs. sin discapacidad",3,"+ Tamaño de localidad",-1.6,-3.7,0.5,FALSE
+"65+ vs. 18-24 años",3,"+ Tamaño de localidad",-39.8,-41.9,-37.7,FALSE
+"Indígena vs. no indígena",3,"+ Tamaño de localidad",-3.1,-4.4,-1.9,FALSE
+"Mujer vs. hombre",3,"+ Tamaño de localidad",-3.3,-4.4,-2.3,FALSE
+"Con vs. sin discapacidad",4,"+ Estrato",-1.3,-3.4,0.8,FALSE
+"65+ vs. 18-24 años",4,"+ Estrato",-41.8,-43.8,-39.8,FALSE
+"Indígena vs. no indígena",4,"+ Estrato",-1.9,-3.1,-0.7,FALSE
+"Mujer vs. hombre",4,"+ Estrato",-3.4,-4.4,-2.3,FALSE

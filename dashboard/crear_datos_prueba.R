@@ -68,16 +68,9 @@ s1b <- data.frame(
   estimacion = c(35, -50, -20, -2, 42, -42, -11, -3))
 guardar(con_ic(s1b, ancho = 3, acotar = FALSE), "s1_brechas_eslabon.csv")
 
-# --- Sección 2: brechas brutas vs. ajustadas (frentes A y B) -----------------
-s2 <- data.frame(
-  factor      = c("Escolaridad", "Edad", "Localidad", "Estrato", "Sexo", "Indígena", "Discapacidad"),
-  comparacion = c("Superior vs. primaria", "65+ vs. 18-24", "Rural vs. 100 mil+", "Alto vs. bajo",
-                  "Mujer vs. hombre", "Indígena vs. no indígena", "Con vs. sin discapacidad"))
-s2 <- rbind(transform(s2, tipo = "Bruta",    estimacion = c(50, -45, -25, 35, -4, -13, -4)),
-            transform(s2, tipo = "Ajustada", estimacion = c(42, -42, -11, 18, -3, -2, -1)))
-s2 <- con_ic(s2, ancho = 3, acotar = FALSE)
-guardar(s2, "s2_brechas.csv")
-
+# --- Sección 2 (frentes A y B) ------------------------------------------------
+# Las brechas del modelo (s2_efectos, s2_bloques, s2_robustez) ya son reales:
+# las escribe analisis/diagnostico/05_exportar_dashboard.R.
 s2p <- data.frame(perfil = c("Perfil A (por definir)", "Perfil B (por definir)",
                              "Perfil C (por definir)", "Perfil D (por definir)"),
                   estimacion = c(12, 35, 58, 81))
@@ -100,9 +93,7 @@ s3p <- con_ic(s3p[order(s3p$grupo_var, s3p$orden, s3p$k), c("grupo_var", "grupo"
 guardar(s3p, "s3_problemas.csv")
 
 # --- Sección 4: territorio (frente C) ----------------------------------------
-s4 <- read.csv(file.path(dir_datos, "entidades.csv"), fileEncoding = "UTF-8")
-s4 <- data.frame(cve_ent = s4$cve_ent, estimacion = round(runif(32, 25, 60), 1))
-guardar(con_ic(s4, ancho = 6), "s4_entidades.csv")
+# s4_entidades.csv ya es real (05_exportar_dashboard.R).
 
 # Brecha por región frente a la región con mayor compra, bruta y con controles
 s4r <- data.frame(region = rep(c("Norte", "Centro Norte", "Sur"), 2),
@@ -175,4 +166,4 @@ s5m <- data.frame(escenario = c("Hoy (2024)", "Inercial 2030", "Habilidades 2030
                   orden = 1:4, minimo = c(180, 260, 285, 310), maximo = c(240, 340, 375, 410), prueba = TRUE)
 guardar(s5m, "s5_mercado.csv")
 
-cat("Listo. Todas las cifras son INVENTADAS (prueba = TRUE).\n")
+cat("Listo. Estos archivos de prueba llevan cifras INVENTADAS (prueba = TRUE).\n")

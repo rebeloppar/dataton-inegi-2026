@@ -331,7 +331,10 @@ ui <- page_navbar(
       nav_panel("¿Internet en casa?", opcional(conexion, "g_conexion", "520px", "s1_hogar", "s1_hogar.csv",
                                              "Frente A: adultos en hogar con internet vs. que usan internet.")),
       nav_panel("¿Qué se compra?", grafica("g_categorias", "520px", "s1_categorias", "s1_categorias.csv")),
-      nav_panel("¿Cómo ha cambiado?", opcional(tendencia, "g_tendencia", "380px", "s1_tendencia", "s1_tendencia.csv",
+      nav_panel("¿Cómo ha cambiado?",
+        p(class = "text-muted small mt-2 mb-0",
+          "Nota: el cambio en las categorías a lo largo de los años solo está disponible a nivel nacional; esta gráfica no cambia con el filtro de arriba."),
+        opcional(tendencia, "g_tendencia", "380px", "s1_tendencia", "s1_tendencia.csv",
                                              "Frente A: tendencia de las categorías con los tabulados publicados.")))),
     lo_que_encontramos("s1"))),
 
@@ -595,11 +598,12 @@ server <- function(input, output, session) {
       punto(fill = col$azul, size = 2.8) +
       geom_text(data = final, aes(label = sprintf("%.0f %%", estimacion)), colour = col$tinta,
                 fontface = "bold", size = 3.5, vjust = -1.2) +
-      facet_wrap(~categoria, nrow = 1) +
+      facet_wrap(~categoria, nrow = 1, labeller = label_wrap_gen(16)) +
       scale_y_continuous(labels = pct, expand = expansion(mult = c(0.05, 0.2))) +
-      scale_x_continuous(breaks = range(d$anio)) +
+      scale_x_continuous(breaks = range(d$anio), expand = expansion(mult = c(0.08, 0.18))) +
+      coord_cartesian(clip = "off") +
       labs(title = "¿Cómo ha cambiado lo que se compra?",
-           subtitle = "% de compradores en línea que compró cada categoría, por año",
+           subtitle = "% de compradores en línea que compró cada categoría, por año. Solo a nivel nacional.",
            caption = "Solo categorías comparables entre años.", x = NULL, y = NULL) +
       theme(panel.spacing = unit(1.2, "lines"))
   })

@@ -8,26 +8,7 @@
 
 source(file.path("R", "prep_endutih.R"))
 
-# TEMPORAL: región mientras el frente C define la variable de región. Se usa la
-# regionalización del Banco de México (Reporte sobre las Economías Regionales).
-# Borrar cuando se integre en R/prep_endutih.R.
-region_banxico <- c(
-  "Baja California" = "Norte", "Chihuahua" = "Norte", "Coahuila" = "Norte",
-  "Nuevo León" = "Norte", "Sonora" = "Norte", "Tamaulipas" = "Norte",
-  "Aguascalientes" = "Centro norte", "Baja California Sur" = "Centro norte",
-  "Colima" = "Centro norte", "Durango" = "Centro norte", "Jalisco" = "Centro norte",
-  "Michoacán" = "Centro norte", "Nayarit" = "Centro norte",
-  "San Luis Potosí" = "Centro norte", "Sinaloa" = "Centro norte",
-  "Zacatecas" = "Centro norte",
-  "Ciudad de México" = "Centro", "México" = "Centro", "Guanajuato" = "Centro",
-  "Hidalgo" = "Centro", "Morelos" = "Centro", "Puebla" = "Centro",
-  "Querétaro" = "Centro", "Tlaxcala" = "Centro",
-  "Campeche" = "Sur", "Chiapas" = "Sur", "Guerrero" = "Sur", "Oaxaca" = "Sur",
-  "Quintana Roo" = "Sur", "Tabasco" = "Sur", "Veracruz" = "Sur", "Yucatán" = "Sur")
-usu$REGION <- factor(unname(region_banxico[as.character(usu$ENTIDAD)]),
-                     levels = c("Norte", "Centro norte", "Centro", "Sur"))
-stopifnot(!anyNA(usu$REGION))   # las 32 entidades quedan asignadas
-dis <- update(dis, REGION = usu$REGION)
+# REGION viene de R/prep_endutih.R: regionalización del CEEY (decisión 62).
 
 dis_no <- subset(dis, compra == 0)
 f_raz  <- as.formula(paste("~", paste(names(razones), collapse = " + ")))

@@ -48,9 +48,8 @@ write.csv(sim[, c("grupo", "millones", "pct_compra", "pct_no_sabe", "pct_en_pers
 # --- Palancas: supuestos, no estimaciones (decisión 74) -----------------------
 # No hay un estudio que mida qué % de quienes no compran empieza a comprar tras
 # una compra asistida. Las palancas son preguntas «¿y si…?»: bajo = 5 %,
-# alto = 30 %. Referencia (con cautela): en Galiani, Gertler y Navajas-Ahumada
-# (2022, Perú), talleres a beneficiarios de transferencias subieron 13 pp la
-# confianza en el banco; es confianza, no compras.
+# alto = 30 %. EN REVISIÓN (decisión 75): estos valores son arbitrarios
+# (no hay tendencia estimada para «Inercia»); no citar los resultados.
 pal <- data.frame(
   escenario   = c("Inercia", "Solo tiendas", "Solo habilidades", "Puerta abierta"),
   orden       = 1:4,

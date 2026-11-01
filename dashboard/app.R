@@ -433,7 +433,11 @@ ui <- page_navbar(
                       div(e$accion[i]), div(class = "porque", e$por_que[i]))))
           }))),
       nav_panel("Simulador",
-        p(class = "text-muted mt-2 mb-3", style = "max-width:85ch",
+        div(class = "mt-2 mb-3", style = "max-width:85ch;background:#FBEFD0;border-left:4px solid #B97A1C;border-radius:0 10px 10px 0;padding:.8rem 1rem",
+          strong("En revisión (decisión 75). "),
+          "Las cifras de personas son reales (ENDUTIH 2025), pero las posiciones de las palancas y los escenarios no tienen sustento todavía: ",
+          "no hay una tendencia estimada para «Inercia» ni un estudio que diga qué parte de quienes no compran empezaría a comprar. No citar estos resultados."),
+        p(class = "text-muted mb-3", style = "max-width:85ch",
           "Las dos palancas son las dos puertas de la propuesta. Cada escenario de 2030 es una posición de las palancas: elige uno para ver dónde cae, o mueve las palancas a mano."),
         layout_columns(col_widths = c(4, 8),
           div(
@@ -450,7 +454,6 @@ ui <- page_navbar(
             p(class = "small text-muted",
               strong("Las palancas son supuestos, no estimaciones. "),
               "Ningún estudio mide qué parte de quienes no compran empieza a comprar después de una compra asistida, así que el simulador responde «¿y si…?». ",
-              "Como referencia, con cautela: en Perú, unos talleres para personas beneficiarias de transferencias subieron 13 puntos la confianza en el banco (Galiani, Gertler y Navajas-Ahumada, 2022, ensayo aleatorio); eso mide confianza, no compras. ",
               "Quien dice «no sé cómo» y además prefiere en persona cuenta solo en la puerta 1.")),
           div(uiOutput("sim_kpis"),
             layout_columns(col_widths = c(6, 6),

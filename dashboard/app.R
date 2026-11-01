@@ -259,7 +259,7 @@ arma_un_perfil <- function() {
         div(class = "ap-centro", tags$svg(class = "ap-figura", id = "ap-fig", viewBox = "0 0 240 300"),
             div(class = "ap-insignias", id = "ap-ins")),
         div(id = "ap-res")),
-    p(class = "ap-nota", "Probabilidad predicha por el modelo logit con diseño muestral (ENDUTIH 2025), con sexo, edad, escolaridad, tamaño de localidad, estrato, indígena (autoadscripción) y discapacidad (mucha dificultad o no poder hacer alguna actividad básica). Línea vertical negra: promedio nacional (43.7 %)."),
+    p(class = "ap-nota", "Probabilidad predicha por el modelo logit con diseño muestral (ENDUTIH 2025), con sexo, edad, escolaridad, tamaño de localidad, estrato, indígena (autoadscripción) y discapacidad (mucha dificultad o no poder hacer alguna actividad básica). Si no se activan indígena y discapacidad, la cifra es el promedio de las cuatro combinaciones, ponderado por qué tan comunes son entre las personas de ese perfil. Línea vertical negra: promedio nacional (43.7 %)."),
     tags$script(HTML(paste0("window.PERFIL_DATOS=", datos, ";"))),
     tags$script(src = "arma_un_perfil.js"),
     pie_grafica("s2_perfil_prob", "s2_perfil_prob.csv"))

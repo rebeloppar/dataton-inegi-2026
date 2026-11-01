@@ -6,16 +6,28 @@ const OPC={
  escolaridad:{rot:"Escolaridad",v:["Sin escolaridad","Preescolar o primaria","Secundaria","Media superior","Superior"],corto:["Sin escolaridad","Primaria","Secundaria","Media superior","Superior"]},
  localidad:{rot:"Tamaño de localidad",v:["Menos de 2,500","2,500 a 14,999","15 mil a 99,999","100 mil y más"],corto:["Menos de 2,500","2,500 a 15 mil","15 mil a 100 mil","100 mil o más"]},
  estrato:{rot:"Estrato",v:["Bajo","Medio bajo","Medio alto","Alto"]},
- indigena:{rot:"¿Se considera indígena?",v:["No","Sí"],clave:"indígena"},
- discapacidad:{rot:"¿Tiene alguna discapacidad?",v:["No","Sí"],clave:"discapacidad"}};
-const DATOS=window.PERFIL_DATOS; const sel={};
+ indigena:{rot:"¿Se considera indígena?",v:["No","Sí"],clave:"indígena",extra:true},
+ discapacidad:{rot:"¿Tiene alguna discapacidad?",v:["No","Sí"],clave:"discapacidad",extra:true}};
+const DATOS=window.PERFIL_DATOS; const sel={}; let extra=false;
+// Filtros activos: indígena y discapacidad solo si se activa el interruptor
+const activas=()=>Object.keys(OPC).filter(k=>!OPC[k].extra||extra);
 const ctrl=document.getElementById("ap-controles");
+// Interruptor y caja para indígena y discapacidad (opcionales)
+const caja=document.createElement("div");caja.className="ap-extra";
+caja.innerHTML=`<label class="ap-switch"><input type="checkbox" id="ap-extra-on"><span class="ap-slider"></span>Agregar indígena y discapacidad</label>
+<div class="ap-por-que"><b>¿Por qué van aparte?</b> Entre personas con la misma escolaridad, edad, localidad y estrato, considerarse indígena baja la probabilidad 1.9 puntos y tener discapacidad, 1.3 (no significativo). La brecha existe, pero pasa sobre todo por esas otras características: sin escolaridad, localidad ni estrato en el modelo, la brecha indígena es de 12.9 puntos (ver «La regresión paso a paso»). Con el interruptor apagado, la cifra promedia a todas las personas del perfil.</div>
+<div class="ap-extra-grupos" hidden></div>`;
+const grupos_extra=caja.querySelector(".ap-extra-grupos");
 for(const k in OPC){const g=document.createElement("div");g.className="ap-grupo";
  g.innerHTML=`<div class="ap-rot">${OPC[k].rot}</div><div class="ap-pills"></div>`;
  OPC[k].v.forEach((v,i)=>{const b=document.createElement("button");b.className="ap-pill";b.textContent=(OPC[k].corto||OPC[k].v)[i];
   b.onclick=()=>{sel[k]=v;g.querySelectorAll(".ap-pill").forEach(x=>x.classList.remove("on"));b.classList.add("on");pinta();};
   g.querySelector(".ap-pills").appendChild(b);});
- ctrl.appendChild(g);}
+ (OPC[k].extra?grupos_extra:ctrl).appendChild(g);}
+ctrl.appendChild(caja);
+caja.querySelector("#ap-extra-on").onchange=e=>{extra=e.target.checked;grupos_extra.hidden=!extra;
+ if(!extra){delete sel.indigena;delete sel.discapacidad;grupos_extra.querySelectorAll(".ap-pill.on").forEach(x=>x.classList.remove("on"));}
+ pinta();};
 // Botón para borrar todas las selecciones y volver a la figura vacía
 const limpiar=document.createElement("button");limpiar.className="ap-limpiar";limpiar.type="button";
 limpiar.textContent="Borrar todos los filtros";
@@ -96,12 +108,12 @@ function pinta(){
   `<div class="ap-ins">${insEsc(iE)}${iE<0?"Escolaridad":OPC.escolaridad.corto[iE]}</div>`+
   `<div class="ap-ins">${insLoc(iL)}${iL<0?"Localidad":OPC.localidad.corto[iL]}</div>`+
   `<div class="ap-ins">${insEst(iS)}${iS<0?"Estrato":"Estrato "+sel.estrato.toLowerCase()}</div>`+
-  `<div class="ap-ins">${insInd(sel.indigena?OPC.indigena.v.indexOf(sel.indigena):-1)}${!sel.indigena?"Indígena":(sel.indigena==="Sí"?"Se considera indígena":"No indígena")}</div>`+
-  `<div class="ap-ins">${insDis(sel.discapacidad?OPC.discapacidad.v.indexOf(sel.discapacidad):-1)}${!sel.discapacidad?"Discapacidad":(sel.discapacidad==="Sí"?"Con discapacidad":"Sin discapacidad")}</div>`;
- const falta=Object.keys(OPC).filter(k=>!sel[k]);
+  (!extra?"":`<div class="ap-ins">${insInd(sel.indigena?OPC.indigena.v.indexOf(sel.indigena):-1)}${!sel.indigena?"Indígena":(sel.indigena==="Sí"?"Se considera indígena":"No indígena")}</div>`+
+  `<div class="ap-ins">${insDis(sel.discapacidad?OPC.discapacidad.v.indexOf(sel.discapacidad):-1)}${!sel.discapacidad?"Discapacidad":(sel.discapacidad==="Sí"?"Con discapacidad":"Sin discapacidad")}</div>`);
+ const falta=activas().filter(k=>!sel[k]);
  const r=document.getElementById("ap-res");
  if(falta.length){r.innerHTML=`<div class="ap-vacio">Elige ${(l=>l.length>1?l.slice(0,-1).join(", ")+" y "+l[l.length-1]:l[0])(falta.map(k=>OPC[k].clave||OPC[k].rot.toLowerCase()))} para ver la probabilidad.</div>`;return;}
- const rest=[sel.localidad,sel.estrato,sel.indigena,sel.discapacidad];
+ const rest=[sel.localidad,sel.estrato,...(extra?[sel.indigena,sel.discapacidad]:["Todos","Todos"])];
  const k=[sel.sexo,sel.edad,sel.escolaridad,...rest].join("|"), d=DATOS[k];
  const ks=[sel.sexo,sel.edad,"Superior",...rest].join("|"), ds=DATOS[ks];
  const ko=[sel.sexo==="Mujer"?"Hombre":"Mujer",sel.edad,sel.escolaridad,...rest].join("|"), dd=DATOS[ko];

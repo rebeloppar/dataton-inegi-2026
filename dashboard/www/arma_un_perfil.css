@@ -22,3 +22,13 @@
 .ap-vacio{color:#6B7280;font-size:1rem;line-height:1.4}
 .ap-limpiar{margin-top:6px;border:1px solid #D5D9D2;background:#F7F8F6;border-radius:8px;padding:7px 14px;font:inherit;font-size:.9rem;color:#1F2937;cursor:pointer}
 .ap-limpiar:hover{border-color:#0F72A8;color:#0F72A8}
+.ap-extra{margin:10px 0 8px;padding:12px;border:1px dashed #D5D9D2;border-radius:10px;background:#FAFBF9}
+.ap-switch{display:flex;align-items:center;gap:10px;font-weight:600;font-size:.92rem;cursor:pointer;color:#1F2937}
+.ap-switch input{position:absolute;opacity:0;width:0;height:0}
+.ap-slider{position:relative;flex:0 0 38px;height:22px;background:#D5D9D2;border-radius:11px;transition:background .15s}
+.ap-slider::after{content:"";position:absolute;left:3px;top:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:left .15s}
+.ap-switch input:checked+.ap-slider{background:#0F72A8}
+.ap-switch input:checked+.ap-slider::after{left:19px}
+.ap-switch input:focus-visible+.ap-slider{outline:2px solid #0F72A8;outline-offset:2px}
+.ap-por-que{font-size:.82rem;color:#6B7280;line-height:1.4;margin-top:8px}
+.ap-extra-grupos{margin-top:12px}

@@ -15,7 +15,7 @@ const ctrl=document.getElementById("ap-controles");
 // Interruptor y caja para indígena y discapacidad (opcionales)
 const caja=document.createElement("div");caja.className="ap-extra";
 caja.innerHTML=`<label class="ap-switch"><input type="checkbox" id="ap-extra-on"><span class="ap-slider"></span>Agregar indígena y discapacidad</label>
-<div class="ap-por-que"><b>¿Por qué van aparte?</b> Entre personas con la misma escolaridad, edad, localidad y estrato, considerarse indígena baja la probabilidad 1.9 puntos y tener discapacidad, 1.3 (no significativo). La brecha existe, pero pasa sobre todo por esas otras características: sin escolaridad, localidad ni estrato en el modelo, la brecha indígena es de 12.9 puntos (ver «La regresión paso a paso»). Con el interruptor apagado, la cifra promedia a todas las personas del perfil.</div>
+<div class="ap-por-que"><b>¿Por qué van aparte?</b> Entre personas con la misma escolaridad, edad, localidad y estrato, considerarse indígena baja la probabilidad 1.9 puntos y tener discapacidad, 1.3 (no significativo). La brecha existe, pero pasa sobre todo por esas otras características: comparando solo a personas del mismo sexo y edad, la brecha indígena es de 12.9 puntos y la de discapacidad, de 4.0 (ver «La regresión paso a paso»). Con el interruptor apagado, la cifra promedia a todas las personas del perfil.</div>
 <div class="ap-extra-grupos" hidden></div>`;
 const grupos_extra=caja.querySelector(".ap-extra-grupos");
 for(const k in OPC){const g=document.createElement("div");g.className="ap-grupo";

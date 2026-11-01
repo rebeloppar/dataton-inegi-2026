@@ -1,4 +1,4 @@
-.ap-card{background:#fff;border:1px solid #D5D9D2;border-radius:14px;padding:22px;display:grid;grid-template-columns:330px 1fr 290px;gap:24px;align-items:start}
+.ap-card{background:#fff;border:1px solid #D5D9D2;border-radius:14px;padding:22px;display:grid;grid-template-columns:330px 1fr 300px;gap:24px;align-items:start}
 @media(max-width:1000px){.ap-card{grid-template-columns:1fr}}
 .ap-grupo{margin-bottom:14px}.ap-rot{font-weight:700;font-size:.82rem;color:#6B7280;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
 .ap-pills{display:flex;flex-wrap:wrap;gap:6px}
@@ -32,3 +32,12 @@
 .ap-switch input:focus-visible+.ap-slider{outline:2px solid #0F72A8;outline-offset:2px}
 .ap-por-que{font-size:.82rem;color:#6B7280;line-height:1.4;margin-top:8px}
 .ap-extra-grupos{margin-top:12px}
+.ap-derecha{display:flex;flex-direction:column;gap:18px}
+.ap-sugeridos{border:1px solid #D5D9D2;border-radius:12px;padding:14px;background:#FAFBF9}
+.ap-sg{margin-top:12px}
+.ap-sg-tit{font-weight:700;font-size:.85rem;color:#1F2937}
+.ap-sg-nota{font-size:.75rem;color:#6B7280;margin-bottom:4px}
+.ap-sg-btn{display:flex;justify-content:space-between;align-items:center;gap:8px;width:100%;text-align:left;border:1px solid #D5D9D2;background:#fff;border-radius:8px;padding:6px 10px;margin-top:4px;font:inherit;font-size:.85rem;color:#1F2937;cursor:pointer}
+.ap-sg-btn:hover{border-color:#0F72A8}
+.ap-sg-btn b{color:#0F72A8;white-space:nowrap}
+.ap-sg-btn.on{border-color:#0F72A8;background:#E7F1FB}

@@ -20,7 +20,7 @@ caja.innerHTML=`<label class="ap-switch"><input type="checkbox" id="ap-extra-on"
 const grupos_extra=caja.querySelector(".ap-extra-grupos");
 for(const k in OPC){const g=document.createElement("div");g.className="ap-grupo";
  g.innerHTML=`<div class="ap-rot">${OPC[k].rot}</div><div class="ap-pills"></div>`;
- OPC[k].v.forEach((v,i)=>{const b=document.createElement("button");b.className="ap-pill";b.textContent=(OPC[k].corto||OPC[k].v)[i];
+ OPC[k].v.forEach((v,i)=>{const b=document.createElement("button");b.className="ap-pill";b.dataset.k=k;b.dataset.v=v;b.textContent=(OPC[k].corto||OPC[k].v)[i];
   b.onclick=()=>{sel[k]=v;g.querySelectorAll(".ap-pill").forEach(x=>x.classList.remove("on"));b.classList.add("on");pinta();};
   g.querySelector(".ap-pills").appendChild(b);});
  (OPC[k].extra?grupos_extra:ctrl).appendChild(g);}
@@ -99,7 +99,44 @@ function insDis(i){ // pictograma de persona, sin silla de ruedas
  s+=`<circle cx="26" cy="13" r="4" fill="${c}"/><path d="M26 18 v11 M18 22 h16 M26 29 l-5 7 M26 29 l5 7" stroke="${c}" stroke-width="2.6" stroke-linecap="round" fill="none"/>`;
  return s+`</svg>`;}
 
+// --- Perfiles sugeridos para comparar -----------------------------------------
+// Cada par cambia una sola característica (o, en «Los extremos», todas), para
+// ver qué pesa más. Se pueden editar aquí; las claves son las de OPC.
+const base1={sexo:"Hombre",edad:"35-44",escolaridad:"Secundaria",localidad:"15 mil a 99,999",estrato:"Medio bajo"};
+const SUGERIDOS=[
+ {titulo:"Los extremos",perfiles:[
+  {nombre:"Mujer de 65+ con primaria, rural",s:{sexo:"Mujer",edad:"65+",escolaridad:"Preescolar o primaria",localidad:"Menos de 2,500",estrato:"Bajo"}},
+  {nombre:"Mujer de 25-34 con universidad, ciudad grande",s:{sexo:"Mujer",edad:"25-34",escolaridad:"Superior",localidad:"100 mil y más",estrato:"Alto"}}]},
+ {titulo:"Solo cambia la escolaridad",nota:"Hombre, 35-44, ciudad media, estrato medio bajo",perfiles:[
+  {nombre:"Con secundaria",s:base1},
+  {nombre:"Con universidad",s:{...base1,escolaridad:"Superior"}}]},
+ {titulo:"Solo cambia la edad",nota:"Mujer con secundaria, ciudad grande, estrato medio bajo",perfiles:[
+  {nombre:"De 25-34",s:{sexo:"Mujer",edad:"25-34",escolaridad:"Secundaria",localidad:"100 mil y más",estrato:"Medio bajo"}},
+  {nombre:"De 65+",s:{sexo:"Mujer",edad:"65+",escolaridad:"Secundaria",localidad:"100 mil y más",estrato:"Medio bajo"}}]},
+ {titulo:"Solo cambia la localidad",nota:"Hombre, 45-54, primaria, estrato bajo",perfiles:[
+  {nombre:"Rural (menos de 2,500)",s:{sexo:"Hombre",edad:"45-54",escolaridad:"Preescolar o primaria",localidad:"Menos de 2,500",estrato:"Bajo"}},
+  {nombre:"Ciudad de 100 mil o más",s:{sexo:"Hombre",edad:"45-54",escolaridad:"Preescolar o primaria",localidad:"100 mil y más",estrato:"Bajo"}}]},
+ {titulo:"Solo cambia el sexo",nota:"35-44, secundaria, ciudad media, estrato medio bajo",perfiles:[
+  {nombre:"Mujer",s:{...base1,sexo:"Mujer"}},
+  {nombre:"Hombre",s:base1}]}];
+const CINCO=["sexo","edad","escolaridad","localidad","estrato"];
+const probDe=s=>{const d=DATOS[[...CINCO.map(k=>s[k]),"Todos","Todos"].join("|")];return d?Math.round(d[0]):null;};
+function aplica(s){
+ if(extra){extra=false;caja.querySelector("#ap-extra-on").checked=false;grupos_extra.hidden=true;delete sel.indigena;delete sel.discapacidad;}
+ ctrl.querySelectorAll(".ap-pill.on").forEach(x=>x.classList.remove("on"));
+ CINCO.forEach(k=>{sel[k]=s[k];const b=ctrl.querySelector(`.ap-pill[data-k="${k}"][data-v="${s[k]}"]`);if(b)b.classList.add("on");});
+ pinta();}
+const sug=document.getElementById("ap-sugeridos");
+function pintaSugeridos(){
+ if(!sug)return;
+ const actual=!extra&&CINCO.every(k=>sel[k])?CINCO.map(k=>sel[k]).join("|"):null;
+ sug.innerHTML=`<div class="ap-lab">Perfiles para comparar</div><div class="ap-nota" style="margin-top:0">Haz clic en uno para verlo.</div>`+
+  SUGERIDOS.map((g,gi)=>`<div class="ap-sg"><div class="ap-sg-tit">${g.titulo}</div>${g.nota?`<div class="ap-sg-nota">${g.nota}</div>`:""}`+
+   g.perfiles.map((p,pi)=>`<button type="button" class="ap-sg-btn${actual===CINCO.map(k=>p.s[k]).join("|")?" on":""}" data-g="${gi}" data-p="${pi}"><span>${p.nombre}</span><b>${probDe(p.s)} %</b></button>`).join("")+`</div>`).join("");
+ sug.querySelectorAll(".ap-sg-btn").forEach(b=>b.onclick=()=>aplica(SUGERIDOS[b.dataset.g].perfiles[b.dataset.p].s));}
+
 function pinta(){
+ pintaSugeridos();
  document.getElementById("ap-fig").innerHTML=figura();
  const iE=sel.escolaridad?OPC.escolaridad.v.indexOf(sel.escolaridad):-1;
  const iL=sel.localidad?OPC.localidad.v.indexOf(sel.localidad):-1;

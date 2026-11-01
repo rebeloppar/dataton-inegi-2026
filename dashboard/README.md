@@ -60,7 +60,7 @@ Si necesitas una columna o categoría nueva, avisa a Rebeca: cambia la gráfica,
 | `s4_ritmo.csv` *(opcional)* | C | `cve_ent, inicio, fin, anio_inicio, anio_fin, prueba` | P6: % que compra en dos años |
 | `s4_comercios.csv` *(opcional)* | C | `cve_ent, comercios_10mil, pct_compra, prueba` | P6: DENUE + EIC |
 | `s5_mercado.csv` | C | `escenario, orden, minimo, maximo, prueba` | P7: rango de gasto digitalizable, miles de millones de pesos |
-| `s5_simulador.csv` | D | `grupo, millones, pct_compra, pct_no_sabe, pct_en_persona, prueba` | Insumos del simulador; `pct_no_sabe` y `pct_en_persona` son % de quienes no compran |
+| `s5_simulador.csv` **(real)** | D | `grupo, millones, pct_compra, pct_no_sabe, pct_en_persona, prueba` | Insumos del simulador; `pct_no_sabe` y `pct_en_persona` son % de quienes no compran (quien da las dos razones va solo en `pct_no_sabe`). Lo escribe `analisis/D_propuesta/09_simulador.R`, que también escribe `s5_palancas.csv` (supuestos, decisión 74) |
 
 **Opcionales:** si el archivo no existe, su pestaña muestra «Pendiente» en lugar de la gráfica. Cada gráfica tiene un enlace «Descargar datos (CSV)».
 

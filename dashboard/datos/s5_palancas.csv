@@ -1,5 +1,5 @@
 "escenario","orden","habilidades","tienda","descripcion","prueba"
-"Inercia",1,5,5,"Nadie aprende ni cambia la tienda: sigue la tendencia.",TRUE
-"Solo tiendas",2,5,40,"Las tiendas se integran al canal digital, pero quien no sabe cómo sigue igual.",TRUE
-"Solo habilidades",3,40,5,"Más personas aprenden, pero no tienen una tienda que las acompañe.",TRUE
-"Puerta abierta",4,40,40,"Funcionan las dos puertas: el escenario al que apunta la propuesta.",TRUE
+"Inercia",1,5,5,"Casi nadie cruza ninguna puerta: 5 % en cada una.",FALSE
+"Solo tiendas",2,5,30,"La tienda convence a 30 % de quienes prefieren en persona; de quienes no saben cómo, solo 5 %.",FALSE
+"Solo habilidades",3,30,5,"30 % de quienes no saben cómo aprende y compra; de quienes prefieren en persona, solo 5 %.",FALSE
+"Puerta abierta",4,30,30,"Funcionan las dos puertas: 30 % en cada una.",FALSE

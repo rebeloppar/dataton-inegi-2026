@@ -443,10 +443,15 @@ ui <- page_navbar(
                 radioButtons("sim_escenario", NULL, c(palancas$escenario, "Manual"),
                              selected = palancas$escenario[nrow(palancas)], inline = TRUE)),
             sliderInput("sim_sabe", "Puerta 1: de quienes dicen «no sé cómo», % que aprende y compra",
-                        0, 60, palancas$habilidades[nrow(palancas)], step = 5, post = " %"),
+                        0, 30, palancas$habilidades[nrow(palancas)], step = 1, post = " %"),
             sliderInput("sim_persona", "Puerta 2: de quienes prefieren en persona, % que compra con ver, recoger y devolver en tienda",
-                        0, 60, palancas$tienda[nrow(palancas)], step = 5, post = " %"),
-            uiOutput("sim_descripcion")),
+                        0, 30, palancas$tienda[nrow(palancas)], step = 1, post = " %"),
+            uiOutput("sim_descripcion"),
+            p(class = "small text-muted",
+              strong("Las palancas son supuestos, no estimaciones. "),
+              "Ningún estudio mide qué parte de quienes no compran empieza a comprar después de una compra asistida, así que el simulador responde «¿y si…?». ",
+              "Como referencia, con cautela: en Perú, unos talleres para personas beneficiarias de transferencias subieron 13 puntos la confianza en el banco (Galiani, Gertler y Navajas-Ahumada, 2022, ensayo aleatorio); eso mide confianza, no compras. ",
+              "Quien dice «no sé cómo» y además prefiere en persona cuenta solo en la puerta 1.")),
           div(uiOutput("sim_kpis"),
             layout_columns(col_widths = c(6, 6),
               plotOutput("g_matriz", height = "400px"),
@@ -839,13 +844,14 @@ server <- function(input, output, session) {
 
   # Dónde cae la posición actual en la matriz de escenarios
   output$g_matriz <- graficar({
+    tope <- 32   # máximo de las palancas (30) más margen para que se vean los puntos
     corte_h <- mean(range(palancas$habilidades)); corte_t <- mean(range(palancas$tienda))
     cuadros <- data.frame(
-      xmin = c(0, corte_t, 0, corte_t), xmax = c(corte_t, 60, corte_t, 60),
-      ymin = c(0, 0, corte_h, corte_h), ymax = c(corte_h, corte_h, 60, 60),
+      xmin = c(0, corte_t, 0, corte_t), xmax = c(corte_t, tope, corte_t, tope),
+      ymin = c(0, 0, corte_h, corte_h), ymax = c(corte_h, corte_h, tope, tope),
       nombre = c("Inercia", "Solo\ntiendas", "Solo\nhabilidades", "Puerta\nabierta"),
       relleno = c(rampa[2], rampa[4], rampa[3], col$frio))
-    cuadros$x <- (cuadros$xmin + cuadros$xmax) / 2; cuadros$y <- cuadros$ymax - 5.5
+    cuadros$x <- (cuadros$xmin + cuadros$xmax) / 2; cuadros$y <- cuadros$ymax - tope * 0.09
     ggplot() +
       geom_rect(data = cuadros, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, fill = I(relleno)),
                 colour = "white", linewidth = 1.5) +
@@ -853,8 +859,8 @@ server <- function(input, output, session) {
       geom_point(data = palancas, aes(tienda, habilidades), shape = 21, fill = "white",
                  colour = col$gris, size = 3, stroke = 1) +
       punto(data = data.frame(x = input$sim_persona, y = input$sim_sabe), aes(x, y), fill = col$azul, size = 7) +
-      scale_x_continuous(limits = c(0, 60), expand = c(0, 0), breaks = seq(0, 60, 20)) +
-      scale_y_continuous(limits = c(0, 60), expand = c(0, 0), breaks = seq(0, 60, 20)) +
+      scale_x_continuous(limits = c(0, tope), expand = c(0, 0), breaks = seq(0, 30, 10)) +
+      scale_y_continuous(limits = c(0, tope), expand = c(0, 0), breaks = seq(0, 30, 10)) +
       coord_fixed() +
       labs(title = "¿En qué escenario estás?",
            subtitle = "Azul: tu posición",

@@ -93,30 +93,9 @@ s5$li90[s5$escenario == "Observado"] <- NA   # la serie publicada no trae interv
 s5$ls90[s5$escenario == "Observado"] <- NA
 guardar(s5, "s5_escenarios.csv")
 
-s5sim <- data.frame(
-  # Grupos de la decisión 59. Cifras INVENTADAS: Rebeca las reemplaza el sábado
-  grupo          = c("Primaria o menos", "Hasta secundaria", "Mujeres con primaria o menos",
-                     "Rural (menos de 2,500 hab.)"),
-  millones       = c(12.7, 27.0, 6.8, 14.5),
-  pct_compra     = c(11, 20, 10, 25),
-  pct_no_sabe    = c(30, 25, 33, 25),   # % de quienes NO compran que da la razón
-  pct_en_persona = c(30, 34, 28, 33),
-  prueba = TRUE)
-guardar(s5sim, "s5_simulador.csv")
+# s5_simulador.csv es real: analisis/D_propuesta/09_simulador.R
 
-# Posición de las palancas en cada escenario (los ejes de la matriz 2 x 2).
-# Valores PROVISIONALES: "bajo" y "alto" se calibran con la literatura del memo.
-s5p <- data.frame(
-  escenario   = c("Inercia", "Solo tiendas", "Solo habilidades", "Puerta abierta"),
-  orden       = 1:4,
-  habilidades = c(5, 5, 40, 40),
-  tienda      = c(5, 40, 5, 40),
-  descripcion = c("Nadie aprende ni cambia la tienda: sigue la tendencia.",
-                  "Las tiendas se integran al canal digital, pero quien no sabe cómo sigue igual.",
-                  "Más personas aprenden, pero no tienen una tienda que las acompañe.",
-                  "Funcionan las dos puertas: el escenario al que apunta la propuesta."),
-  prueba = TRUE)
-guardar(s5p, "s5_palancas.csv")
+# s5_palancas.csv (supuestos declarados, decisión 74): analisis/D_propuesta/09_simulador.R
 
 # --- Opcionales (deseables): si un frente no los entrega, su pestaña queda ----
 # --- como "pendiente". Borra el archivo para ver cómo se ve sin él.         ----

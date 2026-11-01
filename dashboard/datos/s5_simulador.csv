@@ -1,5 +1,5 @@
 "grupo","millones","pct_compra","pct_no_sabe","pct_en_persona","prueba"
-"Primaria o menos",12.7,11,30,30,TRUE
-"Hasta secundaria",27,20,25,34,TRUE
-"Mujeres con primaria o menos",6.8,10,33,28,TRUE
-"Rural (menos de 2,500 hab.)",14.5,25,25,33,TRUE
+"Grupo: hasta secundaria",34.45,21.9,22.7,39.9,FALSE
+"Núcleo: primaria o menos",12.68,10.5,31,35.1,FALSE
+"Mujeres del grupo",18.85,20.4,25.4,37.9,FALSE
+"Hombres del grupo",15.6,23.7,19.2,42.4,FALSE

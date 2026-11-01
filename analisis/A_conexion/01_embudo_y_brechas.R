@@ -24,7 +24,7 @@ dis_pob <- update(dis_pob, compra_pob = pob$compra_pob)
 z90 <- qnorm(0.95)
 
 # --- 1. Embudo por grupo -------------------------------------------------------
-cortes <- c(Nacional = "NACIONAL", Escolaridad = "ESCOLARIDAD", Edad = "GRUPO_EDAD",
+cortes <- c(Nacional = "NACIONAL", Escolaridad = "ESCOLARIDAD_S1", Edad = "GRUPO_EDAD",
             Sexo = "SEXO", Localidad = "TLOC", Estrato = "ESTRATO", Región = "REGION")
 pob$NACIONAL <- factor("Nacional")
 dis_pob <- update(dis_pob, NACIONAL = pob$NACIONAL)

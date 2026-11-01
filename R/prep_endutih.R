@@ -62,6 +62,12 @@ usu$ESCOLARIDAD <- cut(nivel, breaks = c(-1, 0, 2, 3, 6, 11),
                        labels = c("Sin escolaridad", "Preescolar o primaria",
                                   "Secundaria", "Media superior", "Superior"))
 
+# Cortes descriptivos de la sección 1 (decisión 65): "Sin escolaridad" tiene muy
+# pocos compradores (25 casos), así que se une con preescolar o primaria.
+usu$ESCOLARIDAD_S1 <- factor(ifelse(usu$ESCOLARIDAD %in% c("Sin escolaridad", "Preescolar o primaria"),
+                                    "Primaria o menos", as.character(usu$ESCOLARIDAD)),
+                             levels = c("Primaria o menos", "Secundaria", "Media superior", "Superior"))
+
 # Robustez 1: agrupación del INEGI tal cual (básica en un solo bloque)
 usu$ESCOLARIDAD_INEGI <- cut(nivel, breaks = c(-1, 0, 3, 6, 11),
                              labels = c("Sin escolaridad", "Básica",

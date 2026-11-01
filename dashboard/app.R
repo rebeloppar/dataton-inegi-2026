@@ -44,6 +44,7 @@ palancas   <- palancas[order(palancas$orden), ]
 
 # Opcionales (deseables)
 tendencia  <- leer_opcional("s1_tendencia.csv")
+conexion   <- leer_opcional("s1_hogar.csv")
 hogar      <- leer_opcional("s2_hogar.csv")
 ritmo      <- leer_opcional("s4_ritmo.csv")
 comercios  <- leer_opcional("s4_comercios.csv")
@@ -56,7 +57,7 @@ estrategias <- leer("estrategias.csv")
 
 hay_prueba <- any(sapply(list(embudo, categorias, eslabon, efectos, bloques, robustez, perfiles, razones, genero,
                               problemas, entidades, regiones, escen, simul, palancas,
-                              tendencia, hogar, ritmo, comercios, mercado),
+                              tendencia, conexion, hogar, ritmo, comercios, mercado),
                          function(d) !is.null(d) && isTRUE(any(d$prueba))))
 
 # --- Estilo de las gráficas --------------------------------------------------
@@ -327,6 +328,8 @@ ui <- page_navbar(
     div(class = "lienzo", navset_underline(
       nav_panel("Embudo", grafica("g_embudo", "560px", "s1_embudo", "s1_embudo.csv")),
       nav_panel("¿Conectarse o comprar?", grafica("g_eslabon", "440px", "s1_brechas_eslabon", "s1_brechas_eslabon.csv")),
+      nav_panel("¿Internet en casa?", opcional(conexion, "g_conexion", "520px", "s1_hogar", "s1_hogar.csv",
+                                             "Frente A: adultos en hogar con internet vs. que usan internet.")),
       nav_panel("¿Qué se compra?", grafica("g_categorias", "520px", "s1_categorias", "s1_categorias.csv")),
       nav_panel("¿Cómo ha cambiado?", opcional(tendencia, "g_tendencia", "380px", "s1_tendencia", "s1_tendencia.csv",
                                              "Frente A: tendencia de las categorías con los tabulados publicados.")))),
@@ -554,6 +557,29 @@ server <- function(input, output, session) {
           "¿Se pierde más gente al conectarse o al comprar?",
           "Diferencia con controles en la probabilidad de usar internet y de comprar en línea. No depende del filtro.",
           "Usar internet: población de 18+. Comprar: usuarios de internet de 18+. Líneas: intervalo al 90 %.")
+  })
+
+  # Tener internet en casa vs. usarlo: para 65+ la conexión está, el uso no
+  output$g_conexion <- graficar({
+    d <- por_grupo(conexion, input$s1_grupo)
+    d$grupo <- factor(d$grupo, rev(levels(d$grupo)))
+    d$medida <- factor(d$medida, c("Usa internet", "Vive en un hogar con internet"))
+    ggplot(d, aes(estimacion, grupo, fill = medida)) +
+      geom_col(position = position_dodge(width = 0.75), width = 0.7) +
+      geom_errorbar(aes(xmin = li90, xmax = ls90), position = position_dodge(width = 0.75),
+                    width = 0.25, orientation = "y", colour = col$tinta, linewidth = 0.4) +
+      geom_text(aes(x = ls90, label = sprintf("%.0f %%", estimacion)), position = position_dodge(width = 0.75),
+                hjust = -0.25, size = 3.6, colour = col$tinta) +
+      scale_fill_manual(values = c(`Vive en un hogar con internet` = col$verde, `Usa internet` = col$azul),
+                        breaks = c("Vive en un hogar con internet", "Usa internet"), name = NULL) +
+      scale_x_continuous(limits = c(0, 108), breaks = seq(0, 100, 25), labels = pct, expand = c(0, 0)) +
+      labs(title = "¿Tener internet en casa basta para usarlo?",
+           subtitle = paste0("% de adultos (18+)", if (input$s1_grupo == "Nacional") "" else paste0(", por ", tolower(input$s1_grupo)),
+                             ". Si la barra verde es más larga, la conexión está pero no se usa."),
+           caption = "Una persona puede usar internet sin tenerlo en casa (datos móviles, trabajo, escuela): por eso la barra azul puede ser más larga.\nLíneas: intervalo al 90 %.",
+           x = NULL, y = NULL) +
+      theme(panel.grid.major.y = element_blank(), legend.position = "top",
+            axis.text.y = element_text(colour = col$tinta, size = 11.5))
   })
 
   output$g_categorias <- graficar(calor(

@@ -43,30 +43,9 @@ grupos_df <- do.call(rbind, lapply(names(grupos), function(g)
 
 cat("Creando datos de prueba en", dir_datos, "\n")
 
-# --- Sección 1: embudo (frente A) --------------------------------------------
-eslabones <- c("Hogar con internet", "Usa internet", "Compra en línea")
-s1 <- merge(grupos_df, data.frame(eslabon = eslabones, paso = 1:3))
-# Embudo de prueba coherente: cada eslabón es una fracción del anterior
-s1 <- s1[order(s1$grupo_var, s1$orden, s1$paso), ]
-s1$estimacion <- ave(runif(nrow(s1)), s1$grupo_var, s1$grupo, FUN = function(u)
-  round(cumprod(c(60 + 30 * u[1], 0.75 + 0.2 * u[2], 0.35 + 0.4 * u[3])), 1))
-s1 <- con_ic(s1[order(s1$grupo_var, s1$orden, s1$paso), ])
-guardar(s1, "s1_embudo.csv")
-
-# P3: qué se compra (% de compradores que compró cada categoría)
-categorias <- c("Ropa y calzado", "Comida a domicilio", "Electrónicos", "Belleza y cuidado personal",
-                "Artículos para el hogar", "Boletos y entretenimiento", "Supermercado", "Libros y música")
-s1c <- merge(grupos_df, data.frame(categoria = categorias, k = seq_along(categorias)))
-s1c$estimacion <- round(c(55, 45, 30, 28, 25, 20, 15, 10)[s1c$k] * runif(nrow(s1c), 0.6, 1.4), 1)
-s1c <- con_ic(s1c[order(s1c$grupo_var, s1c$orden, s1c$k), c("grupo_var", "grupo", "orden", "categoria", "estimacion")])
-guardar(s1c, "s1_categorias.csv")
-
-# Brechas en cada eslabón: ¿se pierde más gente al conectarse o al comprar?
-s1b <- data.frame(
-  comparacion = rep(c("Superior vs. primaria", "65+ vs. 18-24", "Rural vs. 100 mil+", "Mujer vs. hombre"), 2),
-  eslabon = rep(c("Usar internet", "Comprar en línea"), each = 4),
-  estimacion = c(35, -50, -20, -2, 42, -42, -11, -3))
-guardar(con_ic(s1b, ancho = 3, acotar = FALSE), "s1_brechas_eslabon.csv")
+# --- Sección 1 (frente A) ---------------------------------------------------
+# s1_embudo.csv, s1_brechas_eslabon.csv, s1_categorias.csv y s1_hogar.csv ya son
+# reales (analisis/A_conexion/01_embudo_y_brechas.R y 02_hogar_y_categorias.R).
 
 # --- Sección 2 (frentes A y B) ------------------------------------------------
 # Las brechas del modelo (s2_efectos, s2_bloques, s2_robustez) ya son reales:

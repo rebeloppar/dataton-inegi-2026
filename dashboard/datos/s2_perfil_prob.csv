@@ -1,0 +1,961 @@
+"sexo","edad","escolaridad","localidad","estrato","estimacion","li90","ls90","n","prueba"
+"Hombre","18-24","Sin escolaridad","100 mil y más","Bajo",19.5,12.9,28.5,1,FALSE
+"Hombre","18-24","Sin escolaridad","100 mil y más","Medio bajo",26.3,17.9,37,1,FALSE
+"Hombre","18-24","Sin escolaridad","100 mil y más","Medio alto",30.5,21.1,41.9,2,FALSE
+"Hombre","18-24","Sin escolaridad","100 mil y más","Alto",38.3,27.4,50.6,1,FALSE
+"Hombre","18-24","Sin escolaridad","15 mil a 99,999","Bajo",18.3,12,26.9,0,FALSE
+"Hombre","18-24","Sin escolaridad","15 mil a 99,999","Medio bajo",24.8,16.7,35.1,0,FALSE
+"Hombre","18-24","Sin escolaridad","15 mil a 99,999","Medio alto",28.8,19.8,40,0,FALSE
+"Hombre","18-24","Sin escolaridad","15 mil a 99,999","Alto",36.4,25.7,48.6,0,FALSE
+"Hombre","18-24","Sin escolaridad","2,500 a 14,999","Bajo",16.3,10.6,24.3,0,FALSE
+"Hombre","18-24","Sin escolaridad","2,500 a 14,999","Medio bajo",22.3,14.9,32.1,2,FALSE
+"Hombre","18-24","Sin escolaridad","2,500 a 14,999","Medio alto",26.1,17.6,36.8,0,FALSE
+"Hombre","18-24","Sin escolaridad","2,500 a 14,999","Alto",33.3,23.1,45.3,0,FALSE
+"Hombre","18-24","Sin escolaridad","Menos de 2,500","Bajo",11.8,7.5,17.9,0,FALSE
+"Hombre","18-24","Sin escolaridad","Menos de 2,500","Medio bajo",16.4,10.6,24.4,1,FALSE
+"Hombre","18-24","Sin escolaridad","Menos de 2,500","Medio alto",19.4,12.7,28.5,0,FALSE
+"Hombre","18-24","Sin escolaridad","Menos de 2,500","Alto",25.4,17,36.1,0,FALSE
+"Hombre","18-24","Preescolar o primaria","100 mil y más","Bajo",23.6,20.6,26.8,4,FALSE
+"Hombre","18-24","Preescolar o primaria","100 mil y más","Medio bajo",31.2,28.3,34.4,28,FALSE
+"Hombre","18-24","Preescolar o primaria","100 mil y más","Medio alto",35.8,32.5,39.2,11,FALSE
+"Hombre","18-24","Preescolar o primaria","100 mil y más","Alto",44.1,40.2,48.1,1,FALSE
+"Hombre","18-24","Preescolar o primaria","15 mil a 99,999","Bajo",22.1,19.2,25.4,6,FALSE
+"Hombre","18-24","Preescolar o primaria","15 mil a 99,999","Medio bajo",29.5,26.4,32.8,11,FALSE
+"Hombre","18-24","Preescolar o primaria","15 mil a 99,999","Medio alto",34,30.4,37.7,3,FALSE
+"Hombre","18-24","Preescolar o primaria","15 mil a 99,999","Alto",42.1,37.8,46.5,0,FALSE
+"Hombre","18-24","Preescolar o primaria","2,500 a 14,999","Bajo",19.9,17.1,22.9,10,FALSE
+"Hombre","18-24","Preescolar o primaria","2,500 a 14,999","Medio bajo",26.8,23.7,30,18,FALSE
+"Hombre","18-24","Preescolar o primaria","2,500 a 14,999","Medio alto",31,27.5,34.8,0,FALSE
+"Hombre","18-24","Preescolar o primaria","2,500 a 14,999","Alto",38.8,34.5,43.3,1,FALSE
+"Hombre","18-24","Preescolar o primaria","Menos de 2,500","Bajo",14.5,12.6,16.6,31,FALSE
+"Hombre","18-24","Preescolar o primaria","Menos de 2,500","Medio bajo",20,17.6,22.5,13,FALSE
+"Hombre","18-24","Preescolar o primaria","Menos de 2,500","Medio alto",23.5,20.6,26.6,0,FALSE
+"Hombre","18-24","Preescolar o primaria","Menos de 2,500","Alto",30.2,26.5,34.2,0,FALSE
+"Hombre","18-24","Secundaria","100 mil y más","Bajo",39.1,35.9,42.5,31,FALSE
+"Hombre","18-24","Secundaria","100 mil y más","Medio bajo",48.6,45.9,51.3,152,FALSE
+"Hombre","18-24","Secundaria","100 mil y más","Medio alto",53.8,50.9,56.6,72,FALSE
+"Hombre","18-24","Secundaria","100 mil y más","Alto",62.2,59,65.2,13,FALSE
+"Hombre","18-24","Secundaria","15 mil a 99,999","Bajo",37.2,33.8,40.6,9,FALSE
+"Hombre","18-24","Secundaria","15 mil a 99,999","Medio bajo",46.6,43.6,49.6,65,FALSE
+"Hombre","18-24","Secundaria","15 mil a 99,999","Medio alto",51.7,48.4,55,18,FALSE
+"Hombre","18-24","Secundaria","15 mil a 99,999","Alto",60.2,56.5,63.9,2,FALSE
+"Hombre","18-24","Secundaria","2,500 a 14,999","Bajo",34.1,30.7,37.6,21,FALSE
+"Hombre","18-24","Secundaria","2,500 a 14,999","Medio bajo",43.2,40,46.5,77,FALSE
+"Hombre","18-24","Secundaria","2,500 a 14,999","Medio alto",48.3,44.7,52,3,FALSE
+"Hombre","18-24","Secundaria","2,500 a 14,999","Alto",56.9,52.8,60.9,2,FALSE
+"Hombre","18-24","Secundaria","Menos de 2,500","Bajo",26.1,23.6,28.7,73,FALSE
+"Hombre","18-24","Secundaria","Menos de 2,500","Medio bajo",34.2,31.3,37.2,88,FALSE
+"Hombre","18-24","Secundaria","Menos de 2,500","Medio alto",39,35.5,42.5,0,FALSE
+"Hombre","18-24","Secundaria","Menos de 2,500","Alto",47.4,43.3,51.5,0,FALSE
+"Hombre","18-24","Media superior","100 mil y más","Bajo",57.8,54.5,61.1,24,FALSE
+"Hombre","18-24","Media superior","100 mil y más","Medio bajo",66.9,64.6,69.1,238,FALSE
+"Hombre","18-24","Media superior","100 mil y más","Medio alto",71.3,69.1,73.4,193,FALSE
+"Hombre","18-24","Media superior","100 mil y más","Alto",77.8,75.7,79.8,95,FALSE
+"Hombre","18-24","Media superior","15 mil a 99,999","Bajo",55.8,52.3,59.3,22,FALSE
+"Hombre","18-24","Media superior","15 mil a 99,999","Medio bajo",65,62.4,67.7,102,FALSE
+"Hombre","18-24","Media superior","15 mil a 99,999","Medio alto",69.6,66.9,72.2,51,FALSE
+"Hombre","18-24","Media superior","15 mil a 99,999","Alto",76.4,73.7,78.9,5,FALSE
+"Hombre","18-24","Media superior","2,500 a 14,999","Bajo",52.5,48.7,56.2,43,FALSE
+"Hombre","18-24","Media superior","2,500 a 14,999","Medio bajo",61.9,58.8,64.9,103,FALSE
+"Hombre","18-24","Media superior","2,500 a 14,999","Medio alto",66.6,63.4,69.7,12,FALSE
+"Hombre","18-24","Media superior","2,500 a 14,999","Alto",73.8,70.7,76.8,4,FALSE
+"Hombre","18-24","Media superior","Menos de 2,500","Bajo",42.9,39.9,46.1,93,FALSE
+"Hombre","18-24","Media superior","Menos de 2,500","Medio bajo",52.6,49.5,55.6,114,FALSE
+"Hombre","18-24","Media superior","Menos de 2,500","Medio alto",57.7,54.3,61,5,FALSE
+"Hombre","18-24","Media superior","Menos de 2,500","Alto",65.8,62.3,69.2,0,FALSE
+"Hombre","18-24","Superior","100 mil y más","Bajo",72.7,69.8,75.5,16,FALSE
+"Hombre","18-24","Superior","100 mil y más","Medio bajo",79.7,77.9,81.4,151,FALSE
+"Hombre","18-24","Superior","100 mil y más","Medio alto",82.8,81.3,84.3,205,FALSE
+"Hombre","18-24","Superior","100 mil y más","Alto",87.2,85.9,88.4,168,FALSE
+"Hombre","18-24","Superior","15 mil a 99,999","Bajo",71.1,67.9,74.1,7,FALSE
+"Hombre","18-24","Superior","15 mil a 99,999","Medio bajo",78.4,76.2,80.4,56,FALSE
+"Hombre","18-24","Superior","15 mil a 99,999","Medio alto",81.7,79.7,83.5,54,FALSE
+"Hombre","18-24","Superior","15 mil a 99,999","Alto",86.3,84.5,87.9,9,FALSE
+"Hombre","18-24","Superior","2,500 a 14,999","Bajo",68.2,64.7,71.5,13,FALSE
+"Hombre","18-24","Superior","2,500 a 14,999","Medio bajo",76,73.5,78.3,65,FALSE
+"Hombre","18-24","Superior","2,500 a 14,999","Medio alto",79.5,77.2,81.7,26,FALSE
+"Hombre","18-24","Superior","2,500 a 14,999","Alto",84.6,82.5,86.5,5,FALSE
+"Hombre","18-24","Superior","Menos de 2,500","Bajo",59.4,56.1,62.6,26,FALSE
+"Hombre","18-24","Superior","Menos de 2,500","Medio bajo",68.3,65.5,71,58,FALSE
+"Hombre","18-24","Superior","Menos de 2,500","Medio alto",72.6,69.7,75.3,10,FALSE
+"Hombre","18-24","Superior","Menos de 2,500","Alto",78.9,76.3,81.3,1,FALSE
+"Hombre","25-34","Sin escolaridad","100 mil y más","Bajo",18.8,12.4,27.5,0,FALSE
+"Hombre","25-34","Sin escolaridad","100 mil y más","Medio bajo",25.4,17.3,35.8,4,FALSE
+"Hombre","25-34","Sin escolaridad","100 mil y más","Medio alto",29.5,20.4,40.6,1,FALSE
+"Hombre","25-34","Sin escolaridad","100 mil y más","Alto",37.2,26.5,49.3,1,FALSE
+"Hombre","25-34","Sin escolaridad","15 mil a 99,999","Bajo",17.6,11.5,25.9,1,FALSE
+"Hombre","25-34","Sin escolaridad","15 mil a 99,999","Medio bajo",23.9,16.1,34,1,FALSE
+"Hombre","25-34","Sin escolaridad","15 mil a 99,999","Medio alto",27.9,19.1,38.8,0,FALSE
+"Hombre","25-34","Sin escolaridad","15 mil a 99,999","Alto",35.3,24.9,47.4,0,FALSE
+"Hombre","25-34","Sin escolaridad","2,500 a 14,999","Bajo",15.7,10.2,23.4,1,FALSE
+"Hombre","25-34","Sin escolaridad","2,500 a 14,999","Medio bajo",21.5,14.3,31,2,FALSE
+"Hombre","25-34","Sin escolaridad","2,500 a 14,999","Medio alto",25.2,17,35.6,0,FALSE
+"Hombre","25-34","Sin escolaridad","2,500 a 14,999","Alto",32.3,22.4,44,0,FALSE
+"Hombre","25-34","Sin escolaridad","Menos de 2,500","Bajo",11.3,7.2,17.2,6,FALSE
+"Hombre","25-34","Sin escolaridad","Menos de 2,500","Medio bajo",15.8,10.2,23.5,0,FALSE
+"Hombre","25-34","Sin escolaridad","Menos de 2,500","Medio alto",18.7,12.2,27.5,0,FALSE
+"Hombre","25-34","Sin escolaridad","Menos de 2,500","Alto",24.5,16.4,35,0,FALSE
+"Hombre","25-34","Preescolar o primaria","100 mil y más","Bajo",22.7,19.9,25.8,14,FALSE
+"Hombre","25-34","Preescolar o primaria","100 mil y más","Medio bajo",30.2,27.5,33.1,52,FALSE
+"Hombre","25-34","Preescolar o primaria","100 mil y más","Medio alto",34.7,31.7,37.9,13,FALSE
+"Hombre","25-34","Preescolar o primaria","100 mil y más","Alto",42.9,39.3,46.6,3,FALSE
+"Hombre","25-34","Preescolar o primaria","15 mil a 99,999","Bajo",21.3,18.5,24.4,10,FALSE
+"Hombre","25-34","Preescolar o primaria","15 mil a 99,999","Medio bajo",28.5,25.7,31.6,20,FALSE
+"Hombre","25-34","Preescolar o primaria","15 mil a 99,999","Medio alto",32.9,29.6,36.4,3,FALSE
+"Hombre","25-34","Preescolar o primaria","15 mil a 99,999","Alto",41,36.9,45.1,0,FALSE
+"Hombre","25-34","Preescolar o primaria","2,500 a 14,999","Bajo",19.1,16.6,22,20,FALSE
+"Hombre","25-34","Preescolar o primaria","2,500 a 14,999","Medio bajo",25.9,23.1,28.8,36,FALSE
+"Hombre","25-34","Preescolar o primaria","2,500 a 14,999","Medio alto",30,26.8,33.4,4,FALSE
+"Hombre","25-34","Preescolar o primaria","2,500 a 14,999","Alto",37.7,33.7,41.9,0,FALSE
+"Hombre","25-34","Preescolar o primaria","Menos de 2,500","Bajo",13.9,12.1,15.9,68,FALSE
+"Hombre","25-34","Preescolar o primaria","Menos de 2,500","Medio bajo",19.2,17.1,21.6,43,FALSE
+"Hombre","25-34","Preescolar o primaria","Menos de 2,500","Medio alto",22.6,19.9,25.6,1,FALSE
+"Hombre","25-34","Preescolar o primaria","Menos de 2,500","Alto",29.2,25.8,33,0,FALSE
+"Hombre","25-34","Secundaria","100 mil y más","Bajo",38,34.9,41.2,42,FALSE
+"Hombre","25-34","Secundaria","100 mil y más","Medio bajo",47.4,45,49.9,247,FALSE
+"Hombre","25-34","Secundaria","100 mil y más","Medio alto",52.6,49.9,55.2,114,FALSE
+"Hombre","25-34","Secundaria","100 mil y más","Alto",61,58.1,63.9,28,FALSE
+"Hombre","25-34","Secundaria","15 mil a 99,999","Bajo",36.1,32.8,39.5,19,FALSE
+"Hombre","25-34","Secundaria","15 mil a 99,999","Medio bajo",45.4,42.6,48.2,98,FALSE
+"Hombre","25-34","Secundaria","15 mil a 99,999","Medio alto",50.5,47.4,53.7,30,FALSE
+"Hombre","25-34","Secundaria","15 mil a 99,999","Alto",59.1,55.5,62.6,2,FALSE
+"Hombre","25-34","Secundaria","2,500 a 14,999","Bajo",33,29.9,36.3,43,FALSE
+"Hombre","25-34","Secundaria","2,500 a 14,999","Medio bajo",42.1,39.2,45,103,FALSE
+"Hombre","25-34","Secundaria","2,500 a 14,999","Medio alto",47.2,43.8,50.5,15,FALSE
+"Hombre","25-34","Secundaria","2,500 a 14,999","Alto",55.8,52,59.5,1,FALSE
+"Hombre","25-34","Secundaria","Menos de 2,500","Bajo",25.2,22.8,27.7,129,FALSE
+"Hombre","25-34","Secundaria","Menos de 2,500","Medio bajo",33.1,30.4,36,146,FALSE
+"Hombre","25-34","Secundaria","Menos de 2,500","Medio alto",37.8,34.5,41.3,2,FALSE
+"Hombre","25-34","Secundaria","Menos de 2,500","Alto",46.2,42.3,50.2,0,FALSE
+"Hombre","25-34","Media superior","100 mil y más","Bajo",56.7,53.4,59.9,43,FALSE
+"Hombre","25-34","Media superior","100 mil y más","Medio bajo",65.8,63.7,67.9,282,FALSE
+"Hombre","25-34","Media superior","100 mil y más","Medio alto",70.3,68.3,72.3,214,FALSE
+"Hombre","25-34","Media superior","100 mil y más","Alto",77,75,78.9,90,FALSE
+"Hombre","25-34","Media superior","15 mil a 99,999","Bajo",54.7,51.1,58.2,24,FALSE
+"Hombre","25-34","Media superior","15 mil a 99,999","Medio bajo",64,61.4,66.5,116,FALSE
+"Hombre","25-34","Media superior","15 mil a 99,999","Medio alto",68.6,65.9,71.1,50,FALSE
+"Hombre","25-34","Media superior","15 mil a 99,999","Alto",75.5,72.9,78,7,FALSE
+"Hombre","25-34","Media superior","2,500 a 14,999","Bajo",51.3,47.6,54.9,38,FALSE
+"Hombre","25-34","Media superior","2,500 a 14,999","Medio bajo",60.8,57.9,63.6,120,FALSE
+"Hombre","25-34","Media superior","2,500 a 14,999","Medio alto",65.6,62.6,68.5,17,FALSE
+"Hombre","25-34","Media superior","2,500 a 14,999","Alto",72.9,69.9,75.7,1,FALSE
+"Hombre","25-34","Media superior","Menos de 2,500","Bajo",41.8,38.7,44.9,111,FALSE
+"Hombre","25-34","Media superior","Menos de 2,500","Medio bajo",51.4,48.4,54.4,108,FALSE
+"Hombre","25-34","Media superior","Menos de 2,500","Medio alto",56.5,53.1,59.8,2,FALSE
+"Hombre","25-34","Media superior","Menos de 2,500","Alto",64.7,61.3,68.1,0,FALSE
+"Hombre","25-34","Superior","100 mil y más","Bajo",71.8,68.9,74.5,24,FALSE
+"Hombre","25-34","Superior","100 mil y más","Medio bajo",78.9,77.3,80.5,252,FALSE
+"Hombre","25-34","Superior","100 mil y más","Medio alto",82.2,80.8,83.5,403,FALSE
+"Hombre","25-34","Superior","100 mil y más","Alto",86.7,85.5,87.8,432,FALSE
+"Hombre","25-34","Superior","15 mil a 99,999","Bajo",70.1,66.9,73.1,14,FALSE
+"Hombre","25-34","Superior","15 mil a 99,999","Medio bajo",77.5,75.5,79.5,106,FALSE
+"Hombre","25-34","Superior","15 mil a 99,999","Medio alto",80.9,79,82.7,119,FALSE
+"Hombre","25-34","Superior","15 mil a 99,999","Alto",85.7,84,87.2,24,FALSE
+"Hombre","25-34","Superior","2,500 a 14,999","Bajo",67.2,63.8,70.4,25,FALSE
+"Hombre","25-34","Superior","2,500 a 14,999","Medio bajo",75.1,72.8,77.3,127,FALSE
+"Hombre","25-34","Superior","2,500 a 14,999","Medio alto",78.8,76.6,80.8,40,FALSE
+"Hombre","25-34","Superior","2,500 a 14,999","Alto",84,82,85.7,9,FALSE
+"Hombre","25-34","Superior","Menos de 2,500","Bajo",58.3,55,61.5,31,FALSE
+"Hombre","25-34","Superior","Menos de 2,500","Medio bajo",67.3,64.5,69.9,79,FALSE
+"Hombre","25-34","Superior","Menos de 2,500","Medio alto",71.7,68.8,74.3,7,FALSE
+"Hombre","25-34","Superior","Menos de 2,500","Alto",78.1,75.6,80.5,5,FALSE
+"Hombre","35-44","Sin escolaridad","100 mil y más","Bajo",13.7,8.8,20.7,0,FALSE
+"Hombre","35-44","Sin escolaridad","100 mil y más","Medio bajo",19,12.5,27.7,4,FALSE
+"Hombre","35-44","Sin escolaridad","100 mil y más","Medio alto",22.4,15,31.9,1,FALSE
+"Hombre","35-44","Sin escolaridad","100 mil y más","Alto",28.9,19.9,40,0,FALSE
+"Hombre","35-44","Sin escolaridad","15 mil a 99,999","Bajo",12.8,8.2,19.4,3,FALSE
+"Hombre","35-44","Sin escolaridad","15 mil a 99,999","Medio bajo",17.7,11.7,26.1,4,FALSE
+"Hombre","35-44","Sin escolaridad","15 mil a 99,999","Medio alto",21,13.9,30.3,0,FALSE
+"Hombre","35-44","Sin escolaridad","15 mil a 99,999","Alto",27.3,18.6,38.1,0,FALSE
+"Hombre","35-44","Sin escolaridad","2,500 a 14,999","Bajo",11.3,7.2,17.4,5,FALSE
+"Hombre","35-44","Sin escolaridad","2,500 a 14,999","Medio bajo",15.9,10.3,23.6,5,FALSE
+"Hombre","35-44","Sin escolaridad","2,500 a 14,999","Medio alto",18.8,12.4,27.5,0,FALSE
+"Hombre","35-44","Sin escolaridad","2,500 a 14,999","Alto",24.7,16.6,35.1,0,FALSE
+"Hombre","35-44","Sin escolaridad","Menos de 2,500","Bajo",8,5.1,12.5,8,FALSE
+"Hombre","35-44","Sin escolaridad","Menos de 2,500","Medio bajo",11.4,7.3,17.4,2,FALSE
+"Hombre","35-44","Sin escolaridad","Menos de 2,500","Medio alto",13.6,8.8,20.6,0,FALSE
+"Hombre","35-44","Sin escolaridad","Menos de 2,500","Alto",18.2,11.9,26.9,0,FALSE
+"Hombre","35-44","Preescolar o primaria","100 mil y más","Bajo",16.8,14.6,19.3,16,FALSE
+"Hombre","35-44","Preescolar o primaria","100 mil y más","Medio bajo",22.9,20.7,25.3,80,FALSE
+"Hombre","35-44","Preescolar o primaria","100 mil y más","Medio alto",26.8,24.2,29.5,35,FALSE
+"Hombre","35-44","Preescolar o primaria","100 mil y más","Alto",34.1,30.9,37.4,6,FALSE
+"Hombre","35-44","Preescolar o primaria","15 mil a 99,999","Bajo",15.7,13.5,18.2,21,FALSE
+"Hombre","35-44","Preescolar o primaria","15 mil a 99,999","Medio bajo",21.5,19.2,24.1,26,FALSE
+"Hombre","35-44","Preescolar o primaria","15 mil a 99,999","Medio alto",25.2,22.4,28.2,6,FALSE
+"Hombre","35-44","Preescolar o primaria","15 mil a 99,999","Alto",32.3,28.7,36,1,FALSE
+"Hombre","35-44","Preescolar o primaria","2,500 a 14,999","Bajo",14,12,16.3,15,FALSE
+"Hombre","35-44","Preescolar o primaria","2,500 a 14,999","Medio bajo",19.3,17.1,21.8,43,FALSE
+"Hombre","35-44","Preescolar o primaria","2,500 a 14,999","Medio alto",22.7,20.1,25.7,4,FALSE
+"Hombre","35-44","Preescolar o primaria","2,500 a 14,999","Alto",29.4,25.9,33.1,0,FALSE
+"Hombre","35-44","Preescolar o primaria","Menos de 2,500","Bajo",10,8.7,11.5,103,FALSE
+"Hombre","35-44","Preescolar o primaria","Menos de 2,500","Medio bajo",14,12.4,15.8,72,FALSE
+"Hombre","35-44","Preescolar o primaria","Menos de 2,500","Medio alto",16.7,14.7,19,0,FALSE
+"Hombre","35-44","Preescolar o primaria","Menos de 2,500","Alto",22.1,19.3,25.1,0,FALSE
+"Hombre","35-44","Secundaria","100 mil y más","Bajo",29.6,26.9,32.5,31,FALSE
+"Hombre","35-44","Secundaria","100 mil y más","Medio bajo",38.3,36,40.5,255,FALSE
+"Hombre","35-44","Secundaria","100 mil y más","Medio alto",43.2,40.8,45.7,148,FALSE
+"Hombre","35-44","Secundaria","100 mil y más","Alto",51.8,49,54.7,31,FALSE
+"Hombre","35-44","Secundaria","15 mil a 99,999","Bajo",27.9,25.1,30.9,16,FALSE
+"Hombre","35-44","Secundaria","15 mil a 99,999","Medio bajo",36.3,33.8,39,95,FALSE
+"Hombre","35-44","Secundaria","15 mil a 99,999","Medio alto",41.2,38.3,44.2,27,FALSE
+"Hombre","35-44","Secundaria","15 mil a 99,999","Alto",49.8,46.3,53.3,5,FALSE
+"Hombre","35-44","Secundaria","2,500 a 14,999","Bajo",25.3,22.6,28.2,41,FALSE
+"Hombre","35-44","Secundaria","2,500 a 14,999","Medio bajo",33.3,30.6,36,105,FALSE
+"Hombre","35-44","Secundaria","2,500 a 14,999","Medio alto",38,34.9,41.2,21,FALSE
+"Hombre","35-44","Secundaria","2,500 a 14,999","Alto",46.4,42.7,50.2,1,FALSE
+"Hombre","35-44","Secundaria","Menos de 2,500","Bajo",18.8,16.9,20.8,107,FALSE
+"Hombre","35-44","Secundaria","Menos de 2,500","Medio bajo",25.4,23.2,27.7,160,FALSE
+"Hombre","35-44","Secundaria","Menos de 2,500","Medio alto",29.5,26.7,32.4,6,FALSE
+"Hombre","35-44","Secundaria","Menos de 2,500","Alto",37.1,33.7,40.7,0,FALSE
+"Hombre","35-44","Media superior","100 mil y más","Bajo",47.3,43.9,50.8,26,FALSE
+"Hombre","35-44","Media superior","100 mil y más","Medio bajo",57,54.5,59.3,210,FALSE
+"Hombre","35-44","Media superior","100 mil y más","Medio alto",61.9,59.6,64.2,198,FALSE
+"Hombre","35-44","Media superior","100 mil y más","Alto",69.7,67.3,71.9,85,FALSE
+"Hombre","35-44","Media superior","15 mil a 99,999","Bajo",45.3,41.6,49,11,FALSE
+"Hombre","35-44","Media superior","15 mil a 99,999","Medio bajo",54.9,52.1,57.8,88,FALSE
+"Hombre","35-44","Media superior","15 mil a 99,999","Medio alto",60,57,62.9,40,FALSE
+"Hombre","35-44","Media superior","15 mil a 99,999","Alto",67.9,64.8,70.9,5,FALSE
+"Hombre","35-44","Media superior","2,500 a 14,999","Bajo",42,38.3,45.8,31,FALSE
+"Hombre","35-44","Media superior","2,500 a 14,999","Medio bajo",51.6,48.4,54.7,76,FALSE
+"Hombre","35-44","Media superior","2,500 a 14,999","Medio alto",56.7,53.3,60,18,FALSE
+"Hombre","35-44","Media superior","2,500 a 14,999","Alto",64.9,61.5,68.2,5,FALSE
+"Hombre","35-44","Media superior","Menos de 2,500","Bajo",33,30.2,35.9,55,FALSE
+"Hombre","35-44","Media superior","Menos de 2,500","Medio bajo",42.1,39.2,45,77,FALSE
+"Hombre","35-44","Media superior","Menos de 2,500","Medio alto",47.2,43.9,50.5,2,FALSE
+"Hombre","35-44","Media superior","Menos de 2,500","Alto",55.8,52.2,59.3,1,FALSE
+"Hombre","35-44","Superior","100 mil y más","Bajo",63.6,60.2,66.8,18,FALSE
+"Hombre","35-44","Superior","100 mil y más","Medio bajo",72,70,74,159,FALSE
+"Hombre","35-44","Superior","100 mil y más","Medio alto",76,74.2,77.6,315,FALSE
+"Hombre","35-44","Superior","100 mil y más","Alto",81.7,80.2,83.2,359,FALSE
+"Hombre","35-44","Superior","15 mil a 99,999","Bajo",61.7,58,65.2,8,FALSE
+"Hombre","35-44","Superior","15 mil a 99,999","Medio bajo",70.3,67.9,72.7,85,FALSE
+"Hombre","35-44","Superior","15 mil a 99,999","Medio alto",74.5,72.1,76.7,85,FALSE
+"Hombre","35-44","Superior","15 mil a 99,999","Alto",80.5,78.3,82.4,28,FALSE
+"Hombre","35-44","Superior","2,500 a 14,999","Bajo",58.4,54.6,62.2,16,FALSE
+"Hombre","35-44","Superior","2,500 a 14,999","Medio bajo",67.4,64.6,70.1,84,FALSE
+"Hombre","35-44","Superior","2,500 a 14,999","Medio alto",71.8,69.1,74.4,28,FALSE
+"Hombre","35-44","Superior","2,500 a 14,999","Alto",78.3,75.8,80.5,11,FALSE
+"Hombre","35-44","Superior","Menos de 2,500","Bajo",49,45.6,52.3,19,FALSE
+"Hombre","35-44","Superior","Menos de 2,500","Medio bajo",58.6,55.6,61.4,56,FALSE
+"Hombre","35-44","Superior","Menos de 2,500","Medio alto",63.5,60.4,66.4,12,FALSE
+"Hombre","35-44","Superior","Menos de 2,500","Alto",71,68.1,73.8,0,FALSE
+"Hombre","45-54","Sin escolaridad","100 mil y más","Bajo",9.1,5.7,14.1,1,FALSE
+"Hombre","45-54","Sin escolaridad","100 mil y más","Medio bajo",12.8,8.3,19.4,9,FALSE
+"Hombre","45-54","Sin escolaridad","100 mil y más","Medio alto",15.3,10,22.8,2,FALSE
+"Hombre","45-54","Sin escolaridad","100 mil y más","Alto",20.4,13.5,29.5,0,FALSE
+"Hombre","45-54","Sin escolaridad","15 mil a 99,999","Bajo",8.4,5.3,13.1,3,FALSE
+"Hombre","45-54","Sin escolaridad","15 mil a 99,999","Medio bajo",11.9,7.7,18.1,4,FALSE
+"Hombre","45-54","Sin escolaridad","15 mil a 99,999","Medio alto",14.3,9.3,21.4,0,FALSE
+"Hombre","45-54","Sin escolaridad","15 mil a 99,999","Alto",19.1,12.5,27.9,0,FALSE
+"Hombre","45-54","Sin escolaridad","2,500 a 14,999","Bajo",7.4,4.7,11.7,5,FALSE
+"Hombre","45-54","Sin escolaridad","2,500 a 14,999","Medio bajo",10.6,6.7,16.2,4,FALSE
+"Hombre","45-54","Sin escolaridad","2,500 a 14,999","Medio alto",12.7,8.2,19.2,1,FALSE
+"Hombre","45-54","Sin escolaridad","2,500 a 14,999","Alto",17.1,11.1,25.3,0,FALSE
+"Hombre","45-54","Sin escolaridad","Menos de 2,500","Bajo",5.2,3.2,8.2,10,FALSE
+"Hombre","45-54","Sin escolaridad","Menos de 2,500","Medio bajo",7.5,4.7,11.7,8,FALSE
+"Hombre","45-54","Sin escolaridad","Menos de 2,500","Medio alto",9,5.7,14,0,FALSE
+"Hombre","45-54","Sin escolaridad","Menos de 2,500","Alto",12.3,7.8,18.8,0,FALSE
+"Hombre","45-54","Preescolar o primaria","100 mil y más","Bajo",11.3,9.6,13.1,15,FALSE
+"Hombre","45-54","Preescolar o primaria","100 mil y más","Medio bajo",15.7,14,17.7,127,FALSE
+"Hombre","45-54","Preescolar o primaria","100 mil y más","Medio alto",18.7,16.7,20.9,58,FALSE
+"Hombre","45-54","Preescolar o primaria","100 mil y más","Alto",24.5,21.9,27.4,2,FALSE
+"Hombre","45-54","Preescolar o primaria","15 mil a 99,999","Bajo",10.5,8.9,12.3,19,FALSE
+"Hombre","45-54","Preescolar o primaria","15 mil a 99,999","Medio bajo",14.7,12.9,16.7,60,FALSE
+"Hombre","45-54","Preescolar o primaria","15 mil a 99,999","Medio alto",17.5,15.3,19.8,14,FALSE
+"Hombre","45-54","Preescolar o primaria","15 mil a 99,999","Alto",23,20.1,26.2,2,FALSE
+"Hombre","45-54","Preescolar o primaria","2,500 a 14,999","Bajo",9.3,7.8,10.9,33,FALSE
+"Hombre","45-54","Preescolar o primaria","2,500 a 14,999","Medio bajo",13.1,11.4,14.9,68,FALSE
+"Hombre","45-54","Preescolar o primaria","2,500 a 14,999","Medio alto",15.6,13.6,17.8,8,FALSE
+"Hombre","45-54","Preescolar o primaria","2,500 a 14,999","Alto",20.7,18,23.7,1,FALSE
+"Hombre","45-54","Preescolar o primaria","Menos de 2,500","Bajo",6.5,5.6,7.6,101,FALSE
+"Hombre","45-54","Preescolar o primaria","Menos de 2,500","Medio bajo",9.3,8.1,10.7,127,FALSE
+"Hombre","45-54","Preescolar o primaria","Menos de 2,500","Medio alto",11.2,9.7,12.9,3,FALSE
+"Hombre","45-54","Preescolar o primaria","Menos de 2,500","Alto",15.1,13,17.5,0,FALSE
+"Hombre","45-54","Secundaria","100 mil y más","Bajo",20.9,18.7,23.3,26,FALSE
+"Hombre","45-54","Secundaria","100 mil y más","Medio bajo",28,26.1,30.1,240,FALSE
+"Hombre","45-54","Secundaria","100 mil y más","Medio alto",32.4,30.1,34.7,185,FALSE
+"Hombre","45-54","Secundaria","100 mil y más","Alto",40.3,37.6,43.2,37,FALSE
+"Hombre","45-54","Secundaria","15 mil a 99,999","Bajo",19.6,17.4,22,16,FALSE
+"Hombre","45-54","Secundaria","15 mil a 99,999","Medio bajo",26.4,24.2,28.7,107,FALSE
+"Hombre","45-54","Secundaria","15 mil a 99,999","Medio alto",30.6,28,33.3,49,FALSE
+"Hombre","45-54","Secundaria","15 mil a 99,999","Alto",38.4,35.1,41.8,7,FALSE
+"Hombre","45-54","Secundaria","2,500 a 14,999","Bajo",17.5,15.5,19.8,31,FALSE
+"Hombre","45-54","Secundaria","2,500 a 14,999","Medio bajo",23.9,21.7,26.1,121,FALSE
+"Hombre","45-54","Secundaria","2,500 a 14,999","Medio alto",27.8,25.2,30.6,14,FALSE
+"Hombre","45-54","Secundaria","2,500 a 14,999","Alto",35.2,31.9,38.7,0,FALSE
+"Hombre","45-54","Secundaria","Menos de 2,500","Bajo",12.7,11.2,14.3,82,FALSE
+"Hombre","45-54","Secundaria","Menos de 2,500","Medio bajo",17.6,15.8,19.5,164,FALSE
+"Hombre","45-54","Secundaria","Menos de 2,500","Medio alto",20.8,18.5,23.3,5,FALSE
+"Hombre","45-54","Secundaria","Menos de 2,500","Alto",27.1,24.1,30.3,0,FALSE
+"Hombre","45-54","Media superior","100 mil y más","Bajo",36.1,32.8,39.5,12,FALSE
+"Hombre","45-54","Media superior","100 mil y más","Medio bajo",45.4,42.8,48,128,FALSE
+"Hombre","45-54","Media superior","100 mil y más","Medio alto",50.5,48,53.1,166,FALSE
+"Hombre","45-54","Media superior","100 mil y más","Alto",59.1,56.3,61.8,102,FALSE
+"Hombre","45-54","Media superior","15 mil a 99,999","Bajo",34.2,30.8,37.8,9,FALSE
+"Hombre","45-54","Media superior","15 mil a 99,999","Medio bajo",43.4,40.5,46.3,74,FALSE
+"Hombre","45-54","Media superior","15 mil a 99,999","Medio alto",48.5,45.4,51.6,50,FALSE
+"Hombre","45-54","Media superior","15 mil a 99,999","Alto",57.1,53.6,60.5,4,FALSE
+"Hombre","45-54","Media superior","2,500 a 14,999","Bajo",31.2,27.9,34.7,19,FALSE
+"Hombre","45-54","Media superior","2,500 a 14,999","Medio bajo",40.1,37,43.2,72,FALSE
+"Hombre","45-54","Media superior","2,500 a 14,999","Medio alto",45.1,41.8,48.5,21,FALSE
+"Hombre","45-54","Media superior","2,500 a 14,999","Alto",53.7,50,57.4,3,FALSE
+"Hombre","45-54","Media superior","Menos de 2,500","Bajo",23.6,21.2,26.3,24,FALSE
+"Hombre","45-54","Media superior","Menos de 2,500","Medio bajo",31.3,28.6,34.2,55,FALSE
+"Hombre","45-54","Media superior","Menos de 2,500","Medio alto",35.9,32.7,39.3,3,FALSE
+"Hombre","45-54","Media superior","Menos de 2,500","Alto",44.2,40.5,48,1,FALSE
+"Hombre","45-54","Superior","100 mil y más","Bajo",52.3,48.6,56.1,13,FALSE
+"Hombre","45-54","Superior","100 mil y más","Medio bajo",61.8,59.2,64.3,107,FALSE
+"Hombre","45-54","Superior","100 mil y más","Medio alto",66.5,64.2,68.7,217,FALSE
+"Hombre","45-54","Superior","100 mil y más","Alto",73.7,71.7,75.7,275,FALSE
+"Hombre","45-54","Superior","15 mil a 99,999","Bajo",50.3,46.3,54.3,3,FALSE
+"Hombre","45-54","Superior","15 mil a 99,999","Medio bajo",59.8,56.9,62.7,47,FALSE
+"Hombre","45-54","Superior","15 mil a 99,999","Medio alto",64.7,61.8,67.5,57,FALSE
+"Hombre","45-54","Superior","15 mil a 99,999","Alto",72.1,69.4,74.7,14,FALSE
+"Hombre","45-54","Superior","2,500 a 14,999","Bajo",46.9,42.9,50.9,11,FALSE
+"Hombre","45-54","Superior","2,500 a 14,999","Medio bajo",56.5,53.4,59.7,47,FALSE
+"Hombre","45-54","Superior","2,500 a 14,999","Medio alto",61.5,58.3,64.6,31,FALSE
+"Hombre","45-54","Superior","2,500 a 14,999","Alto",69.3,66.2,72.3,20,FALSE
+"Hombre","45-54","Superior","Menos de 2,500","Bajo",37.6,34.2,41.1,9,FALSE
+"Hombre","45-54","Superior","Menos de 2,500","Medio bajo",47,43.7,50.3,35,FALSE
+"Hombre","45-54","Superior","Menos de 2,500","Medio alto",52.2,48.6,55.7,2,FALSE
+"Hombre","45-54","Superior","Menos de 2,500","Alto",60.7,57.1,64.1,0,FALSE
+"Hombre","55-64","Sin escolaridad","100 mil y más","Bajo",4.7,2.9,7.6,1,FALSE
+"Hombre","55-64","Sin escolaridad","100 mil y más","Medio bajo",6.8,4.3,10.7,11,FALSE
+"Hombre","55-64","Sin escolaridad","100 mil y más","Medio alto",8.3,5.2,12.9,4,FALSE
+"Hombre","55-64","Sin escolaridad","100 mil y más","Alto",11.3,7.2,17.3,0,FALSE
+"Hombre","55-64","Sin escolaridad","15 mil a 99,999","Bajo",4.4,2.7,7,3,FALSE
+"Hombre","55-64","Sin escolaridad","15 mil a 99,999","Medio bajo",6.3,4,10,6,FALSE
+"Hombre","55-64","Sin escolaridad","15 mil a 99,999","Medio alto",7.7,4.8,12,0,FALSE
+"Hombre","55-64","Sin escolaridad","15 mil a 99,999","Alto",10.5,6.6,16.2,0,FALSE
+"Hombre","55-64","Sin escolaridad","2,500 a 14,999","Bajo",3.9,2.4,6.2,6,FALSE
+"Hombre","55-64","Sin escolaridad","2,500 a 14,999","Medio bajo",5.6,3.5,8.9,4,FALSE
+"Hombre","55-64","Sin escolaridad","2,500 a 14,999","Medio alto",6.8,4.2,10.7,1,FALSE
+"Hombre","55-64","Sin escolaridad","2,500 a 14,999","Alto",9.3,5.8,14.5,0,FALSE
+"Hombre","55-64","Sin escolaridad","Menos de 2,500","Bajo",2.7,1.6,4.3,11,FALSE
+"Hombre","55-64","Sin escolaridad","Menos de 2,500","Medio bajo",3.9,2.4,6.2,13,FALSE
+"Hombre","55-64","Sin escolaridad","Menos de 2,500","Medio alto",4.7,2.9,7.6,0,FALSE
+"Hombre","55-64","Sin escolaridad","Menos de 2,500","Alto",6.5,4,10.4,0,FALSE
+"Hombre","55-64","Preescolar o primaria","100 mil y más","Bajo",6,5,7.1,17,FALSE
+"Hombre","55-64","Preescolar o primaria","100 mil y más","Medio bajo",8.5,7.4,9.8,98,FALSE
+"Hombre","55-64","Preescolar o primaria","100 mil y más","Medio alto",10.3,9,11.7,81,FALSE
+"Hombre","55-64","Preescolar o primaria","100 mil y más","Alto",13.9,12.2,15.9,11,FALSE
+"Hombre","55-64","Preescolar o primaria","15 mil a 99,999","Bajo",5.5,4.6,6.6,8,FALSE
+"Hombre","55-64","Preescolar o primaria","15 mil a 99,999","Medio bajo",7.9,6.8,9.1,53,FALSE
+"Hombre","55-64","Preescolar o primaria","15 mil a 99,999","Medio alto",9.6,8.2,11,13,FALSE
+"Hombre","55-64","Preescolar o primaria","15 mil a 99,999","Alto",13,11.1,15.1,0,FALSE
+"Hombre","55-64","Preescolar o primaria","2,500 a 14,999","Bajo",4.8,4,5.8,27,FALSE
+"Hombre","55-64","Preescolar o primaria","2,500 a 14,999","Medio bajo",7,6,8.1,69,FALSE
+"Hombre","55-64","Preescolar o primaria","2,500 a 14,999","Medio alto",8.4,7.2,9.8,4,FALSE
+"Hombre","55-64","Preescolar o primaria","2,500 a 14,999","Alto",11.5,9.8,13.5,0,FALSE
+"Hombre","55-64","Preescolar o primaria","Menos de 2,500","Bajo",3.4,2.8,4,73,FALSE
+"Hombre","55-64","Preescolar o primaria","Menos de 2,500","Medio bajo",4.9,4.2,5.7,132,FALSE
+"Hombre","55-64","Preescolar o primaria","Menos de 2,500","Medio alto",5.9,5,6.9,2,FALSE
+"Hombre","55-64","Preescolar o primaria","Menos de 2,500","Alto",8.2,6.9,9.6,0,FALSE
+"Hombre","55-64","Secundaria","100 mil y más","Bajo",11.6,10.1,13.4,9,FALSE
+"Hombre","55-64","Secundaria","100 mil y más","Medio bajo",16.3,14.7,18,150,FALSE
+"Hombre","55-64","Secundaria","100 mil y más","Medio alto",19.3,17.5,21.2,145,FALSE
+"Hombre","55-64","Secundaria","100 mil y más","Alto",25.2,22.8,27.8,44,FALSE
+"Hombre","55-64","Secundaria","15 mil a 99,999","Bajo",10.8,9.3,12.5,7,FALSE
+"Hombre","55-64","Secundaria","15 mil a 99,999","Medio bajo",15.2,13.5,17,59,FALSE
+"Hombre","55-64","Secundaria","15 mil a 99,999","Medio alto",18,16.1,20.1,25,FALSE
+"Hombre","55-64","Secundaria","15 mil a 99,999","Alto",23.7,21,26.6,4,FALSE
+"Hombre","55-64","Secundaria","2,500 a 14,999","Bajo",9.6,8.2,11.1,20,FALSE
+"Hombre","55-64","Secundaria","2,500 a 14,999","Medio bajo",13.5,12,15.2,76,FALSE
+"Hombre","55-64","Secundaria","2,500 a 14,999","Medio alto",16.1,14.2,18.2,15,FALSE
+"Hombre","55-64","Secundaria","2,500 a 14,999","Alto",21.3,18.8,24.2,0,FALSE
+"Hombre","55-64","Secundaria","Menos de 2,500","Bajo",6.7,5.8,7.8,36,FALSE
+"Hombre","55-64","Secundaria","Menos de 2,500","Medio bajo",9.6,8.5,10.9,88,FALSE
+"Hombre","55-64","Secundaria","Menos de 2,500","Medio alto",11.6,10.1,13.2,3,FALSE
+"Hombre","55-64","Secundaria","Menos de 2,500","Alto",15.6,13.6,17.9,0,FALSE
+"Hombre","55-64","Media superior","100 mil y más","Bajo",22,19.4,24.8,3,FALSE
+"Hombre","55-64","Media superior","100 mil y más","Medio bajo",29.3,26.9,31.8,108,FALSE
+"Hombre","55-64","Media superior","100 mil y más","Medio alto",33.8,31.3,36.3,150,FALSE
+"Hombre","55-64","Media superior","100 mil y más","Alto",41.9,38.9,44.9,80,FALSE
+"Hombre","55-64","Media superior","15 mil a 99,999","Bajo",20.6,18,23.4,3,FALSE
+"Hombre","55-64","Media superior","15 mil a 99,999","Medio bajo",27.6,25.1,30.4,52,FALSE
+"Hombre","55-64","Media superior","15 mil a 99,999","Medio alto",32,29.1,34.9,32,FALSE
+"Hombre","55-64","Media superior","15 mil a 99,999","Alto",39.9,36.4,43.5,9,FALSE
+"Hombre","55-64","Media superior","2,500 a 14,999","Bajo",18.5,16.1,21.2,17,FALSE
+"Hombre","55-64","Media superior","2,500 a 14,999","Medio bajo",25,22.5,27.8,43,FALSE
+"Hombre","55-64","Media superior","2,500 a 14,999","Medio alto",29.1,26.2,32.1,17,FALSE
+"Hombre","55-64","Media superior","2,500 a 14,999","Alto",36.7,33.1,40.4,3,FALSE
+"Hombre","55-64","Media superior","Menos de 2,500","Bajo",13.4,11.7,15.2,22,FALSE
+"Hombre","55-64","Media superior","Menos de 2,500","Medio bajo",18.5,16.5,20.7,35,FALSE
+"Hombre","55-64","Media superior","Menos de 2,500","Medio alto",21.9,19.4,24.5,2,FALSE
+"Hombre","55-64","Media superior","Menos de 2,500","Alto",28.3,25.3,31.6,2,FALSE
+"Hombre","55-64","Superior","100 mil y más","Bajo",35.4,31.8,39.1,9,FALSE
+"Hombre","55-64","Superior","100 mil y más","Medio bajo",44.6,41.7,47.6,86,FALSE
+"Hombre","55-64","Superior","100 mil y más","Medio alto",49.8,47.1,52.5,193,FALSE
+"Hombre","55-64","Superior","100 mil y más","Alto",58.4,55.6,61.1,233,FALSE
+"Hombre","55-64","Superior","15 mil a 99,999","Bajo",33.5,29.9,37.4,4,FALSE
+"Hombre","55-64","Superior","15 mil a 99,999","Medio bajo",42.6,39.4,45.9,36,FALSE
+"Hombre","55-64","Superior","15 mil a 99,999","Medio alto",47.7,44.5,51,50,FALSE
+"Hombre","55-64","Superior","15 mil a 99,999","Alto",56.3,52.9,59.8,22,FALSE
+"Hombre","55-64","Superior","2,500 a 14,999","Bajo",30.6,27.1,34.3,2,FALSE
+"Hombre","55-64","Superior","2,500 a 14,999","Medio bajo",39.4,36.1,42.8,36,FALSE
+"Hombre","55-64","Superior","2,500 a 14,999","Medio alto",44.4,40.9,47.9,22,FALSE
+"Hombre","55-64","Superior","2,500 a 14,999","Alto",53,49.3,56.7,7,FALSE
+"Hombre","55-64","Superior","Menos de 2,500","Bajo",23.1,20.4,26,15,FALSE
+"Hombre","55-64","Superior","Menos de 2,500","Medio bajo",30.7,27.7,33.8,31,FALSE
+"Hombre","55-64","Superior","Menos de 2,500","Medio alto",35.2,32,38.6,6,FALSE
+"Hombre","55-64","Superior","Menos de 2,500","Alto",43.5,39.8,47.2,0,FALSE
+"Hombre","65+","Sin escolaridad","100 mil y más","Bajo",2.1,1.3,3.4,0,FALSE
+"Hombre","65+","Sin escolaridad","100 mil y más","Medio bajo",3,1.9,4.9,11,FALSE
+"Hombre","65+","Sin escolaridad","100 mil y más","Medio alto",3.7,2.3,5.9,5,FALSE
+"Hombre","65+","Sin escolaridad","100 mil y más","Alto",5.1,3.2,8.2,2,FALSE
+"Hombre","65+","Sin escolaridad","15 mil a 99,999","Bajo",1.9,1.2,3.1,3,FALSE
+"Hombre","65+","Sin escolaridad","15 mil a 99,999","Medio bajo",2.8,1.7,4.5,3,FALSE
+"Hombre","65+","Sin escolaridad","15 mil a 99,999","Medio alto",3.4,2.1,5.5,2,FALSE
+"Hombre","65+","Sin escolaridad","15 mil a 99,999","Alto",4.8,2.9,7.6,0,FALSE
+"Hombre","65+","Sin escolaridad","2,500 a 14,999","Bajo",1.7,1,2.8,3,FALSE
+"Hombre","65+","Sin escolaridad","2,500 a 14,999","Medio bajo",2.5,1.5,4,9,FALSE
+"Hombre","65+","Sin escolaridad","2,500 a 14,999","Medio alto",3,1.8,4.9,2,FALSE
+"Hombre","65+","Sin escolaridad","2,500 a 14,999","Alto",4.2,2.6,6.7,0,FALSE
+"Hombre","65+","Sin escolaridad","Menos de 2,500","Bajo",1.2,0.7,1.9,11,FALSE
+"Hombre","65+","Sin escolaridad","Menos de 2,500","Medio bajo",1.7,1,2.8,19,FALSE
+"Hombre","65+","Sin escolaridad","Menos de 2,500","Medio alto",2.1,1.3,3.4,0,FALSE
+"Hombre","65+","Sin escolaridad","Menos de 2,500","Alto",2.9,1.8,4.7,0,FALSE
+"Hombre","65+","Preescolar o primaria","100 mil y más","Bajo",2.6,2.2,3.2,14,FALSE
+"Hombre","65+","Preescolar o primaria","100 mil y más","Medio bajo",3.8,3.2,4.5,115,FALSE
+"Hombre","65+","Preescolar o primaria","100 mil y más","Medio alto",4.7,4,5.5,120,FALSE
+"Hombre","65+","Preescolar o primaria","100 mil y más","Alto",6.5,5.5,7.5,27,FALSE
+"Hombre","65+","Preescolar o primaria","15 mil a 99,999","Bajo",2.4,2,3,8,FALSE
+"Hombre","65+","Preescolar o primaria","15 mil a 99,999","Medio bajo",3.5,3,4.2,56,FALSE
+"Hombre","65+","Preescolar o primaria","15 mil a 99,999","Medio alto",4.3,3.6,5.1,24,FALSE
+"Hombre","65+","Preescolar o primaria","15 mil a 99,999","Alto",6,5,7.1,4,FALSE
+"Hombre","65+","Preescolar o primaria","2,500 a 14,999","Bajo",2.1,1.7,2.6,20,FALSE
+"Hombre","65+","Preescolar o primaria","2,500 a 14,999","Medio bajo",3.1,2.6,3.7,68,FALSE
+"Hombre","65+","Preescolar o primaria","2,500 a 14,999","Medio alto",3.8,3.2,4.5,18,FALSE
+"Hombre","65+","Preescolar o primaria","2,500 a 14,999","Alto",5.3,4.4,6.3,0,FALSE
+"Hombre","65+","Preescolar o primaria","Menos de 2,500","Bajo",1.5,1.2,1.8,75,FALSE
+"Hombre","65+","Preescolar o primaria","Menos de 2,500","Medio bajo",2.1,1.8,2.5,117,FALSE
+"Hombre","65+","Preescolar o primaria","Menos de 2,500","Medio alto",2.6,2.2,3.1,0,FALSE
+"Hombre","65+","Preescolar o primaria","Menos de 2,500","Alto",3.6,3,4.4,0,FALSE
+"Hombre","65+","Secundaria","100 mil y más","Bajo",5.3,4.5,6.3,8,FALSE
+"Hombre","65+","Secundaria","100 mil y más","Medio bajo",7.6,6.6,8.8,49,FALSE
+"Hombre","65+","Secundaria","100 mil y más","Medio alto",9.2,8,10.6,82,FALSE
+"Hombre","65+","Secundaria","100 mil y más","Alto",12.6,11,14.3,38,FALSE
+"Hombre","65+","Secundaria","15 mil a 99,999","Bajo",4.9,4.1,5.9,2,FALSE
+"Hombre","65+","Secundaria","15 mil a 99,999","Medio bajo",7.1,6.1,8.2,17,FALSE
+"Hombre","65+","Secundaria","15 mil a 99,999","Medio alto",8.6,7.4,9.9,23,FALSE
+"Hombre","65+","Secundaria","15 mil a 99,999","Alto",11.7,10,13.6,1,FALSE
+"Hombre","65+","Secundaria","2,500 a 14,999","Bajo",4.3,3.6,5.2,8,FALSE
+"Hombre","65+","Secundaria","2,500 a 14,999","Medio bajo",6.2,5.3,7.3,30,FALSE
+"Hombre","65+","Secundaria","2,500 a 14,999","Medio alto",7.6,6.4,8.9,12,FALSE
+"Hombre","65+","Secundaria","2,500 a 14,999","Alto",10.4,8.8,12.2,0,FALSE
+"Hombre","65+","Secundaria","Menos de 2,500","Bajo",3,2.5,3.6,16,FALSE
+"Hombre","65+","Secundaria","Menos de 2,500","Medio bajo",4.3,3.7,5.1,30,FALSE
+"Hombre","65+","Secundaria","Menos de 2,500","Medio alto",5.3,4.4,6.3,4,FALSE
+"Hombre","65+","Secundaria","Menos de 2,500","Alto",7.3,6.1,8.7,0,FALSE
+"Hombre","65+","Media superior","100 mil y más","Bajo",10.7,9.1,12.5,2,FALSE
+"Hombre","65+","Media superior","100 mil y más","Medio bajo",15,13.2,17,25,FALSE
+"Hombre","65+","Media superior","100 mil y más","Medio alto",17.8,15.8,20,88,FALSE
+"Hombre","65+","Media superior","100 mil y más","Alto",23.5,21,26.1,48,FALSE
+"Hombre","65+","Media superior","15 mil a 99,999","Bajo",9.9,8.4,11.7,0,FALSE
+"Hombre","65+","Media superior","15 mil a 99,999","Medio bajo",14,12.2,16,16,FALSE
+"Hombre","65+","Media superior","15 mil a 99,999","Medio alto",16.7,14.5,19,22,FALSE
+"Hombre","65+","Media superior","15 mil a 99,999","Alto",22,19.3,25,2,FALSE
+"Hombre","65+","Media superior","2,500 a 14,999","Bajo",8.8,7.4,10.4,4,FALSE
+"Hombre","65+","Media superior","2,500 a 14,999","Medio bajo",12.4,10.7,14.4,17,FALSE
+"Hombre","65+","Media superior","2,500 a 14,999","Medio alto",14.9,12.8,17.2,5,FALSE
+"Hombre","65+","Media superior","2,500 a 14,999","Alto",19.8,17.2,22.7,2,FALSE
+"Hombre","65+","Media superior","Menos de 2,500","Bajo",6.2,5.2,7.3,4,FALSE
+"Hombre","65+","Media superior","Menos de 2,500","Medio bajo",8.8,7.6,10.3,15,FALSE
+"Hombre","65+","Media superior","Menos de 2,500","Medio alto",10.6,9.1,12.4,2,FALSE
+"Hombre","65+","Media superior","Menos de 2,500","Alto",14.4,12.4,16.7,0,FALSE
+"Hombre","65+","Superior","100 mil y más","Bajo",18.9,16.3,21.8,4,FALSE
+"Hombre","65+","Superior","100 mil y más","Medio bajo",25.6,22.9,28.5,37,FALSE
+"Hombre","65+","Superior","100 mil y más","Medio alto",29.7,26.9,32.7,183,FALSE
+"Hombre","65+","Superior","100 mil y más","Alto",37.4,34.3,40.5,232,FALSE
+"Hombre","65+","Superior","15 mil a 99,999","Bajo",17.7,15.1,20.6,5,FALSE
+"Hombre","65+","Superior","15 mil a 99,999","Medio bajo",24,21.3,27,18,FALSE
+"Hombre","65+","Superior","15 mil a 99,999","Medio alto",28,25,31.3,37,FALSE
+"Hombre","65+","Superior","15 mil a 99,999","Alto",35.5,32,39.1,10,FALSE
+"Hombre","65+","Superior","2,500 a 14,999","Bajo",15.8,13.4,18.5,5,FALSE
+"Hombre","65+","Superior","2,500 a 14,999","Medio bajo",21.6,19,24.6,38,FALSE
+"Hombre","65+","Superior","2,500 a 14,999","Medio alto",25.4,22.3,28.6,15,FALSE
+"Hombre","65+","Superior","2,500 a 14,999","Alto",32.4,28.9,36.1,9,FALSE
+"Hombre","65+","Superior","Menos de 2,500","Bajo",11.3,9.7,13.3,8,FALSE
+"Hombre","65+","Superior","Menos de 2,500","Medio bajo",15.9,13.7,18.2,14,FALSE
+"Hombre","65+","Superior","Menos de 2,500","Medio alto",18.8,16.3,21.6,2,FALSE
+"Hombre","65+","Superior","Menos de 2,500","Alto",24.7,21.7,27.9,1,FALSE
+"Mujer","18-24","Sin escolaridad","100 mil y más","Bajo",16.8,11,24.9,0,FALSE
+"Mujer","18-24","Sin escolaridad","100 mil y más","Medio bajo",22.9,15.4,32.8,2,FALSE
+"Mujer","18-24","Sin escolaridad","100 mil y más","Medio alto",26.8,18.3,37.4,0,FALSE
+"Mujer","18-24","Sin escolaridad","100 mil y más","Alto",34.1,23.9,45.9,0,FALSE
+"Mujer","18-24","Sin escolaridad","15 mil a 99,999","Bajo",15.7,10.2,23.4,0,FALSE
+"Mujer","18-24","Sin escolaridad","15 mil a 99,999","Medio bajo",21.5,14.3,31,1,FALSE
+"Mujer","18-24","Sin escolaridad","15 mil a 99,999","Medio alto",25.2,17,35.6,0,FALSE
+"Mujer","18-24","Sin escolaridad","15 mil a 99,999","Alto",32.3,22.4,44,0,FALSE
+"Mujer","18-24","Sin escolaridad","2,500 a 14,999","Bajo",14,9,21.1,2,FALSE
+"Mujer","18-24","Sin escolaridad","2,500 a 14,999","Medio bajo",19.3,12.7,28.2,0,FALSE
+"Mujer","18-24","Sin escolaridad","2,500 a 14,999","Medio alto",22.7,15.2,32.6,0,FALSE
+"Mujer","18-24","Sin escolaridad","2,500 a 14,999","Alto",29.4,20.1,40.8,0,FALSE
+"Mujer","18-24","Sin escolaridad","Menos de 2,500","Bajo",10,6.3,15.4,3,FALSE
+"Mujer","18-24","Sin escolaridad","Menos de 2,500","Medio bajo",14,9,21.2,0,FALSE
+"Mujer","18-24","Sin escolaridad","Menos de 2,500","Medio alto",16.7,10.8,24.9,0,FALSE
+"Mujer","18-24","Sin escolaridad","Menos de 2,500","Alto",22.1,14.6,32,0,FALSE
+"Mujer","18-24","Preescolar o primaria","100 mil y más","Bajo",20.4,17.9,23.3,5,FALSE
+"Mujer","18-24","Preescolar o primaria","100 mil y más","Medio bajo",27.4,24.8,30.3,24,FALSE
+"Mujer","18-24","Preescolar o primaria","100 mil y más","Medio alto",31.7,28.7,34.9,6,FALSE
+"Mujer","18-24","Preescolar o primaria","100 mil y más","Alto",39.6,36,43.5,2,FALSE
+"Mujer","18-24","Preescolar o primaria","15 mil a 99,999","Bajo",19.1,16.6,22,8,FALSE
+"Mujer","18-24","Preescolar o primaria","15 mil a 99,999","Medio bajo",25.8,23.1,28.8,11,FALSE
+"Mujer","18-24","Preescolar o primaria","15 mil a 99,999","Medio alto",30,26.7,33.4,0,FALSE
+"Mujer","18-24","Preescolar o primaria","15 mil a 99,999","Alto",37.7,33.7,41.9,0,FALSE
+"Mujer","18-24","Preescolar o primaria","2,500 a 14,999","Bajo",17.1,14.8,19.8,15,FALSE
+"Mujer","18-24","Preescolar o primaria","2,500 a 14,999","Medio bajo",23.3,20.7,26.2,7,FALSE
+"Mujer","18-24","Preescolar o primaria","2,500 a 14,999","Medio alto",27.2,24,30.7,2,FALSE
+"Mujer","18-24","Preescolar o primaria","2,500 a 14,999","Alto",34.6,30.6,38.8,0,FALSE
+"Mujer","18-24","Preescolar o primaria","Menos de 2,500","Bajo",12.3,10.8,14.1,39,FALSE
+"Mujer","18-24","Preescolar o primaria","Menos de 2,500","Medio bajo",17.2,15.1,19.4,12,FALSE
+"Mujer","18-24","Preescolar o primaria","Menos de 2,500","Medio alto",20.3,17.7,23.2,2,FALSE
+"Mujer","18-24","Preescolar o primaria","Menos de 2,500","Alto",26.5,23.1,30.2,0,FALSE
+"Mujer","18-24","Secundaria","100 mil y más","Bajo",34.8,31.8,38,17,FALSE
+"Mujer","18-24","Secundaria","100 mil y más","Medio bajo",44.1,41.4,46.8,137,FALSE
+"Mujer","18-24","Secundaria","100 mil y más","Medio alto",49.2,46.2,52.1,58,FALSE
+"Mujer","18-24","Secundaria","100 mil y más","Alto",57.8,54.5,61,15,FALSE
+"Mujer","18-24","Secundaria","15 mil a 99,999","Bajo",33,29.9,36.2,10,FALSE
+"Mujer","18-24","Secundaria","15 mil a 99,999","Medio bajo",42,39.1,45,73,FALSE
+"Mujer","18-24","Secundaria","15 mil a 99,999","Medio alto",47.1,43.8,50.5,11,FALSE
+"Mujer","18-24","Secundaria","15 mil a 99,999","Alto",55.8,51.9,59.5,2,FALSE
+"Mujer","18-24","Secundaria","2,500 a 14,999","Bajo",30.1,27,33.3,33,FALSE
+"Mujer","18-24","Secundaria","2,500 a 14,999","Medio bajo",38.8,35.7,42,60,FALSE
+"Mujer","18-24","Secundaria","2,500 a 14,999","Medio alto",43.8,40.2,47.5,7,FALSE
+"Mujer","18-24","Secundaria","2,500 a 14,999","Alto",52.4,48.3,56.5,0,FALSE
+"Mujer","18-24","Secundaria","Menos de 2,500","Bajo",22.7,20.4,25.1,100,FALSE
+"Mujer","18-24","Secundaria","Menos de 2,500","Medio bajo",30.2,27.4,33,101,FALSE
+"Mujer","18-24","Secundaria","Menos de 2,500","Medio alto",34.7,31.3,38.2,1,FALSE
+"Mujer","18-24","Secundaria","Menos de 2,500","Alto",42.9,38.8,47,0,FALSE
+"Mujer","18-24","Media superior","100 mil y más","Bajo",53.3,50.1,56.5,27,FALSE
+"Mujer","18-24","Media superior","100 mil y más","Medio bajo",62.7,60.4,65,232,FALSE
+"Mujer","18-24","Media superior","100 mil y más","Medio alto",67.4,65.1,69.6,174,FALSE
+"Mujer","18-24","Media superior","100 mil y más","Alto",74.5,72.2,76.7,81,FALSE
+"Mujer","18-24","Media superior","15 mil a 99,999","Bajo",51.3,47.8,54.7,22,FALSE
+"Mujer","18-24","Media superior","15 mil a 99,999","Medio bajo",60.8,58,63.4,112,FALSE
+"Mujer","18-24","Media superior","15 mil a 99,999","Medio alto",65.6,62.7,68.3,49,FALSE
+"Mujer","18-24","Media superior","15 mil a 99,999","Alto",72.9,70,75.6,8,FALSE
+"Mujer","18-24","Media superior","2,500 a 14,999","Bajo",47.9,44.2,51.6,37,FALSE
+"Mujer","18-24","Media superior","2,500 a 14,999","Medio bajo",57.5,54.4,60.6,112,FALSE
+"Mujer","18-24","Media superior","2,500 a 14,999","Medio alto",62.4,59.1,65.7,24,FALSE
+"Mujer","18-24","Media superior","2,500 a 14,999","Alto",70.2,66.8,73.3,6,FALSE
+"Mujer","18-24","Media superior","Menos de 2,500","Bajo",38.5,35.6,41.5,106,FALSE
+"Mujer","18-24","Media superior","Menos de 2,500","Medio bajo",48,44.9,51.1,137,FALSE
+"Mujer","18-24","Media superior","Menos de 2,500","Medio alto",53.1,49.6,56.6,1,FALSE
+"Mujer","18-24","Media superior","Menos de 2,500","Alto",61.6,57.9,65.1,3,FALSE
+"Mujer","18-24","Superior","100 mil y más","Bajo",69,65.9,71.8,22,FALSE
+"Mujer","18-24","Superior","100 mil y más","Medio bajo",76.6,74.7,78.4,198,FALSE
+"Mujer","18-24","Superior","100 mil y más","Medio alto",80.1,78.4,81.7,224,FALSE
+"Mujer","18-24","Superior","100 mil y más","Alto",85,83.6,86.4,178,FALSE
+"Mujer","18-24","Superior","15 mil a 99,999","Bajo",67.2,63.9,70.3,7,FALSE
+"Mujer","18-24","Superior","15 mil a 99,999","Medio bajo",75.1,72.8,77.2,90,FALSE
+"Mujer","18-24","Superior","15 mil a 99,999","Medio alto",78.7,76.6,80.7,47,FALSE
+"Mujer","18-24","Superior","15 mil a 99,999","Alto",84,82,85.7,16,FALSE
+"Mujer","18-24","Superior","2,500 a 14,999","Bajo",64.1,60.6,67.5,23,FALSE
+"Mujer","18-24","Superior","2,500 a 14,999","Medio bajo",72.5,69.8,75,83,FALSE
+"Mujer","18-24","Superior","2,500 a 14,999","Medio alto",76.4,73.8,78.8,25,FALSE
+"Mujer","18-24","Superior","2,500 a 14,999","Alto",82.1,79.8,84.1,5,FALSE
+"Mujer","18-24","Superior","Menos de 2,500","Bajo",54.9,51.6,58.2,30,FALSE
+"Mujer","18-24","Superior","Menos de 2,500","Medio bajo",64.2,61.2,67.1,86,FALSE
+"Mujer","18-24","Superior","Menos de 2,500","Medio alto",68.8,65.7,71.8,0,FALSE
+"Mujer","18-24","Superior","Menos de 2,500","Alto",75.7,72.9,78.4,0,FALSE
+"Mujer","25-34","Sin escolaridad","100 mil y más","Bajo",16.2,10.5,24,1,FALSE
+"Mujer","25-34","Sin escolaridad","100 mil y más","Medio bajo",22.1,14.8,31.7,2,FALSE
+"Mujer","25-34","Sin escolaridad","100 mil y más","Medio alto",25.9,17.6,36.3,3,FALSE
+"Mujer","25-34","Sin escolaridad","100 mil y más","Alto",33,23.1,44.7,0,FALSE
+"Mujer","25-34","Sin escolaridad","15 mil a 99,999","Bajo",15.1,9.8,22.5,0,FALSE
+"Mujer","25-34","Sin escolaridad","15 mil a 99,999","Medio bajo",20.7,13.8,29.9,0,FALSE
+"Mujer","25-34","Sin escolaridad","15 mil a 99,999","Medio alto",24.3,16.4,34.5,0,FALSE
+"Mujer","25-34","Sin escolaridad","15 mil a 99,999","Alto",31.2,21.6,42.8,0,FALSE
+"Mujer","25-34","Sin escolaridad","2,500 a 14,999","Bajo",13.4,8.7,20.2,1,FALSE
+"Mujer","25-34","Sin escolaridad","2,500 a 14,999","Medio bajo",18.6,12.3,27.2,0,FALSE
+"Mujer","25-34","Sin escolaridad","2,500 a 14,999","Medio alto",21.9,14.6,31.5,0,FALSE
+"Mujer","25-34","Sin escolaridad","2,500 a 14,999","Alto",28.4,19.4,39.5,0,FALSE
+"Mujer","25-34","Sin escolaridad","Menos de 2,500","Bajo",9.6,6.1,14.7,7,FALSE
+"Mujer","25-34","Sin escolaridad","Menos de 2,500","Medio bajo",13.5,8.7,20.4,4,FALSE
+"Mujer","25-34","Sin escolaridad","Menos de 2,500","Medio alto",16.1,10.4,24,0,FALSE
+"Mujer","25-34","Sin escolaridad","Menos de 2,500","Alto",21.3,14.1,30.9,0,FALSE
+"Mujer","25-34","Preescolar o primaria","100 mil y más","Bajo",19.7,17.2,22.4,5,FALSE
+"Mujer","25-34","Preescolar o primaria","100 mil y más","Medio bajo",26.5,24.1,29.1,24,FALSE
+"Mujer","25-34","Preescolar o primaria","100 mil y más","Medio alto",30.7,27.9,33.7,9,FALSE
+"Mujer","25-34","Preescolar o primaria","100 mil y más","Alto",38.5,35.1,42.1,1,FALSE
+"Mujer","25-34","Preescolar o primaria","15 mil a 99,999","Bajo",18.4,16,21.1,4,FALSE
+"Mujer","25-34","Preescolar o primaria","15 mil a 99,999","Medio bajo",24.9,22.4,27.7,19,FALSE
+"Mujer","25-34","Preescolar o primaria","15 mil a 99,999","Medio alto",29,26,32.2,2,FALSE
+"Mujer","25-34","Preescolar o primaria","15 mil a 99,999","Alto",36.6,32.8,40.6,0,FALSE
+"Mujer","25-34","Preescolar o primaria","2,500 a 14,999","Bajo",16.5,14.3,18.9,18,FALSE
+"Mujer","25-34","Preescolar o primaria","2,500 a 14,999","Medio bajo",22.5,20.1,25.1,27,FALSE
+"Mujer","25-34","Preescolar o primaria","2,500 a 14,999","Medio alto",26.3,23.4,29.4,2,FALSE
+"Mujer","25-34","Preescolar o primaria","2,500 a 14,999","Alto",33.5,29.8,37.4,0,FALSE
+"Mujer","25-34","Preescolar o primaria","Menos de 2,500","Bajo",11.8,10.3,13.6,57,FALSE
+"Mujer","25-34","Preescolar o primaria","Menos de 2,500","Medio bajo",16.5,14.6,18.6,30,FALSE
+"Mujer","25-34","Preescolar o primaria","Menos de 2,500","Medio alto",19.6,17.1,22.2,0,FALSE
+"Mujer","25-34","Preescolar o primaria","Menos de 2,500","Alto",25.6,22.4,29,0,FALSE
+"Mujer","25-34","Secundaria","100 mil y más","Bajo",33.8,30.9,36.8,32,FALSE
+"Mujer","25-34","Secundaria","100 mil y más","Medio bajo",42.9,40.5,45.4,234,FALSE
+"Mujer","25-34","Secundaria","100 mil y más","Medio alto",48,45.3,50.7,125,FALSE
+"Mujer","25-34","Secundaria","100 mil y más","Alto",56.6,53.5,59.6,26,FALSE
+"Mujer","25-34","Secundaria","15 mil a 99,999","Bajo",32,29,35.1,20,FALSE
+"Mujer","25-34","Secundaria","15 mil a 99,999","Medio bajo",40.9,38.2,43.7,120,FALSE
+"Mujer","25-34","Secundaria","15 mil a 99,999","Medio alto",46,42.8,49.2,20,FALSE
+"Mujer","25-34","Secundaria","15 mil a 99,999","Alto",54.6,50.9,58.2,1,FALSE
+"Mujer","25-34","Secundaria","2,500 a 14,999","Bajo",29.1,26.2,32.1,62,FALSE
+"Mujer","25-34","Secundaria","2,500 a 14,999","Medio bajo",37.7,34.9,40.5,116,FALSE
+"Mujer","25-34","Secundaria","2,500 a 14,999","Medio alto",42.6,39.3,46,13,FALSE
+"Mujer","25-34","Secundaria","2,500 a 14,999","Alto",51.2,47.4,55,2,FALSE
+"Mujer","25-34","Secundaria","Menos de 2,500","Bajo",21.9,19.7,24.2,179,FALSE
+"Mujer","25-34","Secundaria","Menos de 2,500","Medio bajo",29.2,26.6,31.9,165,FALSE
+"Mujer","25-34","Secundaria","Menos de 2,500","Medio alto",33.6,30.4,37,1,FALSE
+"Mujer","25-34","Secundaria","Menos de 2,500","Alto",41.7,37.8,45.7,0,FALSE
+"Mujer","25-34","Media superior","100 mil y más","Bajo",52.1,48.9,55.4,23,FALSE
+"Mujer","25-34","Media superior","100 mil y más","Medio bajo",61.6,59.4,63.8,302,FALSE
+"Mujer","25-34","Media superior","100 mil y más","Medio alto",66.3,64.1,68.5,204,FALSE
+"Mujer","25-34","Media superior","100 mil y más","Alto",73.6,71.4,75.7,81,FALSE
+"Mujer","25-34","Media superior","15 mil a 99,999","Bajo",50.1,46.6,53.6,11,FALSE
+"Mujer","25-34","Media superior","15 mil a 99,999","Medio bajo",59.6,57,62.2,119,FALSE
+"Mujer","25-34","Media superior","15 mil a 99,999","Medio alto",64.5,61.7,67.2,57,FALSE
+"Mujer","25-34","Media superior","15 mil a 99,999","Alto",72,69.1,74.6,6,FALSE
+"Mujer","25-34","Media superior","2,500 a 14,999","Bajo",46.7,43.2,50.2,51,FALSE
+"Mujer","25-34","Media superior","2,500 a 14,999","Medio bajo",56.3,53.5,59.2,152,FALSE
+"Mujer","25-34","Media superior","2,500 a 14,999","Medio alto",61.3,58.2,64.4,28,FALSE
+"Mujer","25-34","Media superior","2,500 a 14,999","Alto",69.2,66,72.1,0,FALSE
+"Mujer","25-34","Media superior","Menos de 2,500","Bajo",37.4,34.5,40.4,121,FALSE
+"Mujer","25-34","Media superior","Menos de 2,500","Medio bajo",46.8,43.8,49.8,178,FALSE
+"Mujer","25-34","Media superior","Menos de 2,500","Medio alto",52,48.5,55.4,3,FALSE
+"Mujer","25-34","Media superior","Menos de 2,500","Alto",60.5,56.8,64,0,FALSE
+"Mujer","25-34","Superior","100 mil y más","Bajo",67.9,65,70.8,12,FALSE
+"Mujer","25-34","Superior","100 mil y más","Medio bajo",75.7,74,77.4,303,FALSE
+"Mujer","25-34","Superior","100 mil y más","Medio alto",79.3,77.7,80.8,466,FALSE
+"Mujer","25-34","Superior","100 mil y más","Alto",84.4,83.1,85.7,411,FALSE
+"Mujer","25-34","Superior","15 mil a 99,999","Bajo",66.1,62.9,69.2,22,FALSE
+"Mujer","25-34","Superior","15 mil a 99,999","Medio bajo",74.2,72,76.2,132,FALSE
+"Mujer","25-34","Superior","15 mil a 99,999","Medio alto",77.9,75.9,79.9,107,FALSE
+"Mujer","25-34","Superior","15 mil a 99,999","Alto",83.3,81.5,85,33,FALSE
+"Mujer","25-34","Superior","2,500 a 14,999","Bajo",63,59.6,66.3,26,FALSE
+"Mujer","25-34","Superior","2,500 a 14,999","Medio bajo",71.5,69.1,73.8,133,FALSE
+"Mujer","25-34","Superior","2,500 a 14,999","Medio alto",75.5,73.1,77.8,54,FALSE
+"Mujer","25-34","Superior","2,500 a 14,999","Alto",81.3,79.2,83.3,16,FALSE
+"Mujer","25-34","Superior","Menos de 2,500","Bajo",53.8,50.5,57,35,FALSE
+"Mujer","25-34","Superior","Menos de 2,500","Medio bajo",63.1,60.2,65.9,102,FALSE
+"Mujer","25-34","Superior","Menos de 2,500","Medio alto",67.8,64.7,70.7,8,FALSE
+"Mujer","25-34","Superior","Menos de 2,500","Alto",74.8,72,77.4,2,FALSE
+"Mujer","35-44","Sin escolaridad","100 mil y más","Bajo",11.7,7.5,17.8,1,FALSE
+"Mujer","35-44","Sin escolaridad","100 mil y más","Medio bajo",16.3,10.7,24.1,4,FALSE
+"Mujer","35-44","Sin escolaridad","100 mil y más","Medio alto",19.3,12.8,28.1,4,FALSE
+"Mujer","35-44","Sin escolaridad","100 mil y más","Alto",25.3,17.2,35.6,0,FALSE
+"Mujer","35-44","Sin escolaridad","15 mil a 99,999","Bajo",10.9,6.9,16.6,1,FALSE
+"Mujer","35-44","Sin escolaridad","15 mil a 99,999","Medio bajo",15.2,9.9,22.7,5,FALSE
+"Mujer","35-44","Sin escolaridad","15 mil a 99,999","Medio alto",18.1,11.9,26.5,1,FALSE
+"Mujer","35-44","Sin escolaridad","15 mil a 99,999","Alto",23.8,16,33.9,0,FALSE
+"Mujer","35-44","Sin escolaridad","2,500 a 14,999","Bajo",9.6,6.1,14.8,5,FALSE
+"Mujer","35-44","Sin escolaridad","2,500 a 14,999","Medio bajo",13.6,8.8,20.4,3,FALSE
+"Mujer","35-44","Sin escolaridad","2,500 a 14,999","Medio alto",16.2,10.5,24,1,FALSE
+"Mujer","35-44","Sin escolaridad","2,500 a 14,999","Alto",21.4,14.2,30.9,0,FALSE
+"Mujer","35-44","Sin escolaridad","Menos de 2,500","Bajo",6.8,4.3,10.6,14,FALSE
+"Mujer","35-44","Sin escolaridad","Menos de 2,500","Medio bajo",9.7,6.1,14.9,3,FALSE
+"Mujer","35-44","Sin escolaridad","Menos de 2,500","Medio alto",11.6,7.4,17.8,0,FALSE
+"Mujer","35-44","Sin escolaridad","Menos de 2,500","Alto",15.7,10.1,23.5,0,FALSE
+"Mujer","35-44","Preescolar o primaria","100 mil y más","Bajo",14.4,12.5,16.5,15,FALSE
+"Mujer","35-44","Preescolar o primaria","100 mil y más","Medio bajo",19.9,17.9,22,69,FALSE
+"Mujer","35-44","Preescolar o primaria","100 mil y más","Medio alto",23.3,21.1,25.8,21,FALSE
+"Mujer","35-44","Preescolar o primaria","100 mil y más","Alto",30.1,27.2,33.2,4,FALSE
+"Mujer","35-44","Preescolar o primaria","15 mil a 99,999","Bajo",13.4,11.5,15.5,13,FALSE
+"Mujer","35-44","Preescolar o primaria","15 mil a 99,999","Medio bajo",18.6,16.5,20.8,34,FALSE
+"Mujer","35-44","Preescolar o primaria","15 mil a 99,999","Medio alto",21.9,19.4,24.6,8,FALSE
+"Mujer","35-44","Preescolar o primaria","15 mil a 99,999","Alto",28.4,25.2,31.9,0,FALSE
+"Mujer","35-44","Preescolar o primaria","2,500 a 14,999","Bajo",11.9,10.2,13.8,32,FALSE
+"Mujer","35-44","Preescolar o primaria","2,500 a 14,999","Medio bajo",16.6,14.7,18.7,47,FALSE
+"Mujer","35-44","Preescolar o primaria","2,500 a 14,999","Medio alto",19.7,17.3,22.3,3,FALSE
+"Mujer","35-44","Preescolar o primaria","2,500 a 14,999","Alto",25.7,22.6,29.1,0,FALSE
+"Mujer","35-44","Preescolar o primaria","Menos de 2,500","Bajo",8.5,7.3,9.7,85,FALSE
+"Mujer","35-44","Preescolar o primaria","Menos de 2,500","Medio bajo",12,10.6,13.5,69,FALSE
+"Mujer","35-44","Preescolar o primaria","Menos de 2,500","Medio alto",14.3,12.5,16.3,1,FALSE
+"Mujer","35-44","Preescolar o primaria","Menos de 2,500","Alto",19.1,16.7,21.8,0,FALSE
+"Mujer","35-44","Secundaria","100 mil y más","Bajo",25.9,23.5,28.6,38,FALSE
+"Mujer","35-44","Secundaria","100 mil y más","Medio bajo",34,31.9,36.2,278,FALSE
+"Mujer","35-44","Secundaria","100 mil y más","Medio alto",38.8,36.4,41.3,146,FALSE
+"Mujer","35-44","Secundaria","100 mil y más","Alto",47.3,44.4,50.2,31,FALSE
+"Mujer","35-44","Secundaria","15 mil a 99,999","Bajo",24.4,21.9,27.1,19,FALSE
+"Mujer","35-44","Secundaria","15 mil a 99,999","Medio bajo",32.2,29.8,34.7,123,FALSE
+"Mujer","35-44","Secundaria","15 mil a 99,999","Medio alto",36.9,34,39.8,33,FALSE
+"Mujer","35-44","Secundaria","15 mil a 99,999","Alto",45.2,41.8,48.7,3,FALSE
+"Mujer","35-44","Secundaria","2,500 a 14,999","Bajo",22,19.6,24.6,63,FALSE
+"Mujer","35-44","Secundaria","2,500 a 14,999","Medio bajo",29.3,26.9,31.9,157,FALSE
+"Mujer","35-44","Secundaria","2,500 a 14,999","Medio alto",33.8,30.8,36.9,23,FALSE
+"Mujer","35-44","Secundaria","2,500 a 14,999","Alto",41.9,38.3,45.6,3,FALSE
+"Mujer","35-44","Secundaria","Menos de 2,500","Bajo",16.1,14.5,17.9,136,FALSE
+"Mujer","35-44","Secundaria","Menos de 2,500","Medio bajo",22.1,20.1,24.2,208,FALSE
+"Mujer","35-44","Secundaria","Menos de 2,500","Medio alto",25.8,23.2,28.6,1,FALSE
+"Mujer","35-44","Secundaria","Menos de 2,500","Alto",33,29.7,36.4,0,FALSE
+"Mujer","35-44","Media superior","100 mil y más","Bajo",42.8,39.5,46.1,21,FALSE
+"Mujer","35-44","Media superior","100 mil y más","Medio bajo",52.4,50,54.8,203,FALSE
+"Mujer","35-44","Media superior","100 mil y más","Medio alto",57.5,55.1,59.9,184,FALSE
+"Mujer","35-44","Media superior","100 mil y más","Alto",65.7,63.2,68.1,88,FALSE
+"Mujer","35-44","Media superior","15 mil a 99,999","Bajo",40.8,37.4,44.3,8,FALSE
+"Mujer","35-44","Media superior","15 mil a 99,999","Medio bajo",50.4,47.6,53.2,93,FALSE
+"Mujer","35-44","Media superior","15 mil a 99,999","Medio alto",55.5,52.5,58.5,52,FALSE
+"Mujer","35-44","Media superior","15 mil a 99,999","Alto",63.8,60.6,66.9,11,FALSE
+"Mujer","35-44","Media superior","2,500 a 14,999","Bajo",37.6,34.1,41.1,30,FALSE
+"Mujer","35-44","Media superior","2,500 a 14,999","Medio bajo",47,44,50,89,FALSE
+"Mujer","35-44","Media superior","2,500 a 14,999","Medio alto",52.1,48.8,55.5,16,FALSE
+"Mujer","35-44","Media superior","2,500 a 14,999","Alto",60.6,57.1,64,5,FALSE
+"Mujer","35-44","Media superior","Menos de 2,500","Bajo",29.1,26.5,31.8,68,FALSE
+"Mujer","35-44","Media superior","Menos de 2,500","Medio bajo",37.7,34.9,40.5,87,FALSE
+"Mujer","35-44","Media superior","Menos de 2,500","Medio alto",42.6,39.3,46,7,FALSE
+"Mujer","35-44","Media superior","Menos de 2,500","Alto",51.2,47.6,54.8,0,FALSE
+"Mujer","35-44","Superior","100 mil y más","Bajo",59.3,55.9,62.5,17,FALSE
+"Mujer","35-44","Superior","100 mil y más","Medio bajo",68.2,66.1,70.2,191,FALSE
+"Mujer","35-44","Superior","100 mil y más","Medio alto",72.5,70.6,74.3,347,FALSE
+"Mujer","35-44","Superior","100 mil y más","Alto",78.8,77.2,80.4,431,FALSE
+"Mujer","35-44","Superior","15 mil a 99,999","Bajo",57.3,53.6,60.8,10,FALSE
+"Mujer","35-44","Superior","15 mil a 99,999","Medio bajo",66.4,63.8,68.8,94,FALSE
+"Mujer","35-44","Superior","15 mil a 99,999","Medio alto",70.8,68.3,73.2,75,FALSE
+"Mujer","35-44","Superior","15 mil a 99,999","Alto",77.4,75.1,79.6,29,FALSE
+"Mujer","35-44","Superior","2,500 a 14,999","Bajo",53.9,50.2,57.6,18,FALSE
+"Mujer","35-44","Superior","2,500 a 14,999","Medio bajo",63.3,60.5,66,88,FALSE
+"Mujer","35-44","Superior","2,500 a 14,999","Medio alto",67.9,65.1,70.7,47,FALSE
+"Mujer","35-44","Superior","2,500 a 14,999","Alto",75,72.3,77.4,21,FALSE
+"Mujer","35-44","Superior","Menos de 2,500","Bajo",44.4,41.2,47.7,23,FALSE
+"Mujer","35-44","Superior","Menos de 2,500","Medio bajo",54,51.1,57,74,FALSE
+"Mujer","35-44","Superior","Menos de 2,500","Medio alto",59.1,55.9,62.3,6,FALSE
+"Mujer","35-44","Superior","Menos de 2,500","Alto",67.1,64,70.1,1,FALSE
+"Mujer","45-54","Sin escolaridad","100 mil y más","Bajo",7.7,4.8,12,1,FALSE
+"Mujer","45-54","Sin escolaridad","100 mil y más","Medio bajo",10.9,7,16.6,9,FALSE
+"Mujer","45-54","Sin escolaridad","100 mil y más","Medio alto",13.1,8.5,19.7,3,FALSE
+"Mujer","45-54","Sin escolaridad","100 mil y más","Alto",17.5,11.5,25.8,0,FALSE
+"Mujer","45-54","Sin escolaridad","15 mil a 99,999","Bajo",7.1,4.5,11.1,0,FALSE
+"Mujer","45-54","Sin escolaridad","15 mil a 99,999","Medio bajo",10.1,6.5,15.5,1,FALSE
+"Mujer","45-54","Sin escolaridad","15 mil a 99,999","Medio alto",12.2,7.8,18.4,0,FALSE
+"Mujer","45-54","Sin escolaridad","15 mil a 99,999","Alto",16.4,10.7,24.3,0,FALSE
+"Mujer","45-54","Sin escolaridad","2,500 a 14,999","Bajo",6.3,3.9,9.9,5,FALSE
+"Mujer","45-54","Sin escolaridad","2,500 a 14,999","Medio bajo",9,5.7,13.9,5,FALSE
+"Mujer","45-54","Sin escolaridad","2,500 a 14,999","Medio alto",10.8,6.9,16.5,1,FALSE
+"Mujer","45-54","Sin escolaridad","2,500 a 14,999","Alto",14.6,9.4,21.9,0,FALSE
+"Mujer","45-54","Sin escolaridad","Menos de 2,500","Bajo",4.4,2.7,6.9,11,FALSE
+"Mujer","45-54","Sin escolaridad","Menos de 2,500","Medio bajo",6.3,3.9,9.9,9,FALSE
+"Mujer","45-54","Sin escolaridad","Menos de 2,500","Medio alto",7.6,4.8,12,0,FALSE
+"Mujer","45-54","Sin escolaridad","Menos de 2,500","Alto",10.5,6.6,16.1,0,FALSE
+"Mujer","45-54","Preescolar o primaria","100 mil y más","Bajo",9.6,8.2,11.1,20,FALSE
+"Mujer","45-54","Preescolar o primaria","100 mil y más","Medio bajo",13.5,12,15.1,173,FALSE
+"Mujer","45-54","Preescolar o primaria","100 mil y más","Medio alto",16.1,14.3,18,72,FALSE
+"Mujer","45-54","Preescolar o primaria","100 mil y más","Alto",21.3,18.9,23.8,7,FALSE
+"Mujer","45-54","Preescolar o primaria","15 mil a 99,999","Bajo",8.9,7.5,10.4,21,FALSE
+"Mujer","45-54","Preescolar o primaria","15 mil a 99,999","Medio bajo",12.5,11,14.2,72,FALSE
+"Mujer","45-54","Preescolar o primaria","15 mil a 99,999","Medio alto",15,13.1,17,21,FALSE
+"Mujer","45-54","Preescolar o primaria","15 mil a 99,999","Alto",19.9,17.4,22.7,2,FALSE
+"Mujer","45-54","Preescolar o primaria","2,500 a 14,999","Bajo",7.8,6.7,9.2,48,FALSE
+"Mujer","45-54","Preescolar o primaria","2,500 a 14,999","Medio bajo",11.1,9.8,12.7,80,FALSE
+"Mujer","45-54","Preescolar o primaria","2,500 a 14,999","Medio alto",13.3,11.6,15.3,11,FALSE
+"Mujer","45-54","Preescolar o primaria","2,500 a 14,999","Alto",17.9,15.5,20.5,1,FALSE
+"Mujer","45-54","Preescolar o primaria","Menos de 2,500","Bajo",5.5,4.7,6.4,134,FALSE
+"Mujer","45-54","Preescolar o primaria","Menos de 2,500","Medio bajo",7.9,6.9,9,138,FALSE
+"Mujer","45-54","Preescolar o primaria","Menos de 2,500","Medio alto",9.5,8.2,11,3,FALSE
+"Mujer","45-54","Preescolar o primaria","Menos de 2,500","Alto",12.9,11.1,15,0,FALSE
+"Mujer","45-54","Secundaria","100 mil y más","Bajo",18,16.1,20.2,36,FALSE
+"Mujer","45-54","Secundaria","100 mil y más","Medio bajo",24.5,22.7,26.4,295,FALSE
+"Mujer","45-54","Secundaria","100 mil y más","Medio alto",28.5,26.4,30.7,234,FALSE
+"Mujer","45-54","Secundaria","100 mil y más","Alto",36,33.3,38.8,48,FALSE
+"Mujer","45-54","Secundaria","15 mil a 99,999","Bajo",16.9,14.9,19,18,FALSE
+"Mujer","45-54","Secundaria","15 mil a 99,999","Medio bajo",23,21.1,25,143,FALSE
+"Mujer","45-54","Secundaria","15 mil a 99,999","Medio alto",26.8,24.5,29.4,54,FALSE
+"Mujer","45-54","Secundaria","15 mil a 99,999","Alto",34.2,31,37.4,11,FALSE
+"Mujer","45-54","Secundaria","2,500 a 14,999","Bajo",15,13.2,17,34,FALSE
+"Mujer","45-54","Secundaria","2,500 a 14,999","Medio bajo",20.7,18.8,22.7,136,FALSE
+"Mujer","45-54","Secundaria","2,500 a 14,999","Medio alto",24.3,21.9,26.8,35,FALSE
+"Mujer","45-54","Secundaria","2,500 a 14,999","Alto",31.2,28.1,34.5,0,FALSE
+"Mujer","45-54","Secundaria","Menos de 2,500","Bajo",10.8,9.5,12.2,81,FALSE
+"Mujer","45-54","Secundaria","Menos de 2,500","Medio bajo",15.1,13.5,16.8,221,FALSE
+"Mujer","45-54","Secundaria","Menos de 2,500","Medio alto",17.9,15.9,20.2,8,FALSE
+"Mujer","45-54","Secundaria","Menos de 2,500","Alto",23.6,20.9,26.6,1,FALSE
+"Mujer","45-54","Media superior","100 mil y más","Bajo",32,29,35.1,20,FALSE
+"Mujer","45-54","Media superior","100 mil y más","Medio bajo",40.9,38.5,43.4,138,FALSE
+"Mujer","45-54","Media superior","100 mil y más","Medio alto",46,43.4,48.6,215,FALSE
+"Mujer","45-54","Media superior","100 mil y más","Alto",54.6,51.8,57.3,94,FALSE
+"Mujer","45-54","Media superior","15 mil a 99,999","Bajo",30.2,27.2,33.5,6,FALSE
+"Mujer","45-54","Media superior","15 mil a 99,999","Medio bajo",38.9,36.2,41.7,74,FALSE
+"Mujer","45-54","Media superior","15 mil a 99,999","Medio alto",43.9,40.9,47,54,FALSE
+"Mujer","45-54","Media superior","15 mil a 99,999","Alto",52.6,49.1,56,5,FALSE
+"Mujer","45-54","Media superior","2,500 a 14,999","Bajo",27.4,24.5,30.6,9,FALSE
+"Mujer","45-54","Media superior","2,500 a 14,999","Medio bajo",35.8,33,38.7,72,FALSE
+"Mujer","45-54","Media superior","2,500 a 14,999","Medio alto",40.6,37.4,43.9,35,FALSE
+"Mujer","45-54","Media superior","2,500 a 14,999","Alto",49.2,45.5,52.8,4,FALSE
+"Mujer","45-54","Media superior","Menos de 2,500","Bajo",20.5,18.3,22.9,19,FALSE
+"Mujer","45-54","Media superior","Menos de 2,500","Medio bajo",27.5,25,30.2,54,FALSE
+"Mujer","45-54","Media superior","Menos de 2,500","Medio alto",31.8,28.8,35.1,6,FALSE
+"Mujer","45-54","Media superior","Menos de 2,500","Alto",39.7,36.2,43.4,0,FALSE
+"Mujer","45-54","Superior","100 mil y más","Bajo",47.8,44.1,51.4,9,FALSE
+"Mujer","45-54","Superior","100 mil y más","Medio bajo",57.4,54.8,59.9,130,FALSE
+"Mujer","45-54","Superior","100 mil y más","Medio alto",62.3,59.9,64.7,271,FALSE
+"Mujer","45-54","Superior","100 mil y más","Alto",70,67.9,72.1,339,FALSE
+"Mujer","45-54","Superior","15 mil a 99,999","Bajo",45.7,41.9,49.5,5,FALSE
+"Mujer","45-54","Superior","15 mil a 99,999","Medio bajo",55.4,52.5,58.2,53,FALSE
+"Mujer","45-54","Superior","15 mil a 99,999","Medio alto",60.4,57.4,63.3,77,FALSE
+"Mujer","45-54","Superior","15 mil a 99,999","Alto",68.3,65.4,71,20,FALSE
+"Mujer","45-54","Superior","2,500 a 14,999","Bajo",42.4,38.6,46.2,7,FALSE
+"Mujer","45-54","Superior","2,500 a 14,999","Medio bajo",52,48.9,55.1,69,FALSE
+"Mujer","45-54","Superior","2,500 a 14,999","Medio alto",57.1,53.9,60.3,36,FALSE
+"Mujer","45-54","Superior","2,500 a 14,999","Alto",65.3,62.1,68.3,6,FALSE
+"Mujer","45-54","Superior","Menos de 2,500","Bajo",33.4,30.2,36.7,7,FALSE
+"Mujer","45-54","Superior","Menos de 2,500","Medio bajo",42.5,39.3,45.7,38,FALSE
+"Mujer","45-54","Superior","Menos de 2,500","Medio alto",47.6,44,51.2,3,FALSE
+"Mujer","45-54","Superior","Menos de 2,500","Alto",56.2,52.6,59.8,2,FALSE
+"Mujer","55-64","Sin escolaridad","100 mil y más","Bajo",4,2.5,6.4,2,FALSE
+"Mujer","55-64","Sin escolaridad","100 mil y más","Medio bajo",5.8,3.6,9.1,19,FALSE
+"Mujer","55-64","Sin escolaridad","100 mil y más","Medio alto",7,4.4,10.9,5,FALSE
+"Mujer","55-64","Sin escolaridad","100 mil y más","Alto",9.6,6.1,14.8,0,FALSE
+"Mujer","55-64","Sin escolaridad","15 mil a 99,999","Bajo",3.7,2.3,5.9,3,FALSE
+"Mujer","55-64","Sin escolaridad","15 mil a 99,999","Medio bajo",5.3,3.3,8.5,8,FALSE
+"Mujer","55-64","Sin escolaridad","15 mil a 99,999","Medio alto",6.5,4,10.2,0,FALSE
+"Mujer","55-64","Sin escolaridad","15 mil a 99,999","Alto",8.9,5.6,13.9,0,FALSE
+"Mujer","55-64","Sin escolaridad","2,500 a 14,999","Bajo",3.2,2,5.2,2,FALSE
+"Mujer","55-64","Sin escolaridad","2,500 a 14,999","Medio bajo",4.7,2.9,7.5,8,FALSE
+"Mujer","55-64","Sin escolaridad","2,500 a 14,999","Medio alto",5.7,3.5,9,1,FALSE
+"Mujer","55-64","Sin escolaridad","2,500 a 14,999","Alto",7.9,4.9,12.3,0,FALSE
+"Mujer","55-64","Sin escolaridad","Menos de 2,500","Bajo",2.2,1.4,3.6,18,FALSE
+"Mujer","55-64","Sin escolaridad","Menos de 2,500","Medio bajo",3.2,2,5.2,18,FALSE
+"Mujer","55-64","Sin escolaridad","Menos de 2,500","Medio alto",4,2.4,6.4,1,FALSE
+"Mujer","55-64","Sin escolaridad","Menos de 2,500","Alto",5.5,3.4,8.8,0,FALSE
+"Mujer","55-64","Preescolar o primaria","100 mil y más","Bajo",5,4.2,5.9,28,FALSE
+"Mujer","55-64","Preescolar o primaria","100 mil y más","Medio bajo",7.2,6.3,8.2,156,FALSE
+"Mujer","55-64","Preescolar o primaria","100 mil y más","Medio alto",8.7,7.6,9.9,103,FALSE
+"Mujer","55-64","Preescolar o primaria","100 mil y más","Alto",11.9,10.4,13.6,23,FALSE
+"Mujer","55-64","Preescolar o primaria","15 mil a 99,999","Bajo",4.6,3.9,5.5,15,FALSE
+"Mujer","55-64","Preescolar o primaria","15 mil a 99,999","Medio bajo",6.7,5.8,7.7,88,FALSE
+"Mujer","55-64","Preescolar o primaria","15 mil a 99,999","Medio alto",8.1,7,9.3,31,FALSE
+"Mujer","55-64","Preescolar o primaria","15 mil a 99,999","Alto",11,9.5,12.9,3,FALSE
+"Mujer","55-64","Preescolar o primaria","2,500 a 14,999","Bajo",4.1,3.4,4.9,37,FALSE
+"Mujer","55-64","Preescolar o primaria","2,500 a 14,999","Medio bajo",5.9,5.1,6.8,97,FALSE
+"Mujer","55-64","Preescolar o primaria","2,500 a 14,999","Medio alto",7.1,6.1,8.3,17,FALSE
+"Mujer","55-64","Preescolar o primaria","2,500 a 14,999","Alto",9.8,8.3,11.5,0,FALSE
+"Mujer","55-64","Preescolar o primaria","Menos de 2,500","Bajo",2.8,2.4,3.3,82,FALSE
+"Mujer","55-64","Preescolar o primaria","Menos de 2,500","Medio bajo",4.1,3.5,4.8,144,FALSE
+"Mujer","55-64","Preescolar o primaria","Menos de 2,500","Medio alto",5,4.2,5.8,4,FALSE
+"Mujer","55-64","Preescolar o primaria","Menos de 2,500","Alto",6.9,5.8,8.1,0,FALSE
+"Mujer","55-64","Secundaria","100 mil y más","Bajo",9.9,8.6,11.4,12,FALSE
+"Mujer","55-64","Secundaria","100 mil y más","Medio bajo",13.9,12.5,15.4,193,FALSE
+"Mujer","55-64","Secundaria","100 mil y más","Medio alto",16.6,14.9,18.3,204,FALSE
+"Mujer","55-64","Secundaria","100 mil y más","Alto",21.9,19.7,24.3,67,FALSE
+"Mujer","55-64","Secundaria","15 mil a 99,999","Bajo",9.2,7.9,10.6,10,FALSE
+"Mujer","55-64","Secundaria","15 mil a 99,999","Medio bajo",13,11.5,14.5,85,FALSE
+"Mujer","55-64","Secundaria","15 mil a 99,999","Medio alto",15.5,13.7,17.4,41,FALSE
+"Mujer","55-64","Secundaria","15 mil a 99,999","Alto",20.6,18.1,23.2,4,FALSE
+"Mujer","55-64","Secundaria","2,500 a 14,999","Bajo",8.1,7,9.4,11,FALSE
+"Mujer","55-64","Secundaria","2,500 a 14,999","Medio bajo",11.5,10.2,13,89,FALSE
+"Mujer","55-64","Secundaria","2,500 a 14,999","Medio alto",13.8,12.1,15.6,27,FALSE
+"Mujer","55-64","Secundaria","2,500 a 14,999","Alto",18.4,16.1,21,0,FALSE
+"Mujer","55-64","Secundaria","Menos de 2,500","Bajo",5.7,4.9,6.6,53,FALSE
+"Mujer","55-64","Secundaria","Menos de 2,500","Medio bajo",8.1,7.1,9.3,116,FALSE
+"Mujer","55-64","Secundaria","Menos de 2,500","Medio alto",9.8,8.5,11.3,6,FALSE
+"Mujer","55-64","Secundaria","Menos de 2,500","Alto",13.3,11.5,15.4,0,FALSE
+"Mujer","55-64","Media superior","100 mil y más","Bajo",19,16.7,21.5,6,FALSE
+"Mujer","55-64","Media superior","100 mil y más","Medio bajo",25.7,23.5,28,98,FALSE
+"Mujer","55-64","Media superior","100 mil y más","Medio alto",29.8,27.4,32.2,195,FALSE
+"Mujer","55-64","Media superior","100 mil y más","Alto",37.5,34.7,40.4,119,FALSE
+"Mujer","55-64","Media superior","15 mil a 99,999","Bajo",17.8,15.5,20.3,6,FALSE
+"Mujer","55-64","Media superior","15 mil a 99,999","Medio bajo",24.1,21.8,26.6,60,FALSE
+"Mujer","55-64","Media superior","15 mil a 99,999","Medio alto",28.1,25.5,30.9,44,FALSE
+"Mujer","55-64","Media superior","15 mil a 99,999","Alto",35.6,32.3,39,5,FALSE
+"Mujer","55-64","Media superior","2,500 a 14,999","Bajo",15.9,13.8,18.2,8,FALSE
+"Mujer","55-64","Media superior","2,500 a 14,999","Medio bajo",21.7,19.5,24.2,47,FALSE
+"Mujer","55-64","Media superior","2,500 a 14,999","Medio alto",25.4,22.8,28.3,22,FALSE
+"Mujer","55-64","Media superior","2,500 a 14,999","Alto",32.5,29.2,36,1,FALSE
+"Mujer","55-64","Media superior","Menos de 2,500","Bajo",11.4,9.9,13,8,FALSE
+"Mujer","55-64","Media superior","Menos de 2,500","Medio bajo",15.9,14.1,17.9,34,FALSE
+"Mujer","55-64","Media superior","Menos de 2,500","Medio alto",18.9,16.7,21.3,5,FALSE
+"Mujer","55-64","Media superior","Menos de 2,500","Alto",24.8,21.9,27.8,0,FALSE
+"Mujer","55-64","Superior","100 mil y más","Bajo",31.3,28,34.8,3,FALSE
+"Mujer","55-64","Superior","100 mil y más","Medio bajo",40.2,37.4,43,86,FALSE
+"Mujer","55-64","Superior","100 mil y más","Medio alto",45.2,42.5,48,221,FALSE
+"Mujer","55-64","Superior","100 mil y más","Alto",53.8,51,56.6,263,FALSE
+"Mujer","55-64","Superior","15 mil a 99,999","Bajo",29.6,26.3,33.1,3,FALSE
+"Mujer","55-64","Superior","15 mil a 99,999","Medio bajo",38.2,35.2,41.4,40,FALSE
+"Mujer","55-64","Superior","15 mil a 99,999","Medio alto",43.2,40,46.4,50,FALSE
+"Mujer","55-64","Superior","15 mil a 99,999","Alto",51.8,48.3,55.2,22,FALSE
+"Mujer","55-64","Superior","2,500 a 14,999","Bajo",26.8,23.7,30.2,7,FALSE
+"Mujer","55-64","Superior","2,500 a 14,999","Medio bajo",35.1,32,38.3,47,FALSE
+"Mujer","55-64","Superior","2,500 a 14,999","Medio alto",39.9,36.6,43.3,28,FALSE
+"Mujer","55-64","Superior","2,500 a 14,999","Alto",48.4,44.8,52,6,FALSE
+"Mujer","55-64","Superior","Menos de 2,500","Bajo",20,17.6,22.6,10,FALSE
+"Mujer","55-64","Superior","Menos de 2,500","Medio bajo",26.9,24.2,29.8,16,FALSE
+"Mujer","55-64","Superior","Menos de 2,500","Medio alto",31.2,28.1,34.5,2,FALSE
+"Mujer","55-64","Superior","Menos de 2,500","Alto",39,35.5,42.7,2,FALSE
+"Mujer","65+","Sin escolaridad","100 mil y más","Bajo",1.7,1.1,2.8,5,FALSE
+"Mujer","65+","Sin escolaridad","100 mil y más","Medio bajo",2.5,1.6,4.1,32,FALSE
+"Mujer","65+","Sin escolaridad","100 mil y más","Medio alto",3.1,1.9,5,12,FALSE
+"Mujer","65+","Sin escolaridad","100 mil y más","Alto",4.3,2.7,6.9,2,FALSE
+"Mujer","65+","Sin escolaridad","15 mil a 99,999","Bajo",1.6,1,2.6,1,FALSE
+"Mujer","65+","Sin escolaridad","15 mil a 99,999","Medio bajo",2.3,1.4,3.8,19,FALSE
+"Mujer","65+","Sin escolaridad","15 mil a 99,999","Medio alto",2.9,1.8,4.6,6,FALSE
+"Mujer","65+","Sin escolaridad","15 mil a 99,999","Alto",4,2.5,6.4,0,FALSE
+"Mujer","65+","Sin escolaridad","2,500 a 14,999","Bajo",1.4,0.9,2.3,4,FALSE
+"Mujer","65+","Sin escolaridad","2,500 a 14,999","Medio bajo",2,1.3,3.3,15,FALSE
+"Mujer","65+","Sin escolaridad","2,500 a 14,999","Medio alto",2.5,1.5,4.1,4,FALSE
+"Mujer","65+","Sin escolaridad","2,500 a 14,999","Alto",3.5,2.2,5.7,0,FALSE
+"Mujer","65+","Sin escolaridad","Menos de 2,500","Bajo",1,0.6,1.6,23,FALSE
+"Mujer","65+","Sin escolaridad","Menos de 2,500","Medio bajo",1.4,0.9,2.3,18,FALSE
+"Mujer","65+","Sin escolaridad","Menos de 2,500","Medio alto",1.7,1,2.8,0,FALSE
+"Mujer","65+","Sin escolaridad","Menos de 2,500","Alto",2.4,1.5,4,0,FALSE
+"Mujer","65+","Preescolar o primaria","100 mil y más","Bajo",2.2,1.8,2.7,11,FALSE
+"Mujer","65+","Preescolar o primaria","100 mil y más","Medio bajo",3.2,2.7,3.8,186,FALSE
+"Mujer","65+","Preescolar o primaria","100 mil y más","Medio alto",3.9,3.3,4.6,188,FALSE
+"Mujer","65+","Preescolar o primaria","100 mil y más","Alto",5.4,4.6,6.3,50,FALSE
+"Mujer","65+","Preescolar o primaria","15 mil a 99,999","Bajo",2,1.7,2.5,9,FALSE
+"Mujer","65+","Preescolar o primaria","15 mil a 99,999","Medio bajo",3,2.5,3.5,85,FALSE
+"Mujer","65+","Preescolar o primaria","15 mil a 99,999","Medio alto",3.6,3,4.3,51,FALSE
+"Mujer","65+","Preescolar o primaria","15 mil a 99,999","Alto",5,4.2,6,3,FALSE
+"Mujer","65+","Preescolar o primaria","2,500 a 14,999","Bajo",1.8,1.5,2.2,15,FALSE
+"Mujer","65+","Preescolar o primaria","2,500 a 14,999","Medio bajo",2.6,2.2,3.1,95,FALSE
+"Mujer","65+","Preescolar o primaria","2,500 a 14,999","Medio alto",3.2,2.6,3.8,23,FALSE
+"Mujer","65+","Preescolar o primaria","2,500 a 14,999","Alto",4.4,3.7,5.3,2,FALSE
+"Mujer","65+","Preescolar o primaria","Menos de 2,500","Bajo",1.2,1,1.5,44,FALSE
+"Mujer","65+","Preescolar o primaria","Menos de 2,500","Medio bajo",1.8,1.5,2.1,137,FALSE
+"Mujer","65+","Preescolar o primaria","Menos de 2,500","Medio alto",2.2,1.8,2.6,4,FALSE
+"Mujer","65+","Preescolar o primaria","Menos de 2,500","Alto",3.1,2.5,3.7,0,FALSE
+"Mujer","65+","Secundaria","100 mil y más","Bajo",4.5,3.8,5.3,4,FALSE
+"Mujer","65+","Secundaria","100 mil y más","Medio bajo",6.4,5.6,7.4,69,FALSE
+"Mujer","65+","Secundaria","100 mil y más","Medio alto",7.8,6.8,9,142,FALSE
+"Mujer","65+","Secundaria","100 mil y más","Alto",10.7,9.3,12.2,56,FALSE
+"Mujer","65+","Secundaria","15 mil a 99,999","Bajo",4.1,3.5,4.9,2,FALSE
+"Mujer","65+","Secundaria","15 mil a 99,999","Medio bajo",6,5.1,6.9,34,FALSE
+"Mujer","65+","Secundaria","15 mil a 99,999","Medio alto",7.2,6.2,8.4,33,FALSE
+"Mujer","65+","Secundaria","15 mil a 99,999","Alto",9.9,8.5,11.6,3,FALSE
+"Mujer","65+","Secundaria","2,500 a 14,999","Bajo",3.6,3,4.3,6,FALSE
+"Mujer","65+","Secundaria","2,500 a 14,999","Medio bajo",5.2,4.5,6.1,33,FALSE
+"Mujer","65+","Secundaria","2,500 a 14,999","Medio alto",6.4,5.4,7.5,13,FALSE
+"Mujer","65+","Secundaria","2,500 a 14,999","Alto",8.8,7.4,10.3,1,FALSE
+"Mujer","65+","Secundaria","Menos de 2,500","Bajo",2.5,2.1,3,11,FALSE
+"Mujer","65+","Secundaria","Menos de 2,500","Medio bajo",3.6,3.1,4.3,32,FALSE
+"Mujer","65+","Secundaria","Menos de 2,500","Medio alto",4.4,3.7,5.3,2,FALSE
+"Mujer","65+","Secundaria","Menos de 2,500","Alto",6.2,5.2,7.3,0,FALSE
+"Mujer","65+","Media superior","100 mil y más","Bajo",9.1,7.7,10.6,2,FALSE
+"Mujer","65+","Media superior","100 mil y más","Medio bajo",12.8,11.3,14.6,26,FALSE
+"Mujer","65+","Media superior","100 mil y más","Medio alto",15.3,13.5,17.3,106,FALSE
+"Mujer","65+","Media superior","100 mil y más","Alto",20.3,18.1,22.7,139,FALSE
+"Mujer","65+","Media superior","15 mil a 99,999","Bajo",8.4,7.1,9.9,2,FALSE
+"Mujer","65+","Media superior","15 mil a 99,999","Medio bajo",11.9,10.4,13.7,11,FALSE
+"Mujer","65+","Media superior","15 mil a 99,999","Medio alto",14.3,12.4,16.4,23,FALSE
+"Mujer","65+","Media superior","15 mil a 99,999","Alto",19,16.6,21.7,10,FALSE
+"Mujer","65+","Media superior","2,500 a 14,999","Bajo",7.4,6.2,8.8,3,FALSE
+"Mujer","65+","Media superior","2,500 a 14,999","Medio bajo",10.6,9.1,12.3,20,FALSE
+"Mujer","65+","Media superior","2,500 a 14,999","Medio alto",12.7,10.9,14.7,7,FALSE
+"Mujer","65+","Media superior","2,500 a 14,999","Alto",17,14.7,19.6,1,FALSE
+"Mujer","65+","Media superior","Menos de 2,500","Bajo",5.2,4.4,6.1,4,FALSE
+"Mujer","65+","Media superior","Menos de 2,500","Medio bajo",7.5,6.4,8.7,4,FALSE
+"Mujer","65+","Media superior","Menos de 2,500","Medio alto",9,7.7,10.6,1,FALSE
+"Mujer","65+","Media superior","Menos de 2,500","Alto",12.3,10.5,14.3,0,FALSE
+"Mujer","65+","Superior","100 mil y más","Bajo",16.3,14,18.8,1,FALSE
+"Mujer","65+","Superior","100 mil y más","Medio bajo",22.2,19.8,24.8,32,FALSE
+"Mujer","65+","Superior","100 mil y más","Medio alto",26,23.4,28.8,145,FALSE
+"Mujer","65+","Superior","100 mil y más","Alto",33.2,30.3,36.2,223,FALSE
+"Mujer","65+","Superior","15 mil a 99,999","Bajo",15.2,13,17.7,3,FALSE
+"Mujer","65+","Superior","15 mil a 99,999","Medio bajo",20.8,18.4,23.5,22,FALSE
+"Mujer","65+","Superior","15 mil a 99,999","Medio alto",24.5,21.7,27.4,29,FALSE
+"Mujer","65+","Superior","15 mil a 99,999","Alto",31.4,28.2,34.8,13,FALSE
+"Mujer","65+","Superior","2,500 a 14,999","Bajo",13.5,11.5,15.8,2,FALSE
+"Mujer","65+","Superior","2,500 a 14,999","Medio bajo",18.7,16.4,21.3,8,FALSE
+"Mujer","65+","Superior","2,500 a 14,999","Medio alto",22,19.3,25,16,FALSE
+"Mujer","65+","Superior","2,500 a 14,999","Alto",28.5,25.4,32,8,FALSE
+"Mujer","65+","Superior","Menos de 2,500","Bajo",9.6,8.2,11.3,4,FALSE
+"Mujer","65+","Superior","Menos de 2,500","Medio bajo",13.6,11.7,15.7,9,FALSE
+"Mujer","65+","Superior","Menos de 2,500","Medio alto",16.2,13.9,18.7,0,FALSE
+"Mujer","65+","Superior","Menos de 2,500","Alto",21.4,18.7,24.4,4,FALSE

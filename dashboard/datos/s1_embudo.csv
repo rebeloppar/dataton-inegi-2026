@@ -1,79 +1,82 @@
 "grupo_var","grupo","orden","eslabon","paso","estimacion","li90","ls90","prueba"
-"Edad","18-24",1,"Hogar con internet",1,81,80.2,82,TRUE
-"Edad","18-24",1,"Usa internet",2,69.7,67.9,71.2,TRUE
-"Edad","18-24",1,"Compra en línea",3,28.3,27.6,30,TRUE
-"Edad","25-34",2,"Hogar con internet",1,68.6,66.7,69.1,TRUE
-"Edad","25-34",2,"Usa internet",2,59,57.3,59.7,TRUE
-"Edad","25-34",2,"Compra en línea",3,21.3,19.4,22.6,TRUE
-"Edad","35-44",3,"Hogar con internet",1,74,73.3,75.9,TRUE
-"Edad","35-44",3,"Usa internet",2,68.2,66.2,68.9,TRUE
-"Edad","35-44",3,"Compra en línea",3,30.8,29.4,31.5,TRUE
-"Edad","45-54",4,"Hogar con internet",1,77.4,75.5,78.5,TRUE
-"Edad","45-54",4,"Usa internet",2,58.2,57.4,58.8,TRUE
-"Edad","45-54",4,"Compra en línea",3,36.5,35.7,37.7,TRUE
-"Edad","55-64",5,"Hogar con internet",1,66.9,65,68.1,TRUE
-"Edad","55-64",5,"Usa internet",2,61.6,60,62.2,TRUE
-"Edad","55-64",5,"Compra en línea",3,25.3,23.7,27,TRUE
-"Edad","65+",6,"Hogar con internet",1,70.7,69.8,72.3,TRUE
-"Edad","65+",6,"Usa internet",2,60.7,59.7,61.9,TRUE
-"Edad","65+",6,"Compra en línea",3,21.3,20.3,23,TRUE
-"Escolaridad","Sin escolaridad",1,"Hogar con internet",1,69.5,67.8,70.3,TRUE
-"Escolaridad","Sin escolaridad",1,"Usa internet",2,52.4,51.4,53.8,TRUE
-"Escolaridad","Sin escolaridad",1,"Compra en línea",3,25.5,24,27.3,TRUE
-"Escolaridad","Primaria",2,"Hogar con internet",1,70.3,69.2,72.2,TRUE
-"Escolaridad","Primaria",2,"Usa internet",2,56,55.3,58,TRUE
-"Escolaridad","Primaria",2,"Compra en línea",3,21,19.3,22.3,TRUE
-"Escolaridad","Secundaria",3,"Hogar con internet",1,72.4,71.3,72.9,TRUE
-"Escolaridad","Secundaria",3,"Usa internet",2,57,56.4,57.9,TRUE
-"Escolaridad","Secundaria",3,"Compra en línea",3,29.3,28.5,31.2,TRUE
-"Escolaridad","Media superior",4,"Hogar con internet",1,64.2,63.4,65.6,TRUE
-"Escolaridad","Media superior",4,"Usa internet",2,48.2,46.7,49.2,TRUE
-"Escolaridad","Media superior",4,"Compra en línea",3,28.5,27.1,29.4,TRUE
-"Escolaridad","Superior",5,"Hogar con internet",1,87.3,86.4,89.1,TRUE
-"Escolaridad","Superior",5,"Usa internet",2,68.6,67.2,69.3,TRUE
-"Escolaridad","Superior",5,"Compra en línea",3,44,42.9,44.6,TRUE
-"Estrato","Bajo",1,"Hogar con internet",1,60.5,58.7,61.6,TRUE
-"Estrato","Bajo",1,"Usa internet",2,52.5,51.8,53.6,TRUE
-"Estrato","Bajo",1,"Compra en línea",3,27.3,26.3,27.9,TRUE
-"Estrato","Medio bajo",2,"Hogar con internet",1,66.3,65.5,67.1,TRUE
-"Estrato","Medio bajo",2,"Usa internet",2,56.1,55.5,58,TRUE
-"Estrato","Medio bajo",2,"Compra en línea",3,36.6,35.3,37.6,TRUE
-"Estrato","Medio alto",3,"Hogar con internet",1,73.4,72.7,74.4,TRUE
-"Estrato","Medio alto",3,"Usa internet",2,60.5,59.8,61.2,TRUE
-"Estrato","Medio alto",3,"Compra en línea",3,42.3,40.6,43.6,TRUE
-"Estrato","Alto",4,"Hogar con internet",1,73,71.8,74.5,TRUE
-"Estrato","Alto",4,"Usa internet",2,61.2,60.5,62,TRUE
-"Estrato","Alto",4,"Compra en línea",3,23.4,22.1,25.2,TRUE
-"Localidad","Menos de 2,500",1,"Hogar con internet",1,61,59.3,62.4,TRUE
-"Localidad","Menos de 2,500",1,"Usa internet",2,57.1,56,58.1,TRUE
-"Localidad","Menos de 2,500",1,"Compra en línea",3,26.7,26.1,28.6,TRUE
-"Localidad","2,500-14,999",2,"Hogar con internet",1,75.6,74.5,76.7,TRUE
-"Localidad","2,500-14,999",2,"Usa internet",2,60.3,59.1,61.9,TRUE
-"Localidad","2,500-14,999",2,"Compra en línea",3,44.5,43.9,45.2,TRUE
-"Localidad","15,000-99,999",3,"Hogar con internet",1,79,77.9,81,TRUE
-"Localidad","15,000-99,999",3,"Usa internet",2,74.4,73.3,76.2,TRUE
-"Localidad","15,000-99,999",3,"Compra en línea",3,52.4,50.9,53.8,TRUE
-"Localidad","100,000 y más",4,"Hogar con internet",1,75.7,75.1,77.3,TRUE
-"Localidad","100,000 y más",4,"Usa internet",2,67.6,67,68.3,TRUE
-"Localidad","100,000 y más",4,"Compra en línea",3,43.7,41.9,44.3,TRUE
-"Nacional","Nacional",1,"Hogar con internet",1,61.4,60.9,62,TRUE
-"Nacional","Nacional",1,"Usa internet",2,57.8,57.1,59.7,TRUE
-"Nacional","Nacional",1,"Compra en línea",3,24.9,23.6,26.2,TRUE
-"Región","Norte",1,"Hogar con internet",1,69,67.7,69.7,TRUE
-"Región","Norte",1,"Usa internet",2,64.1,63.1,64.8,TRUE
-"Región","Norte",1,"Compra en línea",3,36.9,35.4,37.6,TRUE
-"Región","Centro Norte",2,"Hogar con internet",1,73.7,72.8,74.7,TRUE
-"Región","Centro Norte",2,"Usa internet",2,61.1,59.8,61.7,TRUE
-"Región","Centro Norte",2,"Compra en línea",3,23.4,21.9,24.8,TRUE
-"Región","Centro",3,"Hogar con internet",1,78.9,77,79.6,TRUE
-"Región","Centro",3,"Usa internet",2,66.5,65.9,68.1,TRUE
-"Región","Centro",3,"Compra en línea",3,38.5,37.7,39.5,TRUE
-"Región","Sur",4,"Hogar con internet",1,79.9,78.4,81.7,TRUE
-"Región","Sur",4,"Usa internet",2,73.9,72.4,75.5,TRUE
-"Región","Sur",4,"Compra en línea",3,37.1,36.5,37.8,TRUE
-"Sexo","Hombre",1,"Hogar con internet",1,81.7,81,82.6,TRUE
-"Sexo","Hombre",1,"Usa internet",2,75.3,74.7,76.1,TRUE
-"Sexo","Hombre",1,"Compra en línea",3,32,30,33.1,TRUE
-"Sexo","Mujer",2,"Hogar con internet",1,79,77.7,79.8,TRUE
-"Sexo","Mujer",2,"Usa internet",2,70.6,69,71.7,TRUE
-"Sexo","Mujer",2,"Compra en línea",3,40,38.4,41.2,TRUE
+"Edad","18-24",1,"Hogar con internet",1,81,79.1,82.9,TRUE
+"Edad","18-24",1,"Usa internet",2,69.7,68,70.4,TRUE
+"Edad","18-24",1,"Compra en línea",3,28.3,26.4,29,TRUE
+"Edad","25-34",2,"Hogar con internet",1,68.6,67.9,69.7,TRUE
+"Edad","25-34",2,"Usa internet",2,59,57,59.6,TRUE
+"Edad","25-34",2,"Compra en línea",3,21.3,19.9,22.5,TRUE
+"Edad","35-44",3,"Hogar con internet",1,74,72.1,75.2,TRUE
+"Edad","35-44",3,"Usa internet",2,68.2,67.4,68.8,TRUE
+"Edad","35-44",3,"Compra en línea",3,30.8,30,32.5,TRUE
+"Edad","45-54",4,"Hogar con internet",1,77.4,75.5,79,TRUE
+"Edad","45-54",4,"Usa internet",2,58.2,56.6,59.4,TRUE
+"Edad","45-54",4,"Compra en línea",3,36.5,34.9,38.2,TRUE
+"Edad","55-64",5,"Hogar con internet",1,66.9,66,67.7,TRUE
+"Edad","55-64",5,"Usa internet",2,61.6,60.6,63,TRUE
+"Edad","55-64",5,"Compra en línea",3,25.3,24.3,27.1,TRUE
+"Edad","65+",6,"Hogar con internet",1,70.7,69,72.6,TRUE
+"Edad","65+",6,"Usa internet",2,60.7,59.7,62.7,TRUE
+"Edad","65+",6,"Compra en línea",3,21.3,19.8,22.6,TRUE
+"Escolaridad","Sin escolaridad",1,"Hogar con internet",1,69.5,68.4,70,TRUE
+"Escolaridad","Sin escolaridad",1,"Usa internet",2,52.4,51.7,53.3,TRUE
+"Escolaridad","Sin escolaridad",1,"Compra en línea",3,25.5,23.8,27.4,TRUE
+"Escolaridad","Primaria",2,"Hogar con internet",1,70.3,69.2,71.7,TRUE
+"Escolaridad","Primaria",2,"Usa internet",2,56,55.4,57,TRUE
+"Escolaridad","Primaria",2,"Compra en línea",3,21,20.2,21.9,TRUE
+"Escolaridad","Secundaria",3,"Hogar con internet",1,72.4,71.6,74.2,TRUE
+"Escolaridad","Secundaria",3,"Usa internet",2,57,55.5,57.7,TRUE
+"Escolaridad","Secundaria",3,"Compra en línea",3,29.3,27.9,29.9,TRUE
+"Escolaridad","Media superior",4,"Hogar con internet",1,64.2,63.3,65.3,TRUE
+"Escolaridad","Media superior",4,"Usa internet",2,48.2,46.8,49.3,TRUE
+"Escolaridad","Media superior",4,"Compra en línea",3,28.5,27.4,29.1,TRUE
+"Escolaridad","Superior",5,"Hogar con internet",1,87.3,85.5,88.1,TRUE
+"Escolaridad","Superior",5,"Usa internet",2,68.6,67.9,70.5,TRUE
+"Escolaridad","Superior",5,"Compra en línea",3,44,43,45,TRUE
+"Estrato","Bajo",1,"Hogar con internet",1,60.5,59.7,61.5,TRUE
+"Estrato","Bajo",1,"Usa internet",2,52.5,51.9,53.2,TRUE
+"Estrato","Bajo",1,"Compra en línea",3,27.3,26,28.6,TRUE
+"Estrato","Medio bajo",2,"Hogar con internet",1,66.3,65.6,67.8,TRUE
+"Estrato","Medio bajo",2,"Usa internet",2,56.1,55.4,56.9,TRUE
+"Estrato","Medio bajo",2,"Compra en línea",3,36.6,34.9,38.4,TRUE
+"Estrato","Medio alto",3,"Hogar con internet",1,73.4,72.2,74.8,TRUE
+"Estrato","Medio alto",3,"Usa internet",2,60.5,59.8,61.5,TRUE
+"Estrato","Medio alto",3,"Compra en línea",3,42.3,41,44.2,TRUE
+"Estrato","Alto",4,"Hogar con internet",1,73,71.3,74.1,TRUE
+"Estrato","Alto",4,"Usa internet",2,61.2,60.1,62.8,TRUE
+"Estrato","Alto",4,"Compra en línea",3,23.4,22.8,24.1,TRUE
+"Localidad","Menos de 2,500",1,"Hogar con internet",1,61,59.9,63,TRUE
+"Localidad","Menos de 2,500",1,"Usa internet",2,57.1,55.9,58.9,TRUE
+"Localidad","Menos de 2,500",1,"Compra en línea",3,26.7,26.1,28.1,TRUE
+"Localidad","2,500-14,999",2,"Hogar con internet",1,75.6,74.5,77.2,TRUE
+"Localidad","2,500-14,999",2,"Usa internet",2,60.3,59.2,61,TRUE
+"Localidad","2,500-14,999",2,"Compra en línea",3,44.5,43,45.1,TRUE
+"Localidad","15,000-99,999",3,"Hogar con internet",1,79,78.4,79.6,TRUE
+"Localidad","15,000-99,999",3,"Usa internet",2,74.4,73.8,76.3,TRUE
+"Localidad","15,000-99,999",3,"Compra en línea",3,52.4,50.6,53.7,TRUE
+"Localidad","100,000 y más",4,"Hogar con internet",1,75.7,75.2,76.4,TRUE
+"Localidad","100,000 y más",4,"Usa internet",2,67.6,66.9,68.3,TRUE
+"Localidad","100,000 y más",4,"Compra en línea",3,43.7,42.4,44.4,TRUE
+"Nacional","Nacional",1,"Hogar con internet",1,61.4,60.1,62.4,TRUE
+"Nacional","Nacional",1,"Usa internet",2,57.8,56.8,58.4,TRUE
+"Nacional","Nacional",1,"Compra en línea",3,24.9,23.4,26.3,TRUE
+"Región","Norte",1,"Hogar con internet",1,69,68.1,69.7,TRUE
+"Región","Norte",1,"Usa internet",2,64.1,62.8,65.7,TRUE
+"Región","Norte",1,"Compra en línea",3,36.9,35.4,37.9,TRUE
+"Región","Norte-occidente",2,"Hogar con internet",1,73.7,71.8,75.5,TRUE
+"Región","Norte-occidente",2,"Usa internet",2,61.1,60.5,62.7,TRUE
+"Región","Norte-occidente",2,"Compra en línea",3,23.4,22.6,24.1,TRUE
+"Región","Centro-norte",3,"Hogar con internet",1,78.9,77.4,79.8,TRUE
+"Región","Centro-norte",3,"Usa internet",2,66.5,65,67.3,TRUE
+"Región","Centro-norte",3,"Compra en línea",3,38.5,37.9,39.6,TRUE
+"Región","Centro",4,"Hogar con internet",1,79.9,79.2,80.7,TRUE
+"Región","Centro",4,"Usa internet",2,73.9,73.3,75,TRUE
+"Región","Centro",4,"Compra en línea",3,37.1,35.1,38.3,TRUE
+"Región","Sur",5,"Hogar con internet",1,81.7,80.4,83.5,TRUE
+"Región","Sur",5,"Usa internet",2,75.3,73.7,76.9,TRUE
+"Región","Sur",5,"Compra en línea",3,32,30.4,34,TRUE
+"Sexo","Hombre",1,"Hogar con internet",1,79,78,79.6,TRUE
+"Sexo","Hombre",1,"Usa internet",2,70.6,69.1,71.3,TRUE
+"Sexo","Hombre",1,"Compra en línea",3,40,38.3,41.8,TRUE
+"Sexo","Mujer",2,"Hogar con internet",1,66.1,65.6,68.1,TRUE
+"Sexo","Mujer",2,"Usa internet",2,61.5,60.8,62.8,TRUE
+"Sexo","Mujer",2,"Compra en línea",3,24.6,23.3,26.6,TRUE

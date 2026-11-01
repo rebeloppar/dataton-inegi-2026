@@ -52,7 +52,7 @@ Si necesitas una columna o categoría nueva, avisa a Rebeca: cambia la gráfica,
 | `s3_razones.csv` | B | `grupo_var, grupo, orden, razon, estimacion, li90, ls90, prueba` | % de quienes no compraron que da cada razón |
 | `s3_problemas.csv` | B | `grupo_var, grupo, orden, problema, estimacion, li90, ls90, prueba` | P5. Incluir la fila «Algún problema». % de compradores |
 | `s4_entidades.csv` **(real)** | C | `cve_ent, estimacion, li90, ls90, prueba` | `cve_ent` como número (1 a 32). En % |
-| `s4_regiones.csv` | C | `region, referencia, tipo, estimacion, li90, ls90, prueba` | `tipo`: Bruta o Ajustada. Diferencia frente a la región de referencia, en pp |
+| `s4_regiones.csv` | C | `region, referencia, tipo, estimacion, li90, ls90, prueba` | `tipo`: Bruta o Ajustada. Diferencia frente a la región de referencia, en pp. Regiones del CEEY: Norte, Norte-occidente, Centro-norte, Centro, Sur (variable `REGION` de `R/prep_endutih.R`) |
 | `s5_escenarios.csv` | C | `anio, escenario, estimacion, li90, ls90, prueba` | `escenario`: Observado, Inercia, Solo tiendas, Solo habilidades, Puerta abierta (los mismos de `s5_palancas.csv`, decisión 60). Observado sin intervalo (NA) |
 | `s1_tendencia.csv` *(opcional)* | A | `categoria, anio, estimacion, prueba` | P3 en el tiempo, con tabulados publicados |
 | `s2_hogar.csv` *(opcional)* | A | `composicion, orden, sexo, estimacion, li90, ls90, prueba` | P2: composición del hogar, por sexo |
@@ -70,7 +70,7 @@ Archivos de texto y fijos (no son de prueba):
 - `estrategias.csv`: estrategias públicas y privadas (`tipo, actor, accion, por_que`).
 - `hallazgos.csv` lleva además una columna `cifra` (la cifra que se destaca a la izquierda; puede ir vacía).
 - `como_se_calculo.csv`: las tarjetas «Cómo se calculó».
-- `entidades.csv`: nombre, abreviatura, región provisional y punto central de cada entidad.
+- `entidades.csv`: nombre, abreviatura, región del CEEY (decisión 62) y punto central de cada entidad.
 - `mapa_estados.csv`: contornos simplificados de las 32 entidades (para dibujar el mapa sin paquetes geográficos).
 
 ## Por qué así

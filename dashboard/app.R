@@ -67,6 +67,9 @@ col <- list(
   reja = "#ECEEEA", azul = "#0F72A8", verde = "#3E9A66", morado = "#6A4C93",
   ocre = "#B97A1C", calido = "#F8E2CF", frio = "#EEF3EE"
 )
+# Las 5 regiones del CEEY: validada en todos los pares (es un mapa), decisión 62
+col_region <- c(Norte = "#0F72A8", `Norte-occidente` = "#3E9A66", `Centro-norte` = "#B97A1C",
+                Centro = "#BB1B86", Sur = "#8F2432")
 rampa <- c("#EEF3EE", "#F3F2E2", "#FBEFD0", "#F7DCC0", "#F0BEB2", "#E2928C")
 
 theme_set(
@@ -93,6 +96,7 @@ theme_set(
 pct <- function(x) paste0(x, " %")
 pp  <- function(x) ifelse(x > 0, paste0("+", x), as.character(x))
 punto <- function(...) geom_point(shape = 21, colour = "white", stroke = 1.3, ...)
+`%|%` <- function(x, y) ifelse(is.na(x), y, x)
 sin_ejes <- theme(axis.text = element_blank(), panel.grid.major = element_blank(),
                   panel.border = element_blank())
 
@@ -698,14 +702,22 @@ server <- function(input, output, session) {
         scale_fill_gradientn(colours = rev(rampa), name = "% que compra",
                              guide = guide_colourbar(barwidth = 12, barheight = 0.6))
     } else {
+      # Regiones del CEEY (decisión 62). Paleta de 5 validada en todos los pares
+      # (daltonismo y contraste); además se rotula cada región sobre el mapa.
+      cr <- aggregate(cbind(long_c, lat_c) ~ region, entidades, mean)
+      # Centro y Centro-norte quedan muy juntas: se separan sus rótulos
+      cr$long_c <- cr$long_c + c(`Centro-norte` = -1.8, Centro = 1.2)[cr$region] %|% 0
+      cr$lat_c  <- cr$lat_c  + c(`Centro-norte` = 0.3, Centro = -0.6)[cr$region] %|% 0
       p <- p + geom_polygon(aes(fill = region), colour = "white", linewidth = 0.35) +
-        scale_fill_manual(values = c(Norte = col$azul, `Centro Norte` = col$verde,
-                                     Centro = col$morado, Sur = col$ocre), name = NULL)
+        scale_fill_manual(values = col_region, name = NULL, guide = "none") +
+        geom_label(data = cr, aes(long_c, lat_c, label = region), inherit.aes = FALSE,
+                   size = 3.6, fontface = "bold", colour = col$tinta, fill = "white",
+                   label.size = 0, alpha = 0.85)
     }
     p + coord_quickmap(xlim = c(-117.5, -86.5), ylim = c(14.4, 32.8), expand = FALSE) +
       labs(title = "Compra en línea por entidad",
            subtitle = "% de usuarios de internet de 18+ que compró en línea",
-           caption = "Más salmón = menos compra. Regionalización provisional (frente C).", x = NULL, y = NULL) +
+           caption = if (input$s4_color == "estimacion") "Más salmón = menos compra. Regiones del CEEY (ESRU-EMOVI)." else "Regiones del CEEY (ESRU-EMOVI 2017).", x = NULL, y = NULL) +
       sin_ejes
   })
 
@@ -725,7 +737,7 @@ server <- function(input, output, session) {
     d$etiqueta <- paste(d$region, "vs.", d$referencia)
     d$tipo <- factor(ifelse(d$tipo == "Bruta", "Observada", "Con controles"), c("Observada", "Con controles"))
     barras_brecha(d, "etiqueta", "tipo", c(Observada = col$gris_claro, `Con controles` = col$azul),
-          "Brecha por región", "Diferencia en el % que compra frente al Centro",
+          "Brecha por región", paste("Diferencia en el % que compra frente a la región", unique(d$referencia)[1]),
           "Con controles: comparando personas iguales\nen escolaridad, edad, sexo y estrato.")
   })
 

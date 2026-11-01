@@ -81,6 +81,18 @@ usu$DISCAPACIDAD <- factor(ifelse(rowSums(dif) > 0, "Sí", "No"),
 
 usu$ENTIDAD <- factor(as.numeric(usu$CVE_ENT), levels = 1:32, labels = entidades)
 
+# Región: regionalización del CEEY (Nota sobre la regionalización ESRU-EMOVI
+# 2017), decisión 62. Reemplaza la región temporal de Banxico (decisión 48).
+# Posición = clave de entidad (1 Aguascalientes ... 32 Zacatecas).
+regiones_ceey <- c("Centro-norte", "Norte", "Norte-occidente", "Sur", "Norte",
+  "Centro-norte", "Sur", "Norte", "Centro", "Norte-occidente", "Centro", "Sur",
+  "Centro", "Centro-norte", "Centro", "Centro-norte", "Centro", "Norte-occidente",
+  "Norte", "Sur", "Centro", "Centro", "Sur", "Centro-norte", "Norte-occidente",
+  "Norte", "Sur", "Norte", "Centro", "Sur", "Sur", "Norte-occidente")
+usu$REGION <- factor(regiones_ceey[as.numeric(usu$CVE_ENT)],
+                     levels = c("Norte", "Norte-occidente", "Centro-norte", "Centro", "Sur"))
+stopifnot(!anyNA(usu$REGION))   # las 32 entidades quedan asignadas
+
 # --- Razones para no comprar (P7_22_1 a P7_22_10), solo para quien no compró ---
 razones <- c(
   P7_22_1  = "Prefiere en persona",

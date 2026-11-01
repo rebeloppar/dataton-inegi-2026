@@ -36,7 +36,7 @@ grupos <- list(
   Sexo         = c("Hombre", "Mujer"),
   Localidad    = c("Menos de 2,500", "2,500-14,999", "15,000-99,999", "100,000 y más"),
   Estrato      = c("Bajo", "Medio bajo", "Medio alto", "Alto"),
-  Región       = c("Norte", "Centro Norte", "Centro", "Sur")   # provisional (frente C)
+  Región       = c("Norte", "Norte-occidente", "Centro-norte", "Centro", "Sur")   # CEEY, decisión 62
 )
 grupos_df <- do.call(rbind, lapply(names(grupos), function(g)
   data.frame(grupo_var = g, grupo = grupos[[g]], orden = seq_along(grupos[[g]]))))
@@ -96,10 +96,10 @@ guardar(s3p, "s3_problemas.csv")
 # s4_entidades.csv ya es real (05_exportar_dashboard.R).
 
 # Brecha por región frente a la región con mayor compra, bruta y con controles
-s4r <- data.frame(region = rep(c("Norte", "Centro Norte", "Sur"), 2),
+s4r <- data.frame(region = rep(c("Norte", "Norte-occidente", "Centro-norte", "Sur"), 2),
                   referencia = "Centro",
-                  tipo = rep(c("Bruta", "Ajustada"), each = 3),
-                  estimacion = c(-3, -8, -18, -1, -4, -7))
+                  tipo = rep(c("Bruta", "Ajustada"), each = 4),
+                  estimacion = c(-3, -9, -6, -18, -1, -4, -3, -7))
 guardar(con_ic(s4r, ancho = 3, acotar = FALSE), "s4_regiones.csv")
 
 # --- Sección 5: escenarios 2030 y simulador (frentes C y D) ------------------

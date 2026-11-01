@@ -19,12 +19,13 @@ actividades <- c(
   a_5anios    = "Usa internet hace más de 5 años",       # P7_7
   a_busca     = "Busca en línea información de bienes o servicios",  # P7_10_7
   a_tutorial  = "Ve tutoriales",                          # P7_11_3
+  a_apps      = "Descargó apps o software",              # P7_17_1 (capacidad digital, Vlaicu 2025)
   a_vende     = "Ha vendido por internet",               # P7_19
   a_paga      = "Ha pagado algo por internet",           # P7_28
   a_banca     = "Usa banca en línea",                    # P7_33
   a_tramite   = "Hace trámites de gobierno en línea")    # P7_35_4
 usu$a_diario <- uno("P7_3");   usu$a_5anios <- as.numeric(usu$P7_7 %in% "4")
-usu$a_busca  <- uno("P7_10_7"); usu$a_tutorial <- uno("P7_11_3")
+usu$a_busca  <- uno("P7_10_7"); usu$a_tutorial <- uno("P7_11_3"); usu$a_apps <- uno("P7_17_1")
 usu$a_vende  <- uno("P7_19");   usu$a_paga <- uno("P7_28")
 usu$a_banca  <- uno("P7_33");   usu$a_tramite <- uno("P7_35_4")
 
@@ -44,7 +45,7 @@ usu$perfil <- factor(usu$perfil, levels = c("Compra", "No compra: prefiere en pe
   "Referencia: prefiere en persona, educación superior"))
 
 dis <- update(dis, perfil = usu$perfil, a_diario = usu$a_diario, a_5anios = usu$a_5anios,
-              a_busca = usu$a_busca, a_tutorial = usu$a_tutorial, a_vende = usu$a_vende,
+              a_busca = usu$a_busca, a_tutorial = usu$a_tutorial, a_apps = usu$a_apps, a_vende = usu$a_vende,
               a_paga = usu$a_paga, a_banca = usu$a_banca, a_tramite = usu$a_tramite)
 r <- svyby(as.formula(paste("~", paste(names(actividades), collapse = " + "))), ~perfil,
            subset(dis, !is.na(perfil)), svymean)

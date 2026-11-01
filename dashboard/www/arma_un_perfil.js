@@ -16,6 +16,11 @@ for(const k in OPC){const g=document.createElement("div");g.className="ap-grupo"
   b.onclick=()=>{sel[k]=v;g.querySelectorAll(".ap-pill").forEach(x=>x.classList.remove("on"));b.classList.add("on");pinta();};
   g.querySelector(".ap-pills").appendChild(b);});
  ctrl.appendChild(g);}
+// Botón para borrar todas las selecciones y volver a la figura vacía
+const limpiar=document.createElement("button");limpiar.className="ap-limpiar";limpiar.type="button";
+limpiar.textContent="Borrar todos los filtros";
+limpiar.onclick=()=>{for(const k in sel)delete sel[k];ctrl.querySelectorAll(".ap-pill.on").forEach(x=>x.classList.remove("on"));pinta();};
+ctrl.appendChild(limpiar);
 
 const PELO=["#3A2A20","#3A2A20","#4A3A30","#6E6259","#A39C95","#DCD9D4"];
 function figura(){

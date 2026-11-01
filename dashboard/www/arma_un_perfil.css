@@ -7,8 +7,8 @@
 .ap-centro{display:flex;flex-direction:column;align-items:center}
 .ap-figura{width:180px;height:225px}
 .ap-insignias{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 12px;margin-top:6px;max-width:330px}
-.ap-ins{display:flex;flex-direction:column;align-items:center;width:76px;text-align:center;font-size:.75rem;color:#6B7280}
-.ap-ins svg{width:42px;height:36px}
+.ap-ins{display:flex;flex-direction:column;align-items:center;width:88px;text-align:center;font-size:.75rem;color:#6B7280}
+.ap-ins svg{width:58px;height:50px}
 .ap-num{font-size:3.6rem;font-weight:700;line-height:1;color:#0F72A8}
 .ap-lab{font-weight:700;margin-bottom:6px}
 .ap-barra{height:14px;background:#EEF3EE;border-radius:7px;position:relative;margin:14px 0 4px}

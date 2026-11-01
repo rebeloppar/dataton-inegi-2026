@@ -3,9 +3,11 @@
 # pestaña interactiva «Arma un perfil»). Sustituye a s2_perfiles.csv.
 # Modelo completo de la regresión (04_regresion.R, bloque 4): logit con diseño
 # muestral, usuarios de internet de 18+. Se predice para cada combinación de
-# sexo × edad × escolaridad × tamaño de localidad × estrato, con indígena = No y
-# discapacidad = No (decisión 72). Intervalo al 90 % en escala logit,
-# transformado. n = casos en la encuesta con esa combinación exacta.
+# sexo × edad × escolaridad × tamaño de localidad × estrato × indígena ×
+# discapacidad (decisión 72). Intervalo al 90 % en escala logit,
+# transformado. n = casos en la encuesta con esa combinación de sexo, edad,
+# escolaridad, localidad y estrato (sin separar por indígena ni discapacidad,
+# porque con siete características casi todas las celdas quedan vacías).
 # Escribe: dashboard/datos/s2_perfil_prob.csv
 # =============================================================================
 
@@ -17,7 +19,8 @@ m <- svyglm(compra ~ SEXO + GRUPO_EDAD + INDIGENA + DISCAPACIDAD + ESCOLARIDAD +
 
 malla <- expand.grid(SEXO = levels(usu$SEXO), GRUPO_EDAD = levels(usu$GRUPO_EDAD),
                      ESCOLARIDAD = levels(usu$ESCOLARIDAD), TLOC = levels(usu$TLOC),
-                     ESTRATO = levels(usu$ESTRATO), INDIGENA = "No", DISCAPACIDAD = "No")
+                     ESTRATO = levels(usu$ESTRATO), INDIGENA = levels(usu$INDIGENA),
+                     DISCAPACIDAD = levels(usu$DISCAPACIDAD))
 for (v in names(malla)) malla[[v]] <- factor(malla[[v]], levels = levels(usu[[v]]))
 p <- predict(m, newdata = malla, type = "link", se.fit = TRUE)
 eta <- as.numeric(p); se <- sqrt(attr(p, "var"))
@@ -32,10 +35,11 @@ malla <- merge(malla, n, all.x = TRUE); malla$n[is.na(malla$n)] <- 0
 
 out <- data.frame(sexo = malla$SEXO, edad = malla$GRUPO_EDAD, escolaridad = malla$ESCOLARIDAD,
                   localidad = malla$TLOC, estrato = malla$ESTRATO,
+                  indigena = malla$INDIGENA, discapacidad = malla$DISCAPACIDAD,
                   estimacion = malla$estimacion, li90 = malla$li90, ls90 = malla$ls90,
                   n = malla$n, prueba = FALSE)
 write.csv(out, file.path("dashboard", "datos", "s2_perfil_prob.csv"), row.names = FALSE,
           fileEncoding = "UTF-8")
 cat("Combinaciones:", nrow(out), "| con menos de 20 casos:", sum(out$n < 20), "\n")
 print(summary(out$estimacion))
-print(subset(out, sexo == "Mujer" & edad == "35-44" & estrato == "Bajo")[1:6, ])
+print(subset(out, sexo == "Mujer" & edad == "35-44" & estrato == "Bajo" & escolaridad == "Preescolar o primaria" & localidad == "100 mil y más"))

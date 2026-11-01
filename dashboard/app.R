@@ -29,7 +29,7 @@ eslabon    <- leer("s1_brechas_eslabon.csv")
 efectos    <- leer("s2_efectos.csv")
 bloques    <- leer("s2_bloques.csv")
 robustez   <- leer("s2_robustez.csv")
-perfiles   <- leer("s2_perfiles.csv")
+perfil_prob <- leer("s2_perfil_prob.csv")
 razones    <- leer("s3_razones.csv")
 problemas  <- leer("s3_problemas.csv")
 genero     <- leer("s3_genero.csv")
@@ -55,7 +55,7 @@ hallazgos   <- leer("hallazgos.csv")
 propuesta   <- leer("propuesta.csv")
 estrategias <- leer("estrategias.csv")
 
-hay_prueba <- any(sapply(list(embudo, categorias, eslabon, efectos, bloques, robustez, perfiles, razones, genero,
+hay_prueba <- any(sapply(list(embudo, categorias, eslabon, efectos, bloques, robustez, perfil_prob, razones, genero,
                               problemas, entidades, regiones, escen, simul, palancas,
                               tendencia, conexion, hogar, ritmo, comercios, mercado),
                          function(d) !is.null(d) && isTRUE(any(d$prueba))))
@@ -242,6 +242,29 @@ opcional <- function(datos, salida, alto, id_calculo, archivo, quien) {
   else grafica(salida, alto, id_calculo, archivo)
 }
 
+# «Arma un perfil» (decisión 72): la persona elige características y ve la
+# probabilidad predicha por el modelo completo. Todo corre en el navegador
+# (www/arma_un_perfil.js) con las 3,840 combinaciones de s2_perfil_prob.csv.
+arma_un_perfil <- function() {
+  claves <- paste(perfil_prob$sexo, perfil_prob$edad, perfil_prob$escolaridad, perfil_prob$localidad,
+                  perfil_prob$estrato, perfil_prob$indigena, perfil_prob$discapacidad, sep = "|")
+  valores <- lapply(seq_len(nrow(perfil_prob)), function(i)
+    c(perfil_prob$estimacion[i], perfil_prob$li90[i], perfil_prob$ls90[i], perfil_prob$n[i]))
+  datos <- jsonlite::toJSON(setNames(valores, claves), auto_unbox = FALSE)
+  tagList(
+    tags$link(rel = "stylesheet", href = "arma_un_perfil.css"),
+    p(class = "text-muted mt-3", "Elige las características de una persona usuaria de internet de 18+ y mira qué tan probable es que compre en línea, según el modelo completo de la regresión."),
+    div(class = "ap-card",
+        div(id = "ap-controles"),
+        div(class = "ap-centro", tags$svg(class = "ap-figura", id = "ap-fig", viewBox = "0 0 240 300"),
+            div(class = "ap-insignias", id = "ap-ins")),
+        div(id = "ap-res")),
+    p(class = "ap-nota", "Probabilidad predicha por el modelo logit con diseño muestral (ENDUTIH 2025), con sexo, edad, escolaridad, tamaño de localidad, estrato, indígena (autoadscripción) y discapacidad (mucha dificultad o no poder hacer alguna actividad básica). Línea vertical negra: promedio nacional (43.7 %)."),
+    tags$script(HTML(paste0("window.PERFIL_DATOS=", datos, ";"))),
+    tags$script(src = "arma_un_perfil.js"),
+    pie_grafica("s2_perfil_prob", "s2_perfil_prob.csv"))
+}
+
 cabecera <- function(num, afirmacion, apoyo) {
   div(class = "cabecera", div(class = "num", num),
       div(h2(afirmacion), p(apoyo)))
@@ -352,8 +375,7 @@ ui <- page_navbar(
         grafica("g_bloques", "680px", "s2_bloques", "s2_bloques.csv")),
       nav_panel("¿Se sostiene en las ciudades?",
         grafica("g_robustez", "520px", "s2_robustez", "s2_robustez.csv")),
-      nav_panel("Perfiles",
-        grafica("g_perfiles", "440px", "s2_perfiles", "s2_perfiles.csv")),
+      nav_panel("Arma un perfil", arma_un_perfil()),
       nav_panel("Composición del hogar",
         opcional(hogar, "g_hogar", "360px", "s2_hogar", "s2_hogar.csv",
                  "Frente A: compra según la composición del hogar, por sexo.")))),
@@ -665,20 +687,6 @@ server <- function(input, output, session) {
                   "¿Los resultados se sostienen si solo vemos ciudades?",
                   "Mismo modelo completo, en todo el país y solo en ciudades de 100 mil habitantes o más",
                   "En ciudades el estrato no se confunde con lo rural. El estrato baja (17.7 a 14.5 pp): parte de su efecto era ruralidad.\nEscolaridad, edad y género casi no cambian.")
-  })
-
-  output$g_perfiles <- graficar({
-    d <- perfiles
-    d$perfil <- factor(d$perfil, d$perfil[order(d$estimacion)])
-    ggplot(d, aes(estimacion, perfil)) +
-      geom_segment(aes(x = 0, xend = estimacion, yend = perfil), colour = col$borde, linewidth = 1.4) +
-      geom_errorbar(aes(xmin = li90, xmax = ls90), width = 0.2, orientation = "y", colour = col$gris_claro) +
-      punto(fill = col$azul, size = 11) +
-      geom_text(aes(label = sprintf("%.0f", estimacion)), colour = "white", fontface = "bold", size = 3.6) +
-      scale_x_continuous(limits = c(0, 100), labels = pct, expand = c(0, 2)) +
-      labs(title = "Probabilidad de comprar, por perfil", subtitle = "Predicha por el modelo completo",
-           caption = "Perfiles por definir (decisión 24).", x = NULL, y = NULL) +
-      theme(panel.grid.major.y = element_blank())
   })
 
   output$g_hogar <- graficar({

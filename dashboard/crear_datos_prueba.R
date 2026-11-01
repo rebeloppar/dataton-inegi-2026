@@ -50,10 +50,7 @@ cat("Creando datos de prueba en", dir_datos, "\n")
 # --- Sección 2 (frentes A y B) ------------------------------------------------
 # Las brechas del modelo (s2_efectos, s2_bloques, s2_robustez) ya son reales:
 # las escribe analisis/diagnostico/05_exportar_dashboard.R.
-s2p <- data.frame(perfil = c("Perfil A (por definir)", "Perfil B (por definir)",
-                             "Perfil C (por definir)", "Perfil D (por definir)"),
-                  estimacion = c(12, 35, 58, 81))
-guardar(con_ic(s2p, ancho = 5), "s2_perfiles.csv")
+# s2_perfil_prob.csv (Arma un perfil) es real: analisis/D_propuesta/08_perfiles_interactivos.R
 
 # --- Sección 3: razones de no compra (frente B) ------------------------------
 razones <- c("Prefiere en persona", "No le interesa", "No sabe cómo",

@@ -48,7 +48,7 @@ Si necesitas una columna o categoría nueva, avisa a Rebeca: cambia la gráfica,
 | `s2_efectos.csv` **(real)** | A, B | `factor, orden_factor, etiqueta, estimacion, li90, ls90, prueba` | Efectos marginales del modelo completo, en pp. Lo escribe `analisis/diagnostico/05_exportar_dashboard.R` |
 | `s2_bloques.csv` **(real)** | A, B | `brecha, paso, nombre_paso, estimacion, li90, ls90, prueba` | La regresión paso a paso (4 bloques). Mismo script |
 | `s2_robustez.csv` **(real)** | A, B | `etiqueta, version, estimacion, prueba` | Modelo completo: todo el país vs. solo ciudades de 100 mil+. Mismo script |
-| `s2_perfiles.csv` | A | `perfil, estimacion, li90, ls90, prueba` | Probabilidad predicha en % |
+| `s2_perfil_prob.csv` **(real)** | D | `sexo, edad, escolaridad, localidad, estrato, indigena, discapacidad, estimacion, li90, ls90, n, prueba` | «Arma un perfil»: probabilidad predicha por el modelo completo para cada una de las 3,840 combinaciones. `n` = casos con esa combinación de sexo, edad, escolaridad, localidad y estrato. Lo escribe `analisis/D_propuesta/08_perfiles_interactivos.R` |
 | `s3_razones.csv` | B | `grupo_var, grupo, orden, razon, estimacion, li90, ls90, prueba` | % de quienes no compraron que da cada razón |
 | `s3_problemas.csv` | B | `grupo_var, grupo, orden, problema, estimacion, li90, ls90, prueba` | P5. Incluir la fila «Algún problema». % de compradores |
 | `s4_entidades.csv` **(real)** | C | `cve_ent, estimacion, li90, ls90, prueba` | `cve_ent` como número (1 a 32). En % |

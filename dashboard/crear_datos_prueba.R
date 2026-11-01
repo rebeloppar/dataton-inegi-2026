@@ -78,24 +78,81 @@ s4r <- data.frame(region = rep(c("Norte", "Norte-occidente", "Centro-norte", "Su
                   estimacion = c(-3, -9, -6, -18, -1, -4, -3, -7))
 guardar(con_ic(s4r, ancho = 3, acotar = FALSE), "s4_regiones.csv")
 
-# --- Sección 5: escenarios 2030 y simulador (frentes C y D) ------------------
-hist <- data.frame(anio = 2019:2025, escenario = "Observado",
-                   estimacion = round(seq(25, 44, length.out = 7), 1))
-# Los cuatro escenarios son las cuatro posiciones de las palancas (s5_palancas.csv)
-proy <- do.call(rbind, lapply(c("Inercia", "Solo tiendas", "Solo habilidades", "Puerta abierta"), function(e) {
-  extra <- c(Inercia = 0, `Solo tiendas` = 3, `Solo habilidades` = 4, `Puerta abierta` = 9)[[e]]
-  data.frame(anio = 2026:2030, escenario = e,
-             estimacion = round(44 + (1:5) * 2.2 + (1:5) / 5 * extra, 1))
-}))
-s5 <- rbind(hist, proy)
-s5 <- con_ic(s5, ancho = 1)
-s5$li90[s5$escenario == "Observado"] <- NA   # la serie publicada no trae intervalo
-s5$ls90[s5$escenario == "Observado"] <- NA
-guardar(s5, "s5_escenarios.csv")
+# --- Sección 5 (frente D) ---------------------------------------------------
+# s5_simulador.csv es real («Lo que está en juego»): analisis/D_propuesta/09_simulador.R
 
-# s5_simulador.csv es real: analisis/D_propuesta/09_simulador.R
+# --- Sección 6: prospectiva 2030 (frentes C, B y D; decisión 76) ------------
+# Solo el futuro probable lleva números. Los escenarios se escriben con
+# palabras: no hay evidencia de cuántas personas cambiaría cada uno.
 
-# s5_palancas.csv (supuestos declarados, decisión 74): analisis/D_propuesta/09_simulador.R
+# Cono de futuros (frente C): serie observada, futuro probable (tendencia con
+# rango) y efecto demográfico (solo reemplazo generacional)
+obs <- data.frame(anio = 2019:2025, serie = "Observado",
+                  estimacion = round(seq(25, 44, length.out = 7), 1), li90 = NA, ls90 = NA)
+prob <- data.frame(anio = 2025:2030, serie = "Probable (tendencia)",
+                   estimacion = round(44 + (0:5) * 2.2, 1))
+prob$li90 <- round(prob$estimacion - (0:5) * 1.4, 1); prob$ls90 <- round(prob$estimacion + (0:5) * 1.4, 1)
+dem <- data.frame(anio = 2025:2030, serie = "Solo efecto demográfico",
+                  estimacion = round(44 + (0:5) * 0.8, 1), li90 = NA, ls90 = NA)
+s6c <- rbind(obs, prob, dem); s6c$prueba <- TRUE
+guardar(s6c, "s6_cono.csv")
+
+# Impulsores y matriz de influencia y dependencia (MICMAC, frentes B y D)
+s6i <- data.frame(
+  impulsor = c("Habilidades digitales de quienes no compran", "Tiendas integradas al canal digital",
+               "Confianza en pagar en línea", "Cobertura de internet móvil", "Cuentas y tarjetas (inclusión financiera)",
+               "Costo y alcance de los envíos fuera de las ciudades", "Reglas de comercio electrónico y protección al consumidor",
+               "Reemplazo generacional", "Programas públicos de inclusión digital", "Precio de los datos móviles"),
+  categoria = c("Social", "Económico", "Social", "Tecnológico", "Económico", "Económico", "Legal",
+                "Social", "Político", "Económico"),
+  influencia = c(26, 24, 18, 15, 12, 14, 9, 20, 11, 10),
+  dependencia = c(14, 12, 22, 9, 16, 11, 6, 4, 18, 8),
+  prueba = TRUE)
+guardar(s6i, "s6_impulsores.csv")
+
+# Ejes de los escenarios (los dos impulsores más influyentes e inciertos)
+s6e <- data.frame(eje = 1:2,
+  nombre = c("Habilidades y confianza de quienes hoy no compran",
+             "Integración de la tienda física con el canal digital"),
+  polo_alto = c("Aprenden y confían", "La tienda acompaña la compra en línea"),
+  polo_bajo = c("Siguen sin saber cómo", "La tienda sigue aparte"),
+  prueba = TRUE)
+guardar(s6e, "s6_ejes.csv")
+
+# Cuatro escenarios: narrativa corta, sin cifras (decisión 76)
+s6s <- data.frame(
+  eje1 = c("alto", "alto", "bajo", "bajo"), eje2 = c("bajo", "alto", "bajo", "alto"),
+  nombre = c("Solo habilidades", "Puerta abierta", "Inercia", "Solo tiendas"),
+  narrativa = c("Por escribir: más personas saben comprar, pero no tienen cerca una tienda que las acompañe.",
+                "Por escribir: el escenario preferible, al que apunta la propuesta.",
+                "Por escribir: sigue la tendencia; el grupo se queda atrás.",
+                "Por escribir: las cadenas integran la tienda, pero quien no sabe cómo no se acerca."),
+  prueba = TRUE)
+guardar(s6s, "s6_escenarios.csv")
+
+# Retroproyección: qué tiene que pasar, año por año, para llegar al preferible (D)
+s6r <- data.frame(anio = c(2026, 2027, 2028, 2030),
+  hito = c("Por definir: piloto en tiendas con kiosco frente a tiendas comparables",
+           "Por definir: resultados del piloto; decidir si se amplía",
+           "Por definir: ampliación a más tiendas y cadenas",
+           "Puerta abierta: el escenario preferible"),
+  como_se_sabe = c("Por definir", "Por definir", "Por definir", "Por definir"),
+  prueba = TRUE)
+guardar(s6r, "s6_retroproyeccion.csv")
+
+# Señales tempranas (frente B): indicadores que dirían hacia qué escenario vamos.
+# Las líneas base marcadas prueba = FALSE ya son reales (ENDUTIH 2025).
+s6n <- data.frame(
+  senal = c("Más gente del grupo compra en línea", "Menos gente dice «no sé cómo»",
+            "Más compradores recogen en tienda", "Por definir"),
+  indicador = c("% de usuarios del grupo (hasta secundaria) que compró en línea",
+                "% de quienes no compran en el grupo que dice «no sé cómo»",
+                "% de compradores que recoge en el punto de venta", "Por definir"),
+  linea_base = c("21.9 % (ENDUTIH 2025)", "22.7 % (ENDUTIH 2025)", "18.5 % (ENDUTIH 2025)", "—"),
+  apunta_a = c("Cualquier escenario con una puerta abierta", "Solo habilidades o Puerta abierta",
+               "Solo tiendas o Puerta abierta", "—"),
+  prueba = c(FALSE, FALSE, FALSE, TRUE))
+guardar(s6n, "s6_senales.csv")
 
 # --- Opcionales (deseables): si un frente no los entrega, su pestaña queda ----
 # --- como "pendiente". Borra el archivo para ver cómo se ve sin él.         ----

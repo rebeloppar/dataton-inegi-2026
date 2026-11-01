@@ -1,0 +1,20 @@
+"anio","serie","estimacion","li90","ls90","prueba"
+2019,"Observado",25,NA,NA,TRUE
+2020,"Observado",28.2,NA,NA,TRUE
+2021,"Observado",31.3,NA,NA,TRUE
+2022,"Observado",34.5,NA,NA,TRUE
+2023,"Observado",37.7,NA,NA,TRUE
+2024,"Observado",40.8,NA,NA,TRUE
+2025,"Observado",44,NA,NA,TRUE
+2025,"Probable (tendencia)",44,44,44,TRUE
+2026,"Probable (tendencia)",46.2,44.8,47.6,TRUE
+2027,"Probable (tendencia)",48.4,45.6,51.2,TRUE
+2028,"Probable (tendencia)",50.6,46.4,54.8,TRUE
+2029,"Probable (tendencia)",52.8,47.2,58.4,TRUE
+2030,"Probable (tendencia)",55,48,62,TRUE
+2025,"Solo efecto demográfico",44,NA,NA,TRUE
+2026,"Solo efecto demográfico",44.8,NA,NA,TRUE
+2027,"Solo efecto demográfico",45.6,NA,NA,TRUE
+2028,"Solo efecto demográfico",46.4,NA,NA,TRUE
+2029,"Solo efecto demográfico",47.2,NA,NA,TRUE
+2030,"Solo efecto demográfico",48,NA,NA,TRUE

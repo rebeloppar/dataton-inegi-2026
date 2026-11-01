@@ -37,10 +37,14 @@ ent_base   <- leer("entidades.csv")
 entidades  <- merge(ent_base, leer("s4_entidades.csv"), by = "cve_ent")
 mapa       <- leer("mapa_estados.csv")
 regiones   <- leer("s4_regiones.csv")
-escen      <- leer("s5_escenarios.csv")
 simul      <- leer("s5_simulador.csv")
-palancas   <- leer("s5_palancas.csv")
-palancas   <- palancas[order(palancas$orden), ]
+# Sección 6: prospectiva 2030 (decisión 76)
+cono       <- leer("s6_cono.csv")
+impulsores <- leer("s6_impulsores.csv")
+ejes6      <- leer("s6_ejes.csv")
+escen6     <- leer("s6_escenarios.csv")
+retro      <- leer("s6_retroproyeccion.csv")
+senales    <- leer("s6_senales.csv")
 
 # Opcionales (deseables)
 tendencia  <- leer_opcional("s1_tendencia.csv")
@@ -56,7 +60,8 @@ propuesta   <- leer("propuesta.csv")
 estrategias <- leer("estrategias.csv")
 
 hay_prueba <- any(sapply(list(embudo, categorias, eslabon, efectos, bloques, robustez, perfil_prob, razones, genero,
-                              problemas, entidades, regiones, escen, simul, palancas,
+                              problemas, entidades, regiones, simul,
+                              cono, impulsores, ejes6, escen6, retro, senales,
                               tendencia, conexion, hogar, ritmo, comercios, mercado),
                          function(d) !is.null(d) && isTRUE(any(d$prueba))))
 
@@ -207,7 +212,29 @@ tema <- bs_add_rules(tema, "
   .kpi.destacado { background:var(--tinta); color:#fff; border-color:var(--tinta); }
   .kpi.destacado .etiqueta { color:#D1D5DB; }
 
+  /* Sección 6: prospectiva */
+  .esc-matriz { display:grid; grid-template-columns:2.2rem 1fr 1fr; grid-template-rows:auto auto auto; gap:.75rem; margin-top:.75rem; }
+  .esc-eje-y { grid-row:1 / 3; writing-mode:vertical-rl; transform:rotate(180deg); text-align:center; font-weight:700; color:var(--gris); font-size:.9rem; }
+  .esc-eje-x { grid-column:2 / 4; text-align:center; font-weight:700; color:var(--gris); font-size:.9rem; }
+  .esc { border:1px solid var(--borde); border-radius:12px; padding:1rem 1.1rem; background:#fff; }
+  .esc .polos { color:var(--gris); font-size:.82rem; margin-bottom:.35rem; }
+  .esc h4 { font-size:1.1rem; font-weight:700; margin:0 0 .35rem; }
+  .esc.preferible { border:2px solid var(--azul); background:#F3F8FC; }
+  .esc .etq { display:inline-block; font-size:.75rem; font-weight:700; color:#fff; background:var(--azul); border-radius:999px; padding:.1rem .55rem; margin-bottom:.35rem; }
+  .retro { list-style:none; padding:0; margin:.75rem 0 0; border-left:3px solid var(--borde); }
+  .retro li { position:relative; padding:0 0 1.1rem 1.4rem; }
+  .retro li::before { content:''; position:absolute; left:-.55rem; top:.2rem; width:.9rem; height:.9rem; border-radius:50%; background:var(--azul); border:2px solid #fff; }
+  .retro .anio { font-weight:700; font-size:1.05rem; }
+  .retro .como { color:var(--gris); font-size:.9rem; }
+  .tabla-senales { width:100%; border-collapse:collapse; margin-top:.75rem; font-size:.95rem; }
+  .tabla-senales th { text-align:left; color:var(--gris); font-weight:700; border-bottom:2px solid var(--borde); padding:.5rem .6rem; }
+  .tabla-senales td { border-bottom:1px solid var(--borde); padding:.55rem .6rem; vertical-align:top; }
+  .por-definir { color:var(--gris); font-style:italic; }
+
   @media (max-width: 768px) {
+    .esc-matriz { grid-template-columns:1fr; }
+    .esc-eje-y { writing-mode:horizontal-tb; transform:none; grid-row:auto; }
+    .esc-eje-x { grid-column:auto; }
     .barreras, .estrategias, .kpis { grid-template-columns:1fr; }
     .barrera + .barrera { border-left:0; border-top:1px solid var(--borde); }
     .hallazgo, .ficha { grid-template-columns:1fr; gap:.25rem; }
@@ -263,6 +290,50 @@ arma_un_perfil <- function() {
     tags$script(HTML(paste0("window.PERFIL_DATOS=", datos, ";"))),
     tags$script(src = "arma_un_perfil.js"),
     pie_grafica("s2_perfil_prob", "s2_perfil_prob.csv"))
+}
+
+# Sección 6 (decisión 76): escenarios como matriz 2 x 2 de textos, sin cifras
+texto_o_pendiente <- function(x) if (grepl("^Por (escribir|definir)", x)) span(class = "por-definir", x) else x
+escenarios_ui <- function() {
+  e1 <- ejes6[ejes6$eje == 1, ]; e2 <- ejes6[ejes6$eje == 2, ]
+  tarjeta <- function(a1, a2) {
+    e <- escen6[escen6$eje1 == a1 & escen6$eje2 == a2, ]
+    pref <- a1 == "alto" && a2 == "alto"
+    div(class = paste("esc", if (pref) "preferible"),
+        if (pref) span(class = "etq", "Preferible"),
+        h4(e$nombre),
+        div(class = "polos", if (a1 == "alto") e1$polo_alto else e1$polo_bajo, " · ",
+            if (a2 == "alto") e2$polo_alto else e2$polo_bajo),
+        div(texto_o_pendiente(e$narrativa)))
+  }
+  tagList(
+    p(class = "text-muted mt-3", style = "max-width:85ch",
+      "Los dos ejes son los impulsores más influyentes e inciertos (salen del MICMAC). Cada combinación es un escenario plausible para 2030. ",
+      "Se describen con palabras, no con porcentajes: no hay evidencia de cuántas personas cambiaría cada uno."),
+    div(class = "esc-matriz",
+        div(class = "esc-eje-y", "↑ ", e1$nombre),
+        tarjeta("alto", "bajo"), tarjeta("alto", "alto"),
+        tarjeta("bajo", "bajo"), tarjeta("bajo", "alto"),
+        div(), div(class = "esc-eje-x", e2$nombre, " →")))
+}
+retro_ui <- function() {
+  r <- retro[order(retro$anio), ]
+  tagList(
+    p(class = "text-muted mt-3", style = "max-width:85ch",
+      "Retroproyección: se parte del escenario preferible en 2030 y se pregunta qué tiene que haber pasado antes, año por año. Cada hito se conecta con la teoría del cambio y con el piloto."),
+    tags$ol(class = "retro", lapply(seq_len(nrow(r)), function(i)
+      tags$li(div(class = "anio", r$anio[i]), div(texto_o_pendiente(r$hito[i])),
+              div(class = "como", "Cómo lo sabríamos: ", texto_o_pendiente(r$como_se_sabe[i]))))))
+}
+senales_ui <- function() {
+  tagList(
+    p(class = "text-muted mt-3", style = "max-width:85ch",
+      "Indicadores que, año con año, dirían hacia qué escenario vamos. Se miden con la ENDUTIH, así que cualquiera puede seguirlos."),
+    tags$table(class = "tabla-senales",
+      tags$thead(tags$tr(tags$th("Señal"), tags$th("Indicador"), tags$th("Línea base"), tags$th("Apunta a"))),
+      tags$tbody(lapply(seq_len(nrow(senales)), function(i)
+        tags$tr(tags$td(texto_o_pendiente(senales$senal[i])), tags$td(texto_o_pendiente(senales$indicador[i])),
+                tags$td(senales$linea_base[i]), tags$td(senales$apunta_a[i]))))))
 }
 
 cabecera <- function(num, afirmacion, apoyo) {
@@ -336,7 +407,8 @@ ui <- page_navbar(
           c("2", "s2", "¿Quién queda fuera?", "La brecha es de escolaridad, edad y territorio"),
           c("3", "s3", "¿Por qué?", "Unos no pueden y otros no quieren"),
           c("4", "s4", "¿Dónde?", "El territorio pesa aun con controles"),
-          c("5", "s5", "¿Qué hacer?", "La tienda como puerta de entrada")), function(x)
+          c("5", "s5", "¿Qué hacer?", "La tienda como puerta de entrada"),
+          c("6", "s6", "¿Hacia dónde vamos?", "Prospectiva 2030: qué pasa si no hacemos nada")), function(x)
           tags$a(href = "#", onclick = sprintf("Shiny.setInputValue('ir', '%s', {priority: 'event'}); return false;", x[2]),
                  span(class = "num", x[1]),
                  span(span(class = "titulo-paso", x[3]), br(), span(class = "afirm", x[4])),
@@ -432,38 +504,44 @@ ui <- page_navbar(
                   div(class = "estrategia", div(class = "actor", e$actor[i]),
                       div(e$accion[i]), div(class = "porque", e$por_que[i]))))
           }))),
-      nav_panel("Simulador",
-        div(class = "mt-2 mb-3", style = "max-width:85ch;background:#FBEFD0;border-left:4px solid #B97A1C;border-radius:0 10px 10px 0;padding:.8rem 1rem",
-          strong("En revisión (decisión 75). "),
-          "Las cifras de personas son reales (ENDUTIH 2025), pero las posiciones de las palancas y los escenarios no tienen sustento todavía: ",
-          "no hay una tendencia estimada para «Inercia» ni un estudio que diga qué parte de quienes no compran empezaría a comprar. No citar estos resultados."),
-        p(class = "text-muted mb-3", style = "max-width:85ch",
-          "Las dos palancas son las dos puertas de la propuesta. Cada escenario de 2030 es una posición de las palancas: elige uno para ver dónde cae, o mueve las palancas a mano."),
+      nav_panel("Lo que está en juego",
+        p(class = "text-muted mt-2 mb-3", style = "max-width:85ch",
+          strong("No predecimos cuántas personas empezarán a comprar: eso lo mide el piloto. "),
+          "Esta calculadora dice qué está en juego en cada puerta y qué tendría que mostrar el piloto para alcanzar una meta. ",
+          "Las cifras de personas son de la ENDUTIH 2025; la meta la eliges tú (decisión 76)."),
         layout_columns(col_widths = c(4, 8),
           div(
-            selectInput("sim_grupo", "Grupo objetivo", simul$grupo),
-            div(class = "filtros mb-2", span(class = "rotulo", "Escenario")),
+            selectInput("ej_grupo", "Grupo", simul$grupo),
+            sliderInput("ej_meta", "Meta: personas nuevas que compran en línea (millones)",
+                        min = 0.25, max = 5, value = 1, step = 0.25, post = " M"),
+            div(class = "filtros mb-2", span(class = "rotulo", "Por qué puerta")),
             div(class = "pastillas mb-3",
-                radioButtons("sim_escenario", NULL, c(palancas$escenario, "Manual"),
-                             selected = palancas$escenario[nrow(palancas)], inline = TRUE)),
-            sliderInput("sim_sabe", "Puerta 1: de quienes dicen «no sé cómo», % que aprende y compra",
-                        0, 30, palancas$habilidades[nrow(palancas)], step = 1, post = " %"),
-            sliderInput("sim_persona", "Puerta 2: de quienes prefieren en persona, % que compra con ver, recoger y devolver en tienda",
-                        0, 30, palancas$tienda[nrow(palancas)], step = 1, post = " %"),
-            uiOutput("sim_descripcion"),
+                radioButtons("ej_puerta", NULL, c("Las dos", "Solo puerta 1", "Solo puerta 2"), inline = TRUE)),
+            uiOutput("ej_base"),
             p(class = "small text-muted",
-              strong("Las palancas son supuestos, no estimaciones. "),
-              "Ningún estudio mide qué parte de quienes no compran empieza a comprar después de una compra asistida, así que el simulador responde «¿y si…?». ",
-              "Quien dice «no sé cómo» y además prefiere en persona cuenta solo en la puerta 1.")),
-          div(uiOutput("sim_kpis"),
-            layout_columns(col_widths = c(6, 6),
-              plotOutput("g_matriz", height = "400px"),
-              plotOutput("g_cascada", height = "400px")),
+              "Puerta 1: quienes no compran y dicen «no sé cómo». Puerta 2: quienes prefieren comprar en persona y no dicen «no sé cómo» (quien da las dos razones cuenta solo en la puerta 1). ",
+              "«Las dos» supone la misma conversión en ambas puertas.")),
+          div(uiOutput("ej_kpis"),
+            plotOutput("g_en_juego", height = "380px"),
             pie_grafica("s5_simulador", "s5_simulador.csv")))),
-      nav_panel("Escenarios 2030", grafica("g_escenarios", "460px", "s5_escenarios", "s5_escenarios.csv")),
       nav_panel("Tamaño del mercado",
         opcional(mercado, "g_mercado", "340px", "s5_mercado", "s5_mercado.csv",
                  "Frente C: rango de gasto de los hogares que podría hacerse en línea (ENIGH).")))))),
+
+  nav_panel("6. 2030", value = "s6", seccion(
+    cabecera("6", "2030: qué pasa si no hacemos nada, y qué tendría que pasar",
+             "Análisis prospectivo. Frentes C, B y D. Pregunta P8."),
+    div(class = "como-leer",
+      strong("Cómo leer esta sección. "),
+      "No es un pronóstico. Usamos el cono de futuros: el futuro probable (si nada cambia) lleva cifras; los futuros plausibles se construyen con los impulsores más influyentes e inciertos y se describen con palabras; ",
+      "el preferible es al que apunta la propuesta, y la retroproyección dice qué tiene que pasar para llegar. Las señales tempranas dicen, cada año, hacia dónde vamos."),
+    div(class = "lienzo", navset_underline(
+      nav_panel("Cono de futuros", grafica("g_cono", "460px", "s6_cono", "s6_cono.csv")),
+      nav_panel("Impulsores (MICMAC)", grafica("g_micmac", "540px", "s6_impulsores", "s6_impulsores.csv")),
+      nav_panel("Escenarios", escenarios_ui(), pie_grafica("s6_escenarios", "s6_escenarios.csv")),
+      nav_panel("Del 2030 a hoy", retro_ui(), pie_grafica("s6_retroproyeccion", "s6_retroproyeccion.csv")),
+      nav_panel("Señales tempranas", senales_ui(), pie_grafica("s6_senales", "s6_senales.csv")))),
+    lo_que_encontramos("s6"))),
 
   nav_spacer(),
   nav_item(if (hay_prueba) span(class = "insignia-prueba", title = "Las gráficas usan cifras inventadas; las de «Lo que encontramos» son del diagnóstico preliminar.", "Datos de prueba")),
@@ -815,124 +893,110 @@ server <- function(input, output, session) {
     "Asociación entre entidades, no causalidad."))
 
   # 5. ¿Qué hacer? ------------------------------------------------------------
-  # Elegir un escenario mueve las palancas; moverlas a mano pasa a "Manual"
-  observeEvent(input$sim_escenario, {
-    e <- palancas[palancas$escenario == input$sim_escenario, ]
-    if (nrow(e) == 1) {
-      updateSliderInput(session, "sim_sabe", value = e$habilidades)
-      updateSliderInput(session, "sim_persona", value = e$tienda)
-    }
-  })
-  observeEvent(list(input$sim_sabe, input$sim_persona), {
-    e <- palancas[palancas$habilidades == input$sim_sabe & palancas$tienda == input$sim_persona, ]
-    nuevo <- if (nrow(e) == 1) e$escenario else "Manual"
-    if (!identical(nuevo, input$sim_escenario)) updateRadioButtons(session, "sim_escenario", selected = nuevo)
-  }, ignoreInit = TRUE)
-
-  # Cálculo del simulador: personas que no compran × razón × % que convierte cada puerta
-  sim <- reactive({
-    g <- simul[simul$grupo == input$sim_grupo, ]
+  # «Lo que está en juego» (decisión 76): personas por cada punto de conversión
+  # y conversión que haría falta para una meta. Sin escenarios ni supuestos.
+  juego <- reactive({
+    g <- simul[simul$grupo == input$ej_grupo, ]
     no_compran <- g$millones * (1 - g$pct_compra / 100)
-    p1 <- no_compran * g$pct_no_sabe / 100 * input$sim_sabe / 100
-    p2 <- no_compran * g$pct_en_persona / 100 * input$sim_persona / 100
-    list(g = g, p1 = p1, p2 = p2, nuevos = p1 + p2,
-         pp1 = 100 * p1 / g$millones, pp2 = 100 * p2 / g$millones)
+    p1 <- no_compran * g$pct_no_sabe / 100      # millones que llegan por la puerta 1
+    p2 <- no_compran * g$pct_en_persona / 100   # millones que llegan por la puerta 2
+    base <- switch(input$ej_puerta, "Las dos" = p1 + p2, "Solo puerta 1" = p1, "Solo puerta 2" = p2)
+    list(g = g, no_compran = no_compran, p1 = p1, p2 = p2, base = base,
+         requerida = 100 * input$ej_meta / base)
   })
 
-  output$sim_descripcion <- renderUI({
-    e <- palancas[palancas$escenario == input$sim_escenario, ]
-    if (nrow(e) == 1) p(class = "small text-muted", strong(e$escenario), ": ", e$descripcion)
-    else p(class = "small text-muted", "Posición manual de las palancas.")
+  output$ej_base <- renderUI({
+    j <- juego()
+    p(class = "small", sprintf("En este grupo, %.1f M usan internet y no compran: %.1f M llegan por la puerta 1 y %.1f M por la puerta 2.",
+                               j$no_compran, j$p1, j$p2))
   })
 
-  # Dónde cae la posición actual en la matriz de escenarios
-  output$g_matriz <- graficar({
-    tope <- 32   # máximo de las palancas (30) más margen para que se vean los puntos
-    corte_h <- mean(range(palancas$habilidades)); corte_t <- mean(range(palancas$tienda))
-    cuadros <- data.frame(
-      xmin = c(0, corte_t, 0, corte_t), xmax = c(corte_t, tope, corte_t, tope),
-      ymin = c(0, 0, corte_h, corte_h), ymax = c(corte_h, corte_h, tope, tope),
-      nombre = c("Inercia", "Solo\ntiendas", "Solo\nhabilidades", "Puerta\nabierta"),
-      relleno = c(rampa[2], rampa[4], rampa[3], col$frio))
-    cuadros$x <- (cuadros$xmin + cuadros$xmax) / 2; cuadros$y <- cuadros$ymax - tope * 0.09
-    ggplot() +
-      geom_rect(data = cuadros, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, fill = I(relleno)),
-                colour = "white", linewidth = 1.5) +
-      geom_text(data = cuadros, aes(x, y, label = nombre), colour = col$tinta, fontface = "bold", size = 3.2) +
-      geom_point(data = palancas, aes(tienda, habilidades), shape = 21, fill = "white",
-                 colour = col$gris, size = 3, stroke = 1) +
-      punto(data = data.frame(x = input$sim_persona, y = input$sim_sabe), aes(x, y), fill = col$azul, size = 7) +
-      scale_x_continuous(limits = c(0, tope), expand = c(0, 0), breaks = seq(0, 30, 10)) +
-      scale_y_continuous(limits = c(0, tope), expand = c(0, 0), breaks = seq(0, 30, 10)) +
-      coord_fixed() +
-      labs(title = "¿En qué escenario estás?",
-           subtitle = "Azul: tu posición",
-           x = "Puerta 2: tienda (%)", y = "Puerta 1: habilidades (%)") +
-      theme(panel.grid.major = element_blank())
-  })
-
-  # Cuánto aporta cada puerta al % que compra
-  output$g_cascada <- graficar({
-    s <- sim(); hoy <- s$g$pct_compra
-    pasos <- c("Hoy", "+ Puerta\n1", "+ Puerta\n2", "Con la\npropuesta")
-    d <- data.frame(paso = factor(pasos, pasos),
-                    inicio = c(0, hoy, hoy + s$pp1, 0),
-                    fin = c(hoy, hoy + s$pp1, hoy + s$pp1 + s$pp2, hoy + s$pp1 + s$pp2),
-                    tipo = c("base", "p1", "p2", "total"))
-    d$etiqueta <- ifelse(d$tipo %in% c("p1", "p2"), sprintf("+%.1f", d$fin - d$inicio), sprintf("%.0f %%", d$fin))
-    ggplot(d, aes(xmin = as.numeric(paso) - 0.35, xmax = as.numeric(paso) + 0.35, ymin = inicio, ymax = fin, fill = tipo)) +
-      geom_rect() +
-      geom_text(aes(x = as.numeric(paso), y = fin, label = etiqueta), vjust = -0.6, size = 3.8,
-                colour = col$tinta, fontface = "bold") +
-      scale_fill_manual(values = c(base = col$gris_claro, p1 = col$verde, p2 = col$ocre, total = col$azul), guide = "none") +
-      scale_x_continuous(breaks = 1:4, labels = levels(d$paso)) +
-      scale_y_continuous(labels = pct, expand = expansion(mult = c(0, 0.15))) +
-      expand_limits(y = 0) +
-      labs(title = "¿Cuánto aporta cada puerta?",
-           subtitle = "% del grupo que compra en línea",
-           x = NULL, y = NULL) +
-      theme(panel.grid.major.x = element_blank())
-  })
-
-  output$sim_kpis <- renderUI({
-    s <- sim(); g <- s$g; nuevos <- s$nuevos
-    nuevo <- g$pct_compra + s$pp1 + s$pp2
+  output$ej_kpis <- renderUI({
+    j <- juego()
+    req <- if (j$requerida > 100) "No alcanza" else sprintf("%.1f %%", j$requerida)
     div(class = "kpis",
-        div(class = "kpi", div(class = "etiqueta", "Compran hoy"), div(class = "valor", sprintf("%.0f %%", g$pct_compra))),
-        div(class = "kpi destacado", div(class = "etiqueta", "Comprarían"), div(class = "valor", sprintf("%.0f %%", nuevo))),
-        div(class = "kpi", div(class = "etiqueta", "Personas nuevas"), div(class = "valor", sprintf("%.1f M", nuevos))))
+        div(class = "kpi", div(class = "etiqueta", "Por cada 1 % en la puerta 1"),
+            div(class = "valor", sprintf("%s mil", format(round(j$p1 * 10), big.mark = ",")))),
+        div(class = "kpi", div(class = "etiqueta", "Por cada 1 % en la puerta 2"),
+            div(class = "valor", sprintf("%s mil", format(round(j$p2 * 10), big.mark = ",")))),
+        div(class = "kpi destacado", div(class = "etiqueta", sprintf("Conversión que tendría que mostrar el piloto para %s M", format(input$ej_meta))),
+            div(class = "valor", req)))
   })
 
-  output$g_escenarios <- graficar({
-    d <- escen
-    ultimo <- d[d$escenario == "Observado" & d$anio == max(d$anio[d$escenario == "Observado"]), ]
-    puentes <- do.call(rbind, lapply(palancas$escenario, function(e)
-      transform(ultimo, escenario = e, li90 = estimacion, ls90 = estimacion)))
-    d <- rbind(d, puentes)
-    d$escenario <- factor(d$escenario, c("Observado", palancas$escenario))
-    colores <- c(Observado = col$tinta, Inercia = col$gris_claro, `Solo tiendas` = col$ocre,
-                 `Solo habilidades` = col$verde, `Puerta abierta` = col$azul)
-    final <- d[d$anio == max(d$anio), ]
-    # Separar etiquetas finales que quedarían encimadas (mínimo 3.2 pp entre sí)
-    final <- final[order(final$estimacion), ]
-    final$y_etq <- final$estimacion
-    for (i in seq_len(nrow(final))[-1]) final$y_etq[i] <- max(final$y_etq[i], final$y_etq[i - 1] + 3.2)
-    ggplot(d, aes(anio, estimacion, colour = escenario)) +
-      annotate("rect", xmin = max(ultimo$anio), xmax = Inf, ymin = -Inf, ymax = Inf, fill = rampa[3], alpha = 0.6) +
-      geom_ribbon(data = d[!is.na(d$li90), ], aes(ymin = li90, ymax = ls90, fill = escenario),
-                  alpha = 0.18, colour = NA, show.legend = FALSE) +
-      geom_line(linewidth = 1) +
-      punto(data = d[!(d$anio == max(ultimo$anio) & d$escenario != "Observado"), ],
-            aes(fill = escenario), size = 3.2) +
-      geom_text(data = final, aes(y = y_etq, label = paste0(escenario, " ", round(estimacion), " %")),
-                hjust = 0, nudge_x = 0.25, colour = col$tinta, size = 3.6, show.legend = FALSE) +
-      scale_colour_manual(values = colores, name = "Escenario") +
-      scale_fill_manual(values = colores, guide = "none") +
-      scale_x_continuous(breaks = 2019:2030, expand = expansion(add = c(0.3, 2.6))) +
+  output$g_en_juego <- graficar({
+    j <- juego()
+    tope <- min(100, max(30, ceiling(j$requerida * 1.25 / 10) * 10))
+    x <- seq(0, tope, length.out = 101)
+    d <- rbind(data.frame(x = x, y = x / 100 * j$p1, linea = "Solo puerta 1"),
+               data.frame(x = x, y = x / 100 * j$p2, linea = "Solo puerta 2"),
+               data.frame(x = x, y = x / 100 * (j$p1 + j$p2), linea = "Las dos"))
+    colores <- c(`Solo puerta 1` = col$verde, `Solo puerta 2` = col$ocre, `Las dos` = col$azul)
+    fin <- d[d$x == tope, ]
+    g <- ggplot(d, aes(x, y, colour = linea)) +
+      geom_hline(yintercept = input$ej_meta, linetype = "22", colour = col$tinta) +
+      annotate("text", x = 0, y = input$ej_meta, label = paste0("Meta: ", input$ej_meta, " M"),
+               hjust = 0, vjust = -0.6, size = 3.6, colour = col$tinta, fontface = "bold") +
+      geom_line(aes(linewidth = linea == input$ej_puerta), show.legend = FALSE) +
+      scale_linewidth_manual(values = c(`TRUE` = 1.6, `FALSE` = 0.7), guide = "none") +
+      geom_text(data = fin, aes(label = linea), hjust = 0, nudge_x = tope * 0.015, size = 3.6, show.legend = FALSE) +
+      scale_colour_manual(values = colores, guide = "none") +
+      scale_x_continuous(labels = pct, expand = expansion(mult = c(0, 0.2))) +
+      scale_y_continuous(labels = function(v) paste0(v, " M")) +
+      labs(title = "¿Cuántas personas nuevas, según cuántas convierta el piloto?",
+           subtitle = "Millones de personas nuevas, según el % de cada puerta que empieza a comprar",
+           caption = "Aritmética, no pronóstico: el % que convierte lo mide el piloto.",
+           x = "% que empieza a comprar", y = NULL)
+    if (j$requerida <= tope)
+      g <- g + punto(data = data.frame(x = j$requerida, y = input$ej_meta, linea = input$ej_puerta),
+                     aes(fill = linea), size = 5, show.legend = FALSE) +
+        scale_fill_manual(values = colores, guide = "none")
+    g
+  })
+
+  # 6. ¿Hacia dónde vamos? -----------------------------------------------------
+  output$g_cono <- graficar({
+    d <- cono
+    colores <- c(Observado = col$tinta, `Probable (tendencia)` = col$azul, `Solo efecto demográfico` = col$gris)
+    d$serie <- factor(d$serie, names(colores))
+    fin <- d[d$anio == max(d$anio), ]
+    ultimo_obs <- max(d$anio[d$serie == "Observado"])
+    ggplot(d, aes(anio, estimacion, colour = serie)) +
+      annotate("rect", xmin = ultimo_obs, xmax = Inf, ymin = -Inf, ymax = Inf, fill = rampa[1]) +
+      geom_ribbon(data = d[!is.na(d$li90), ], aes(ymin = li90, ymax = ls90), fill = col$azul, alpha = 0.15, colour = NA) +
+      geom_line(aes(linetype = serie), linewidth = 1) +
+      geom_text(data = fin, aes(label = paste0(serie, " ", round(estimacion), " %")),
+                hjust = 0, nudge_x = 0.2, size = 3.6, show.legend = FALSE) +
+      scale_colour_manual(values = colores, guide = "none") +
+      scale_linetype_manual(values = c(Observado = "solid", `Probable (tendencia)` = "solid", `Solo efecto demográfico` = "22"), guide = "none") +
+      scale_x_continuous(breaks = seq(min(d$anio), 2030, 1), expand = expansion(add = c(0.3, 3.8))) +
       scale_y_continuous(labels = pct) +
-      labs(title = "Escenarios 2030", subtitle = "% de usuarios de internet que compra en línea. Cada línea es una posición de las palancas del simulador.",
-           caption = "Los escenarios son supuestos explícitos, no pronósticos. Bandas: rango del escenario.",
+      labs(title = "El futuro probable: si nada cambia",
+           subtitle = "% de usuarios de internet de 18+ que compra en línea. Banda: rango del futuro probable",
+           caption = "Los futuros plausibles y el preferible están en las pestañas «Escenarios» y «Del 2030 a hoy». No llevan cifras (decisión 76).",
            x = NULL, y = NULL)
+  })
+
+  output$g_micmac <- graficar({
+    d <- impulsores
+    cx <- mean(range(d$dependencia)); cy <- mean(range(d$influencia))
+    rx <- range(d$dependencia); ry <- range(d$influencia)
+    cuad <- data.frame(x = c(-Inf, Inf, -Inf, Inf), y = c(Inf, Inf, -Inf, -Inf),
+                       h = c(-0.05, 1.05, -0.05, 1.05), v = c(1.6, 1.6, -0.8, -0.8),
+                       etq = c("Motrices: mueven el sistema", "De enlace: inestables, clave para los escenarios",
+                               "Autónomos: poco conectados", "Dependientes: resultados"))
+    ggplot(d, aes(dependencia, influencia)) +
+      geom_vline(xintercept = cx, colour = col$borde) + geom_hline(yintercept = cy, colour = col$borde) +
+      geom_text(data = cuad, aes(x, y, label = etq, hjust = h, vjust = v), colour = col$gris, size = 3.3, fontface = "italic") +
+      punto(aes(fill = categoria), size = 4) +
+      ggrepel::geom_text_repel(aes(label = impulsor), size = 3.4, colour = col$tinta, seed = 1, box.padding = 0.45,
+                               min.segment.length = 0.2, max.overlaps = Inf) +
+      scale_fill_manual(values = c(Social = col$azul, Económico = col$ocre, Tecnológico = col$verde,
+                                   Político = col$morado, Legal = col$gris, Ambiental = col$gris_claro), name = "Tipo") +
+      scale_x_continuous(expand = expansion(mult = 0.12)) + scale_y_continuous(expand = expansion(mult = 0.2)) +
+      labs(title = "¿Qué impulsores mueven el sistema?",
+           subtitle = "Matriz de influencia y dependencia (MICMAC simplificado)",
+           caption = "Los ejes de los escenarios salen de los impulsores más influyentes: motrices y de enlace.",
+           x = "Dependencia (cuánto lo mueven los demás)", y = "Influencia (cuánto mueve a los demás)")
   })
 
   output$g_mercado <- graficar({

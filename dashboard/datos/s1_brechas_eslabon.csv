@@ -1,9 +1,15 @@
 "comparacion","eslabon","estimacion","li90","ls90","prueba"
-"Superior vs. primaria","Usar internet",35,34.5,36.7,TRUE
-"65+ vs. 18-24","Usar internet",-50,-53,-47.8,TRUE
-"Rural vs. 100 mil+","Usar internet",-20,-21.3,-18,TRUE
-"Mujer vs. hombre","Usar internet",-2,-3.8,0.7,TRUE
-"Superior vs. primaria","Comprar en línea",42,39.7,43.2,TRUE
-"65+ vs. 18-24","Comprar en línea",-42,-44.1,-39.9,TRUE
-"Rural vs. 100 mil+","Comprar en línea",-11,-12.4,-10.2,TRUE
-"Mujer vs. hombre","Comprar en línea",-3,-3.6,-1.2,TRUE
+"Con vs. sin discapacidad","Usar internet",-3.9,-4.9,-3,FALSE
+"Educación superior vs. primaria","Usar internet",19.1,18,20.2,FALSE
+"Estrato alto vs. bajo","Usar internet",7.1,5.4,8.8,FALSE
+"65+ vs. 18-24 años","Usar internet",-31.7,-33.4,-30,FALSE
+"Indígena vs. no indígena","Usar internet",0.1,-0.6,0.8,FALSE
+"Mujer vs. hombre","Usar internet",0.8,0.2,1.4,FALSE
+"Rural (< 2,500) vs. 100 mil+","Usar internet",-3.8,-4.9,-2.7,FALSE
+"Con vs. sin discapacidad","Comprar en línea",-1.3,-3.4,0.8,FALSE
+"Educación superior vs. primaria","Comprar en línea",42.5,40.6,44.3,FALSE
+"Estrato alto vs. bajo","Comprar en línea",17.7,15.1,20.3,FALSE
+"65+ vs. 18-24 años","Comprar en línea",-41.8,-43.8,-39.8,FALSE
+"Indígena vs. no indígena","Comprar en línea",-1.9,-3.1,-0.7,FALSE
+"Mujer vs. hombre","Comprar en línea",-3.4,-4.4,-2.3,FALSE
+"Rural (< 2,500) vs. 100 mil+","Comprar en línea",-11.2,-13.1,-9.2,FALSE

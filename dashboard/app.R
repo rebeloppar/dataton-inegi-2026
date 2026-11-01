@@ -514,6 +514,8 @@ server <- function(input, output, session) {
     d <- por_grupo(embudo, input$s1_grupo)
     pasos <- c("Hogar con internet", "Usa internet", "Compra en línea")
     d$paso <- match(d$eslabon, pasos)
+    pasos <- pasos[pasos %in% d$eslabon]           # funciona con 2 o 3 eslabones
+    d$paso <- match(d$eslabon, pasos)
     poli <- do.call(rbind, lapply(split(d, d$grupo), function(g) {
       if (nrow(g) == 0) return(NULL)
       g <- g[order(g$paso), ]
@@ -534,12 +536,14 @@ server <- function(input, output, session) {
       geom_text(data = etiquetas, aes(0, y - 0.2, label = sprintf("%.0f–%.0f", li90, ls90)),
                 colour = col$gris, size = 2.9) +
       facet_wrap(~grupo) +
-      scale_fill_manual(values = c(rampa[3], rampa[4], rampa[5]), name = NULL, drop = FALSE) +
+      scale_fill_manual(values = setNames(c(rampa[3], rampa[4], rampa[5]),
+                                          c("Hogar con internet", "Usa internet", "Compra en línea")),
+                        name = NULL, drop = TRUE) +
       coord_cartesian(xlim = c(-52, 52)) +
-      labs(title = "Del hogar conectado a la compra en línea",
+      labs(title = "De conectarse a comprar en línea",
            subtitle = paste0("% en cada eslabón, ", if (input$s1_grupo == "Nacional") "a nivel nacional" else paste("por", tolower(input$s1_grupo)),
                              ". Debajo de cada cifra, su intervalo al 90 %."),
-           caption = "Cada eslabón tiene su propio universo: hogares, residentes de 18+ y usuarios de internet de 18+.",
+           caption = "Todos los eslabones en % de la población de 18+ del grupo: el ancho del embudo es comparable de arriba abajo.",
            x = NULL, y = NULL) + sin_ejes
   })
 
@@ -549,7 +553,7 @@ server <- function(input, output, session) {
     barras_brecha(d, "comparacion", "eslabon", c(`Usar internet` = col$morado, `Comprar en línea` = col$azul),
           "¿Se pierde más gente al conectarse o al comprar?",
           "Diferencia con controles en la probabilidad de usar internet y de comprar en línea. No depende del filtro.",
-          "Usar internet: residentes de 18+. Comprar: usuarios de internet de 18+. Líneas: intervalo al 90 %.")
+          "Usar internet: población de 18+. Comprar: usuarios de internet de 18+. Líneas: intervalo al 90 %.")
   })
 
   output$g_categorias <- graficar(calor(

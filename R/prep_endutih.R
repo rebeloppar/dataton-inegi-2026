@@ -15,10 +15,14 @@ usu <- read.csv(ruta_datos, colClasses = "character", encoding = "UTF-8")
 usu$FAC_PER <- as.numeric(usu$FAC_PER)
 usu$EDAD    <- as.numeric(usu$EDAD)
 
-# --- Universo: usuarios de internet de 18 años o más ---------------------------
-# (la sección 7 solo se pregunta a usuarios de internet; dejamos fuera a menores
-#  de edad y la edad no especificada, código 98)
-usu <- subset(usu, P7_1 == "1" & EDAD >= 18 & EDAD <= 97)
+# --- Universo ---------------------------------------------------------------------
+# Las variables se construyen para TODA la población de 18+ (la persona elegida
+# de cada hogar, use o no internet); al final se separan dos tablas:
+#   `pob` = población de 18+ (para el eslabón "usa internet", frente A)
+#   `usu` = usuarios de internet de 18+ (la sección 7 solo se pregunta a ellos)
+# Se deja fuera a menores de edad y la edad no especificada (código 98).
+usu <- subset(usu, EDAD >= 18 & EDAD <= 97)
+usu$usa_internet <- ifelse(usu$P7_1 == "1", 1, ifelse(usu$P7_1 == "2", 0, NA))
 
 # --- Resultado: compró por internet en los últimos 12 meses (P7_21) ------------
 usu$compra <- ifelse(usu$P7_21 == "1", 1, ifelse(usu$P7_21 == "2", 0, NA))
@@ -109,7 +113,14 @@ for (v in names(razones)) {
   usu[[v]] <- ifelse(usu[[v]] == "1", 1, ifelse(usu[[v]] == "2", 0, NA))
 }
 
+# --- Separar población y usuarios -------------------------------------------
+pob <- usu
+usu <- subset(pob, usa_internet == 1)
+
 # --- Diseño muestral ---------------------------------------------------------
+# dis_pob: población de 18+; dis: usuarios de internet de 18+
+dis_pob <- svydesign(ids = ~UPM_DIS, strata = ~EST_DIS, weights = ~FAC_PER,
+                     data = pob, nest = TRUE)
 dis <- svydesign(ids = ~UPM_DIS, strata = ~EST_DIS, weights = ~FAC_PER,
                  data = usu, nest = TRUE)
 

@@ -26,7 +26,7 @@ Probado con R 4.3, shiny 1.8, bslib 0.6 y ggplot2 3.4; funciona también con ver
 
 ## Cifras reales que ya están
 
-La regresión (sección 2) y el % que compra por entidad (mapa) ya son reales. Para regenerarlos: corre `analisis/diagnostico/02_cruces.R` y `04_regresion.R`, y luego `05_exportar_dashboard.R`.
+La regresión (sección 2), el % que compra por entidad (mapa), el embudo y las brechas por eslabón (sección 1, `analisis/A_conexion/01_embudo_y_brechas.R`) ya son reales. Para regenerarlos: corre `analisis/diagnostico/02_cruces.R` y `04_regresion.R`, y luego `05_exportar_dashboard.R`.
 
 ## Cómo entregar tus cifras (cada frente)
 
@@ -42,9 +42,9 @@ Si necesitas una columna o categoría nueva, avisa a Rebeca: cambia la gráfica,
 
 | Archivo | Frente | Columnas | Notas |
 |---|---|---|---|
-| `s1_embudo.csv` | A | `grupo_var, grupo, orden, eslabon, paso, estimacion, li90, ls90, prueba` | `grupo_var`: Nacional, Escolaridad, Edad, Sexo, Localidad, Estrato, Región. `orden`: orden de los grupos. `eslabon`: Hogar con internet, Usa internet, Compra en línea. En % |
+| `s1_embudo.csv` **(real)** | A | `grupo_var, grupo, orden, eslabon, paso, estimacion, li90, ls90, prueba` | `grupo_var`: Nacional, Escolaridad, Edad, Sexo, Localidad, Estrato, Región. `orden`: orden de los grupos. `eslabon`: Hogar con internet, Usa internet, Compra en línea. En % |
 | `s1_categorias.csv` | A | `grupo_var, grupo, orden, categoria, estimacion, li90, ls90, prueba` | P3: % de compradores que compró cada categoría |
-| `s1_brechas_eslabon.csv` | A | `comparacion, eslabon, estimacion, li90, ls90, prueba` | `eslabon`: Usar internet o Comprar en línea. Brecha con controles, en pp |
+| `s1_brechas_eslabon.csv` **(real)** | A | `comparacion, eslabon, estimacion, li90, ls90, prueba` | `eslabon`: Usar internet o Comprar en línea. Brecha con controles, en pp |
 | `s2_efectos.csv` **(real)** | A, B | `factor, orden_factor, etiqueta, estimacion, li90, ls90, prueba` | Efectos marginales del modelo completo, en pp. Lo escribe `analisis/diagnostico/05_exportar_dashboard.R` |
 | `s2_bloques.csv` **(real)** | A, B | `brecha, paso, nombre_paso, estimacion, li90, ls90, prueba` | La regresión paso a paso (4 bloques). Mismo script |
 | `s2_robustez.csv` **(real)** | A, B | `etiqueta, version, estimacion, prueba` | Modelo completo: todo el país vs. solo ciudades de 100 mil+. Mismo script |

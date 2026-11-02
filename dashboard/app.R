@@ -115,7 +115,7 @@ tema <- bs_theme(
 )
 tema <- bs_add_rules(tema, "
   :root { --tinta:#1F2937; --gris:#6B7280; --borde:#E3E6E0; --menta:#F2F6F1; --azul:#0F72A8;
-          --morado:#6A4C93; --durazno:#F8E2CF; }
+          --morado:#6A4C93; --durazno:#F8E2CF; --verde:#3E9A66; --ocre:#B97A1C; }
   body { background:#FFFFFF; }
   .navbar { background:#FFFFFF !important; border-bottom:1px solid var(--borde); padding-top:.6rem; padding-bottom:.6rem; }
   .navbar-brand { font-weight:700; letter-spacing:-.01em; }
@@ -215,6 +215,38 @@ tema <- bs_add_rules(tema, "
   .ficha details.detalle { margin-top:.4rem; font-size:.9rem; color:var(--gris); }
   .ficha details.detalle summary { cursor:pointer; color:var(--azul); font-weight:600; }
   .ficha details.detalle p { margin:.4rem 0 0; }
+  /* Núcleo de la propuesta (decisión 80) */
+  .np { border:1px solid var(--borde); border-radius:14px; padding:20px 22px; background:#fff; margin:.75rem 0 1.25rem; }
+  .np h3 { margin:0 0 4px; font-size:1.2rem; font-weight:700; }
+  .np .sub { color:var(--gris); margin:0 0 16px; font-size:.95rem; }
+  .np-flujo { display:grid; grid-template-columns:200px 30px 1fr 30px 200px; align-items:stretch; }
+  .np-flecha { display:flex; align-items:center; justify-content:center; color:var(--gris); font-size:1.5rem; }
+  .np-puertas { display:flex; flex-direction:column; gap:10px; justify-content:center; }
+  .np-puerta { border:1px solid var(--borde); border-left:5px solid; border-radius:0 10px 10px 0; padding:10px 12px; }
+  .np-puerta.p1 { border-left-color:var(--verde); } .np-puerta.p2 { border-left-color:var(--ocre); }
+  .np-puerta .et { font-size:.72rem; font-weight:700; color:var(--gris); text-transform:uppercase; letter-spacing:.04em; }
+  .np-puerta .q { font-weight:700; margin:2px 0; }
+  .np-puerta .n { font-size:1.5rem; font-weight:700; }
+  .np-puerta.p1 .n { color:var(--verde); } .np-puerta.p2 .n { color:var(--ocre); }
+  .np-puerta .nn { font-size:.8rem; color:var(--gris); }
+  .np-tienda { border:2px solid var(--azul); border-radius:14px; padding:14px 16px 12px; background:#F7FAFC; }
+  .np-tienda .tt { font-weight:700; color:var(--azul); }
+  .np-tienda .ya { font-size:.82rem; color:var(--gris); margin-bottom:12px; }
+  .np-pasos { display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; }
+  .np-paso { background:#fff; border:1px solid var(--borde); border-radius:10px; padding:12px; }
+  .np-paso .num { display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%;
+                  background:var(--azul); color:#fff; font-weight:700; font-size:.9rem; margin-bottom:6px; }
+  .np-paso .ti { font-weight:700; margin-bottom:3px; }
+  .np-paso .tx { font-size:.85rem; color:var(--gris); line-height:1.35; }
+  .np-apoyo { margin-top:10px; display:flex; align-items:center; gap:10px; font-size:.8rem; color:var(--gris); }
+  .np-apoyo .barra { flex:1; height:10px; border-radius:5px; background:linear-gradient(90deg, var(--azul), #CFE3F0 70%, #fff); border:1px solid var(--borde); }
+  .np-genero { margin-top:10px; font-size:.82rem; background:var(--menta); border-radius:8px; padding:7px 10px; }
+  .np-salida { border-radius:12px; background:var(--tinta); color:#fff; padding:14px; display:flex; flex-direction:column; justify-content:center; }
+  .np-salida .ti { font-weight:700; font-size:1.05rem; margin-bottom:6px; }
+  .np-salida .tx { font-size:.85rem; color:#D1D5DB; line-height:1.35; }
+  .np-medir { margin-top:14px; border:1px dashed var(--borde); border-radius:10px; padding:8px 12px; font-size:.85rem; color:var(--gris); }
+  .np-medir b { color:var(--tinta); }
+
   /* Sección 6: prospectiva */
   .esc-matriz { display:grid; grid-template-columns:2.2rem 1fr 1fr; grid-template-rows:auto auto auto; gap:.75rem; margin-top:.75rem; }
   .esc-eje-y { grid-row:1 / 3; writing-mode:vertical-rl; transform:rotate(180deg); text-align:center; font-weight:700; color:var(--gris); font-size:.9rem; }
@@ -235,6 +267,8 @@ tema <- bs_add_rules(tema, "
   .por-definir { color:var(--gris); font-style:italic; }
 
   @media (max-width: 768px) {
+    .np-flujo, .np-pasos { grid-template-columns:1fr; }
+    .np-flecha { transform:rotate(90deg); }
     .esc-matriz { grid-template-columns:1fr; }
     .esc-eje-y { writing-mode:horizontal-tb; transform:none; grid-row:auto; }
     .esc-eje-x { grid-column:auto; }
@@ -298,6 +332,40 @@ arma_un_perfil <- function() {
     tags$script(HTML(paste0("window.PERFIL_DATOS=", datos, ";"))),
     tags$script(src = "arma_un_perfil.js"),
     pie_grafica("s2_perfil_prob", "s2_perfil_prob.csv"))
+}
+
+# Núcleo de la propuesta (decisión 80): dos puertas → la tienda (3 pasos) →
+# compradora independiente. Las cifras salen de s5_simulador.csv, igual que
+# «Lo que está en juego» (quien da las dos razones cuenta solo en la puerta 1).
+nucleo_propuesta <- function() {
+  g <- simul[simul$grupo == "Grupo: hasta secundaria", ]
+  no_compran <- g$millones * (1 - g$pct_compra / 100)
+  m <- function(x) sprintf("%.1f M", x)
+  paso <- function(n, titulo, texto) div(class = "np-paso", div(class = "num", n), div(class = "ti", titulo), div(class = "tx", texto))
+  div(class = "np",
+    h3("La tienda como puerta de entrada"),
+    p(class = "sub", "Dos barreras, una misma puerta: la infraestructura que las cadenas ya tienen, usada para que la persona aprenda a comprar por su cuenta."),
+    div(class = "np-flujo",
+      div(class = "np-puertas",
+        div(class = "np-puerta p1", div(class = "et", "Puerta 1"), div(class = "q", "«No sé cómo»"),
+            div(class = "n", m(no_compran * g$pct_no_sabe / 100)), div(class = "nn", "del grupo que no compra")),
+        div(class = "np-puerta p2", div(class = "et", "Puerta 2"), div(class = "q", "«Prefiero en persona»"),
+            div(class = "n", m(no_compran * g$pct_en_persona / 100)), div(class = "nn", "del grupo que no compra"))),
+      div(class = "np-flecha", "→"),
+      div(class = "np-tienda",
+        div(class = "tt", "En la tienda"),
+        div(class = "ya", "Lo que ya existe: kioscos con asesor, recoger y pagar en tienda"),
+        div(class = "np-pasos",
+          paso(1, "Te invitan", "En cada ventana de oportunidad: cuando no está lo que buscas, cuando hay ofertas de artículos grandes."),
+          paso(2, "Lo haces tú, con alguien al lado", "Haces el pedido y el pago tú misma; el asesor acompaña, no compra por ti."),
+          paso(3, "Compras por tu cuenta", "El apoyo ya no hace falta; un recordatorio te avisa de la siguiente oportunidad.")),
+        div(class = "np-apoyo", span("Apoyo del asesor"), div(class = "barra"), span("ninguno")),
+        div(class = "np-genero", strong("Lente de género: "), "énfasis en el paso del pago, primeras compras en lo que las mujeres ya compran, todo medido por sexo.")),
+      div(class = "np-flecha", "→"),
+      div(class = "np-salida", div(class = "ti", "Compradora en línea independiente"),
+          div(class = "tx", "Para quien prefiere en persona, pedir en línea y recoger o pagar en tienda ya cuenta."))),
+    div(class = "np-medir", strong("Se mide antes de extenderlo: "),
+        sprintf("piloto en tiendas que lo aplican frente a tiendas parecidas que no; en el país, con la ENDUTIH (hoy compra %.1f %% del grupo).", g$pct_compra)))
 }
 
 # Sección 6 (decisión 76): escenarios como matriz 2 x 2 de textos, sin cifras
@@ -496,6 +564,7 @@ ui <- page_navbar(
              "Propuesta en borrador. Frentes D y C. Preguntas P7 y P8."),
     div(class = "lienzo", navset_underline(
       nav_panel("La propuesta",
+        nucleo_propuesta(),
         div(class = "row g-4 mt-1",
           div(class = "col-lg-7",
             tags$dl(class = "ficha", lapply(seq_len(nrow(propuesta)), function(i)

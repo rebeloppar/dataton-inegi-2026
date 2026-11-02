@@ -285,7 +285,12 @@ arma_un_perfil <- function() {
         div(id = "ap-controles"),
         div(class = "ap-centro", tags$svg(class = "ap-figura", id = "ap-fig", viewBox = "0 0 240 300"),
             div(class = "ap-insignias", id = "ap-ins")),
-        div(class = "ap-derecha", div(id = "ap-res"), div(class = "ap-sugeridos", id = "ap-sugeridos"))),
+        div(class = "ap-derecha", div(id = "ap-res"), div(class = "ap-sugeridos",
+          div(class = "ap-lab", "Prueba estos perfiles"),
+          tags$ul(
+            tags$li("Una mujer de 65+ con primaria en una localidad rural. Luego cambia solo su escolaridad."),
+            tags$li("Un hombre de 35-44 con secundaria en una ciudad media. ¿Cuánto sube con universidad?"),
+            tags$li("Cualquier perfil: cambia solo el sexo y mira cuánto se mueve."))))),
     p(class = "ap-nota", "Probabilidad predicha por el modelo logit con diseño muestral (ENDUTIH 2025), con sexo, edad, escolaridad, tamaño de localidad, estrato, indígena (autoadscripción) y discapacidad (mucha dificultad o no poder hacer alguna actividad básica). Si no se activan indígena y discapacidad, la cifra es el promedio de las cuatro combinaciones, ponderado por qué tan comunes son entre las personas de ese perfil. Línea vertical negra: promedio nacional (43.7 %)."),
     tags$script(HTML(paste0("window.PERFIL_DATOS=", datos, ";"))),
     tags$script(src = "arma_un_perfil.js"),

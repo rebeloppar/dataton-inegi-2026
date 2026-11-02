@@ -442,7 +442,7 @@ ui <- page_navbar(
     div(class = "portada", div(class = "portada-interior",
       p(class = "contexto",
         "Diagnóstico con datos oficiales del INEGI (ENDUTIH 2025) sobre los adultos que ya usan internet, y una propuesta para que más de ellos compren en línea."),
-      h1("No es una brecha: son dos barreras."),
+      h1("Una brecha, dos barreras"),
       p(class = "contexto mb-0",
         "Entre quienes ya están conectados, comprar en línea depende sobre todo de la escolaridad, la edad y el territorio. Y quienes no compran no lo hacen por la misma razón."),
       div(class = "barreras",

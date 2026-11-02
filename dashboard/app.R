@@ -219,7 +219,7 @@ tema <- bs_add_rules(tema, "
   .np { border:1px solid var(--borde); border-radius:14px; padding:20px 22px; background:#fff; margin:.75rem 0 1.25rem; }
   .np h3 { margin:0 0 4px; font-size:1.2rem; font-weight:700; }
   .np .sub { color:var(--gris); margin:0 0 16px; font-size:.95rem; }
-  .np-flujo { display:grid; grid-template-columns:200px 30px 1fr 30px 200px; align-items:stretch; }
+  .np-flujo { display:grid; grid-template-columns:190px 28px minmax(0, 1fr) 28px 190px; align-items:stretch; }
   .np-flecha { display:flex; align-items:center; justify-content:center; color:var(--gris); font-size:1.5rem; }
   .np-puertas { display:flex; flex-direction:column; gap:10px; justify-content:center; }
   .np-puerta { border:1px solid var(--borde); border-left:5px solid; border-radius:0 10px 10px 0; padding:10px 12px; }
@@ -244,6 +244,16 @@ tema <- bs_add_rules(tema, "
   .np-salida { border-radius:12px; background:var(--tinta); color:#fff; padding:14px; display:flex; flex-direction:column; justify-content:center; }
   .np-salida .ti { font-weight:700; font-size:1.05rem; margin-bottom:6px; }
   .np-salida .tx { font-size:.85rem; color:#D1D5DB; line-height:1.35; }
+  /* Pantallas medianas: en columna (puertas lado a lado, flechas hacia abajo) */
+  @media (max-width: 1199px) {
+    .np-flujo { grid-template-columns:minmax(0, 1fr); }
+    .np-puertas { flex-direction:row; } .np-puerta { flex:1; }
+    .np-flecha { transform:rotate(90deg); height:30px; }
+  }
+  @media (max-width: 700px) {
+    .np-pasos { grid-template-columns:minmax(0, 1fr); }
+    .np-puertas { flex-direction:column; }
+  }
   .np-medir { margin-top:14px; border:1px dashed var(--borde); border-radius:10px; padding:8px 12px; font-size:.85rem; color:var(--gris); }
   .np-medir b { color:var(--tinta); }
 
@@ -267,8 +277,6 @@ tema <- bs_add_rules(tema, "
   .por-definir { color:var(--gris); font-style:italic; }
 
   @media (max-width: 768px) {
-    .np-flujo, .np-pasos { grid-template-columns:1fr; }
-    .np-flecha { transform:rotate(90deg); }
     .esc-matriz { grid-template-columns:1fr; }
     .esc-eje-y { writing-mode:horizontal-tb; transform:none; grid-row:auto; }
     .esc-eje-x { grid-column:auto; }

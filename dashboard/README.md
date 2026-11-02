@@ -72,7 +72,7 @@ Si necesitas una columna o categoría nueva, avisa a Rebeca: cambia la gráfica,
 Archivos de texto y fijos (no son de prueba):
 
 - `hallazgos.csv`: los recuadros «Lo que encontramos» (`seccion, orden, texto`). Rebeca los mantiene; cada frente propone sus 2 o 3 hallazgos con cifra.
-- `propuesta.csv`: los campos de la propuesta en la sección 5 (`campo, texto`).
+- `propuesta.csv`: los campos de la propuesta en la sección 5 (`campo, texto, detalle`). `detalle` es opcional: el detalle operativo que se muestra plegado, «si lo preguntan» (decisión 79).
 - `estrategias.csv`: estrategias públicas y privadas (`tipo, actor, accion, por_que`).
 - `hallazgos.csv` lleva además una columna `cifra` (la cifra que se destaca a la izquierda; puede ir vacía).
 - `como_se_calculo.csv`: las tarjetas «Cómo se calculó».

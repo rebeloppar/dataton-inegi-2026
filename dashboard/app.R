@@ -212,6 +212,9 @@ tema <- bs_add_rules(tema, "
   .kpi.destacado { background:var(--tinta); color:#fff; border-color:var(--tinta); }
   .kpi.destacado .etiqueta { color:#D1D5DB; }
 
+  .ficha details.detalle { margin-top:.4rem; font-size:.9rem; color:var(--gris); }
+  .ficha details.detalle summary { cursor:pointer; color:var(--azul); font-weight:600; }
+  .ficha details.detalle p { margin:.4rem 0 0; }
   /* Sección 6: prospectiva */
   .esc-matriz { display:grid; grid-template-columns:2.2rem 1fr 1fr; grid-template-rows:auto auto auto; gap:.75rem; margin-top:.75rem; }
   .esc-eje-y { grid-row:1 / 3; writing-mode:vertical-rl; transform:rotate(180deg); text-align:center; font-weight:700; color:var(--gris); font-size:.9rem; }
@@ -496,7 +499,12 @@ ui <- page_navbar(
         div(class = "row g-4 mt-1",
           div(class = "col-lg-7",
             tags$dl(class = "ficha", lapply(seq_len(nrow(propuesta)), function(i)
-              tagList(tags$dt(propuesta$campo[i]), tags$dd(propuesta$texto[i]))))),
+              tagList(tags$dt(propuesta$campo[i]),
+                      tags$dd(propuesta$texto[i],
+                              # Detalle operativo, plegado: solo si lo preguntan (decisión 79)
+                              if (!is.null(propuesta$detalle) && !is.na(propuesta$detalle[i]) && nzchar(propuesta$detalle[i]))
+                                tags$details(class = "detalle", tags$summary("Detalle (si lo preguntan)"),
+                                             p(propuesta$detalle[i]))))))),
           div(class = "col-lg-5", lo_que_encontramos("s5")))),
       nav_panel("Estrategias públicas y privadas",
         div(class = "estrategias mt-2",

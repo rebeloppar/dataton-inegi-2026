@@ -1,0 +1,11 @@
+/* «La propuesta» compacta (decisión 81). CSS normal, fuera del tema de bslib. */
+.ficha .resumen { margin:0; }
+.ficha details { margin-top:.35rem; }
+.ficha details > summary { cursor:pointer; color:#0F72A8; font-weight:600; font-size:.9rem; }
+.ficha details.mas > p { margin:.4rem 0 0; }
+.ficha details.detalle { font-size:.9rem; color:#6B7280; }
+.ficha details.detalle > p { margin:.4rem 0 0; }
+.ficha .riesgos { margin-top:.4rem; border-top:1px solid #E3E6E0; }
+.ficha details.riesgo { margin:0; border-bottom:1px solid #E3E6E0; padding:.45rem 0; }
+.ficha details.riesgo > summary { color:#1F2937; font-size:.95rem; }
+.ficha details.riesgo > p { margin:.35rem 0 .2rem 1rem; color:#4B5563; font-size:.92rem; }

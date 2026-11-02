@@ -57,6 +57,7 @@ mercado    <- leer_opcional("s5_mercado.csv")
 calculo     <- leer("como_se_calculo.csv")
 hallazgos   <- leer("hallazgos.csv")
 propuesta   <- leer("propuesta.csv")
+riesgos     <- leer("riesgos.csv")
 estrategias <- leer("estrategias.csv")
 
 hay_prueba <- any(sapply(list(embudo, categorias, eslabon, efectos, bloques, robustez, perfil_prob, razones, genero,
@@ -300,6 +301,24 @@ arma_un_perfil <- function() {
     pie_grafica("s2_perfil_prob", "s2_perfil_prob.csv"))
 }
 
+# Campos de «La propuesta» (decisiones 79 y 81): se ve un resumen de una
+# línea; el texto completo va plegado en «Ver más» y el detalle operativo en
+# «Detalle (si lo preguntan)». Los riesgos salen de riesgos.csv, cada uno con
+# su respuesta plegada.
+lleno <- function(x) !is.null(x) && length(x) == 1 && !is.na(x) && nzchar(x)
+campo_propuesta <- function(f) {
+  detalle <- if (lleno(f$detalle)) tags$details(class = "detalle", tags$summary("Detalle (si lo preguntan)"), p(f$detalle))
+  if (f$campo == "Riesgos") {
+    r <- riesgos[order(riesgos$orden), ]
+    return(tagList(if (lleno(f$resumen)) p(class = "resumen", f$resumen),
+      div(class = "riesgos", lapply(seq_len(nrow(r)), function(i)
+        tags$details(class = "riesgo", tags$summary(r$riesgo[i]), p(r$respuesta[i]))))))
+  }
+  if (!lleno(f$resumen)) return(tagList(f$texto, detalle))
+  tagList(p(class = "resumen", f$resumen),
+          if (lleno(f$texto)) tags$details(class = "mas", tags$summary("Ver más"), p(f$texto), detalle) else detalle)
+}
+
 # Núcleo de la propuesta (decisión 80): dos puertas → la tienda (3 pasos) →
 # compradora independiente. Las cifras salen de s5_simulador.csv, igual que
 # «Lo que está en juego» (quien da las dos razones cuenta solo en la puerta 1).
@@ -534,13 +553,9 @@ ui <- page_navbar(
         nucleo_propuesta(),
         div(class = "row g-4 mt-1",
           div(class = "col-lg-7",
+            tags$link(rel = "stylesheet", href = "propuesta.css"),
             tags$dl(class = "ficha", lapply(seq_len(nrow(propuesta)), function(i)
-              tagList(tags$dt(propuesta$campo[i]),
-                      tags$dd(propuesta$texto[i],
-                              # Detalle operativo, plegado: solo si lo preguntan (decisión 79)
-                              if (!is.null(propuesta$detalle) && !is.na(propuesta$detalle[i]) && nzchar(propuesta$detalle[i]))
-                                tags$details(class = "detalle", tags$summary("Detalle (si lo preguntan)"),
-                                             p(propuesta$detalle[i]))))))),
+              tagList(tags$dt(propuesta$campo[i]), tags$dd(campo_propuesta(propuesta[i, ])))))),
           div(class = "col-lg-5", lo_que_encontramos("s5")))),
       nav_panel("Estrategias públicas y privadas",
         div(class = "estrategias mt-2",

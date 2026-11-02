@@ -215,48 +215,6 @@ tema <- bs_add_rules(tema, "
   .ficha details.detalle { margin-top:.4rem; font-size:.9rem; color:var(--gris); }
   .ficha details.detalle summary { cursor:pointer; color:var(--azul); font-weight:600; }
   .ficha details.detalle p { margin:.4rem 0 0; }
-  /* Núcleo de la propuesta (decisión 80) */
-  .np { border:1px solid var(--borde); border-radius:14px; padding:20px 22px; background:#fff; margin:.75rem 0 1.25rem; }
-  .np h3 { margin:0 0 4px; font-size:1.2rem; font-weight:700; }
-  .np .sub { color:var(--gris); margin:0 0 16px; font-size:.95rem; }
-  .np-flujo { display:grid; grid-template-columns:190px 28px minmax(0, 1fr) 28px 190px; align-items:stretch; }
-  .np-flecha { display:flex; align-items:center; justify-content:center; color:var(--gris); font-size:1.5rem; }
-  .np-puertas { display:flex; flex-direction:column; gap:10px; justify-content:center; }
-  .np-puerta { border:1px solid var(--borde); border-left:5px solid; border-radius:0 10px 10px 0; padding:10px 12px; }
-  .np-puerta.p1 { border-left-color:var(--verde); } .np-puerta.p2 { border-left-color:var(--ocre); }
-  .np-puerta .et { font-size:.72rem; font-weight:700; color:var(--gris); text-transform:uppercase; letter-spacing:.04em; }
-  .np-puerta .q { font-weight:700; margin:2px 0; }
-  .np-puerta .n { font-size:1.5rem; font-weight:700; }
-  .np-puerta.p1 .n { color:var(--verde); } .np-puerta.p2 .n { color:var(--ocre); }
-  .np-puerta .nn { font-size:.8rem; color:var(--gris); }
-  .np-tienda { border:2px solid var(--azul); border-radius:14px; padding:14px 16px 12px; background:#F7FAFC; }
-  .np-tienda .tt { font-weight:700; color:var(--azul); }
-  .np-tienda .ya { font-size:.82rem; color:var(--gris); margin-bottom:12px; }
-  .np-pasos { display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; }
-  .np-paso { background:#fff; border:1px solid var(--borde); border-radius:10px; padding:12px; }
-  .np-paso .num { display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%;
-                  background:var(--azul); color:#fff; font-weight:700; font-size:.9rem; margin-bottom:6px; }
-  .np-paso .ti { font-weight:700; margin-bottom:3px; }
-  .np-paso .tx { font-size:.85rem; color:var(--gris); line-height:1.35; }
-  .np-apoyo { margin-top:10px; display:flex; align-items:center; gap:10px; font-size:.8rem; color:var(--gris); }
-  .np-apoyo .barra { flex:1; height:10px; border-radius:5px; background:linear-gradient(90deg, var(--azul), #CFE3F0 70%, #fff); border:1px solid var(--borde); }
-  .np-genero { margin-top:10px; font-size:.82rem; background:var(--menta); border-radius:8px; padding:7px 10px; }
-  .np-salida { border-radius:12px; background:var(--tinta); color:#fff; padding:14px; display:flex; flex-direction:column; justify-content:center; }
-  .np-salida .ti { font-weight:700; font-size:1.05rem; margin-bottom:6px; }
-  .np-salida .tx { font-size:.85rem; color:#D1D5DB; line-height:1.35; }
-  /* Pantallas medianas: en columna (puertas lado a lado, flechas hacia abajo) */
-  @media (max-width: 1199px) {
-    .np-flujo { grid-template-columns:minmax(0, 1fr); }
-    .np-puertas { flex-direction:row; } .np-puerta { flex:1; }
-    .np-flecha { transform:rotate(90deg); height:30px; }
-  }
-  @media (max-width: 700px) {
-    .np-pasos { grid-template-columns:minmax(0, 1fr); }
-    .np-puertas { flex-direction:column; }
-  }
-  .np-medir { margin-top:14px; border:1px dashed var(--borde); border-radius:10px; padding:8px 12px; font-size:.85rem; color:var(--gris); }
-  .np-medir b { color:var(--tinta); }
-
   /* Sección 6: prospectiva */
   .esc-matriz { display:grid; grid-template-columns:2.2rem 1fr 1fr; grid-template-rows:auto auto auto; gap:.75rem; margin-top:.75rem; }
   .esc-eje-y { grid-row:1 / 3; writing-mode:vertical-rl; transform:rotate(180deg); text-align:center; font-weight:700; color:var(--gris); font-size:.9rem; }
@@ -351,6 +309,7 @@ nucleo_propuesta <- function() {
   m <- function(x) sprintf("%.1f M", x)
   paso <- function(n, titulo, texto) div(class = "np-paso", div(class = "num", n), div(class = "ti", titulo), div(class = "tx", texto))
   div(class = "np",
+    tags$link(rel = "stylesheet", href = "nucleo_propuesta.css"),
     h3("La tienda como puerta de entrada"),
     p(class = "sub", "Dos barreras, una misma puerta: la infraestructura que las cadenas ya tienen, usada para que la persona aprenda a comprar por su cuenta."),
     div(class = "np-flujo",

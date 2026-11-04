@@ -48,3 +48,23 @@ for (v in c("ESCOLARIDAD", "GRUPO_EDAD", "ESTRATO", "REGION")) {
   write.csv(tab, file.path("resultados", paste0("B1_razones_por_", v, ".csv")),
             row.names = FALSE, fileEncoding = "UTF-8")
 }
+
+# -----------------------------------------------------------------------------
+# Dashboard, sección 3 «Por qué no compran» → dashboard/datos/s3_razones.csv
+# Cortes: nacional, escolaridad, edad, sexo, localidad, estrato y región (CEEY).
+# Mismas razones principales que las tablas de arriba, con nombre corto.
+# -----------------------------------------------------------------------------
+source(file.path("analisis", "B_barreras", "00_exportar_dashboard.R"))
+
+razones_corto <- c(
+  P7_22_1 = "Prefiere en persona",
+  P7_22_2 = "No le interesa",
+  P7_22_3 = "Falta de recursos",
+  P7_22_4 = "Desconfía de la calidad",
+  P7_22_5 = "Desconfía de la seguridad",
+  P7_22_6 = "No tiene tarjeta",
+  P7_22_7 = "No sabe cómo")
+stopifnot(identical(names(razones_corto), principales))
+
+s3_razones <- estimar_por_cortes(preparar_cortes(dis_no), principales, razones_corto)
+escribir_dashboard(s3_razones, "s3_razones.csv", "razon")

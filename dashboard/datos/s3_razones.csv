@@ -1,163 +1,183 @@
 "grupo_var","grupo","orden","razon","estimacion","li90","ls90","prueba"
-"Edad","18-24",1,"Prefiere en persona",56.7,55.4,57.2,TRUE
-"Edad","18-24",1,"No le interesa",16.5,15,18.2,TRUE
-"Edad","18-24",1,"No sabe cómo",15.9,14.4,17.8,TRUE
-"Edad","18-24",1,"Desconfía",9.5,8,10.4,TRUE
-"Edad","18-24",1,"No tiene tarjeta",4.6,2.8,5.4,TRUE
-"Edad","18-24",1,"No tiene dinero",3.3,1.6,3.9,TRUE
-"Edad","25-34",2,"Prefiere en persona",57.8,56.7,58.5,TRUE
-"Edad","25-34",2,"No le interesa",29.2,27.5,30.7,TRUE
-"Edad","25-34",2,"No sabe cómo",12.6,10.9,13.7,TRUE
-"Edad","25-34",2,"Desconfía",7.8,6.2,9.3,TRUE
-"Edad","25-34",2,"No tiene tarjeta",2.5,0.9,3.5,TRUE
-"Edad","25-34",2,"No tiene dinero",2,1.3,3.9,TRUE
-"Edad","35-44",3,"Prefiere en persona",58.7,56.9,59.9,TRUE
-"Edad","35-44",3,"No le interesa",42.4,41.4,43.6,TRUE
-"Edad","35-44",3,"No sabe cómo",26.8,25.1,28.7,TRUE
-"Edad","35-44",3,"Desconfía",7.4,6.1,8.9,TRUE
-"Edad","35-44",3,"No tiene tarjeta",4.4,3.1,5.2,TRUE
-"Edad","35-44",3,"No tiene dinero",6.3,5.3,7.8,TRUE
-"Edad","45-54",4,"Prefiere en persona",56.1,55.5,56.8,TRUE
-"Edad","45-54",4,"No le interesa",24.6,23.2,25.6,TRUE
-"Edad","45-54",4,"No sabe cómo",10.5,9.5,12.1,TRUE
-"Edad","45-54",4,"Desconfía",12.7,11.9,13.3,TRUE
-"Edad","45-54",4,"No tiene tarjeta",2.3,0.4,4.3,TRUE
-"Edad","45-54",4,"No tiene dinero",6.4,4.7,7.3,TRUE
-"Edad","55-64",5,"Prefiere en persona",43.1,42.3,43.7,TRUE
-"Edad","55-64",5,"No le interesa",33.1,31.7,34.4,TRUE
-"Edad","55-64",5,"No sabe cómo",11.2,10,12.6,TRUE
-"Edad","55-64",5,"Desconfía",12,10.4,13.3,TRUE
-"Edad","55-64",5,"No tiene tarjeta",3.1,2.3,5.1,TRUE
-"Edad","55-64",5,"No tiene dinero",4.9,3.8,5.5,TRUE
-"Edad","65+",6,"Prefiere en persona",53.6,52,54.6,TRUE
-"Edad","65+",6,"No le interesa",15.3,14.4,16.5,TRUE
-"Edad","65+",6,"No sabe cómo",31.6,30.4,33.2,TRUE
-"Edad","65+",6,"Desconfía",7.9,6,8.6,TRUE
-"Edad","65+",6,"No tiene tarjeta",5.3,3.9,6.5,TRUE
-"Edad","65+",6,"No tiene dinero",4,3.2,5.7,TRUE
-"Escolaridad","Sin escolaridad",1,"Prefiere en persona",47.9,45.9,49.5,TRUE
-"Escolaridad","Sin escolaridad",1,"No le interesa",46.1,45.3,47.4,TRUE
-"Escolaridad","Sin escolaridad",1,"No sabe cómo",31,29.6,31.8,TRUE
-"Escolaridad","Sin escolaridad",1,"Desconfía",9.8,8.9,10.8,TRUE
-"Escolaridad","Sin escolaridad",1,"No tiene tarjeta",3.2,2,4.2,TRUE
-"Escolaridad","Sin escolaridad",1,"No tiene dinero",5.6,3.7,7.2,TRUE
-"Escolaridad","Primaria",2,"Prefiere en persona",22.8,22.2,24.1,TRUE
-"Escolaridad","Primaria",2,"No le interesa",22.4,21.2,23.2,TRUE
-"Escolaridad","Primaria",2,"No sabe cómo",26.7,26,27.7,TRUE
-"Escolaridad","Primaria",2,"Desconfía",5.3,3.5,7.1,TRUE
-"Escolaridad","Primaria",2,"No tiene tarjeta",4.9,3.5,6.4,TRUE
-"Escolaridad","Primaria",2,"No tiene dinero",3.1,2.4,3.9,TRUE
-"Escolaridad","Secundaria",3,"Prefiere en persona",64,62.4,65.4,TRUE
-"Escolaridad","Secundaria",3,"No le interesa",42.8,41.8,43.4,TRUE
-"Escolaridad","Secundaria",3,"No sabe cómo",28.8,27.4,30.5,TRUE
-"Escolaridad","Secundaria",3,"Desconfía",6.6,5.4,7.4,TRUE
-"Escolaridad","Secundaria",3,"No tiene tarjeta",3.7,2.3,5.5,TRUE
-"Escolaridad","Secundaria",3,"No tiene dinero",2.3,0.7,3.3,TRUE
-"Escolaridad","Media superior",4,"Prefiere en persona",33.9,32.4,35.1,TRUE
-"Escolaridad","Media superior",4,"No le interesa",17.2,16.1,18.3,TRUE
-"Escolaridad","Media superior",4,"No sabe cómo",30.2,29.6,32.1,TRUE
-"Escolaridad","Media superior",4,"Desconfía",11.7,10.1,12.5,TRUE
-"Escolaridad","Media superior",4,"No tiene tarjeta",5.1,4.3,6.2,TRUE
-"Escolaridad","Media superior",4,"No tiene dinero",5,3.7,6,TRUE
-"Escolaridad","Superior",5,"Prefiere en persona",48,46.9,49,TRUE
-"Escolaridad","Superior",5,"No le interesa",23.9,22.5,25.3,TRUE
-"Escolaridad","Superior",5,"No sabe cómo",27.4,26.3,28,TRUE
-"Escolaridad","Superior",5,"Desconfía",9,7,10.4,TRUE
-"Escolaridad","Superior",5,"No tiene tarjeta",6,4.5,7.5,TRUE
-"Escolaridad","Superior",5,"No tiene dinero",2.7,1.8,4,TRUE
-"Estrato","Bajo",1,"Prefiere en persona",24,22.4,25.7,TRUE
-"Estrato","Bajo",1,"No le interesa",39.4,37.6,40.2,TRUE
-"Estrato","Bajo",1,"No sabe cómo",24.9,23.3,25.6,TRUE
-"Estrato","Bajo",1,"Desconfía",6.3,4.5,7.7,TRUE
-"Estrato","Bajo",1,"No tiene tarjeta",2.8,1.1,4.6,TRUE
-"Estrato","Bajo",1,"No tiene dinero",4.6,2.7,6.5,TRUE
-"Estrato","Medio bajo",2,"Prefiere en persona",29.3,28.2,30.7,TRUE
-"Estrato","Medio bajo",2,"No le interesa",37.3,35.9,38.1,TRUE
-"Estrato","Medio bajo",2,"No sabe cómo",15.9,15.1,16.5,TRUE
-"Estrato","Medio bajo",2,"Desconfía",9.7,8.3,11.7,TRUE
-"Estrato","Medio bajo",2,"No tiene tarjeta",5.5,4.8,6.1,TRUE
-"Estrato","Medio bajo",2,"No tiene dinero",2.6,1.3,4.3,TRUE
-"Estrato","Medio alto",3,"Prefiere en persona",58,56.4,59.8,TRUE
-"Estrato","Medio alto",3,"No le interesa",43.9,42.3,44.6,TRUE
-"Estrato","Medio alto",3,"No sabe cómo",17.9,17,19.4,TRUE
-"Estrato","Medio alto",3,"Desconfía",8.6,7,9.4,TRUE
-"Estrato","Medio alto",3,"No tiene tarjeta",2.9,2,4.3,TRUE
-"Estrato","Medio alto",3,"No tiene dinero",6,4.9,7.1,TRUE
-"Estrato","Alto",4,"Prefiere en persona",63.6,61.8,64.4,TRUE
-"Estrato","Alto",4,"No le interesa",18.8,17.1,20,TRUE
-"Estrato","Alto",4,"No sabe cómo",17.1,15.1,18.8,TRUE
-"Estrato","Alto",4,"Desconfía",10.9,9.3,11.7,TRUE
-"Estrato","Alto",4,"No tiene tarjeta",3.1,1.6,3.9,TRUE
-"Estrato","Alto",4,"No tiene dinero",5.3,3.7,6.2,TRUE
-"Localidad","Menos de 2,500",1,"Prefiere en persona",37.3,36.3,39,TRUE
-"Localidad","Menos de 2,500",1,"No le interesa",18.1,16.1,19.6,TRUE
-"Localidad","Menos de 2,500",1,"No sabe cómo",12.5,11,13.3,TRUE
-"Localidad","Menos de 2,500",1,"Desconfía",7.7,6.3,9.1,TRUE
-"Localidad","Menos de 2,500",1,"No tiene tarjeta",3.9,2.5,5.1,TRUE
-"Localidad","Menos de 2,500",1,"No tiene dinero",6,5,6.8,TRUE
-"Localidad","2,500-14,999",2,"Prefiere en persona",48,46.5,49.4,TRUE
-"Localidad","2,500-14,999",2,"No le interesa",47.3,45.8,48.3,TRUE
-"Localidad","2,500-14,999",2,"No sabe cómo",14.5,13.8,16,TRUE
-"Localidad","2,500-14,999",2,"Desconfía",11.1,10,11.9,TRUE
-"Localidad","2,500-14,999",2,"No tiene tarjeta",2.7,1.5,4.5,TRUE
-"Localidad","2,500-14,999",2,"No tiene dinero",3.1,2.3,3.6,TRUE
-"Localidad","15,000-99,999",3,"Prefiere en persona",42.4,41.3,43.2,TRUE
-"Localidad","15,000-99,999",3,"No le interesa",20.2,19.2,21.1,TRUE
-"Localidad","15,000-99,999",3,"No sabe cómo",12.9,11.5,14.1,TRUE
-"Localidad","15,000-99,999",3,"Desconfía",8.9,7.6,9.8,TRUE
-"Localidad","15,000-99,999",3,"No tiene tarjeta",4.2,3.6,5.9,TRUE
-"Localidad","15,000-99,999",3,"No tiene dinero",4.1,2.3,5.3,TRUE
-"Localidad","100,000 y más",4,"Prefiere en persona",21.2,20.1,22.1,TRUE
-"Localidad","100,000 y más",4,"No le interesa",23.7,22.2,24.4,TRUE
-"Localidad","100,000 y más",4,"No sabe cómo",30.6,29.4,31.7,TRUE
-"Localidad","100,000 y más",4,"Desconfía",8.6,7.8,10.1,TRUE
-"Localidad","100,000 y más",4,"No tiene tarjeta",2.8,1.6,4.1,TRUE
-"Localidad","100,000 y más",4,"No tiene dinero",3.2,2,3.8,TRUE
-"Nacional","Nacional",1,"Prefiere en persona",60.8,59.4,62.6,TRUE
-"Nacional","Nacional",1,"No le interesa",15.2,14.6,17.1,TRUE
-"Nacional","Nacional",1,"No sabe cómo",18.3,17.6,19.1,TRUE
-"Nacional","Nacional",1,"Desconfía",6.7,5.6,7.4,TRUE
-"Nacional","Nacional",1,"No tiene tarjeta",5,3.9,6,TRUE
-"Nacional","Nacional",1,"No tiene dinero",4.9,4.3,6.4,TRUE
-"Región","Norte",1,"Prefiere en persona",61,59.3,61.7,TRUE
-"Región","Norte",1,"No le interesa",29.2,28.6,31.2,TRUE
-"Región","Norte",1,"No sabe cómo",23,21.8,24.3,TRUE
-"Región","Norte",1,"Desconfía",11.3,9.6,12.2,TRUE
-"Región","Norte",1,"No tiene tarjeta",4.7,3.7,6.3,TRUE
-"Región","Norte",1,"No tiene dinero",4.9,3.8,5.9,TRUE
-"Región","Norte-occidente",2,"Prefiere en persona",62.8,62.1,63.5,TRUE
-"Región","Norte-occidente",2,"No le interesa",43.8,42.5,44.7,TRUE
-"Región","Norte-occidente",2,"No sabe cómo",24.8,23.1,25.7,TRUE
-"Región","Norte-occidente",2,"Desconfía",5.4,3.9,6.7,TRUE
-"Región","Norte-occidente",2,"No tiene tarjeta",4.1,2.5,5.8,TRUE
-"Región","Norte-occidente",2,"No tiene dinero",6,5,7.6,TRUE
-"Región","Centro-norte",3,"Prefiere en persona",32.5,31.7,34.4,TRUE
-"Región","Centro-norte",3,"No le interesa",20.5,19.4,21.1,TRUE
-"Región","Centro-norte",3,"No sabe cómo",15.7,14.3,17,TRUE
-"Región","Centro-norte",3,"Desconfía",9.1,8.2,9.8,TRUE
-"Región","Centro-norte",3,"No tiene tarjeta",3.5,2.4,4.4,TRUE
-"Región","Centro-norte",3,"No tiene dinero",6.4,5.4,7,TRUE
-"Región","Centro",4,"Prefiere en persona",40.1,39.5,41.8,TRUE
-"Región","Centro",4,"No le interesa",20.5,19.8,22,TRUE
-"Región","Centro",4,"No sabe cómo",11.8,9.9,12.8,TRUE
-"Región","Centro",4,"Desconfía",4.5,2.8,6,TRUE
-"Región","Centro",4,"No tiene tarjeta",3,2.1,3.8,TRUE
-"Región","Centro",4,"No tiene dinero",4,2.4,4.9,TRUE
-"Región","Sur",5,"Prefiere en persona",57.5,56.5,59.4,TRUE
-"Región","Sur",5,"No le interesa",46.9,46.1,47.6,TRUE
-"Región","Sur",5,"No sabe cómo",16.8,16,17.3,TRUE
-"Región","Sur",5,"Desconfía",12.3,10.4,12.9,TRUE
-"Región","Sur",5,"No tiene tarjeta",5.5,4.5,6.9,TRUE
-"Región","Sur",5,"No tiene dinero",3.3,2.2,4.9,TRUE
-"Sexo","Hombre",1,"Prefiere en persona",61.9,59.9,63.2,TRUE
-"Sexo","Hombre",1,"No le interesa",45.5,44.4,46.3,TRUE
-"Sexo","Hombre",1,"No sabe cómo",20.9,19.8,22.6,TRUE
-"Sexo","Hombre",1,"Desconfía",8.2,7.6,9.8,TRUE
-"Sexo","Hombre",1,"No tiene tarjeta",5.4,3.6,6.4,TRUE
-"Sexo","Hombre",1,"No tiene dinero",2.1,0.8,4.1,TRUE
-"Sexo","Mujer",2,"Prefiere en persona",57.6,56.2,59.5,TRUE
-"Sexo","Mujer",2,"No le interesa",15.6,14.8,17.5,TRUE
-"Sexo","Mujer",2,"No sabe cómo",23.6,22.7,25.6,TRUE
-"Sexo","Mujer",2,"Desconfía",7.4,5.9,8.2,TRUE
-"Sexo","Mujer",2,"No tiene tarjeta",3.5,1.8,4.7,TRUE
-"Sexo","Mujer",2,"No tiene dinero",4,2.6,5.8,TRUE
+"Nacional","Nacional",1,"Prefiere en persona",45.5,44.6,46.5,FALSE
+"Nacional","Nacional",1,"No le interesa",23.7,22.9,24.5,FALSE
+"Nacional","Nacional",1,"Falta de recursos",5.2,4.8,5.6,FALSE
+"Nacional","Nacional",1,"Desconfía de la calidad",7.4,6.9,7.8,FALSE
+"Nacional","Nacional",1,"Desconfía de la seguridad",10.8,10.3,11.4,FALSE
+"Nacional","Nacional",1,"No tiene tarjeta",2.6,2.3,2.9,FALSE
+"Nacional","Nacional",1,"No sabe cómo",16.8,16.2,17.4,FALSE
+"Escolaridad","Primaria o menos",1,"Prefiere en persona",38,36.3,39.7,FALSE
+"Escolaridad","Secundaria",2,"Prefiere en persona",45.5,44,47,FALSE
+"Escolaridad","Media superior",3,"Prefiere en persona",49.1,47.3,50.9,FALSE
+"Escolaridad","Superior",4,"Prefiere en persona",52,50,53.9,FALSE
+"Escolaridad","Primaria o menos",1,"No le interesa",23.7,22,25.4,FALSE
+"Escolaridad","Secundaria",2,"No le interesa",24,22.7,25.2,FALSE
+"Escolaridad","Media superior",3,"No le interesa",22.7,21.3,24.2,FALSE
+"Escolaridad","Superior",4,"No le interesa",24.2,22.6,25.8,FALSE
+"Escolaridad","Primaria o menos",1,"Falta de recursos",6,5.2,6.8,FALSE
+"Escolaridad","Secundaria",2,"Falta de recursos",5.8,5.1,6.5,FALSE
+"Escolaridad","Media superior",3,"Falta de recursos",5.7,4.8,6.6,FALSE
+"Escolaridad","Superior",4,"Falta de recursos",2.3,1.8,2.9,FALSE
+"Escolaridad","Primaria o menos",1,"Desconfía de la calidad",5.3,4.5,6.1,FALSE
+"Escolaridad","Secundaria",2,"Desconfía de la calidad",7.3,6.5,8.1,FALSE
+"Escolaridad","Media superior",3,"Desconfía de la calidad",8.7,7.7,9.8,FALSE
+"Escolaridad","Superior",4,"Desconfía de la calidad",8.6,7.5,9.7,FALSE
+"Escolaridad","Primaria o menos",1,"Desconfía de la seguridad",7.4,6.6,8.3,FALSE
+"Escolaridad","Secundaria",2,"Desconfía de la seguridad",10.1,9.2,11,FALSE
+"Escolaridad","Media superior",3,"Desconfía de la seguridad",13.3,12,14.6,FALSE
+"Escolaridad","Superior",4,"Desconfía de la seguridad",13.6,12.4,14.9,FALSE
+"Escolaridad","Primaria o menos",1,"No tiene tarjeta",2.3,1.7,2.9,FALSE
+"Escolaridad","Secundaria",2,"No tiene tarjeta",3,2.5,3.5,FALSE
+"Escolaridad","Media superior",3,"No tiene tarjeta",3.3,2.6,4,FALSE
+"Escolaridad","Superior",4,"No tiene tarjeta",1.5,1,2,FALSE
+"Escolaridad","Primaria o menos",1,"No sabe cómo",31,29.5,32.6,FALSE
+"Escolaridad","Secundaria",2,"No sabe cómo",16.6,15.6,17.6,FALSE
+"Escolaridad","Media superior",3,"No sabe cómo",9.3,8.4,10.2,FALSE
+"Escolaridad","Superior",4,"No sabe cómo",6.9,6,7.8,FALSE
+"Edad","18-24",1,"Prefiere en persona",46.3,43.8,48.8,FALSE
+"Edad","25-34",2,"Prefiere en persona",48.9,46.8,51.1,FALSE
+"Edad","35-44",3,"Prefiere en persona",47.5,45.5,49.5,FALSE
+"Edad","45-54",4,"Prefiere en persona",43.5,41.5,45.5,FALSE
+"Edad","55-64",5,"Prefiere en persona",45.1,43.4,46.9,FALSE
+"Edad","65+",6,"Prefiere en persona",41.2,39.1,43.3,FALSE
+"Edad","18-24",1,"No le interesa",28,25.8,30.2,FALSE
+"Edad","25-34",2,"No le interesa",25.2,23.5,27,FALSE
+"Edad","35-44",3,"No le interesa",21.3,19.8,22.9,FALSE
+"Edad","45-54",4,"No le interesa",23.9,21.9,25.9,FALSE
+"Edad","55-64",5,"No le interesa",22.3,20.7,23.8,FALSE
+"Edad","65+",6,"No le interesa",22.9,21.2,24.6,FALSE
+"Edad","18-24",1,"Falta de recursos",6.8,5.5,8,FALSE
+"Edad","25-34",2,"Falta de recursos",6.4,5.3,7.4,FALSE
+"Edad","35-44",3,"Falta de recursos",6.2,5.2,7.1,FALSE
+"Edad","45-54",4,"Falta de recursos",4.7,4,5.5,FALSE
+"Edad","55-64",5,"Falta de recursos",4,3.2,4.8,FALSE
+"Edad","65+",6,"Falta de recursos",2.9,2.2,3.6,FALSE
+"Edad","18-24",1,"Desconfía de la calidad",7.2,5.8,8.7,FALSE
+"Edad","25-34",2,"Desconfía de la calidad",8.3,7,9.5,FALSE
+"Edad","35-44",3,"Desconfía de la calidad",8.6,7.5,9.8,FALSE
+"Edad","45-54",4,"Desconfía de la calidad",7.8,6.7,8.9,FALSE
+"Edad","55-64",5,"Desconfía de la calidad",6.3,5.3,7.2,FALSE
+"Edad","65+",6,"Desconfía de la calidad",4.9,4,5.9,FALSE
+"Edad","18-24",1,"Desconfía de la seguridad",8.5,7.1,9.9,FALSE
+"Edad","25-34",2,"Desconfía de la seguridad",11.7,10.2,13.1,FALSE
+"Edad","35-44",3,"Desconfía de la seguridad",12,10.7,13.2,FALSE
+"Edad","45-54",4,"Desconfía de la seguridad",12,10.9,13.2,FALSE
+"Edad","55-64",5,"Desconfía de la seguridad",10.8,9.6,12.1,FALSE
+"Edad","65+",6,"Desconfía de la seguridad",7.9,6.8,8.9,FALSE
+"Edad","18-24",1,"No tiene tarjeta",3.9,3,4.7,FALSE
+"Edad","25-34",2,"No tiene tarjeta",2.9,2.2,3.5,FALSE
+"Edad","35-44",3,"No tiene tarjeta",4.1,3.2,4.9,FALSE
+"Edad","45-54",4,"No tiene tarjeta",2.4,1.8,3.1,FALSE
+"Edad","55-64",5,"No tiene tarjeta",1.4,1,1.7,FALSE
+"Edad","65+",6,"No tiene tarjeta",0.6,0.4,0.8,FALSE
+"Edad","18-24",1,"No sabe cómo",7,5.5,8.5,FALSE
+"Edad","25-34",2,"No sabe cómo",7.7,6.7,8.7,FALSE
+"Edad","35-44",3,"No sabe cómo",12.6,11.3,13.8,FALSE
+"Edad","45-54",4,"No sabe cómo",19.1,17.7,20.4,FALSE
+"Edad","55-64",5,"No sabe cómo",23.8,22.3,25.3,FALSE
+"Edad","65+",6,"No sabe cómo",32.1,30.2,33.9,FALSE
+"Sexo","Hombre",1,"Prefiere en persona",47.2,45.8,48.5,FALSE
+"Sexo","Mujer",2,"Prefiere en persona",44.2,43,45.4,FALSE
+"Sexo","Hombre",1,"No le interesa",25.3,24.1,26.5,FALSE
+"Sexo","Mujer",2,"No le interesa",22.4,21.4,23.4,FALSE
+"Sexo","Hombre",1,"Falta de recursos",4.4,3.9,5,FALSE
+"Sexo","Mujer",2,"Falta de recursos",5.8,5.3,6.3,FALSE
+"Sexo","Hombre",1,"Desconfía de la calidad",7.5,6.8,8.3,FALSE
+"Sexo","Mujer",2,"Desconfía de la calidad",7.2,6.6,7.8,FALSE
+"Sexo","Hombre",1,"Desconfía de la seguridad",11.1,10.3,11.9,FALSE
+"Sexo","Mujer",2,"Desconfía de la seguridad",10.6,9.8,11.3,FALSE
+"Sexo","Hombre",1,"No tiene tarjeta",2.3,1.9,2.6,FALSE
+"Sexo","Mujer",2,"No tiene tarjeta",2.9,2.4,3.3,FALSE
+"Sexo","Hombre",1,"No sabe cómo",14.1,13.3,14.9,FALSE
+"Sexo","Mujer",2,"No sabe cómo",19,18.1,19.8,FALSE
+"Localidad","Menos de 2,500",1,"Prefiere en persona",38,35.9,40.1,FALSE
+"Localidad","2,500 a 14,999",2,"Prefiere en persona",43.2,40.6,45.8,FALSE
+"Localidad","15 mil a 99,999",3,"Prefiere en persona",48.6,46.2,51.1,FALSE
+"Localidad","100 mil y más",4,"Prefiere en persona",49.2,47.9,50.5,FALSE
+"Localidad","Menos de 2,500",1,"No le interesa",24.2,21.9,26.4,FALSE
+"Localidad","2,500 a 14,999",2,"No le interesa",24,21.9,26.1,FALSE
+"Localidad","15 mil a 99,999",3,"No le interesa",22.1,20.1,24.1,FALSE
+"Localidad","100 mil y más",4,"No le interesa",23.9,22.8,24.9,FALSE
+"Localidad","Menos de 2,500",1,"Falta de recursos",6.7,5.9,7.5,FALSE
+"Localidad","2,500 a 14,999",2,"Falta de recursos",6.1,5,7.2,FALSE
+"Localidad","15 mil a 99,999",3,"Falta de recursos",4.6,3.6,5.5,FALSE
+"Localidad","100 mil y más",4,"Falta de recursos",4.3,3.8,4.9,FALSE
+"Localidad","Menos de 2,500",1,"Desconfía de la calidad",6.4,5.5,7.3,FALSE
+"Localidad","2,500 a 14,999",2,"Desconfía de la calidad",6.9,5.6,8.2,FALSE
+"Localidad","15 mil a 99,999",3,"Desconfía de la calidad",7.7,6.4,8.9,FALSE
+"Localidad","100 mil y más",4,"Desconfía de la calidad",7.9,7.2,8.6,FALSE
+"Localidad","Menos de 2,500",1,"Desconfía de la seguridad",8.6,7.6,9.5,FALSE
+"Localidad","2,500 a 14,999",2,"Desconfía de la seguridad",11.8,10.3,13.3,FALSE
+"Localidad","15 mil a 99,999",3,"Desconfía de la seguridad",10.6,9.2,12,FALSE
+"Localidad","100 mil y más",4,"Desconfía de la seguridad",11.7,10.8,12.6,FALSE
+"Localidad","Menos de 2,500",1,"No tiene tarjeta",4,3.2,4.8,FALSE
+"Localidad","2,500 a 14,999",2,"No tiene tarjeta",3.7,2.7,4.7,FALSE
+"Localidad","15 mil a 99,999",3,"No tiene tarjeta",1.8,1,2.6,FALSE
+"Localidad","100 mil y más",4,"No tiene tarjeta",1.8,1.4,2.1,FALSE
+"Localidad","Menos de 2,500",1,"No sabe cómo",23,21.5,24.5,FALSE
+"Localidad","2,500 a 14,999",2,"No sabe cómo",17.4,15.8,19,FALSE
+"Localidad","15 mil a 99,999",3,"No sabe cómo",16.4,14.9,17.9,FALSE
+"Localidad","100 mil y más",4,"No sabe cómo",13.5,12.7,14.3,FALSE
+"Estrato","Bajo",1,"Prefiere en persona",36.1,34,38.3,FALSE
+"Estrato","Medio bajo",2,"Prefiere en persona",44.9,43.5,46.4,FALSE
+"Estrato","Medio alto",3,"Prefiere en persona",52.1,50.3,53.9,FALSE
+"Estrato","Alto",4,"Prefiere en persona",51.5,48.7,54.2,FALSE
+"Estrato","Bajo",1,"No le interesa",23.8,22.1,25.5,FALSE
+"Estrato","Medio bajo",2,"No le interesa",24.5,23.2,25.9,FALSE
+"Estrato","Medio alto",3,"No le interesa",21.4,20.1,22.7,FALSE
+"Estrato","Alto",4,"No le interesa",24.4,22.3,26.5,FALSE
+"Estrato","Bajo",1,"Falta de recursos",7.3,6.3,8.3,FALSE
+"Estrato","Medio bajo",2,"Falta de recursos",5.7,5.1,6.3,FALSE
+"Estrato","Medio alto",3,"Falta de recursos",3.9,3.2,4.5,FALSE
+"Estrato","Alto",4,"Falta de recursos",1.5,1,2,FALSE
+"Estrato","Bajo",1,"Desconfía de la calidad",6.9,5.9,7.9,FALSE
+"Estrato","Medio bajo",2,"Desconfía de la calidad",7.4,6.7,8.1,FALSE
+"Estrato","Medio alto",3,"Desconfía de la calidad",7.8,6.8,8.8,FALSE
+"Estrato","Alto",4,"Desconfía de la calidad",7,5.6,8.3,FALSE
+"Estrato","Bajo",1,"Desconfía de la seguridad",10.6,9.4,11.9,FALSE
+"Estrato","Medio bajo",2,"Desconfía de la seguridad",9.8,9,10.6,FALSE
+"Estrato","Medio alto",3,"Desconfía de la seguridad",11.5,10.3,12.8,FALSE
+"Estrato","Alto",4,"Desconfía de la seguridad",15.1,13.2,17.1,FALSE
+"Estrato","Bajo",1,"No tiene tarjeta",4,3.1,4.8,FALSE
+"Estrato","Medio bajo",2,"No tiene tarjeta",2.5,2.1,2.9,FALSE
+"Estrato","Medio alto",3,"No tiene tarjeta",2.4,1.7,3.1,FALSE
+"Estrato","Alto",4,"No tiene tarjeta",1,0.6,1.3,FALSE
+"Estrato","Bajo",1,"No sabe cómo",24.7,22.7,26.6,FALSE
+"Estrato","Medio bajo",2,"No sabe cómo",16.5,15.6,17.3,FALSE
+"Estrato","Medio alto",3,"No sabe cómo",13.5,12.4,14.6,FALSE
+"Estrato","Alto",4,"No sabe cómo",11.2,9.6,12.8,FALSE
+"Región","Norte",1,"Prefiere en persona",55.3,53.6,57,FALSE
+"Región","Norte-occidente",2,"Prefiere en persona",45,43.1,46.8,FALSE
+"Región","Centro-norte",3,"Prefiere en persona",43.2,40.9,45.6,FALSE
+"Región","Centro",4,"Prefiere en persona",47.1,45.1,49,FALSE
+"Región","Sur",5,"Prefiere en persona",37.4,35.7,39,FALSE
+"Región","Norte",1,"No le interesa",22.1,20.7,23.5,FALSE
+"Región","Norte-occidente",2,"No le interesa",24,22.5,25.5,FALSE
+"Región","Centro-norte",3,"No le interesa",28.5,26.4,30.6,FALSE
+"Región","Centro",4,"No le interesa",22.4,20.7,24.2,FALSE
+"Región","Sur",5,"No le interesa",24,22.7,25.3,FALSE
+"Región","Norte",1,"Falta de recursos",3.6,3,4.2,FALSE
+"Región","Norte-occidente",2,"Falta de recursos",5.7,4.7,6.7,FALSE
+"Región","Centro-norte",3,"Falta de recursos",4.5,3.7,5.3,FALSE
+"Región","Centro",4,"Falta de recursos",5.8,5,6.5,FALSE
+"Región","Sur",5,"Falta de recursos",5.7,5,6.4,FALSE
+"Región","Norte",1,"Desconfía de la calidad",5.6,4.8,6.4,FALSE
+"Región","Norte-occidente",2,"Desconfía de la calidad",4.5,3.8,5.3,FALSE
+"Región","Centro-norte",3,"Desconfía de la calidad",6.4,5.2,7.6,FALSE
+"Región","Centro",4,"Desconfía de la calidad",9,8,10,FALSE
+"Región","Sur",5,"Desconfía de la calidad",7.2,6.4,8,FALSE
+"Región","Norte",1,"Desconfía de la seguridad",7.8,6.9,8.7,FALSE
+"Región","Norte-occidente",2,"Desconfía de la seguridad",6.9,5.9,7.9,FALSE
+"Región","Centro-norte",3,"Desconfía de la seguridad",8,6.9,9.1,FALSE
+"Región","Centro",4,"Desconfía de la seguridad",13.2,12,14.4,FALSE
+"Región","Sur",5,"Desconfía de la seguridad",11.8,10.8,12.7,FALSE
+"Región","Norte",1,"No tiene tarjeta",0.9,0.6,1.2,FALSE
+"Región","Norte-occidente",2,"No tiene tarjeta",1.7,1.2,2.1,FALSE
+"Región","Centro-norte",3,"No tiene tarjeta",2.4,1.9,3,FALSE
+"Región","Centro",4,"No tiene tarjeta",3,2.4,3.7,FALSE
+"Región","Sur",5,"No tiene tarjeta",3.5,2.8,4.1,FALSE
+"Región","Norte",1,"No sabe cómo",14.9,13.9,16,FALSE
+"Región","Norte-occidente",2,"No sabe cómo",20.8,19.4,22.3,FALSE
+"Región","Centro-norte",3,"No sabe cómo",19.5,17.8,21.3,FALSE
+"Región","Centro",4,"No sabe cómo",12.8,11.8,13.8,FALSE
+"Región","Sur",5,"No sabe cómo",22.1,20.8,23.5,FALSE

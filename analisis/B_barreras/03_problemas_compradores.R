@@ -193,3 +193,35 @@ cat("(cv_pct > 30 = poco preciso; dif_pp = grupo − referencia; clara = IC 90 %
 print(tabla_3b, row.names = FALSE)
 write.csv(tabla_3b, "resultados/B3_comparaciones_tipos.csv", row.names = FALSE,
           fileEncoding = "UTF-8")
+
+# -----------------------------------------------------------------------------
+# 4. Dashboard, sección 3 «Problemas de quienes sí compran»
+#    → dashboard/datos/s3_problemas.csv
+#    Universo: TODOS los que compraron (como pide dashboard/README.md), no solo
+#    quienes tuvieron problema como en la sección 2: quien no tuvo problemas
+#    cuenta como 0 en cada tipo. Así «Algún problema» y los tipos están en la
+#    misma base y se leen como «% de compradores que tuvo...» (decisión 84).
+# -----------------------------------------------------------------------------
+source(file.path("analisis", "B_barreras", "00_exportar_dashboard.R"))
+
+for (v in names(problemas)) {
+  usu[[paste0("c_", v)]] <- ifelse(usu$problema %in% 0, 0, usu[[v]])
+}
+dis <- update(dis,
+              c_P7_27_1 = usu$c_P7_27_1, c_P7_27_2 = usu$c_P7_27_2,
+              c_P7_27_3 = usu$c_P7_27_3, c_P7_27_4 = usu$c_P7_27_4,
+              c_P7_27_5 = usu$c_P7_27_5, c_P7_27_6 = usu$c_P7_27_6)
+
+vars_dash <- c("problema", paste0("c_", names(problemas)))
+etiquetas_dash <- c(problema = "Algún problema",
+                    setNames(unname(problemas), paste0("c_", names(problemas))))
+
+# Control: % con algún problema igual al de la sección 1
+dis_c <- subset(dis, compra == 1)
+s3_problemas <- estimar_por_cortes(preparar_cortes(dis_c), vars_dash, etiquetas_dash)
+algun_nac <- s3_problemas$estimacion[s3_problemas$grupo_var == "Nacional" &
+                                     s3_problemas$categoria == "Algún problema"]
+cat(sprintf("\nControl: algún problema = %.1f %% (sección 1: %.1f %%). Deben coincidir;\n",
+            algun_nac, 100 * coef(nac)))
+cat("si difieren, hay compradores con problema sin tipo (P7_27 vacío).\n")
+escribir_dashboard(s3_problemas, "s3_problemas.csv", "problema")

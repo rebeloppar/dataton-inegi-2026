@@ -128,3 +128,18 @@ print(tabla_3, row.names = FALSE)
 
 write.csv(tabla_3, "resultados/B4_no_sabe_como_sexo_ajustada.csv", row.names = FALSE,
           fileEncoding = "UTF-8")
+
+# -----------------------------------------------------------------------------
+# Dashboard, sección 3 «Mujeres y hombres» → dashboard/datos/s3_genero.csv
+# La brecha con controles de la tabla 3 (decisión 57). Antes se copiaba a mano.
+# -----------------------------------------------------------------------------
+fila <- match(c("Todos 18+", "18-54", "55+"), tabla_3$grupo)
+s3_genero <- data.frame(grupo      = c("Todos (18+)", "18-54 años", "55 años o más"),
+                        orden      = 1:3,
+                        estimacion = tabla_3$ame_pp[fila],
+                        li90       = tabla_3$ic90_inf[fila],
+                        ls90       = tabla_3$ic90_sup[fila],
+                        prueba     = FALSE)
+write.csv(s3_genero, file.path("dashboard", "datos", "s3_genero.csv"),
+          row.names = FALSE, fileEncoding = "UTF-8")
+cat("\nEscrito dashboard/datos/s3_genero.csv:\n"); print(s3_genero, row.names = FALSE)

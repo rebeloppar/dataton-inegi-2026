@@ -10,12 +10,51 @@
 2023,"Observado",39.1,38.4,39.7,FALSE
 2024,"Observado",41.8,41.2,42.5,FALSE
 2025,"Observado",43.7,43,44.3,FALSE
-2025,"Probable (curva S)",43.7,43.7,43.7,FALSE
-2026,"Probable (curva S)",46.4,44.6,46.7,FALSE
-2027,"Probable (curva S)",48.9,45.2,49.7,FALSE
-2028,"Probable (curva S)",51.2,45.7,52.5,FALSE
-2029,"Probable (curva S)",53.2,46,55,FALSE
-2030,"Probable (curva S)",55.1,46.3,57.4,FALSE
+2016,"Probable (curva S)",17.7,16.1,19.4,FALSE
+2017,"Probable (curva S)",20.4,18.9,21.9,FALSE
+2018,"Probable (curva S)",23.3,22,24.7,FALSE
+2019,"Probable (curva S)",26.4,25.2,27.7,FALSE
+2020,"Probable (curva S)",29.7,28.5,30.9,FALSE
+2021,"Probable (curva S)",33,31.8,34.3,FALSE
+2022,"Probable (curva S)",36.4,35,37.9,FALSE
+2023,"Probable (curva S)",39.7,38.1,41.3,FALSE
+2024,"Probable (curva S)",42.8,41.1,44.8,FALSE
+2025,"Probable (curva S)",45.9,43.9,47.9,FALSE
+2026,"Probable (curva S)",48.7,46.5,50.9,FALSE
+2027,"Probable (curva S)",51.3,49,53.5,FALSE
+2028,"Probable (curva S)",53.6,51.3,55.8,FALSE
+2029,"Probable (curva S)",55.7,53.4,57.8,FALSE
+2030,"Probable (curva S)",57.5,55.2,59.6,FALSE
+2016,"Techo alto",18,NA,NA,FALSE
+2017,"Techo alto",20.5,NA,NA,FALSE
+2018,"Techo alto",23.3,NA,NA,FALSE
+2019,"Techo alto",26.3,NA,NA,FALSE
+2020,"Techo alto",29.4,NA,NA,FALSE
+2021,"Techo alto",32.7,NA,NA,FALSE
+2022,"Techo alto",36.1,NA,NA,FALSE
+2023,"Techo alto",39.5,NA,NA,FALSE
+2024,"Techo alto",42.8,NA,NA,FALSE
+2025,"Techo alto",46.2,NA,NA,FALSE
+2026,"Techo alto",49.4,NA,NA,FALSE
+2027,"Techo alto",52.4,NA,NA,FALSE
+2028,"Techo alto",55.3,NA,NA,FALSE
+2029,"Techo alto",58,NA,NA,FALSE
+2030,"Techo alto",60.4,NA,NA,FALSE
+2016,"Si se estanca",15.8,NA,NA,FALSE
+2017,"Si se estanca",19.9,NA,NA,FALSE
+2018,"Si se estanca",24.1,NA,NA,FALSE
+2019,"Si se estanca",28.3,NA,NA,FALSE
+2020,"Si se estanca",32.1,NA,NA,FALSE
+2021,"Si se estanca",35.3,NA,NA,FALSE
+2022,"Si se estanca",37.9,NA,NA,FALSE
+2023,"Si se estanca",40,NA,NA,FALSE
+2024,"Si se estanca",41.5,NA,NA,FALSE
+2025,"Si se estanca",42.6,NA,NA,FALSE
+2026,"Si se estanca",43.4,NA,NA,FALSE
+2027,"Si se estanca",44,NA,NA,FALSE
+2028,"Si se estanca",44.4,NA,NA,FALSE
+2029,"Si se estanca",44.6,NA,NA,FALSE
+2030,"Si se estanca",44.8,NA,NA,FALSE
 2025,"Solo efecto demográfico",43.7,NA,NA,FALSE
 2026,"Solo efecto demográfico",43.4,NA,NA,FALSE
 2027,"Solo efecto demográfico",43.1,NA,NA,FALSE

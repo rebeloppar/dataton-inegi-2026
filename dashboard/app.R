@@ -1045,43 +1045,52 @@ server <- function(input, output, session) {
   # 6. ¿Hacia dónde vamos? -----------------------------------------------------
   output$g_cono <- graficar({
     d <- cono
-    colores <- c(Observado = col$tinta, `Observado (no comparable)` = col$gris_claro,
-                 `Probable (curva S)` = col$azul, `Solo efecto demográfico` = col$gris)
-    d$serie <- factor(d$serie, names(colores))
+    colores <- c(Observado = col$tinta, `Observado (no comparable)` = col$gris_claro)
     obs <- d[grepl("^Observado", d$serie), ]
+    obs$serie <- factor(obs$serie, names(colores))
     prob <- d[d$serie == "Probable (curva S)", ]
+    alto <- d[d$serie == "Techo alto", ]
+    bajo <- d[d$serie == "Si se estanca", ]
     dem <- d[d$serie == "Solo efecto demográfico", ]
-    fin <- prob[prob$anio == max(prob$anio), ]
     ultimo_obs <- max(obs$anio)
+    futuro <- function(x) x[x$anio >= ultimo_obs, ]
+    pasado <- function(x) x[x$anio <= ultimo_obs, ]
+    fin <- function(x) tail(x$estimacion, 1)
+    etiqueta <- function(y, texto, color, negrita = FALSE)
+      annotate("text", x = 2030.3, y = y, hjust = 0, size = 3.3, colour = color,
+               fontface = if (negrita) "bold" else "plain", label = texto)
     ggplot() +
       annotate("rect", xmin = ultimo_obs, xmax = Inf, ymin = -Inf, ymax = Inf, fill = rampa[1]) +
-      # El cono: entre «si el crecimiento se estanca» y el techo alto
-      geom_ribbon(data = prob, aes(anio, ymin = li90, ymax = ls90), fill = col$azul, alpha = 0.15) +
-      geom_line(data = prob, aes(anio, li90), colour = col$azul, linewidth = 0.4, linetype = "22") +
-      geom_line(data = prob, aes(anio, ls90), colour = col$azul, linewidth = 0.4, linetype = "22") +
-      geom_line(data = prob, aes(anio, estimacion), colour = col$azul, linewidth = 1.2) +
-      geom_line(data = dem, aes(anio, estimacion), colour = col$gris, linewidth = 0.9, linetype = "22") +
+      # Curvas sobre los años observados: tenues, para ver dónde ajustan
+      geom_line(data = pasado(prob), aes(anio, estimacion), colour = col$azul, linewidth = 0.6, alpha = 0.45) +
+      geom_line(data = pasado(alto), aes(anio, estimacion), colour = col$azul, linewidth = 0.4, linetype = "22", alpha = 0.45) +
+      geom_line(data = pasado(bajo), aes(anio, estimacion), colour = col$ocre, linewidth = 0.4, linetype = "22", alpha = 0.45) +
+      # Hacia 2030
+      geom_ribbon(data = futuro(prob), aes(anio, ymin = li90, ymax = ls90), fill = col$azul, alpha = 0.15) +
+      geom_line(data = futuro(alto), aes(anio, estimacion), colour = col$azul, linewidth = 0.6, linetype = "22") +
+      geom_line(data = futuro(bajo), aes(anio, estimacion), colour = col$ocre, linewidth = 0.7, linetype = "22") +
+      geom_line(data = futuro(prob), aes(anio, estimacion), colour = col$azul, linewidth = 1.2) +
+      geom_line(data = dem, aes(anio, estimacion), colour = col$gris, linewidth = 0.8, linetype = "13") +
       geom_errorbar(data = obs, aes(anio, ymin = li90, ymax = ls90, colour = serie), width = 0.2, show.legend = FALSE) +
       geom_line(data = obs[obs$serie == "Observado", ], aes(anio, estimacion), colour = col$tinta, linewidth = 1) +
       punto(data = obs, aes(anio, estimacion, fill = serie), size = 3, show.legend = FALSE) +
       geom_text(data = obs[obs$anio == ultimo_obs, ], aes(anio, estimacion, label = paste0(estimacion, " %")),
-                vjust = -1.1, hjust = 1, size = 3.5, colour = col$tinta) +
-      annotate("text", x = max(prob$anio) + 0.2, y = fin$estimacion, hjust = 0, size = 3.5, colour = col$azul,
-               fontface = "bold", label = paste0("Probable: ", round(fin$estimacion), " %")) +
-      annotate("text", x = max(prob$anio) + 0.2, y = fin$ls90 + 1.2, hjust = 0, size = 3.2, colour = col$azul,
-               label = paste0("Techo alto: ", round(fin$ls90), " %")) +
-      annotate("text", x = max(prob$anio) + 0.2, y = fin$li90 + 0.8, hjust = 0, size = 3.2, colour = col$azul,
-               label = paste0("Si se estanca: ", round(fin$li90), " %")) +
-      annotate("text", x = max(dem$anio) + 0.2, y = tail(dem$estimacion, 1) - 1.2, hjust = 0, size = 3.2, colour = col$gris,
-               label = paste0("Solo demografía: ", round(tail(dem$estimacion, 1)), " %")) +
+                vjust = 1.9, hjust = 0.2, size = 3.5, colour = col$tinta) +
+      etiqueta(fin(alto) + 1.6, paste0("Techo alto: ", round(fin(alto)), " %"), col$azul) +
+      etiqueta(fin(prob) - 3.2, paste0("Probable: ", fin(prob), " %\n(IC 90 %: ", round(tail(prob$li90, 1)),
+                                      "-", round(tail(prob$ls90, 1)), ")"), col$azul, TRUE) +
+      etiqueta(fin(bajo) + 0.8, paste0("Si se estanca: ", round(fin(bajo)), " %"), col$ocre) +
+      etiqueta(fin(dem) - 1.6, paste0("Solo demografía: ", round(fin(dem)), " %"), col$gris) +
       scale_fill_manual(values = colores) + scale_colour_manual(values = colores) +
-      scale_x_continuous(breaks = seq(2015, 2030, 1), expand = expansion(add = c(0.4, 4.2))) +
+      scale_x_continuous(breaks = seq(2015, 2030, 1), expand = expansion(add = c(0.4, 4.4))) +
       scale_y_continuous(labels = pct, limits = c(0, NA)) +
       labs(title = "El futuro probable: si nada cambia",
-           subtitle = "% de usuarios de internet de 18+ que compró en línea. Observado 2015-2025; cono a 2030 con curvas S de adopción",
-           caption = paste("Curva S (difusión de innovaciones). Techo del probable: lo que hoy compran los usuarios con educación superior;",
-                           "techo alto: los de 18-34 con superior; «si se estanca»: techo estimado solo con los datos.",
-                           "2015 en gris: ese año, «usuario» era quien usó internet en 12 meses (desde 2016, en 3). Líneas: IC 90 %.", sep = "\n"),
+           subtitle = "% de usuarios de internet de 18+ que compró en línea. Observado 2015-2025; curvas S de adopción a 2030",
+           caption = paste("Curvas S (difusión de innovaciones) ajustadas a 2016-2025, cada año pesa según su precisión; ningún año se fuerza.",
+                           "Techo del probable: lo que hoy compran los usuarios con educación superior; techo alto: los de 18-34 con superior;",
+                           "«si se estanca»: techo estimado solo con los datos. En 2025 el dato observado queda abajo de la curva probable.",
+                           "Solo demografía: el % de hoy con la población de 2030 (más edad, más escolaridad). 2015 en gris: no comparable.",
+                           "Barras y banda: IC 90 %.", sep = "\n"),
            x = NULL, y = NULL) +
       theme(panel.grid.minor = element_blank())
   })

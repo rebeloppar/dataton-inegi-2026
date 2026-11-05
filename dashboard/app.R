@@ -537,10 +537,11 @@ ui <- page_navbar(
                   div(class = "detalle-mapa small", uiOutput("mapa_detalle")),
                   pie_grafica("s4_entidades", "s4_entidades.csv")),
           grafica("g_regiones", "500px", "s4_regiones", "s4_regiones.csv"))),
-      nav_panel("Ritmo de adopción",
+      # Pestañas opcionales: solo aparecen si el archivo existe (decisión 87)
+      if (!is.null(ritmo)) nav_panel("Ritmo de adopción",
         opcional(ritmo, "g_ritmo", "780px", "s4_ritmo", "s4_ritmo.csv",
                  "Frente C: cambio en el % que compra por entidad entre dos levantamientos.")),
-      nav_panel("¿Por qué?",
+      if (!is.null(comercios)) nav_panel("¿Por qué?",
         opcional(comercios, "g_comercios", "480px", "s4_comercios", "s4_comercios.csv",
                  "Frente C: comercios al por menor por habitante (DENUE) frente a la compra en línea.")))),
     lo_que_encontramos("s4"))),
@@ -588,7 +589,7 @@ ui <- page_navbar(
           div(uiOutput("ej_kpis"),
             plotOutput("g_en_juego", height = "380px"),
             pie_grafica("s5_simulador", "s5_simulador.csv")))),
-      nav_panel("Tamaño del mercado",
+      if (!is.null(mercado)) nav_panel("Tamaño del mercado",
         opcional(mercado, "g_mercado", "340px", "s5_mercado", "s5_mercado.csv",
                  "Frente C: rango de gasto de los hogares que podría hacerse en línea (ENIGH).")))))),
 
@@ -776,7 +777,7 @@ server <- function(input, output, session) {
       coord_cartesian(clip = "off") +
       labs(title = "¿Cómo ha cambiado lo que se compra?",
            subtitle = "% de compradores en línea que compró cada categoría, por año. Solo a nivel nacional.",
-           caption = "Solo categorías comparables entre años.", x = NULL, y = NULL) +
+           caption = "Cifras publicadas por el INEGI (ENDUTIH 2022 a 2025), usuarios de 6+ que compraron. Solo las categorías que aparecen los cuatro años.", x = NULL, y = NULL) +
       theme(panel.spacing = unit(1.2, "lines"))
   })
 

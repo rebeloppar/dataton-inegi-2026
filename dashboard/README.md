@@ -54,11 +54,8 @@ Si necesitas una columna o categoría nueva, avisa a Rebeca: cambia la gráfica,
 | `s4_entidades.csv` **(real)** | C | `cve_ent, estimacion, li90, ls90, prueba` | `cve_ent` como número (1 a 32). En % |
 | `s4_regiones.csv` **(real)** | C | `region, referencia, tipo, estimacion, li90, ls90, prueba` | `tipo`: Bruta o Ajustada. Diferencia frente a la región de referencia, en pp. Regiones del CEEY: Norte, Norte-occidente, Centro-norte, Centro, Sur (variable `REGION` de `R/prep_endutih.R`) |
 | `s1_hogar.csv` **(real)** | A | `grupo_var, grupo, orden, medida, estimacion, li90, ls90, prueba` | `medida`: Vive en un hogar con internet, Usa internet. % de adultos (18+) |
-| `s1_tendencia.csv` *(opcional)* | A | `categoria, anio, estimacion, prueba` | P3 en el tiempo, con tabulados publicados |
+| `s1_tendencia.csv` **(publicado)** | A | `categoria, anio, estimacion, prueba` | P3 en el tiempo, con tabulados publicados |
 | `s2_hogar.csv` **(real)** | A | `composicion, orden, sexo, estimacion, li90, ls90, prueba` | P2: composición del hogar, por sexo (usuarios de 35+). Lo escribe `analisis/A_conexion/03_composicion_hogar.R` |
-| `s4_ritmo.csv` *(opcional)* | C | `cve_ent, inicio, fin, anio_inicio, anio_fin, prueba` | P6: % que compra en dos años |
-| `s4_comercios.csv` *(opcional)* | C | `cve_ent, comercios_10mil, pct_compra, prueba` | P6: DENUE + EIC |
-| `s5_mercado.csv` | C | `escenario, orden, minimo, maximo, prueba` | P7: rango de gasto digitalizable, miles de millones de pesos |
 | `s5_simulador.csv` **(real)** | D | `grupo, millones, pct_compra, pct_no_sabe, pct_en_persona, prueba` | «Lo que está en juego»: personas que llegan por cada puerta; `pct_no_sabe` y `pct_en_persona` son % de quienes no compran (quien da las dos razones va solo en `pct_no_sabe`). Lo escribe `analisis/D_propuesta/09_simulador.R`. Sin escenarios ni palancas (decisión 76) |
 | `s6_cono.csv` **(real)** | C | `anio, serie, estimacion, li90, ls90, prueba` | `serie`: Observado, Probable (tendencia), Solo efecto demográfico. En %. Intervalo solo para Probable (NA en las demás) |
 | `s6_impulsores.csv` | B, D | `impulsor, categoria, influencia, dependencia, prueba` | MICMAC simplificado. `categoria`: Político, Económico, Social, Tecnológico, Legal, Ambiental. Influencia y dependencia = suma de la fila y de la columna de la matriz |
@@ -67,7 +64,7 @@ Si necesitas una columna o categoría nueva, avisa a Rebeca: cambia la gráfica,
 | `s6_retroproyeccion.csv` | D | `anio, hito, como_se_sabe, prueba` | Del preferible en 2030 hacia hoy. «Por definir» se ve en gris |
 | `s6_senales.csv` | B | `senal, indicador, linea_base, apunta_a, prueba` | Señales tempranas con su línea base en la ENDUTIH |
 
-**Opcionales:** si el archivo no existe, su pestaña muestra «Pendiente» en lugar de la gráfica. Cada gráfica tiene un enlace «Descargar datos (CSV)».
+**Opcionales:** si el archivo no existe, su pestaña no aparece (decisión 87). Ritmo de adopción por entidad (`s4_ritmo.csv`), comercios del DENUE (`s4_comercios.csv`) y tamaño del mercado (`s5_mercado.csv`) quedaron fuera. Cada gráfica tiene un enlace «Descargar datos (CSV)».
 
 Archivos de texto y fijos (no son de prueba):
 

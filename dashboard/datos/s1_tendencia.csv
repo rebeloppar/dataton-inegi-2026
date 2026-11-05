@@ -1,31 +1,17 @@
 "categoria","anio","estimacion","prueba"
-"Ropa y calzado",2020,44.9,TRUE
-"Ropa y calzado",2021,48.1,TRUE
-"Ropa y calzado",2022,47.9,TRUE
-"Ropa y calzado",2023,48.4,TRUE
-"Ropa y calzado",2024,50.4,TRUE
-"Ropa y calzado",2025,52.2,TRUE
-"Comida a domicilio",2020,29.6,TRUE
-"Comida a domicilio",2021,33.5,TRUE
-"Comida a domicilio",2022,35.5,TRUE
-"Comida a domicilio",2023,39.4,TRUE
-"Comida a domicilio",2024,41.7,TRUE
-"Comida a domicilio",2025,44.1,TRUE
-"Electrónicos",2020,27.9,TRUE
-"Electrónicos",2021,28,TRUE
-"Electrónicos",2022,29,TRUE
-"Electrónicos",2023,30.8,TRUE
-"Electrónicos",2024,29.9,TRUE
-"Electrónicos",2025,30.4,TRUE
-"Belleza y cuidado personal",2020,20.8,TRUE
-"Belleza y cuidado personal",2021,23.2,TRUE
-"Belleza y cuidado personal",2022,23.9,TRUE
-"Belleza y cuidado personal",2023,26.2,TRUE
-"Belleza y cuidado personal",2024,24.4,TRUE
-"Belleza y cuidado personal",2025,26.3,TRUE
-"Supermercado",2020,7.6,TRUE
-"Supermercado",2021,9.9,TRUE
-"Supermercado",2022,11.1,TRUE
-"Supermercado",2023,13.6,TRUE
-"Supermercado",2024,17.2,TRUE
-"Supermercado",2025,16.7,TRUE
+"Uso e higiene personal (incl. ropa)",2022,74.3,FALSE
+"Uso e higiene personal (incl. ropa)",2023,76.2,FALSE
+"Uso e higiene personal (incl. ropa)",2024,77.9,FALSE
+"Uso e higiene personal (incl. ropa)",2025,78.7,FALSE
+"Artículos para el hogar",2022,40.7,FALSE
+"Artículos para el hogar",2023,41.9,FALSE
+"Artículos para el hogar",2024,45.8,FALSE
+"Artículos para el hogar",2025,50.6,FALSE
+"Alimentos y bebidas",2022,37,FALSE
+"Alimentos y bebidas",2023,34.7,FALSE
+"Alimentos y bebidas",2024,33,FALSE
+"Alimentos y bebidas",2025,37.4,FALSE
+"Artículos de salud",2022,19.4,FALSE
+"Artículos de salud",2023,19,FALSE
+"Artículos de salud",2024,18.6,FALSE
+"Artículos de salud",2025,23.7,FALSE

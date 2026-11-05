@@ -856,7 +856,7 @@ server <- function(input, output, session) {
       scale_x_continuous(labels = pct) +
       labs(title = "¿Vivir con jóvenes ayuda a comprar en línea?",
            subtitle = "% que compra en línea según la composición del hogar, por sexo",
-           caption = "Usuarios de internet de 35+ (para quien tiene 18-34, el joven es la persona misma). Líneas: intervalo al 90 %.\nCon controles, vivir con un joven que usa internet no se asocia con comprar más (−0.3 pp; IC 90 %: −1.6 a 1.1).", x = NULL, y = NULL) +
+           caption = "Usuarios de internet de 35+ (para quien tiene 18-34, el joven es la persona misma). Líneas: intervalo al 90 %.\nCon controles, vivir con un joven que usa internet no se asocia con comprar más: hombres +0.3 pp, mujeres −0.7 pp (ninguna significativa).", x = NULL, y = NULL) +
       theme(panel.grid.major.y = element_blank())
   })
 

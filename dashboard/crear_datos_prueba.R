@@ -92,15 +92,13 @@ guardar(con_ic(s4r, ancho = 3, acotar = FALSE), "s4_regiones.csv")
 # palabras: no hay evidencia de cuántas personas cambiaría cada uno.
 
 # Cono de futuros (frente C): serie observada, futuro probable (tendencia con
-# rango) y efecto demográfico (solo reemplazo generacional)
+# rango). El archivo real ya existe, así que esto no se usa
 obs <- data.frame(anio = 2019:2025, serie = "Observado",
                   estimacion = round(seq(25, 44, length.out = 7), 1), li90 = NA, ls90 = NA)
 prob <- data.frame(anio = 2025:2030, serie = "Probable (tendencia)",
                    estimacion = round(44 + (0:5) * 2.2, 1))
 prob$li90 <- round(prob$estimacion - (0:5) * 1.4, 1); prob$ls90 <- round(prob$estimacion + (0:5) * 1.4, 1)
-dem <- data.frame(anio = 2025:2030, serie = "Solo efecto demográfico",
-                  estimacion = round(44 + (0:5) * 0.8, 1), li90 = NA, ls90 = NA)
-s6c <- rbind(obs, prob, dem); s6c$prueba <- TRUE
+s6c <- rbind(obs, prob); s6c$prueba <- TRUE
 guardar(s6c, "s6_cono.csv")
 
 # Impulsores y matriz de influencia y dependencia (MICMAC, frentes B y D)

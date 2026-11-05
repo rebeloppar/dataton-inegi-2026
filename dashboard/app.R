@@ -1051,7 +1051,6 @@ server <- function(input, output, session) {
     prob <- d[d$serie == "Probable (curva S)", ]
     alto <- d[d$serie == "Techo alto", ]
     bajo <- d[d$serie == "Si se estanca", ]
-    dem <- d[d$serie == "Solo efecto demográfico", ]
     ultimo_obs <- max(obs$anio)
     futuro <- function(x) x[x$anio >= ultimo_obs, ]
     pasado <- function(x) x[x$anio <= ultimo_obs, ]
@@ -1070,7 +1069,6 @@ server <- function(input, output, session) {
       geom_line(data = futuro(alto), aes(anio, estimacion), colour = col$verde, linewidth = 0.9) +
       geom_line(data = futuro(bajo), aes(anio, estimacion), colour = col$ocre, linewidth = 0.9) +
       geom_line(data = futuro(prob), aes(anio, estimacion), colour = col$azul, linewidth = 1.2) +
-      geom_line(data = dem, aes(anio, estimacion), colour = col$gris, linewidth = 0.9, linetype = "11") +
       geom_errorbar(data = obs, aes(anio, ymin = li90, ymax = ls90, colour = serie), width = 0.2, show.legend = FALSE) +
       geom_line(data = obs[obs$serie == "Observado", ], aes(anio, estimacion), colour = col$tinta, linewidth = 0.7) +
       punto(data = obs, aes(anio, estimacion, fill = serie), size = 3, show.legend = FALSE) +
@@ -1080,17 +1078,16 @@ server <- function(input, output, session) {
       etiqueta(fin(prob) - 3.2, paste0("Probable: ", fin(prob), " %\n(IC 90 %: ", round(tail(prob$li90, 1)),
                                       "-", round(tail(prob$ls90, 1)), ")"), col$azul, TRUE) +
       etiqueta(fin(bajo) + 0.8, paste0("Si se estanca: ", round(fin(bajo)), " %"), col$ocre) +
-      etiqueta(fin(dem) - 1.6, paste0("Solo demografía: ", round(fin(dem)), " %"), col$gris) +
       scale_fill_manual(values = colores) + scale_colour_manual(values = colores) +
       scale_x_continuous(breaks = seq(2015, 2030, 1), expand = expansion(add = c(0.4, 4.4))) +
-      scale_y_continuous(labels = pct, breaks = seq(10, 60, 10), limits = c(10, 64), expand = expansion(0)) +
+      scale_y_continuous(labels = pct, limits = c(0, NA)) +
       labs(title = "El futuro probable: si nada cambia",
            subtitle = "% de usuarios de internet de 18+ que compró en línea. Observado 2015-2025; curvas S de adopción a 2030",
            caption = paste("Curvas S (difusión de innovaciones) ajustadas a 2016-2025, cada año pesa según su precisión; ningún año se fuerza.",
                            "Techo del probable: lo que hoy compran los usuarios con educación superior; techo alto: los de 18-34 con superior;",
                            "«si se estanca»: techo estimado solo con los datos. En 2025 el dato observado queda abajo de la curva probable.",
-                           "Solo demografía: el % de hoy con la población de 2030 (más edad, más escolaridad). 2015 en gris: no comparable.",
-                           "Barras y banda: IC 90 %. Línea punteada antes de 2025: lo que cada curva ajusta sobre los años observados. El eje empieza en 10 %.", sep = "\n"),
+                           "2015 en gris: ese año, «usuario» era quien usó internet en 12 meses (desde 2016, en 3); no entra al ajuste.",
+                           "Barras y banda: IC 90 %. Línea punteada antes de 2025: lo que cada curva ajusta sobre los años observados.", sep = "\n"),
            x = NULL, y = NULL) +
       theme(panel.grid.minor = element_blank())
   })

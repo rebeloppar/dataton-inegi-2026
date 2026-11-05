@@ -929,10 +929,10 @@ server <- function(input, output, session) {
 
   output$g_regiones <- graficar({
     d <- regiones
-    d$etiqueta <- paste(d$region, "vs.", d$referencia)
+    d$etiqueta <- factor(d$region, rev(unique(d$region)))
     d$tipo <- factor(ifelse(d$tipo == "Bruta", "Observada", "Con controles"), c("Observada", "Con controles"))
     barras_brecha(d, "etiqueta", "tipo", c(Observada = col$gris_claro, `Con controles` = col$azul),
-          "Brecha por región", paste("Diferencia en el % que compra frente a la región", unique(d$referencia)[1]),
+          "Brecha por región", "% que compra: diferencia con el promedio nacional (43.7 %)",
           "Con controles: comparando personas iguales en escolaridad, edad, sexo,\nlocalidad, estrato, indígena y discapacidad.")
   })
 

@@ -52,7 +52,7 @@ Si necesitas una columna o categoría nueva, avisa a Rebeca: cambia la gráfica,
 | `s3_razones.csv` | B | `grupo_var, grupo, orden, razon, estimacion, li90, ls90, prueba` | % de quienes no compraron que da cada razón |
 | `s3_problemas.csv` | B | `grupo_var, grupo, orden, problema, estimacion, li90, ls90, prueba` | P5. Incluir la fila «Algún problema». % de compradores |
 | `s4_entidades.csv` **(real)** | C | `cve_ent, estimacion, li90, ls90, prueba` | `cve_ent` como número (1 a 32). En % |
-| `s4_regiones.csv` **(real)** | C | `region, referencia, tipo, estimacion, li90, ls90, prueba` | `tipo`: Bruta o Ajustada. Diferencia frente a la región de referencia, en pp. Regiones del CEEY: Norte, Norte-occidente, Centro-norte, Centro, Sur (variable `REGION` de `R/prep_endutih.R`) |
+| `s4_regiones.csv` **(real)** | C | `region, referencia, tipo, estimacion, li90, ls90, prueba` | `tipo`: Bruta o Ajustada. Diferencia frente al promedio nacional, en pp (decisión 89). Regiones del CEEY: Norte, Norte-occidente, Centro-norte, Centro, Sur. Lo escribe `analisis/C_territorio/01_brecha_region.R` |
 | `s1_hogar.csv` **(real)** | A | `grupo_var, grupo, orden, medida, estimacion, li90, ls90, prueba` | `medida`: Vive en un hogar con internet, Usa internet. % de adultos (18+) |
 | `s1_tendencia.csv` **(publicado)** | A | `categoria, anio, estimacion, prueba` | P3 en el tiempo, con tabulados publicados |
 | `s2_hogar.csv` **(real)** | A | `composicion, orden, sexo, estimacion, li90, ls90, prueba` | P2: composición del hogar, por sexo (usuarios de 35+). Lo escribe `analisis/A_conexion/03_composicion_hogar.R` |

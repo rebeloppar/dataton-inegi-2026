@@ -1,9 +1,11 @@
 "region","referencia","tipo","estimacion","li90","ls90","prueba"
-"Norte","Centro","Bruta",6.6,4.9,8.3,FALSE
-"Norte-occidente","Centro","Bruta",0.3,-1.6,2.1,FALSE
-"Centro-norte","Centro","Bruta",1.4,-0.7,3.5,FALSE
-"Sur","Centro","Bruta",-7,-8.8,-5.3,FALSE
-"Norte","Centro","Ajustada",4,2.5,5.5,FALSE
-"Norte-occidente","Centro","Ajustada",1.4,-0.2,3,FALSE
-"Centro-norte","Centro","Ajustada",3.3,1.4,5.1,FALSE
-"Sur","Centro","Ajustada",1.1,-0.5,2.6,FALSE
+"Norte","Promedio nacional","Bruta",6.6,5.4,7.7,FALSE
+"Norte-occidente","Promedio nacional","Bruta",0.2,-1.2,1.7,FALSE
+"Centro-norte","Promedio nacional","Bruta",1.3,-0.2,2.9,FALSE
+"Centro","Promedio nacional","Bruta",0,-0.9,0.8,FALSE
+"Sur","Promedio nacional","Bruta",-7.1,-8.2,-5.9,FALSE
+"Norte","Promedio nacional","Ajustada",2.5,1.4,3.5,FALSE
+"Norte-occidente","Promedio nacional","Ajustada",-0.1,-1.4,1.2,FALSE
+"Centro-norte","Promedio nacional","Ajustada",1.7,0.3,3.1,FALSE
+"Centro","Promedio nacional","Ajustada",-1.6,-2.3,-0.8,FALSE
+"Sur","Promedio nacional","Ajustada",-0.5,-1.6,0.6,FALSE

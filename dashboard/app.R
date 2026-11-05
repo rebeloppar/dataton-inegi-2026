@@ -530,13 +530,15 @@ ui <- page_navbar(
              "Afirmación provisional. Frente C. Pregunta P6."),
     div(class = "lienzo", navset_underline(
       nav_panel("Mapa y regiones",
-        filtro("s4_color", c("% que compra" = "estimacion", "Región" = "region"), "Colorear por"),
+        # Mapa por entidad a la izquierda; a la derecha, el mapa de las regiones
+        # con sus colores y debajo la brecha por región con los mismos colores
         layout_columns(col_widths = c(6, 6),
           tagList(plotOutput("g_mapa", height = "500px",
                              hover = hoverOpts("mapa_hover", delay = 80, delayType = "throttle")),
                   div(class = "detalle-mapa small", uiOutput("mapa_detalle")),
                   pie_grafica("s4_entidades", "s4_entidades.csv")),
-          grafica("g_regiones", "500px", "s4_regiones", "s4_regiones.csv"))),
+          tagList(plotOutput("g_mapa_regiones", height = "340px"),
+                  grafica("g_regiones", "460px", "s4_regiones", "s4_regiones.csv")))),
       # Pestañas opcionales: solo aparecen si el archivo existe (decisión 87)
       if (!is.null(ritmo)) nav_panel("Ritmo de adopción",
         opcional(ritmo, "g_ritmo", "780px", "s4_ritmo", "s4_ritmo.csv",
@@ -891,28 +893,32 @@ server <- function(input, output, session) {
   output$g_mapa <- graficar({
     d <- merge(mapa, entidades, by = "cve_ent")
     p <- ggplot(d, aes(long, lat, group = pieza))
-    if (input$s4_color == "estimacion") {
-      p <- p + geom_polygon(aes(fill = estimacion), colour = "#A8AEB8", linewidth = 0.25) +
-        # Invertida: el rezago (poca compra) es lo que se resalta en salmón
-        scale_fill_gradientn(colours = rev(rampa), name = "% que compra",
-                             guide = guide_colourbar(barwidth = 12, barheight = 0.6))
-    } else {
-      # Regiones del CEEY (decisión 62). Paleta de 5 validada en todos los pares
-      # (daltonismo y contraste); además se rotula cada región sobre el mapa.
-      cr <- aggregate(cbind(long_c, lat_c) ~ region, entidades, mean)
-      # Centro y Centro-norte quedan muy juntas: se separan sus rótulos
-      cr$long_c <- cr$long_c + c(`Centro-norte` = -1.8, Centro = 1.2)[cr$region] %|% 0
-      cr$lat_c  <- cr$lat_c  + c(`Centro-norte` = 0.3, Centro = -0.6)[cr$region] %|% 0
-      p <- p + geom_polygon(aes(fill = region), colour = "white", linewidth = 0.35) +
-        scale_fill_manual(values = col_region, name = NULL, guide = "none") +
-        geom_label(data = cr, aes(long_c, lat_c, label = region), inherit.aes = FALSE,
-                   size = 3.6, fontface = "bold", colour = col$tinta, fill = "white",
-                   label.size = 0, alpha = 0.85)
-    }
+    p <- p + geom_polygon(aes(fill = estimacion), colour = "#A8AEB8", linewidth = 0.25) +
+      # Invertida: el rezago (poca compra) es lo que se resalta en salmón
+      scale_fill_gradientn(colours = rev(rampa), name = "% que compra",
+                           guide = guide_colourbar(barwidth = 12, barheight = 0.6))
     p + coord_quickmap(xlim = c(-117.5, -86.5), ylim = c(14.4, 32.8), expand = FALSE) +
       labs(title = "Compra en línea por entidad",
            subtitle = "% de usuarios de internet de 18+ que compró en línea",
-           caption = if (input$s4_color == "estimacion") "Más salmón = menos compra. Regiones del CEEY (ESRU-EMOVI)." else "Regiones del CEEY (ESRU-EMOVI 2017).", x = NULL, y = NULL) +
+           caption = "Más salmón = menos compra.", x = NULL, y = NULL) +
+      sin_ejes
+  })
+
+  # Las cinco regiones del CEEY (decisión 62), con los colores de la brecha por región
+  output$g_mapa_regiones <- graficar({
+    d <- merge(mapa, entidades, by = "cve_ent")
+    cr <- aggregate(cbind(long_c, lat_c) ~ region, entidades, mean)
+    # Centro y Centro-norte quedan muy juntas: se separan sus rótulos
+    cr$long_c <- cr$long_c + c(`Centro-norte` = -1.8, Centro = 1.2)[cr$region] %|% 0
+    cr$lat_c  <- cr$lat_c  + c(`Centro-norte` = 0.3, Centro = -0.6)[cr$region] %|% 0
+    ggplot(d, aes(long, lat, group = pieza)) +
+      geom_polygon(aes(fill = region), colour = "white", linewidth = 0.35) +
+      scale_fill_manual(values = col_region, guide = "none") +
+      geom_label(data = cr, aes(long_c, lat_c, label = region), inherit.aes = FALSE,
+                 size = 3, fontface = "bold", colour = col$tinta, fill = "white",
+                 label.size = 0, alpha = 0.85, label.padding = unit(0.12, "lines")) +
+      coord_quickmap(xlim = c(-117.5, -86.5), ylim = c(14.4, 32.8), expand = FALSE) +
+      labs(title = "Las cinco regiones", subtitle = "Regionalización del CEEY (ESRU-EMOVI 2017)", x = NULL, y = NULL) +
       sin_ejes
   })
 
@@ -931,9 +937,25 @@ server <- function(input, output, session) {
     d <- regiones
     d$etiqueta <- factor(d$region, rev(unique(d$region)))
     d$tipo <- factor(ifelse(d$tipo == "Bruta", "Observada", "Con controles"), c("Observada", "Con controles"))
-    barras_brecha(d, "etiqueta", "tipo", c(Observada = col$gris_claro, `Con controles` = col$azul),
-          "Brecha por región", "% que compra: diferencia con el promedio nacional (43.7 %)",
-          "Con controles: comparando personas iguales en escolaridad, edad, sexo,\nlocalidad, estrato, indígena y discapacidad.")
+    # Cada región con su color del mapa: observada en tono claro, con controles en tono fuerte
+    d$tipo <- factor(d$tipo, c("Con controles", "Observada"))   # con controles abajo en cada par
+    d$valor_txt <- pp(d$estimacion)
+    lim <- max(abs(c(d$estimacion, d$li90, d$ls90)), na.rm = TRUE) * 1.25
+    ggplot(d, aes(estimacion, etiqueta, group = tipo)) +
+      annotate("rect", xmin = -Inf, xmax = 0, ymin = -Inf, ymax = Inf, fill = col$calido, alpha = 0.6) +
+      annotate("rect", xmin = 0, xmax = Inf, ymin = -Inf, ymax = Inf, fill = col$frio) +
+      geom_col(aes(fill = region, alpha = tipo), position = position_dodge(width = 0.86), width = 0.82) +
+      geom_vline(xintercept = 0, colour = col$tinta, linewidth = 0.5) +
+      geom_text(aes(label = valor_txt, hjust = ifelse(estimacion < 0, 1.15, -0.15)),
+                position = position_dodge(width = 0.86), size = 3.6, colour = col$tinta) +
+      scale_fill_manual(values = col_region, guide = "none") +
+      scale_alpha_manual(values = c(Observada = 0.35, `Con controles` = 1), name = NULL, breaks = c("Observada", "Con controles"),
+                         guide = guide_legend(override.aes = list(fill = col$gris))) +
+      scale_x_continuous(limits = c(-lim, lim), labels = pp) +
+      labs(title = "Brecha por región", subtitle = "% que compra: diferencia con el promedio nacional (43.7 %)",
+           caption = "Tono claro: observada. Tono fuerte: con controles, comparando\npersonas iguales en escolaridad, edad, sexo, localidad, estrato,\nindígena y discapacidad.",
+           x = "Puntos porcentuales (pp)", y = NULL) +
+      theme(panel.grid.major.y = element_blank(), legend.position = "top")
   })
 
   output$g_ritmo <- graficar({

@@ -52,15 +52,15 @@ Si necesitas una columna o categoría nueva, avisa a Rebeca: cambia la gráfica,
 | `s3_razones.csv` | B | `grupo_var, grupo, orden, razon, estimacion, li90, ls90, prueba` | % de quienes no compraron que da cada razón |
 | `s3_problemas.csv` | B | `grupo_var, grupo, orden, problema, estimacion, li90, ls90, prueba` | P5. Incluir la fila «Algún problema». % de compradores |
 | `s4_entidades.csv` **(real)** | C | `cve_ent, estimacion, li90, ls90, prueba` | `cve_ent` como número (1 a 32). En % |
-| `s4_regiones.csv` | C | `region, referencia, tipo, estimacion, li90, ls90, prueba` | `tipo`: Bruta o Ajustada. Diferencia frente a la región de referencia, en pp. Regiones del CEEY: Norte, Norte-occidente, Centro-norte, Centro, Sur (variable `REGION` de `R/prep_endutih.R`) |
+| `s4_regiones.csv` **(real)** | C | `region, referencia, tipo, estimacion, li90, ls90, prueba` | `tipo`: Bruta o Ajustada. Diferencia frente a la región de referencia, en pp. Regiones del CEEY: Norte, Norte-occidente, Centro-norte, Centro, Sur (variable `REGION` de `R/prep_endutih.R`) |
 | `s1_hogar.csv` **(real)** | A | `grupo_var, grupo, orden, medida, estimacion, li90, ls90, prueba` | `medida`: Vive en un hogar con internet, Usa internet. % de adultos (18+) |
 | `s1_tendencia.csv` *(opcional)* | A | `categoria, anio, estimacion, prueba` | P3 en el tiempo, con tabulados publicados |
-| `s2_hogar.csv` *(opcional)* | A | `composicion, orden, sexo, estimacion, li90, ls90, prueba` | P2: composición del hogar, por sexo |
+| `s2_hogar.csv` **(real)** | A | `composicion, orden, sexo, estimacion, li90, ls90, prueba` | P2: composición del hogar, por sexo (usuarios de 35+). Lo escribe `analisis/A_conexion/03_composicion_hogar.R` |
 | `s4_ritmo.csv` *(opcional)* | C | `cve_ent, inicio, fin, anio_inicio, anio_fin, prueba` | P6: % que compra en dos años |
 | `s4_comercios.csv` *(opcional)* | C | `cve_ent, comercios_10mil, pct_compra, prueba` | P6: DENUE + EIC |
 | `s5_mercado.csv` | C | `escenario, orden, minimo, maximo, prueba` | P7: rango de gasto digitalizable, miles de millones de pesos |
 | `s5_simulador.csv` **(real)** | D | `grupo, millones, pct_compra, pct_no_sabe, pct_en_persona, prueba` | «Lo que está en juego»: personas que llegan por cada puerta; `pct_no_sabe` y `pct_en_persona` son % de quienes no compran (quien da las dos razones va solo en `pct_no_sabe`). Lo escribe `analisis/D_propuesta/09_simulador.R`. Sin escenarios ni palancas (decisión 76) |
-| `s6_cono.csv` | C | `anio, serie, estimacion, li90, ls90, prueba` | `serie`: Observado, Probable (tendencia), Solo efecto demográfico. En %. Intervalo solo para Probable (NA en las demás) |
+| `s6_cono.csv` **(real)** | C | `anio, serie, estimacion, li90, ls90, prueba` | `serie`: Observado, Probable (tendencia), Solo efecto demográfico. En %. Intervalo solo para Probable (NA en las demás) |
 | `s6_impulsores.csv` | B, D | `impulsor, categoria, influencia, dependencia, prueba` | MICMAC simplificado. `categoria`: Político, Económico, Social, Tecnológico, Legal, Ambiental. Influencia y dependencia = suma de la fila y de la columna de la matriz |
 | `s6_ejes.csv` | B, D | `eje, nombre, polo_alto, polo_bajo, prueba` | Los dos ejes de los escenarios (salen del MICMAC). `eje`: 1 (vertical) y 2 (horizontal) |
 | `s6_escenarios.csv` | B, D | `eje1, eje2, nombre, narrativa, prueba` | `eje1`, `eje2`: alto o bajo. Narrativa corta, sin cifras. Un texto que empieza con «Por escribir» se ve en gris |

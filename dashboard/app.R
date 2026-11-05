@@ -511,7 +511,7 @@ ui <- page_navbar(
       nav_panel("¿Se sostiene en las ciudades?",
         grafica("g_robustez", "520px", "s2_robustez", "s2_robustez.csv")),
       nav_panel("Composición del hogar",
-        opcional(hogar, "g_hogar", "360px", "s2_hogar", "s2_hogar.csv",
+        opcional(hogar, "g_hogar", "420px", "s2_hogar", "s2_hogar.csv",
                  "Frente A: compra según la composición del hogar, por sexo.")))),
     lo_que_encontramos("s2"))),
 
@@ -842,6 +842,8 @@ server <- function(input, output, session) {
   output$g_hogar <- graficar({
     d <- hogar
     d$composicion <- factor(d$composicion, unique(d$composicion[order(d$orden)]))
+    levels(d$composicion) <- gsub("^(Con otras personas,) ", "\\1\n", levels(d$composicion))
+    levels(d$composicion) <- gsub("^(Con al menos un joven) ", "\\1\n", levels(d$composicion))
     ggplot(d, aes(estimacion, composicion)) +
       geom_line(aes(group = composicion), colour = col$borde, linewidth = 1.6) +
       geom_errorbar(aes(xmin = li90, xmax = ls90, colour = sexo), width = 0.15, orientation = "y", show.legend = FALSE) +
@@ -851,7 +853,7 @@ server <- function(input, output, session) {
       scale_x_continuous(labels = pct) +
       labs(title = "¿Vivir con jóvenes ayuda a comprar en línea?",
            subtitle = "% que compra en línea según la composición del hogar, por sexo",
-           caption = "Usuarios de internet de 18+. Líneas: intervalo al 90 %.", x = NULL, y = NULL) +
+           caption = "Usuarios de internet de 35+ (para quien tiene 18-34, el joven es la persona misma). Líneas: intervalo al 90 %.\nCon controles, vivir con un joven que usa internet no se asocia con comprar más (−0.3 pp; IC 90 %: −1.6 a 1.1).", x = NULL, y = NULL) +
       theme(panel.grid.major.y = element_blank())
   })
 

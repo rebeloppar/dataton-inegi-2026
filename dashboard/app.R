@@ -492,7 +492,7 @@ ui <- page_navbar(
         p(class = "text-muted small mt-2 mb-0",
           "Nota: el cambio en las categorías a lo largo de los años solo está disponible a nivel nacional; esta gráfica no cambia con el filtro de arriba."),
         opcional(tendencia, "g_tendencia", "380px", "s1_tendencia", "s1_tendencia.csv",
-                                             "Frente A: tendencia de las categorías con los tabulados publicados.")))),
+                                             "Frente A: tendencia de las categorías con los microdatos 2022-2025.")))),
     lo_que_encontramos("s1"))),
 
   nav_panel("2. ¿Quién queda fuera?", value = "s2", seccion(
@@ -767,19 +767,21 @@ server <- function(input, output, session) {
 
   output$g_tendencia <- graficar({
     d <- tendencia
-    final <- d[d$anio == max(d$anio), ]
+    extremos <- d[d$anio %in% range(d$anio), ]
     ggplot(d, aes(anio, estimacion)) +
+      geom_errorbar(aes(ymin = li90, ymax = ls90), colour = col$azul, width = 0.15, alpha = 0.6) +
       geom_line(colour = col$azul, linewidth = 1) +
       punto(fill = col$azul, size = 2.8) +
-      geom_text(data = final, aes(label = sprintf("%.0f %%", estimacion)), colour = col$tinta,
-                fontface = "bold", size = 3.5, vjust = -1.2) +
+      geom_text(data = extremos, aes(label = sprintf("%.0f %%", estimacion), fontface = ifelse(anio == max(anio), "bold", "plain")),
+                colour = col$tinta, size = 3.4, vjust = -1.3) +
       facet_wrap(~categoria, nrow = 1, labeller = label_wrap_gen(16)) +
       scale_y_continuous(labels = pct, expand = expansion(mult = c(0.05, 0.2))) +
       scale_x_continuous(breaks = range(d$anio), expand = expansion(mult = c(0.08, 0.18))) +
       coord_cartesian(clip = "off") +
       labs(title = "¿Cómo ha cambiado lo que se compra?",
            subtitle = "% de compradores en línea que compró cada categoría, por año. Solo a nivel nacional.",
-           caption = "Cifras publicadas por el INEGI (ENDUTIH 2022 a 2025), usuarios de 6+ que compraron. Solo las categorías que aparecen los cuatro años.", x = NULL, y = NULL) +
+           caption = paste("ENDUTIH 2022 a 2025 (microdatos), usuarios de internet de 18+ que compraron. Solo las categorías con la misma pregunta los cuatro años.",
+                           "Barras: IC 90 %. Cambio 2022-2025: hogar +10.1 pp, salud +4.2, higiene +4.0 (claros); alimentos +0.6 (no claro).", sep = "\n"), x = NULL, y = NULL) +
       theme(panel.spacing = unit(1.2, "lines"))
   })
 

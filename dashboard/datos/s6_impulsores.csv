@@ -1,11 +1,11 @@
 "impulsor","categoria","influencia","dependencia","prueba"
-"Habilidades digitales de quienes no compran","Social",26,14,TRUE
-"Tiendas integradas al canal digital","Económico",24,12,TRUE
-"Confianza en pagar en línea","Social",18,22,TRUE
-"Cobertura de internet móvil","Tecnológico",15,9,TRUE
-"Cuentas y tarjetas (inclusión financiera)","Económico",12,16,TRUE
-"Costo y alcance de los envíos fuera de las ciudades","Económico",14,11,TRUE
-"Reglas de comercio electrónico y protección al consumidor","Legal",9,6,TRUE
-"Reemplazo generacional","Social",20,4,TRUE
-"Programas públicos de inclusión digital","Político",11,18,TRUE
-"Precio de los datos móviles","Económico",10,8,TRUE
+"Habilidades digitales de quienes no compran","Social",9,16,FALSE
+"Tiendas que acompañan la compra en línea","Económico",11,11,FALSE
+"Práctica con pagos en línea","Social",5,13,FALSE
+"Escolaridad de la población","Social",8,2,FALSE
+"Envejecimiento de la población","Social",6,0,FALSE
+"Tiendas de cadena fuera de las ciudades","Económico",6,2,FALSE
+"Conectividad móvil y precio de los datos","Tecnológico",3,4,FALSE
+"Programas públicos de inclusión digital","Político",8,5,FALSE
+"Pagar en efectivo una compra en línea","Económico",2,6,FALSE
+"Protección al consumidor y devoluciones","Legal",5,4,FALSE

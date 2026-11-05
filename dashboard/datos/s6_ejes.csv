@@ -1,3 +1,3 @@
 "eje","nombre","polo_alto","polo_bajo","prueba"
-1,"Habilidades y confianza de quienes hoy no compran","Aprenden y confían","Siguen sin saber cómo",TRUE
-2,"Integración de la tienda física con el canal digital","La tienda acompaña la compra en línea","La tienda sigue aparte",TRUE
+1,"Habilidades y confianza de quienes hoy no compran","Aprenden y confían","Siguen sin saber cómo",FALSE
+2,"Tiendas que acompañan la compra en línea","La tienda acompaña la compra en línea","La tienda sigue aparte",FALSE

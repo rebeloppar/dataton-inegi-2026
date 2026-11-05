@@ -1,13 +1,14 @@
 # =============================================================================
 # Frente C — Cono de futuros: el futuro probable a 2030 (sección 6, decisión 86)
 #
-# 1. Tendencia. Serie publicada del INEGI, % de personas usuarias de internet
-#    (6 años y más) que compró por internet: 2023 33.4 %, 2024 35.8 %, 2025
-#    37.3 % (presentaciones y reporte de resultados de la ENDUTIH 2024 y 2025).
-#    Subió 2.4 pp en 2024 y 1.5 pp en 2025. Esos dos ritmos se aplican a
-#    nuestro universo (usuarios de 18+, 43.7 % en 2025): central = promedio
-#    (1.95 pp por año), rango = el ritmo más lento y el más rápido observados.
-#    Supuesto: el ritmo de 18+ es como el de 6+; no hay serie publicada para 18+.
+# 1. Tendencia (decisión 91). Serie de la ENDUTIH 2016-2025 con microdatos,
+#    usuarios de 18+ (03_serie_historica.R). Se ajusta una curva S (logística),
+#    la forma clásica de la adopción de tecnologías (difusión de innovaciones,
+#    Rogers; modelo de Bass). El techo no se puede estimar bien con diez años
+#    de datos, así que se fija con grupos que ya existen en México:
+#      probable: techo = % que compra hoy entre usuarios con educación superior
+#      borde alto: techo = % que compra hoy entre usuarios de 18-34 con superior
+#      borde bajo: techo estimado solo con los datos («si el crecimiento se estanca»)
 # 2. Efecto demográfico. ¿Cuánto cambiaría el % que compra solo porque la
 #    población envejece 5 años y entran nuevas generaciones, si nadie cambia
 #    de conducta? Se envejece 5 años a los usuarios de internet de 13+ de la
@@ -22,17 +23,30 @@
 
 source(file.path("R", "prep_endutih.R"))
 
-# --- 1. Tendencia --------------------------------------------------------------
-serie_inegi <- c(`2023` = 33.4, `2024` = 35.8, `2025` = 37.3)   # usuarios de 6+
-ritmos <- diff(serie_inegi)                                     # 2.4 y 1.5 pp
+# --- 1. Tendencia: curva S con tres techos ----------------------------------
+serie <- read.csv(file.path("resultados", "C3_serie_historica.csv"))
+if (is.null(serie$comparable)) stop("Corre antes analisis/C_territorio/03_serie_historica.R")
+ajuste <- subset(serie, comparable)
 base <- 100 * coef(svymean(~compra, dis, na.rm = TRUE))[[1]]    # usuarios de 18+, 2025
+dis_t <- update(dis, sup = usu$ESCOLARIDAD %in% "Superior", sup_joven = usu$ESCOLARIDAD %in% "Superior" & usu$EDAD <= 34)
+techo_sup   <- 100 * coef(svymean(~compra, subset(dis_t, sup), na.rm = TRUE))[[1]]
+techo_joven <- 100 * coef(svymean(~compra, subset(dis_t, sup_joven), na.rm = TRUE))[[1]]
+curva <- function(K = NULL) {
+  m <- if (is.null(K)) nls(estimacion ~ K / (1 + exp(-r * (anio - t0))), ajuste, start = list(K = 70, r = 0.3, t0 = 2020))
+       else nls(estimacion ~ K / (1 + exp(-r * (anio - t0))), ajuste, start = list(r = 0.3, t0 = 2020))
+  m
+}
+m_prob <- curva(techo_sup); m_alto <- curva(techo_joven); m_bajo <- curva()
 anios <- 2025:2030
-probable <- data.frame(anio = anios, serie = "Probable (tendencia)",
-  estimacion = round(pmin(100, base + mean(ritmos) * (anios - 2025)), 1),
-  li90 = round(pmin(100, base + min(ritmos) * (anios - 2025)), 1),
-  ls90 = round(pmin(100, base + max(ritmos) * (anios - 2025)), 1))
-cat(sprintf("Base 2025 (18+): %.1f %%. Ritmos publicados: %s pp por año\n", base,
-            paste(ritmos, collapse = " y ")))
+pred <- function(m) as.numeric(predict(m, data.frame(anio = anios)))
+# Cada curva se ancla al dato observado de 2025 (se suma su desfase en ese año)
+ancla <- function(m) { p <- pred(m); p - p[1] + base }
+probable <- data.frame(anio = anios, serie = "Probable (curva S)",
+  estimacion = round(ancla(m_prob), 1), li90 = round(ancla(m_bajo), 1), ls90 = round(ancla(m_alto), 1))
+cat(sprintf("Techos: superior %.1f %%, superior 18-34 %.1f %%, solo datos %.1f %%\n",
+            techo_sup, techo_joven, coef(m_bajo)[["K"]]))
+cat("2030: probable", tail(probable$estimacion, 1), "| si se estanca", tail(probable$li90, 1),
+    "| techo alto", tail(probable$ls90, 1), "\n")
 
 # --- 2. Efecto demográfico -----------------------------------------------------
 m <- svyglm(compra ~ SEXO + GRUPO_EDAD + ESCOLARIDAD + TLOC + ESTRATO, design = dis,
@@ -73,7 +87,9 @@ cat(sprintf("Entran en 2030 (hoy 13-17): %.1f millones; usuarios de 18+ hoy: %.1
 
 demografico <- data.frame(anio = anios, serie = "Solo efecto demográfico",
   estimacion = round(base + efecto * (anios - 2025) / 5, 1), li90 = NA, ls90 = NA)
-observado <- data.frame(anio = 2025, serie = "Observado", estimacion = round(base, 1), li90 = NA, ls90 = NA)
+observado <- data.frame(anio = serie$anio,
+                        serie = ifelse(serie$comparable, "Observado", "Observado (no comparable)"),
+                        estimacion = serie$estimacion, li90 = serie$li90, ls90 = serie$ls90)
 
 cono <- rbind(observado, probable, demografico)
 print(cono, row.names = FALSE)

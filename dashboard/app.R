@@ -1045,29 +1045,45 @@ server <- function(input, output, session) {
   # 6. ¿Hacia dónde vamos? -----------------------------------------------------
   output$g_cono <- graficar({
     d <- cono
-    colores <- c(Observado = col$tinta, `Probable (tendencia)` = col$azul, `Solo efecto demográfico` = col$gris)
+    colores <- c(Observado = col$tinta, `Observado (no comparable)` = col$gris_claro,
+                 `Probable (curva S)` = col$azul, `Solo efecto demográfico` = col$gris)
     d$serie <- factor(d$serie, names(colores))
-    fin <- d[d$anio == max(d$anio), ]
-    ultimo_obs <- max(d$anio[d$serie == "Observado"])
-    ggplot(d, aes(anio, estimacion, colour = serie)) +
+    obs <- d[grepl("^Observado", d$serie), ]
+    prob <- d[d$serie == "Probable (curva S)", ]
+    dem <- d[d$serie == "Solo efecto demográfico", ]
+    fin <- prob[prob$anio == max(prob$anio), ]
+    ultimo_obs <- max(obs$anio)
+    ggplot() +
       annotate("rect", xmin = ultimo_obs, xmax = Inf, ymin = -Inf, ymax = Inf, fill = rampa[1]) +
-      geom_ribbon(data = d[!is.na(d$li90), ], aes(ymin = li90, ymax = ls90), fill = col$azul, alpha = 0.15, colour = NA) +
-      geom_line(data = d[d$serie != "Observado", ], aes(linetype = serie), linewidth = 1) +
-      punto(data = d[d$serie == "Observado", ], fill = col$tinta, size = 4) +
-      geom_text(data = d[d$serie == "Observado", ], aes(label = paste0("2025: ", estimacion, " %")),
-                hjust = 1.15, size = 3.6, colour = col$tinta, show.legend = FALSE) +
-      geom_text(data = fin[fin$serie != "Observado", ], aes(label = paste0(serie, " ", round(estimacion), " %")),
-                hjust = 0, nudge_x = 0.2, size = 3.6, show.legend = FALSE) +
-      scale_colour_manual(values = colores, guide = "none") +
-      scale_linetype_manual(values = c(Observado = "solid", `Probable (tendencia)` = "solid", `Solo efecto demográfico` = "22"), guide = "none") +
-      scale_x_continuous(breaks = seq(min(d$anio), 2030, 1), expand = expansion(add = c(1.2, 3.8))) +
-      scale_y_continuous(labels = pct) +
+      # El cono: entre «si el crecimiento se estanca» y el techo alto
+      geom_ribbon(data = prob, aes(anio, ymin = li90, ymax = ls90), fill = col$azul, alpha = 0.15) +
+      geom_line(data = prob, aes(anio, li90), colour = col$azul, linewidth = 0.4, linetype = "22") +
+      geom_line(data = prob, aes(anio, ls90), colour = col$azul, linewidth = 0.4, linetype = "22") +
+      geom_line(data = prob, aes(anio, estimacion), colour = col$azul, linewidth = 1.2) +
+      geom_line(data = dem, aes(anio, estimacion), colour = col$gris, linewidth = 0.9, linetype = "22") +
+      geom_errorbar(data = obs, aes(anio, ymin = li90, ymax = ls90, colour = serie), width = 0.2, show.legend = FALSE) +
+      geom_line(data = obs[obs$serie == "Observado", ], aes(anio, estimacion), colour = col$tinta, linewidth = 1) +
+      punto(data = obs, aes(anio, estimacion, fill = serie), size = 3, show.legend = FALSE) +
+      geom_text(data = obs[obs$anio == ultimo_obs, ], aes(anio, estimacion, label = paste0(estimacion, " %")),
+                vjust = -1.1, hjust = 1, size = 3.5, colour = col$tinta) +
+      annotate("text", x = max(prob$anio) + 0.2, y = fin$estimacion, hjust = 0, size = 3.5, colour = col$azul,
+               fontface = "bold", label = paste0("Probable: ", round(fin$estimacion), " %")) +
+      annotate("text", x = max(prob$anio) + 0.2, y = fin$ls90 + 1.2, hjust = 0, size = 3.2, colour = col$azul,
+               label = paste0("Techo alto: ", round(fin$ls90), " %")) +
+      annotate("text", x = max(prob$anio) + 0.2, y = fin$li90 + 0.8, hjust = 0, size = 3.2, colour = col$azul,
+               label = paste0("Si se estanca: ", round(fin$li90), " %")) +
+      annotate("text", x = max(dem$anio) + 0.2, y = tail(dem$estimacion, 1) - 1.2, hjust = 0, size = 3.2, colour = col$gris,
+               label = paste0("Solo demografía: ", round(tail(dem$estimacion, 1)), " %")) +
+      scale_fill_manual(values = colores) + scale_colour_manual(values = colores) +
+      scale_x_continuous(breaks = seq(2015, 2030, 1), expand = expansion(add = c(0.4, 4.2))) +
+      scale_y_continuous(labels = pct, limits = c(0, NA)) +
       labs(title = "El futuro probable: si nada cambia",
-           subtitle = "% de usuarios de internet de 18+ que compra en línea. Banda: entre el ritmo más lento y el más rápido publicados",
-           caption = paste("Tendencia: el ritmo de la serie publicada del INEGI (usuarios de 6+: 33.4 % en 2023, 35.8 % en 2024, 37.3 % en 2025).",
-                           "Efecto demográfico: la población envejece 5 años y entran nuevas generaciones, sin que nadie cambie de conducta.",
-                           "Los futuros plausibles y el preferible están en «Escenarios» y «Del 2030 a hoy»; no llevan cifras.", sep = "\n"),
-           x = NULL, y = NULL)
+           subtitle = "% de usuarios de internet de 18+ que compró en línea. Observado 2015-2025; cono a 2030 con curvas S de adopción",
+           caption = paste("Curva S (difusión de innovaciones). Techo del probable: lo que hoy compran los usuarios con educación superior;",
+                           "techo alto: los de 18-34 con superior; «si se estanca»: techo estimado solo con los datos.",
+                           "2015 en gris: ese año, «usuario» era quien usó internet en 12 meses (desde 2016, en 3). Líneas: IC 90 %.", sep = "\n"),
+           x = NULL, y = NULL) +
+      theme(panel.grid.minor = element_blank())
   })
 
   output$g_micmac <- graficar({

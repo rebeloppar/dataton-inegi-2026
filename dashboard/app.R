@@ -457,7 +457,7 @@ ui <- page_navbar(
           div(class = "cifra", "52 %"),
           div(class = "cifra-nota", "de quienes no compran en el estrato alto prefieren hacerlo en persona. En el estrato bajo, 36 %."))),
       div(class = "datos-clave",
-        div(class = "dato", div(class = "valor", "43.7 %"), div(class = "etiqueta", "de los usuarios de internet de 18+ compró en línea")),
+        div(class = "dato", div(class = "valor", "43.7 %"), div(class = "etiqueta", "de los usuarios de internet de 18+ compró en línea (el INEGI publica 37.3 % para 6+)")),
         div(class = "dato", div(class = "valor", "+42.5 pp"), div(class = "etiqueta", "entre educación superior y primaria, con controles")),
         div(class = "dato", div(class = "valor", "11.3 millones"), div(class = "etiqueta", "de usuarios con primaria o menos no compran")),
         div(class = "dato", div(class = "valor", "1–4 %"), div(class = "etiqueta", "dice que no compra por no tener tarjeta"))))),

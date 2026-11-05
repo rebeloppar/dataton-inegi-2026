@@ -1,20 +1,14 @@
 "anio","serie","estimacion","li90","ls90","prueba"
-2019,"Observado",25,NA,NA,TRUE
-2020,"Observado",28.2,NA,NA,TRUE
-2021,"Observado",31.3,NA,NA,TRUE
-2022,"Observado",34.5,NA,NA,TRUE
-2023,"Observado",37.7,NA,NA,TRUE
-2024,"Observado",40.8,NA,NA,TRUE
-2025,"Observado",44,NA,NA,TRUE
-2025,"Probable (tendencia)",44,44,44,TRUE
-2026,"Probable (tendencia)",46.2,44.8,47.6,TRUE
-2027,"Probable (tendencia)",48.4,45.6,51.2,TRUE
-2028,"Probable (tendencia)",50.6,46.4,54.8,TRUE
-2029,"Probable (tendencia)",52.8,47.2,58.4,TRUE
-2030,"Probable (tendencia)",55,48,62,TRUE
-2025,"Solo efecto demográfico",44,NA,NA,TRUE
-2026,"Solo efecto demográfico",44.8,NA,NA,TRUE
-2027,"Solo efecto demográfico",45.6,NA,NA,TRUE
-2028,"Solo efecto demográfico",46.4,NA,NA,TRUE
-2029,"Solo efecto demográfico",47.2,NA,NA,TRUE
-2030,"Solo efecto demográfico",48,NA,NA,TRUE
+2025,"Observado",43.7,NA,NA,FALSE
+2025,"Probable (tendencia)",43.7,43.7,43.7,FALSE
+2026,"Probable (tendencia)",45.6,45.2,46.1,FALSE
+2027,"Probable (tendencia)",47.6,46.7,48.5,FALSE
+2028,"Probable (tendencia)",49.5,48.2,50.9,FALSE
+2029,"Probable (tendencia)",51.5,49.7,53.3,FALSE
+2030,"Probable (tendencia)",53.4,51.2,55.7,FALSE
+2025,"Solo efecto demográfico",43.7,NA,NA,FALSE
+2026,"Solo efecto demográfico",43.4,NA,NA,FALSE
+2027,"Solo efecto demográfico",43.1,NA,NA,FALSE
+2028,"Solo efecto demográfico",42.8,NA,NA,FALSE
+2029,"Solo efecto demográfico",42.5,NA,NA,FALSE
+2030,"Solo efecto demográfico",42.2,NA,NA,FALSE

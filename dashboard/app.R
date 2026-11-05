@@ -1027,16 +1027,21 @@ server <- function(input, output, session) {
     ggplot(d, aes(anio, estimacion, colour = serie)) +
       annotate("rect", xmin = ultimo_obs, xmax = Inf, ymin = -Inf, ymax = Inf, fill = rampa[1]) +
       geom_ribbon(data = d[!is.na(d$li90), ], aes(ymin = li90, ymax = ls90), fill = col$azul, alpha = 0.15, colour = NA) +
-      geom_line(aes(linetype = serie), linewidth = 1) +
-      geom_text(data = fin, aes(label = paste0(serie, " ", round(estimacion), " %")),
+      geom_line(data = d[d$serie != "Observado", ], aes(linetype = serie), linewidth = 1) +
+      punto(data = d[d$serie == "Observado", ], fill = col$tinta, size = 4) +
+      geom_text(data = d[d$serie == "Observado", ], aes(label = paste0("2025: ", estimacion, " %")),
+                hjust = 1.15, size = 3.6, colour = col$tinta, show.legend = FALSE) +
+      geom_text(data = fin[fin$serie != "Observado", ], aes(label = paste0(serie, " ", round(estimacion), " %")),
                 hjust = 0, nudge_x = 0.2, size = 3.6, show.legend = FALSE) +
       scale_colour_manual(values = colores, guide = "none") +
       scale_linetype_manual(values = c(Observado = "solid", `Probable (tendencia)` = "solid", `Solo efecto demográfico` = "22"), guide = "none") +
-      scale_x_continuous(breaks = seq(min(d$anio), 2030, 1), expand = expansion(add = c(0.3, 3.8))) +
+      scale_x_continuous(breaks = seq(min(d$anio), 2030, 1), expand = expansion(add = c(1.2, 3.8))) +
       scale_y_continuous(labels = pct) +
       labs(title = "El futuro probable: si nada cambia",
-           subtitle = "% de usuarios de internet de 18+ que compra en línea. Banda: rango del futuro probable",
-           caption = "Los futuros plausibles y el preferible están en las pestañas «Escenarios» y «Del 2030 a hoy». No llevan cifras (decisión 76).",
+           subtitle = "% de usuarios de internet de 18+ que compra en línea. Banda: entre el ritmo más lento y el más rápido publicados",
+           caption = paste("Tendencia: el ritmo de la serie publicada del INEGI (usuarios de 6+: 33.4 % en 2023, 35.8 % en 2024, 37.3 % en 2025).",
+                           "Efecto demográfico: la población envejece 5 años y entran nuevas generaciones, sin que nadie cambie de conducta.",
+                           "Los futuros plausibles y el preferible están en «Escenarios» y «Del 2030 a hoy»; no llevan cifras.", sep = "\n"),
            x = NULL, y = NULL)
   })
 

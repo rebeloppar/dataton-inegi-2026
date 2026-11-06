@@ -38,6 +38,7 @@ entidades  <- merge(ent_base, leer("s4_entidades.csv"), by = "cve_ent")
 mapa       <- leer("mapa_estados.csv")
 regiones   <- leer("s4_regiones.csv")
 simul      <- leer("s5_simulador.csv")
+tienda     <- leer("s5_enigh.csv")
 # Sección 6: prospectiva 2030 (decisión 76)
 cono       <- leer("s6_cono.csv")
 impulsores <- leer("s6_impulsores.csv")
@@ -59,7 +60,7 @@ riesgos     <- leer("riesgos.csv")
 estrategias <- leer("estrategias.csv")
 
 hay_prueba <- any(sapply(list(embudo, categorias, eslabon, efectos, bloques, robustez, perfil_prob, razones, genero,
-                              problemas, entidades, regiones, simul,
+                              problemas, entidades, regiones, simul, tienda,
                               cono, impulsores, ejes6, escen6, retro, senales,
                               tendencia, conexion, hogar, ritmo),
                          function(d) !is.null(d) && isTRUE(any(d$prueba))))
@@ -555,6 +556,8 @@ ui <- page_navbar(
             tags$dl(class = "ficha", lapply(seq_len(nrow(propuesta)), function(i)
               tagList(tags$dt(propuesta$campo[i]), tags$dd(campo_propuesta(propuesta[i, ])))))),
           div(class = "col-lg-5", lo_que_encontramos("s5")))),
+      nav_panel("¿Ya van a la tienda?",
+        grafica("g_tienda", "520px", "s5_enigh", "s5_enigh.csv")),
       nav_panel("Estrategias públicas y privadas",
         div(class = "estrategias mt-2",
           lapply(c("Pública", "Privada"), function(t) {
@@ -834,6 +837,41 @@ server <- function(input, output, session) {
                   "¿Los resultados se sostienen si solo vemos ciudades?",
                   "Mismo modelo completo, en todo el país y solo en ciudades de 100 mil habitantes o más",
                   "En ciudades el estrato no se confunde con lo rural. El estrato baja (17.7 a 14.5 pp): parte de su efecto era ruralidad.\nEscolaridad, edad y género casi no cambian.")
+  })
+
+  output$g_tienda <- graficar({
+    d <- tienda[tienda$indicador == "% de hogares que compró ahí" &
+                tienda$grupo_var %in% c("escolaridad", "hasta_sec_localidad") &
+                tienda$medida %in% c("Supermercados, departamentales o membresía", "Mercado, tianguis o abarrotes", "Internet"), ]
+    filas <- c("Primaria o menos", "Secundaria", "Media superior", "Superior",
+               "Hasta secundaria, urbana (2,500 y más)", "Hasta secundaria, rural (menos de 2,500)")
+    etiquetas <- c("Primaria o menos", "Secundaria", "Media superior", "Superior",
+                   "Urbana (2,500 hab. y más)", "Rural (menos de 2,500 hab.)")
+    d$fila <- factor(etiquetas[match(d$grupo, filas)], rev(etiquetas))
+    d$bloque <- ifelse(d$grupo_var == "escolaridad", "Por escolaridad\nde la jefatura", "Hogares con\njefatura hasta\nsecundaria")
+    d$bloque <- factor(d$bloque, c("Por escolaridad\nde la jefatura", "Hogares con\njefatura hasta\nsecundaria"))
+    colores <- c(`Supermercados, departamentales o membresía` = col$azul,
+                 `Mercado, tianguis o abarrotes` = col$gris_claro, Internet = col$ocre)
+    d$medida <- factor(d$medida, names(colores))
+    ant <- d[d$medida == names(colores)[1], ]
+    ggplot(d, aes(estimacion, fila)) +
+      geom_line(aes(group = fila), colour = col$borde, linewidth = 1.4) +
+      geom_errorbar(aes(xmin = li90, xmax = ls90, colour = medida), width = 0.15, orientation = "y", show.legend = FALSE) +
+      punto(aes(fill = medida), size = 4.5) +
+      geom_text(data = ant, aes(label = sprintf("%.0f %%", estimacion)), vjust = 2.1, size = 3.4,
+                colour = col$azul, fontface = "bold") +
+      facet_grid(bloque ~ ., scales = "free_y", space = "free_y") +
+      scale_fill_manual(values = colores, name = NULL) + scale_colour_manual(values = colores, guide = "none") +
+      scale_x_continuous(labels = pct, limits = c(0, 100), breaks = seq(0, 100, 20)) +
+      scale_y_discrete(expand = expansion(add = c(0.9, 0.5))) +
+      labs(title = "¿El grupo ya compra en las tiendas de cadena?",
+           subtitle = "% de hogares que compró algo en cada lugar, según la escolaridad de quien encabeza el hogar",
+           caption = paste("ENIGH 2024, gasto monetario de los hogares con lugar de compra. Supermercados, departamentales o membresía: los formatos de la ANTAD",
+                           "sin tiendas de conveniencia. La escolaridad es la de la jefa o jefe del hogar, no la de cada persona. Líneas: IC 90 %.",
+                           "Del gasto en compras de los hogares con jefatura hasta secundaria, 17 % va a estas tiendas y 36 % a mercado, tianguis o abarrotes.", sep = "\n"),
+           x = NULL, y = NULL) +
+      theme(panel.grid.major.y = element_blank(), legend.position = "top", panel.spacing = unit(1.2, "lines"),
+            strip.text.y = element_text(angle = 0, hjust = 0, size = 10))
   })
 
   output$g_hogar <- graficar({

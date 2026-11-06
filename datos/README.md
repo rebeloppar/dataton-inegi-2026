@@ -27,3 +27,10 @@ Se agregan aquí cuando el frente que las use las incorpore (ENIGH 2024, EIC 202
 2. Descomprime cada uno en `datos/endutih_AAAA/` (por ejemplo, `datos/endutih_2019/`), sin cambiar las carpetas de adentro.
 3. Desde la raíz del repositorio corre `python3 analisis/C_territorio/00_extrae_historicos.py`: junta solo las columnas necesarias en `datos/procesados/endutih_2015_2024_compra.csv`.
 4. Luego `analisis/C_territorio/03_serie_historica.R`.
+5. Para la tendencia de categorías (frente A): `python3 analisis/A_conexion/00_extrae_categorias.py` (usa 2022 a 2025) y luego `analisis/A_conexion/04_tendencia_categorias.R`.
+
+## ENIGH 2024 (dónde compran los hogares, decisión 98)
+
+1. En la página de la ENIGH 2024 del INEGI, **Datos abiertos**, descarga el paquete en **CSV** y descomprímelo en `datos/enigh_2024/`, sin cambiar las carpetas de adentro (`conjunto_de_datos_gastoshogar_enigh2024_ns/`, `conjunto_de_datos_concentradohogar_enigh2024_ns/`, …).
+2. Desde la raíz del repositorio corre `python3 analisis/C_territorio/00_extrae_enigh.py`: suma el gasto de cada hogar por lugar de compra en `datos/procesados/enigh_2024_lugar_compra.csv` (unos 20 segundos).
+3. Luego `analisis/C_territorio/04_enigh_lugar_compra.R`.

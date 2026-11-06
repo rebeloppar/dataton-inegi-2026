@@ -1,0 +1,99 @@
+"grupo_var","grupo","medida","indicador","estimacion","li90","ls90","prueba"
+"nacional","Todos los hogares","Supermercados, departamentales o membresía","% de hogares que compró ahí",81.7,81.2,82.2,FALSE
+"nacional","Todos los hogares","Supermercados, departamentales o membresía","% de su gasto en compras",21.3,21.1,21.6,FALSE
+"nacional","Todos los hogares","Formatos ANTAD con conveniencia","% de hogares que compró ahí",83,82.5,83.4,FALSE
+"nacional","Todos los hogares","Formatos ANTAD con conveniencia","% de su gasto en compras",22.3,22.1,22.6,FALSE
+"nacional","Todos los hogares","Tiendas de conveniencia","% de hogares que compró ahí",17.5,17.1,17.9,FALSE
+"nacional","Todos los hogares","Tiendas de conveniencia","% de su gasto en compras",1,1,1,FALSE
+"nacional","Todos los hogares","Mercado, tianguis o abarrotes","% de hogares que compró ahí",95.2,95,95.4,FALSE
+"nacional","Todos los hogares","Mercado, tianguis o abarrotes","% de su gasto en compras",26.9,26.6,27.3,FALSE
+"nacional","Todos los hogares","Internet","% de hogares que compró ahí",14,13.7,14.4,FALSE
+"nacional","Todos los hogares","Internet","% de su gasto en compras",1.2,1.2,1.3,FALSE
+"hasta_sec","Hasta secundaria","Supermercados, departamentales o membresía","% de hogares que compró ahí",73.9,73.3,74.6,FALSE
+"hasta_sec","Media superior o más","Supermercados, departamentales o membresía","% de hogares que compró ahí",93.6,93.3,94,FALSE
+"hasta_sec","Hasta secundaria","Supermercados, departamentales o membresía","% de su gasto en compras",17.3,17,17.5,FALSE
+"hasta_sec","Media superior o más","Supermercados, departamentales o membresía","% de su gasto en compras",25.1,24.8,25.5,FALSE
+"hasta_sec","Hasta secundaria","Formatos ANTAD con conveniencia","% de hogares que compró ahí",75.5,74.8,76.1,FALSE
+"hasta_sec","Media superior o más","Formatos ANTAD con conveniencia","% de hogares que compró ahí",94.5,94.2,94.9,FALSE
+"hasta_sec","Hasta secundaria","Formatos ANTAD con conveniencia","% de su gasto en compras",18.1,17.8,18.3,FALSE
+"hasta_sec","Media superior o más","Formatos ANTAD con conveniencia","% de su gasto en compras",26.3,26,26.7,FALSE
+"hasta_sec","Hasta secundaria","Tiendas de conveniencia","% de hogares que compró ahí",12.4,12,12.8,FALSE
+"hasta_sec","Media superior o más","Tiendas de conveniencia","% de hogares que compró ahí",25.3,24.6,26,FALSE
+"hasta_sec","Hasta secundaria","Tiendas de conveniencia","% de su gasto en compras",0.8,0.7,0.8,FALSE
+"hasta_sec","Media superior o más","Tiendas de conveniencia","% de su gasto en compras",1.2,1.1,1.3,FALSE
+"hasta_sec","Hasta secundaria","Mercado, tianguis o abarrotes","% de hogares que compró ahí",97.8,97.7,97.9,FALSE
+"hasta_sec","Media superior o más","Mercado, tianguis o abarrotes","% de hogares que compró ahí",91.3,90.8,91.8,FALSE
+"hasta_sec","Hasta secundaria","Mercado, tianguis o abarrotes","% de su gasto en compras",35.9,35.5,36.2,FALSE
+"hasta_sec","Media superior o más","Mercado, tianguis o abarrotes","% de su gasto en compras",18.4,18,18.8,FALSE
+"hasta_sec","Hasta secundaria","Internet","% de hogares que compró ahí",8.4,8,8.7,FALSE
+"hasta_sec","Media superior o más","Internet","% de hogares que compró ahí",22.8,22.2,23.5,FALSE
+"hasta_sec","Hasta secundaria","Internet","% de su gasto en compras",0.7,0.6,0.7,FALSE
+"hasta_sec","Media superior o más","Internet","% de su gasto en compras",1.7,1.6,1.8,FALSE
+"escolaridad","Primaria o menos","Supermercados, departamentales o membresía","% de hogares que compró ahí",65.9,65,66.8,FALSE
+"escolaridad","Secundaria","Supermercados, departamentales o membresía","% de hogares que compró ahí",82.9,82.3,83.6,FALSE
+"escolaridad","Media superior","Supermercados, departamentales o membresía","% de hogares que compró ahí",90.5,89.9,91.1,FALSE
+"escolaridad","Superior","Supermercados, departamentales o membresía","% de hogares que compró ahí",96.4,96,96.8,FALSE
+"escolaridad","Primaria o menos","Supermercados, departamentales o membresía","% de su gasto en compras",14.5,14.2,14.8,FALSE
+"escolaridad","Secundaria","Supermercados, departamentales o membresía","% de su gasto en compras",19.8,19.5,20.1,FALSE
+"escolaridad","Media superior","Supermercados, departamentales o membresía","% de su gasto en compras",22.8,22.3,23.2,FALSE
+"escolaridad","Superior","Supermercados, departamentales o membresía","% de su gasto en compras",26.6,26,27.1,FALSE
+"escolaridad","Primaria o menos","Formatos ANTAD con conveniencia","% de hogares que compró ahí",67.5,66.6,68.4,FALSE
+"escolaridad","Secundaria","Formatos ANTAD con conveniencia","% de hogares que compró ahí",84.3,83.7,85,FALSE
+"escolaridad","Media superior","Formatos ANTAD con conveniencia","% de hogares que compró ahí",91.7,91.2,92.3,FALSE
+"escolaridad","Superior","Formatos ANTAD con conveniencia","% de hogares que compró ahí",97,96.7,97.4,FALSE
+"escolaridad","Primaria o menos","Formatos ANTAD con conveniencia","% de su gasto en compras",15.1,14.8,15.4,FALSE
+"escolaridad","Secundaria","Formatos ANTAD con conveniencia","% de su gasto en compras",20.8,20.4,21.1,FALSE
+"escolaridad","Media superior","Formatos ANTAD con conveniencia","% de su gasto en compras",24,23.6,24.4,FALSE
+"escolaridad","Superior","Formatos ANTAD con conveniencia","% de su gasto en compras",27.8,27.2,28.3,FALSE
+"escolaridad","Primaria o menos","Tiendas de conveniencia","% de hogares que compró ahí",9.4,9,9.9,FALSE
+"escolaridad","Secundaria","Tiendas de conveniencia","% de hogares que compró ahí",15.7,15.2,16.3,FALSE
+"escolaridad","Media superior","Tiendas de conveniencia","% de hogares que compró ahí",21.2,20.4,22,FALSE
+"escolaridad","Superior","Tiendas de conveniencia","% de hogares que compró ahí",28.9,28,29.8,FALSE
+"escolaridad","Primaria o menos","Tiendas de conveniencia","% de su gasto en compras",0.6,0.5,0.6,FALSE
+"escolaridad","Secundaria","Tiendas de conveniencia","% de su gasto en compras",1,0.9,1,FALSE
+"escolaridad","Media superior","Tiendas de conveniencia","% de su gasto en compras",1.2,1.1,1.3,FALSE
+"escolaridad","Superior","Tiendas de conveniencia","% de su gasto en compras",1.2,1.1,1.3,FALSE
+"escolaridad","Primaria o menos","Mercado, tianguis o abarrotes","% de hogares que compró ahí",98.2,98,98.4,FALSE
+"escolaridad","Secundaria","Mercado, tianguis o abarrotes","% de hogares que compró ahí",97.3,97.1,97.6,FALSE
+"escolaridad","Media superior","Mercado, tianguis o abarrotes","% de hogares que compró ahí",95.7,95.3,96.1,FALSE
+"escolaridad","Superior","Mercado, tianguis o abarrotes","% de hogares que compró ahí",87.3,86.6,88.1,FALSE
+"escolaridad","Primaria o menos","Mercado, tianguis o abarrotes","% de su gasto en compras",39.7,39.2,40.2,FALSE
+"escolaridad","Secundaria","Mercado, tianguis o abarrotes","% de su gasto en compras",32.4,32,32.9,FALSE
+"escolaridad","Media superior","Mercado, tianguis o abarrotes","% de su gasto en compras",26.1,25.5,26.6,FALSE
+"escolaridad","Superior","Mercado, tianguis o abarrotes","% de su gasto en compras",13.9,13.4,14.3,FALSE
+"escolaridad","Primaria o menos","Internet","% de hogares que compró ahí",5.8,5.4,6.1,FALSE
+"escolaridad","Secundaria","Internet","% de hogares que compró ahí",11.2,10.7,11.7,FALSE
+"escolaridad","Media superior","Internet","% de hogares que compró ahí",16.5,15.8,17.3,FALSE
+"escolaridad","Superior","Internet","% de hogares que compró ahí",28.4,27.5,29.4,FALSE
+"escolaridad","Primaria o menos","Internet","% de su gasto en compras",0.5,0.4,0.5,FALSE
+"escolaridad","Secundaria","Internet","% de su gasto en compras",0.8,0.7,0.9,FALSE
+"escolaridad","Media superior","Internet","% de su gasto en compras",1.2,1.1,1.4,FALSE
+"escolaridad","Superior","Internet","% de su gasto en compras",2,1.9,2.2,FALSE
+"localidad","Rural (menos de 2,500)","Supermercados, departamentales o membresía","% de hogares que compró ahí",54.9,53.5,56.3,FALSE
+"localidad","Urbana (2,500 y más)","Supermercados, departamentales o membresía","% de hogares que compró ahí",88.6,88.1,89.1,FALSE
+"localidad","Rural (menos de 2,500)","Supermercados, departamentales o membresía","% de su gasto en compras",11.6,11.2,12,FALSE
+"localidad","Urbana (2,500 y más)","Supermercados, departamentales o membresía","% de su gasto en compras",23,22.7,23.2,FALSE
+"localidad","Rural (menos de 2,500)","Formatos ANTAD con conveniencia","% de hogares que compró ahí",56,54.7,57.4,FALSE
+"localidad","Urbana (2,500 y más)","Formatos ANTAD con conveniencia","% de hogares que compró ahí",89.9,89.4,90.4,FALSE
+"localidad","Rural (menos de 2,500)","Formatos ANTAD con conveniencia","% de su gasto en compras",11.9,11.5,12.3,FALSE
+"localidad","Urbana (2,500 y más)","Formatos ANTAD con conveniencia","% de su gasto en compras",24.1,23.8,24.4,FALSE
+"localidad","Rural (menos de 2,500)","Tiendas de conveniencia","% de hogares que compró ahí",5.1,4.7,5.6,FALSE
+"localidad","Urbana (2,500 y más)","Tiendas de conveniencia","% de hogares que compró ahí",20.7,20.2,21.1,FALSE
+"localidad","Rural (menos de 2,500)","Tiendas de conveniencia","% de su gasto en compras",0.3,0.3,0.4,FALSE
+"localidad","Urbana (2,500 y más)","Tiendas de conveniencia","% de su gasto en compras",1.1,1.1,1.2,FALSE
+"localidad","Rural (menos de 2,500)","Mercado, tianguis o abarrotes","% de hogares que compró ahí",98.6,98.4,98.8,FALSE
+"localidad","Urbana (2,500 y más)","Mercado, tianguis o abarrotes","% de hogares que compró ahí",94.4,94.1,94.6,FALSE
+"localidad","Rural (menos de 2,500)","Mercado, tianguis o abarrotes","% de su gasto en compras",41.9,41.2,42.6,FALSE
+"localidad","Urbana (2,500 y más)","Mercado, tianguis o abarrotes","% de su gasto en compras",24.4,24,24.7,FALSE
+"localidad","Rural (menos de 2,500)","Internet","% de hogares que compró ahí",5.9,5.5,6.2,FALSE
+"localidad","Urbana (2,500 y más)","Internet","% de hogares que compró ahí",16.2,15.7,16.6,FALSE
+"localidad","Rural (menos de 2,500)","Internet","% de su gasto en compras",0.5,0.4,0.5,FALSE
+"localidad","Urbana (2,500 y más)","Internet","% de su gasto en compras",1.3,1.3,1.4,FALSE
+"hasta_sec_localidad","Hasta secundaria, rural (menos de 2,500)","Supermercados, departamentales o membresía","% de hogares que compró ahí",50.7,49.4,52.1,FALSE
+"hasta_sec_localidad","Hasta secundaria, urbana (2,500 y más)","Supermercados, departamentales o membresía","% de hogares que compró ahí",83.2,82.4,83.9,FALSE
+"hasta_sec_localidad","Hasta secundaria, rural (menos de 2,500)","Formatos ANTAD con conveniencia","% de hogares que compró ahí",51.9,50.5,53.2,FALSE
+"hasta_sec_localidad","Hasta secundaria, urbana (2,500 y más)","Formatos ANTAD con conveniencia","% de hogares que compró ahí",84.8,84.1,85.5,FALSE
+"hasta_sec_localidad","Hasta secundaria, rural (menos de 2,500)","Mercado, tianguis o abarrotes","% de hogares que compró ahí",98.9,98.8,99,FALSE
+"hasta_sec_localidad","Hasta secundaria, urbana (2,500 y más)","Mercado, tianguis o abarrotes","% de hogares que compró ahí",97.4,97.2,97.5,FALSE
+"hasta_sec_localidad","Hasta secundaria, rural (menos de 2,500)","Internet","% de hogares que compró ahí",4.5,4.2,4.8,FALSE
+"hasta_sec_localidad","Hasta secundaria, urbana (2,500 y más)","Internet","% de hogares que compró ahí",9.9,9.5,10.3,FALSE

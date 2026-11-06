@@ -26,7 +26,7 @@ impulsores <- data.frame(
                 "Tecnológico", "Político", "Económico", "Legal"),
   hallazgo = c("«No sé cómo»: 22.7 % del grupo que no compra (hallazgos 12-13)",
                "18.5 % de compradores ya recoge en tienda; hay kioscos desde 2018 (decisión 70)",
-               "Las mujeres pagan menos en línea: −6.4 pp con controles (hallazgo 36)",
+               "Las mujeres pagan menos en línea: −5.8 pp con controles (hallazgo 36)",
                "Superior vs. primaria: +42.5 pp (hallazgo 1)",
                "Localidad rural: −11.2 pp con controles (hallazgo 30)",
                "85 % de los adultos ya usa internet; la brecha está en comprar (hallazgo 29)",

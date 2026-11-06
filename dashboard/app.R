@@ -51,8 +51,6 @@ tendencia  <- leer_opcional("s1_tendencia.csv")
 conexion   <- leer_opcional("s1_hogar.csv")
 hogar      <- leer_opcional("s2_hogar.csv")
 ritmo      <- leer_opcional("s4_ritmo.csv")
-comercios  <- leer_opcional("s4_comercios.csv")
-mercado    <- leer_opcional("s5_mercado.csv")
 
 calculo     <- leer("como_se_calculo.csv")
 hallazgos   <- leer("hallazgos.csv")
@@ -63,7 +61,7 @@ estrategias <- leer("estrategias.csv")
 hay_prueba <- any(sapply(list(embudo, categorias, eslabon, efectos, bloques, robustez, perfil_prob, razones, genero,
                               problemas, entidades, regiones, simul,
                               cono, impulsores, ejes6, escen6, retro, senales,
-                              tendencia, conexion, hogar, ritmo, comercios, mercado),
+                              tendencia, conexion, hogar, ritmo),
                          function(d) !is.null(d) && isTRUE(any(d$prueba))))
 
 # --- Estilo de las gráficas --------------------------------------------------
@@ -542,10 +540,7 @@ ui <- page_navbar(
       # Pestañas opcionales: solo aparecen si el archivo existe (decisión 87)
       if (!is.null(ritmo)) nav_panel("Ritmo de adopción",
         opcional(ritmo, "g_ritmo", "780px", "s4_ritmo", "s4_ritmo.csv",
-                 "Frente C: cambio en el % que compra por entidad entre dos levantamientos.")),
-      if (!is.null(comercios)) nav_panel("¿Por qué?",
-        opcional(comercios, "g_comercios", "480px", "s4_comercios", "s4_comercios.csv",
-                 "Frente C: comercios al por menor por habitante (DENUE) frente a la compra en línea.")))),
+                 "Frente C: cambio en el % que compra por entidad entre dos levantamientos.")))),
     lo_que_encontramos("s4"))),
 
   nav_panel("5. ¿Qué hacer?", value = "s5", seccion(
@@ -575,7 +570,7 @@ ui <- page_navbar(
         p(class = "text-muted mt-2 mb-3", style = "max-width:85ch",
           strong("No predecimos cuántas personas empezarán a comprar: eso lo mide el piloto. "),
           "Esta calculadora dice qué está en juego en cada puerta y qué tendría que mostrar el piloto para alcanzar una meta. ",
-          "Las cifras de personas son de la ENDUTIH 2025; la meta la eliges tú (decisión 76)."),
+          "Las cifras de personas son de la ENDUTIH 2025; la meta la eliges tú."),
         layout_columns(col_widths = c(4, 8),
           div(
             selectInput("ej_grupo", "Grupo", simul$grupo),
@@ -590,10 +585,7 @@ ui <- page_navbar(
               "«Las dos» supone la misma conversión en ambas puertas.")),
           div(uiOutput("ej_kpis"),
             plotOutput("g_en_juego", height = "380px"),
-            pie_grafica("s5_simulador", "s5_simulador.csv")))),
-      if (!is.null(mercado)) nav_panel("Tamaño del mercado",
-        opcional(mercado, "g_mercado", "340px", "s5_mercado", "s5_mercado.csv",
-                 "Frente C: rango de gasto de los hogares que podría hacerse en línea (ENIGH).")))))),
+            pie_grafica("s5_simulador", "s5_simulador.csv")))))))),
 
   nav_panel("6. 2030", value = "s6", seccion(
     cabecera("6", "2030: qué pasa si no hacemos nada, y qué tendría que pasar",
@@ -978,11 +970,6 @@ server <- function(input, output, session) {
       theme(panel.grid.major.y = element_blank(), axis.text.y = element_text(colour = col$tinta, size = 9.5))
   })
 
-  output$g_comercios <- graficar(dispersion(
-    comercios, "comercios_10mil", "Comercios al por menor por cada 10 mil habitantes",
-    "¿Se compra más en línea donde hay más comercio?", "Cada punto es una entidad",
-    "Asociación entre entidades, no causalidad."))
-
   # 5. ¿Qué hacer? ------------------------------------------------------------
   # «Lo que está en juego» (decisión 76): personas por cada punto de conversión
   # y conversión que haría falta para una meta. Sin escenarios ni supuestos.
@@ -1113,22 +1100,8 @@ server <- function(input, output, session) {
       scale_x_continuous(expand = expansion(mult = 0.12)) + scale_y_continuous(expand = expansion(mult = 0.2)) +
       labs(title = "¿Qué impulsores mueven el sistema?",
            subtitle = "Matriz de influencia y dependencia (MICMAC simplificado)",
-           caption = "Los ejes de los escenarios salen de los impulsores más influyentes: motrices y de enlace.",
+           caption = "Los ejes de los escenarios son los dos impulsores inciertos con más influencia.",
            x = "Dependencia (cuánto lo mueven los demás)", y = "Influencia (cuánto mueve a los demás)")
-  })
-
-  output$g_mercado <- graficar({
-    d <- mercado
-    d$escenario <- factor(d$escenario, rev(d$escenario[order(d$orden)]))
-    ggplot(d, aes(y = escenario)) +
-      geom_segment(aes(x = minimo, xend = maximo, yend = escenario), colour = rampa[5], linewidth = 9, lineend = "round") +
-      geom_text(aes(x = minimo, label = minimo), hjust = 1.6, size = 3.5, colour = col$tinta) +
-      geom_text(aes(x = maximo, label = maximo), hjust = -0.6, size = 3.5, colour = col$tinta) +
-      scale_x_continuous(expand = expansion(mult = 0.15)) +
-      labs(title = "¿Cuánto gasto podría pasar al canal digital?",
-           subtitle = "Rango de gasto anual de los hogares en categorías que se compran en línea (miles de millones de pesos)",
-           caption = "Gasto potencialmente digitalizable, no gasto electrónico observado.", x = NULL, y = NULL) +
-      theme(panel.grid.major.y = element_blank())
   })
 }
 

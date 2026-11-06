@@ -7,7 +7,9 @@
 #   2. Medios de pago: "no tiene tarjeta o banca en línea" y "falta de recursos"
 #      como razón para no comprar
 #   6. Qué compran quienes sí compran (categorías del INEGI, s1_categorias.csv)
-# Descriptivo, sin controles. Escribe: resultados/D7_genero_mecanismos.csv
+# Descriptivo, sin controles; y la misma diferencia con los controles del modelo
+# completo (decisión 96), que es la que se cita como «con controles».
+# Escribe: resultados/D7_genero_mecanismos.csv, resultados/D7_genero_controles.csv
 # =============================================================================
 
 source(file.path("R", "prep_endutih.R"))
@@ -43,6 +45,23 @@ res <- rbind(tabla(dis, "Usuarios de 18+"), tabla(subset(dis, hasta_sec), "Hasta
 cat("\n===== Mujeres vs. hombres (dif = mujer − hombre, pp, IC 90 %) =====\n")
 print(res, row.names = FALSE)
 write.csv(res, file.path("resultados", "D7_genero_mecanismos.csv"), row.names = FALSE, fileEncoding = "UTF-8")
+
+# Con controles (decisión 96): mismo modelo que la regresión principal; las
+# razones para no comprar, entre quienes no compran
+suppressMessages(library(marginaleffects))
+dis <- update(dis, apps = usu$apps, paga = usu$paga, banca = usu$banca, no_sabe = usu$no_sabe,
+              no_tarjeta = usu$no_tarjeta, desconfia = usu$desconfia)
+ctrl <- do.call(rbind, lapply(c("apps", "paga", "banca", "no_sabe", "no_tarjeta", "desconfia"), function(v) {
+  f <- as.formula(paste(v, "~ SEXO + GRUPO_EDAD + INDIGENA + DISCAPACIDAD + ESCOLARIDAD + TLOC + ESTRATO"))
+  d <- if (v %in% c("no_sabe", "no_tarjeta", "desconfia")) subset(dis, compra == 0) else dis
+  e <- avg_comparisons(svyglm(f, design = d, family = quasibinomial()), variables = "SEXO",
+                       wts = "(weights)", conf_level = 0.90)
+  data.frame(indicador = vars[[v]], dif_pp = round(100 * e$estimate, 1),
+             li90 = round(100 * e$conf.low, 1), ls90 = round(100 * e$conf.high, 1))
+}))
+cat("\n===== Mujeres vs. hombres con controles (usuarios de 18+) =====\n")
+print(ctrl, row.names = FALSE)
+write.csv(ctrl, file.path("resultados", "D7_genero_controles.csv"), row.names = FALSE, fileEncoding = "UTF-8")
 
 # 6. Categorías por sexo (compradores de 18+), de s1_categorias.csv
 cat("\n===== Qué compran (compradores de 18+), % por sexo =====\n")

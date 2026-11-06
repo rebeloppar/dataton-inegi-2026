@@ -1,14 +1,29 @@
 # Datatón INEGI 2026
 
-Diagnóstico del consumo electrónico en México y propuestas para hacerlo incluyente (reto ANTAD–INEGI). Código reproducible en R con datos oficiales del INEGI.
+Diagnóstico de la compra en línea entre los adultos que ya usan internet en México y una propuesta para hacerla incluyente (reto ANTAD–INEGI). Análisis reproducible en R con datos oficiales del INEGI; tres extractores en Python preparan las bases de años anteriores y de la ENIGH.
 
-## Empezar (una sola vez)
+**Dashboard:** *(enlace pendiente: se publica en Posit Connect Cloud)*
 
-1. **Clona el repositorio** con GitHub Desktop (File → Clone repository). Guárdalo **fuera de OneDrive**, por ejemplo en `Documentos/GitHub/`: OneDrive y Git se llevan mal.
-2. **Descarga los datos** como indica [`datos/README.md`](datos/README.md).
-3. **Abre `dataton-inegi-2026.Rproj`** en RStudio. Siempre entra por aquí: así el directorio de trabajo es correcto en cualquier computadora.
-4. **Instala los paquetes:** `install.packages(c("survey", "marginaleffects", "shiny", "bslib", "ggplot2"))`
-5. **Prueba que todo funciona:** `source("analisis/diagnostico/02_cruces.R")`. Debe imprimir tablas sin errores.
+## Cómo reproducir
+
+1. **Clona el repositorio.**
+2. **Descarga los datos** del INEGI como indica [`datos/README.md`](datos/README.md).
+3. **Abre `dataton-inegi-2026.Rproj`** en RStudio, para que el directorio de trabajo sea la raíz del repositorio.
+4. **Instala los paquetes de R:** `install.packages(c("survey", "marginaleffects", "shiny", "bslib", "ggplot2", "ggrepel", "MASS", "jsonlite"))`
+5. **Python:** los tres extractores (`00_extrae_*.py`) necesitan Python 3, sin paquetes extra.
+6. **Corre los scripts en este orden** (desde la raíz del repositorio). Cada uno escribe sus cifras en `dashboard/datos/`.
+7. **Abre el dashboard:** `shiny::runApp("dashboard")`. Solo lee los CSV de `dashboard/datos/`, que ya vienen en el repositorio, así que se puede abrir sin descargar las bases.
+
+| Paso | Scripts | Qué hace |
+| :- | :- | :- |
+| 1 | `analisis/C_territorio/00_extrae_historicos.py`, `analisis/A_conexion/00_extrae_categorias.py`, `analisis/C_territorio/00_extrae_enigh.py` | Extraen de las bases del INEGI solo las columnas que se usan (`datos/procesados/`) |
+| 2 | `analisis/diagnostico/02_cruces.R`, `04_regresion.R`, `05_exportar_dashboard.R` | Diagnóstico, modelo completo y % por entidad |
+| 3 | `analisis/A_conexion/01` a `05` | Del acceso a la compra: embudo, hogar, categorías, adolescentes |
+| 4 | `analisis/B_barreras/01`, `03`, `04` | Razones para no comprar, problemas de quienes compran, género |
+| 5 | `analisis/C_territorio/01`, `03`, `02`, `04`, `05` | Regiones, serie histórica, futuro probable, ENIGH, ritmo por entidad (`02` usa lo que escribe `03`) |
+| 6 | `analisis/D_propuesta/01` a `10` | Grupo objetivo, mecanismos, perfiles, «Lo que está en juego», MICMAC (`07` usa lo que escribe `A_conexion/02`) |
+
+Los escenarios, la retroproyección y las señales de la sección 6 (`s6_escenarios.csv`, `s6_retroproyeccion.csv`, `s6_senales.csv`) son texto del equipo, no salen de un script.
 
 ## Estructura
 
@@ -16,48 +31,29 @@ Diagnóstico del consumo electrónico en México y propuestas para hacerlo inclu
 R/
   00_config.R          configuración común: paquetes, rutas, constantes
   prep_endutih.R       prepara la ENDUTIH 2025 → `usu` y `dis`
-  prep_<fuente>.R      una por cada fuente nueva (ENIGH, EIC…)
-  exportar_endutih.R   exporta la ENDUTIH preparada a datos/procesados/ (para Python)
+  exportar_endutih.R   exporta la ENDUTIH preparada a datos/procesados/
 analisis/
   diagnostico/         primer diagnóstico (cruces, traslape, regresión)
   A_conexion/          frente A: del acceso a la compra
   B_barreras/          frente B: barreras y mecanismos
-  C_territorio/        frente C: territorio y mercado
-  D_propuesta/         frente D: síntesis, género y propuesta
-dashboard/              app de Shiny y sus datos (ver dashboard/README.md)
+  C_territorio/        frente C: territorio, serie histórica y ENIGH
+  D_propuesta/         frente D: síntesis, género, propuesta y prospectiva
+  */00_extrae_*.py     extractores de las bases de otros años y de la ENIGH
+dashboard/             app de Shiny y sus datos (ver dashboard/README.md)
 bitacoras/
-  decisiones.md        qué decidimos y por qué
+  decisiones.md        qué decidimos, por qué y quién
   hallazgos.md         qué encontramos, con cifra y script
 datos/                 datos crudos (no se suben; ver datos/README.md)
-resultados/            tablas que generan los scripts (no se suben)
+resultados/            tablas intermedias que generan los scripts (no se suben)
 ```
 
-## Cómo funciona la preparación de datos
+## Cómo se preparan los datos
 
-**`R/prep_endutih.R` prepara la ENDUTIH igual para todos:** carga los datos, se queda con usuarios de internet de 18 años o más, etiqueta las variables y define el diseño muestral. Cada script que use la ENDUTIH empieza así:
+**`R/prep_endutih.R` prepara la ENDUTIH 2025 igual para todos los análisis:** carga los datos, se queda con los usuarios de internet de 18 años o más, etiqueta las variables y define el diseño muestral. Cada script empieza con `source("R/prep_endutih.R")`, que deja listos `usu` (los datos) y `dis` (el diseño muestral).
 
-```r
-source("R/prep_endutih.R")   # deja listos `usu` (datos) y `dis` (diseño muestral)
-```
-
-- **Nadie redefine variables en su propio script.** Si necesitas una variable nueva, se agrega en `prep_endutih.R` y se anota en `bitacoras/decisiones.md`. Si cada quien prepara los datos a su manera, obtendremos cuatro porcentajes distintos para lo mismo.
-- **Siempre se usa `dis`** (el diseño muestral) para calcular, nunca `usu` directo. Sin el diseño, los porcentajes y los intervalos salen mal.
-- **Cada fuente tiene su propio `prep_<fuente>.R`.** No se unen personas entre encuestas distintas: las fuentes se comparan por entidad, tamaño de localidad o grupo.
-
-## Si trabajas en Python u otro lenguaje
-
-- **No vuelvas a preparar la ENDUTIH:** corre una vez `source("R/exportar_endutih.R")` en R y lee `datos/procesados/endutih_usuarios_18mas.csv`.
-- **Estimaciones puntuales ponderadas** (con `FAC_PER`) sí se pueden hacer en Python. Control: 43.67 % de usuarios de 18+ compra en línea.
-- **Errores estándar, intervalos y modelos de encuestas, en R** (decisión 42): el diseño muestral no se maneja de forma confiable en Python.
-- Dependencias de Python en `requirements.txt`.
-
-## Reglas de trabajo
-
-1. **Cada quien trabaja en sus propios scripts**, dentro de la carpeta de su frente. Nadie edita el script de otra persona.
-2. **Antes de empezar:** *Pull* (traer cambios). **Al terminar:** *Commit* con un mensaje claro (qué hiciste) y *Push*.
-3. **Cada archivo de `R/` tiene un solo dueño.** `00_config.R` y `prep_endutih.R` son de Rebeca; `exportar_endutih.R` también; cada `prep_<fuente>.R` nuevo es de quien incorpora esa fuente. Si necesitas un cambio en un archivo que no es tuyo, se lo pides a su dueño: lo hace, lo anota en la bitácora y avisa para que todos hagan *pull* y vuelvan a correr sus scripts.
-4. **Toda decisión de análisis** va en `bitacoras/decisiones.md`; **todo hallazgo**, con su cifra y script, en `bitacoras/hallazgos.md`.
-5. **Los datos crudos y los resultados no se suben.** Los resultados se regeneran corriendo los scripts.
+- **Todas las estimaciones usan el diseño muestral** (`dis`, con UPM, estrato y factor de expansión), así que los porcentajes y los intervalos reflejan la encuesta y no solo la muestra.
+- **Las demás bases** (ENDUTIH 2015-2024 y ENIGH 2024) pasan primero por un extractor en Python que guarda solo las columnas necesarias; el análisis y los errores estándar se hacen en R con el diseño de cada levantamiento.
+- **No se unen personas entre encuestas distintas:** las fuentes se comparan por año, entidad, tamaño de localidad o grupo.
 
 ## Uso de inteligencia artificial
 
@@ -83,4 +79,13 @@ Usamos Claude (Anthropic) como asistente durante todo el proyecto. Aquí decimos
 
 ## Fuentes
 
-- ENDUTIH 2025, INEGI (datos abiertos, CSV). Universo de análisis: usuarios de internet de 18 años o más. Estimaciones con factores de expansión y diseño muestral; intervalos al 90 %.
+**Datos (INEGI, datos abiertos, CSV)**
+- ENDUTIH 2025: universo de análisis, usuarios de internet de 18 años o más. Estimaciones con factores de expansión y diseño muestral; intervalos al 90 %.
+- ENDUTIH 2015 a 2024: serie histórica de la compra en línea (comparable desde 2016), ritmo por entidad y tendencia de categorías.
+- ENIGH 2024: dónde compran los hogares (gasto por lugar de compra).
+
+**Otras fuentes**
+- Regiones del Centro de Estudios Espinosa Yglesias (CEEY), con base en la ESRU-EMOVI 2017.
+- Expansión (febrero de 2023): kioscos con asesor en Bodega Aurrera.
+- Forbes México (enero de 2024): quioscos digitales de Coppel.
+- Gallino, S. y Moreno, A. (2014). «Integration of Online and Offline Channels in Retail: The Impact of Sharing Reliable Inventory Availability Information». *Management Science*, 60(6).

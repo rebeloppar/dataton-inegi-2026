@@ -1,11 +1,11 @@
 "impulsor","categoria","influencia","dependencia","prueba"
-"Habilidades digitales de quienes no compran","Social",10,16,FALSE
-"Tiendas que acompañan la compra en línea","Económico",13,12,FALSE
-"Práctica con pagos en línea","Social",6,14,FALSE
-"Escolaridad de la población","Social",8,2,FALSE
+"Habilidades digitales de quienes no compran","Social",10,15,FALSE
+"Tiendas que acompañan la compra en línea","Económico",10,11,FALSE
+"Práctica con pagos en línea","Social",6,12,FALSE
+"Escolaridad de la población","Social",11,1,FALSE
 "Tiendas y entregas fuera de las ciudades","Económico",6,2,FALSE
-"Programas públicos de inclusión digital","Político",7,4,FALSE
+"Programas públicos de inclusión digital","Político",7,3,FALSE
 "Pagar en efectivo una compra en línea","Económico",3,8,FALSE
-"Confianza en la seguridad de comprar en línea","Legal",6,4,FALSE
-"Preferencia por lo presencial","Social",5,10,FALSE
+"Confianza en la seguridad de comprar en línea","Legal",5,6,FALSE
+"Preferencia por lo presencial","Social",4,12,FALSE
 "Ingreso y estrato socioeconómico","Económico",9,1,FALSE

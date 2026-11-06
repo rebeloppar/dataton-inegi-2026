@@ -501,8 +501,8 @@ ui <- page_navbar(
       div(class = "recorrido",
         lapply(list(
           c("1", "s1", "Panorama", "Del acceso a la compra, dónde se pierden los usuarios"),
-          c("2", "s2", "¿Quién queda fuera?", "La brecha es de escolaridad, edad y ruralidad"),
-          c("3", "s3", "¿Por qué?", "Unos no pueden y otros no quieren"),
+          c("2", "s2", "¿Quién queda fuera?", "La brecha abarca escolaridad, edad y ruralidad"),
+          c("3", "s3", "¿Por qué?", "Falta de habilidades y preferencia por la compra física"),
           c("4", "s4", "¿Dónde?", "La brecha rural-urbano persiste"),
           c("5", "s5", "¿Qué hacer?", "La tienda como puerta de entrada"),
           c("6", "s6", "¿Hacia dónde vamos?", "Prospectiva 2030: futuros probables, posibles y preferibles")), function(x)
@@ -518,8 +518,8 @@ ui <- page_navbar(
                target = "_blank", "Detalle en el repositorio.")))),
 
   nav_panel("1. Panorama", value = "s1", seccion(
-    cabecera("1", "La gente se pierde en el paso de compra",
-             "Preguntas P1 y P3."),
+    cabecera("1", "Los usuarios se pierden en el paso de compra",
+             "Diagnóstico del consumo electrónico en México: qué se compra y cómo ha cambiado."),
     filtro("s1_grupo", cortes_en(embudo, categorias)),
     div(class = "lienzo", navset_underline(
       nav_panel("Embudo", grafica("g_embudo", "560px", "s1_embudo", "s1_embudo.csv")),
@@ -538,7 +538,7 @@ ui <- page_navbar(
 
   nav_panel("2. ¿Quién queda fuera?", value = "s2", seccion(
     cabecera("2", "La brecha es principalmente de escolaridad, edad y ruralidad",
-             "Otras brechas se explican en buena parte por la escolaridad. Pregunta P2."),
+             "Características sociodemográficas de quienes compran en línea y quienes no."),
     div(class = "como-leer",
       strong("Cómo leer estas cifras. "),
       "Usamos una regresión: compara a personas que son iguales en todo (edad, sexo, escolaridad, localidad, estrato) excepto en una característica. ",
@@ -558,7 +558,7 @@ ui <- page_navbar(
 
   nav_panel("3. ¿Por qué?", value = "s3", seccion(
     cabecera("3", "Unos no pueden (habilidades) y otros no quieren (prefieren lo presencial)",
-             "Los medios de pago pesan poco. Preguntas P4 y P5."),
+             "Barreras de quienes no compran y problemas de quienes sí: diferencias por grupo sociodemográfico."),
     filtro("s3_grupo", cortes_en(razones, problemas)),
     div(class = "lienzo", navset_underline(
       nav_panel("Por qué no compran", grafica("g_razones", "500px", "s3_razones", "s3_razones.csv")),
@@ -569,8 +569,8 @@ ui <- page_navbar(
     lo_que_encontramos("s3"))),
 
   nav_panel("4. ¿Dónde?", value = "s4", seccion(
-    cabecera("4", "La brecha rural-urbano persiste. La regional es mínima con controles.",
-             "Pregunta P6."),
+    cabecera("4", "La brecha rural-urbano persiste y la regional es mínima con controles",
+             "Comercio electrónico por estado y región: cuánto cambia y por qué."),
     div(class = "lienzo", navset_underline(
       nav_panel("Por entidad",
         layout_columns(col_widths = c(8, 4),
@@ -592,7 +592,7 @@ ui <- page_navbar(
 
   nav_panel("5. ¿Qué hacer?", value = "s5", seccion(
     cabecera("5", "La tienda como puerta de entrada a la compra en línea",
-             "Preguntas P7 y P8."),
+             "Estrategias públicas y privadas para reducir la brecha."),
     div(class = "lienzo", navset_underline(
       nav_panel("La propuesta",
         nucleo_propuesta(),
@@ -639,7 +639,7 @@ ui <- page_navbar(
 
   nav_panel("6. 2030", value = "s6", seccion(
     cabecera("6", "2030: futuros probables, posibles y preferibles",
-             "Análisis prospectivo. Pregunta P8."),
+             "Escenarios del comercio en línea y estrategias efectivas."),
     div(class = "como-leer",
       strong("Cómo leer esta sección. "),
       "No es un pronóstico. Usamos el cono de futuros: el futuro probable (si nada cambia) lleva cifras; los futuros plausibles se construyen con los impulsores más influyentes e inciertos y se describen con palabras; ",

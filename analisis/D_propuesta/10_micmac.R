@@ -39,20 +39,20 @@ impulsores <- data.frame(
                "Estrato alto vs. bajo: +14.5 pp en ciudades, con controles (hallazgo 7)"),
   incierto = c(TRUE, TRUE, TRUE, FALSE, TRUE, TRUE, FALSE, TRUE, TRUE, FALSE))
 
-# Fila influye en columna. Las filas y columnas de PRE y EST son borrador
-# (decisión 103), para que el equipo las revise.
+# Fila influye en columna. Puntajes revisados por el equipo (decisión 107):
+# nueve cambios sobre el borrador de la decisión 103.
 #                                HAB TIE PAG ESC RUR PUB EFE SEG PRE EST
 m <- matrix(c(
   0, 2, 3, 0, 0, 1, 1, 1, 2, 0,   # HAB habilidades
-  3, 0, 2, 0, 2, 1, 2, 1, 2, 0,   # TIE tiendas que acompañan
+  2, 0, 1, 0, 2, 0, 2, 1, 2, 0,   # TIE tiendas que acompañan
   2, 1, 0, 0, 0, 0, 1, 1, 1, 0,   # PAG pagos
-  3, 1, 2, 0, 0, 1, 0, 0, 0, 1,   # ESC escolaridad
+  3, 1, 2, 0, 0, 1, 0, 1, 2, 1,   # ESC escolaridad
   1, 2, 0, 0, 0, 1, 1, 0, 1, 0,   # RUR tiendas y entregas fuera de ciudades
   3, 1, 1, 1, 0, 0, 0, 1, 0, 0,   # PUB programas públicos
   0, 1, 1, 0, 0, 0, 0, 0, 1, 0,   # EFE efectivo
-  1, 1, 2, 0, 0, 0, 1, 0, 1, 0,   # SEG confianza en la seguridad (antes CON)
-  1, 2, 1, 0, 0, 0, 1, 0, 0, 0,   # PRE preferencia por lo presencial
-  2, 1, 2, 1, 0, 0, 1, 0, 2, 0),  # EST ingreso y estrato
+  1, 1, 1, 0, 0, 0, 1, 0, 1, 0,   # SEG confianza en la seguridad (antes CON)
+  1, 1, 1, 0, 0, 0, 1, 0, 0, 0,   # PRE preferencia por lo presencial
+  2, 1, 2, 0, 0, 0, 1, 1, 2, 0),  # EST ingreso y estrato
   nrow = 10, byrow = TRUE, dimnames = list(impulsores$clave, impulsores$clave))
 stopifnot(all(diag(m) == 0))
 

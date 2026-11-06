@@ -1,14 +1,12 @@
 # =============================================================================
 # Dashboard — Datatón INEGI 2026
-# Portada y 5 secciones del storyboard. Cada sección: afirmación → filtros →
-# gráficas → "Lo que encontramos". Debajo de cada gráfica: "Cómo se calculó" y
-# "Descargar datos".
+# Inicio y 6 secciones. Cada sección: afirmación → gráficas → "Lo que
+# encontramos". Debajo de cada gráfica: "Cómo se calculó" y "Descargar datos".
 #
-# Cada gráfica lee un CSV de dashboard/datos/. Hoy muchos son datos de PRUEBA;
-# cada frente los reemplaza por los finales con las mismas columnas
-# (ver dashboard/README.md). Los archivos opcionales pueden faltar: su pestaña
-# muestra "pendiente". Los textos viven en hallazgos.csv, propuesta.csv y
-# estrategias.csv, así se editan sin tocar código.
+# Cada gráfica lee un CSV de dashboard/datos/, que escribe un script de
+# analisis/ (ver dashboard/README.md). Si falta un archivo opcional, su
+# pestaña no aparece. Los textos viven en hallazgos.csv, propuesta.csv,
+# riesgos.csv, estrategias.csv y s6_*.csv, así se editan sin tocar código.
 #
 # Correr: abrir el proyecto en RStudio y ejecutar shiny::runApp("dashboard")
 # =============================================================================

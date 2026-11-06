@@ -12,8 +12,8 @@
 
 source(file.path("R", "prep_endutih.R"))
 
-# TEMPORAL: mientras P7_26 y P7_27_* se integran en R/prep_endutih.R
-# (solicitado a la dueña de R/). Borrar este bloque cuando estén en el prep.
+# Variables de problemas (P7_26 y P7_27_*): solo las usa este script, así que
+# se preparan aquí y no en R/prep_endutih.R.
 usu$problema <- ifelse(usu$P7_26 == "1", 1, ifelse(usu$P7_26 == "2", 0, NA))
 problemas <- c(
   P7_27_1 = "Entrega",

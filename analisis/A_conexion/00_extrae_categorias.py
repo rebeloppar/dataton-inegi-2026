@@ -1,6 +1,6 @@
 # =============================================================================
 # Frente A — Extrae de los microdatos de la ENDUTIH 2022-2025 (INEGI) lo que usa
-# 05_tendencia_categorias.R: quién compró en línea y qué categorías compró.
+# 04_tendencia_categorias.R: quién compró en línea y qué categorías compró.
 #   datos/procesados/endutih_2022_2025_categorias.csv
 # Uso (desde la raíz del repositorio): python3 analisis/A_conexion/00_extrae_categorias.py
 # Necesita las carpetas datos/endutih_AAAA/ tal como las descarga el INEGI.

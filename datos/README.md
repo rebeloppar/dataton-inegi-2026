@@ -1,6 +1,6 @@
 # Datos
 
-Los datos crudos **no se suben al repositorio** (son públicos y pesados). Cada quien los descarga y los coloca aquí con esta estructura exacta:
+Los datos crudos **no se suben al repositorio** (son públicos y pesados). Se descargan del INEGI (datos abiertos, CSV) y se colocan aquí con esta estructura:
 
 ```
 datos/
@@ -17,11 +17,7 @@ datos/
 2. Descomprímelo y renombra la carpeta a `endutih_2025`.
 3. Muévela dentro de `datos/`.
 
-## Otras fuentes
-
-Se agregan aquí cuando el frente que las use las incorpore (ENIGH 2024, EIC 2025, DENUE…), con su propia sección en este archivo y su propio `R/prep_<fuente>.R`.
-
-## ENDUTIH 2015 a 2024 (serie histórica, frente C)
+## ENDUTIH 2015 a 2024 (serie histórica)
 
 1. En la página de cada año de la ENDUTIH (2015 a 2024), pestaña **Datos abiertos**, descarga el paquete en **CSV**.
 2. Descomprime cada uno en `datos/endutih_AAAA/` (por ejemplo, `datos/endutih_2019/`), sin cambiar las carpetas de adentro.

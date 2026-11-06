@@ -36,6 +36,19 @@ genero     <- leer("s3_genero.csv")
 ent_base   <- leer("entidades.csv")
 entidades  <- merge(ent_base, leer("s4_entidades.csv"), by = "cve_ent")
 mapa       <- leer("mapa_estados.csv")
+# Para la ficha del mapa: lugar de cada entidad y sus polígonos (para saber cuál toca el cursor)
+entidades$lugar <- rank(-entidades$estimacion, ties.method = "min")
+piezas <- lapply(split(mapa, list(mapa$cve_ent, mapa$pieza), drop = TRUE), function(p)
+  list(cve = p$cve_ent[1], x = p$long, y = p$lat, caja = c(range(p$long), range(p$lat))))
+en_poligono <- function(x, y, px, py) {
+  j <- c(length(px), seq_len(length(px) - 1))
+  sum(((py > y) != (py[j] > y)) & (x < (px[j] - px) * (y - py) / (py[j] - py) + px)) %% 2 == 1
+}
+entidad_en <- function(x, y) {
+  for (p in piezas) if (x >= p$caja[1] && x <= p$caja[2] && y >= p$caja[3] && y <= p$caja[4] &&
+                        en_poligono(x, y, p$x, p$y)) return(p$cve)
+  NULL
+}
 regiones   <- leer("s4_regiones.csv")
 simul      <- leer("s5_simulador.csv")
 tienda     <- leer("s5_enigh.csv")
@@ -180,7 +193,24 @@ tema <- bs_add_rules(tema, "
   .pie-grafica .descarga { color:var(--azul); font-weight:600; white-space:nowrap; }
   .pendiente { border:1.5px dashed var(--borde); border-radius:12px; padding:2.5rem 1.5rem; text-align:center; color:var(--gris); margin:1rem 0; }
   .pendiente strong { color:var(--tinta); display:block; margin-bottom:.25rem; }
-  .detalle-mapa { min-height:1.5rem; color:var(--tinta); }
+  .ficha-ent { border:1px solid var(--borde); border-radius:14px; padding:1.1rem 1.2rem; background:#fff;
+               box-shadow:0 2px 10px rgba(31,41,55,.06); position:sticky; top:1rem; }
+  .ficha-ent .vacia { color:var(--gris); }
+  .ficha-ent .reg { display:inline-block; color:#fff; font-size:.75rem; font-weight:700; letter-spacing:.03em;
+                    border-radius:999px; padding:.15rem .6rem; margin-bottom:.35rem; }
+  .ficha-ent h3 { font-size:1.35rem; font-weight:700; margin:0 0 .5rem; }
+  .ficha-ent .grande { font-size:2.6rem; font-weight:700; line-height:1; color:var(--tinta); }
+  .ficha-ent .sub { color:var(--gris); font-size:.9rem; margin:.25rem 0 .1rem; }
+  .ficha-ent .ic { color:var(--gris); font-size:.8rem; margin-bottom:.8rem; }
+  .ficha-ent .fila { display:flex; justify-content:space-between; gap:.5rem; border-top:1px solid var(--reja);
+                     padding:.45rem 0; font-size:.92rem; }
+  .ficha-ent .fila b.mas { color:#2F7D52; } .ficha-ent .fila b.menos { color:#B4473B; }
+  .ficha-ent .tira { position:relative; height:26px; margin:.9rem .3rem .2rem; }
+  .ficha-ent .tira .linea { position:absolute; top:12px; left:0; right:0; height:2px; background:var(--borde); }
+  .ficha-ent .tira .t { position:absolute; top:7px; width:3px; height:12px; margin-left:-1.5px; background:#B8BEC7; border-radius:2px; }
+  .ficha-ent .tira .t.nac { background:var(--tinta); height:20px; top:3px; }
+  .ficha-ent .tira .t.sel { width:12px; height:12px; top:7px; margin-left:-6px; border-radius:50%; background:var(--azul); border:2px solid #fff; box-shadow:0 0 0 1px var(--azul); }
+  .ficha-ent .extremos { display:flex; justify-content:space-between; font-size:.72rem; color:var(--gris); }
   .como-leer { border-left:4px solid var(--azul); background:var(--menta); padding:.9rem 1.1rem; border-radius:0 10px 10px 0; margin-bottom:1rem; max-width:110ch; }
 
   /* Lo que encontramos */
@@ -541,10 +571,12 @@ ui <- page_navbar(
              "Afirmación provisional. Frente C. Pregunta P6."),
     div(class = "lienzo", navset_underline(
       nav_panel("Por entidad",
-        div(style = "max-width:900px",
-          plotOutput("g_mapa", height = "560px", hover = hoverOpts("mapa_hover", delay = 80, delayType = "throttle")),
-          div(class = "detalle-mapa small", uiOutput("mapa_detalle")),
-          pie_grafica("s4_entidades", "s4_entidades.csv"))),
+        layout_columns(col_widths = c(8, 4),
+          tagList(
+            plotOutput("g_mapa", height = "560px", click = "mapa_click",
+                       hover = hoverOpts("mapa_hover", delay = 60, delayType = "throttle")),
+            pie_grafica("s4_entidades", "s4_entidades.csv")),
+          uiOutput("mapa_detalle"))),
       nav_panel("Por región",
         # El mapa de las regiones con sus colores y debajo la brecha con los mismos colores
         layout_columns(col_widths = c(5, 7),
@@ -977,15 +1009,42 @@ server <- function(input, output, session) {
       sin_ejes
   })
 
+  # Ficha de la entidad bajo el cursor (o la última que se tocó)
+  ent_sel <- reactiveVal(NULL)
+  elige_ent <- function(h) if (!is.null(h)) { cve <- entidad_en(h$x, h$y); if (!is.null(cve)) ent_sel(cve) }
+  observeEvent(input$mapa_hover, elige_ent(input$mapa_hover))
+  observeEvent(input$mapa_click, elige_ent(input$mapa_click))
   output$mapa_detalle <- renderUI({
-    h <- input$mapa_hover
-    vacio <- span(class = "text-muted", "Pasa el cursor sobre una entidad para ver su cifra.")
-    if (is.null(h)) return(vacio)
-    dist <- (entidades$long_c - h$x)^2 + (entidades$lat_c - h$y)^2
-    if (min(dist) > 4) return(vacio)
-    e <- entidades[which.min(dist), ]
-    span(strong(e$entidad), sprintf(": %.1f %% compra en línea (intervalo al 90 %%: %.1f a %.1f). Región %s.",
-                                   e$estimacion, e$li90, e$ls90, e$region))
+    nac <- 43.7
+    rango <- range(entidades$estimacion)
+    pos <- function(v) sprintf("left:%.1f%%", 100 * (v - rango[1]) / diff(rango))
+    alto <- entidades[which.max(entidades$estimacion), ]; bajo <- entidades[which.min(entidades$estimacion), ]
+    tira <- function(sel = NULL) tagList(
+      div(class = "tira", div(class = "linea"),
+          lapply(entidades$estimacion, function(v) span(class = "t", style = pos(v))),
+          span(class = "t nac", style = pos(nac), title = "Promedio nacional"),
+          if (!is.null(sel)) span(class = "t sel", style = pos(sel))),
+      div(class = "extremos", span(sprintf("%s %.0f %%", bajo$abrev, bajo$estimacion)),
+          span("| = promedio nacional"), span(sprintf("%s %.0f %%", alto$abrev, alto$estimacion))))
+    cve <- ent_sel()
+    if (is.null(cve)) return(div(class = "ficha-ent",
+      h3("Pasa el cursor sobre una entidad"),
+      p(class = "vacia", "O tócala, si estás en un teléfono. Aquí aparece su cifra, su lugar entre las 32 y cómo se compara con el promedio nacional."),
+      div(class = "fila", span("Más compra"), tags$b(sprintf("%s, %.1f %%", alto$entidad, alto$estimacion))),
+      div(class = "fila", span("Menos compra"), tags$b(sprintf("%s, %.1f %%", bajo$entidad, bajo$estimacion))),
+      tira()))
+    e <- entidades[entidades$cve_ent == cve, ]
+    dif <- e$estimacion - nac
+    div(class = "ficha-ent",
+      span(class = "reg", style = paste0("background:", col_region[[e$region]]), paste("Región", e$region)),
+      h3(e$entidad),
+      div(class = "grande", sprintf("%.1f %%", e$estimacion)),
+      div(class = "sub", "de los usuarios de internet de 18+ compró en línea"),
+      div(class = "ic", sprintf("Intervalo al 90 %%: %.1f a %.1f", e$li90, e$ls90)),
+      div(class = "fila", span("Lugar entre las 32"), tags$b(sprintf("%d.º", e$lugar))),
+      div(class = "fila", span(sprintf("Frente al promedio nacional (%.1f %%)", nac)),
+          tags$b(class = if (dif >= 0) "mas" else "menos", sprintf("%+.1f pp", dif))),
+      tira(e$estimacion))
   })
 
   output$g_regiones <- graficar({

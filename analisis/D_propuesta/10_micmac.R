@@ -1,5 +1,5 @@
 # =============================================================================
-# Frente D (con B) — MICMAC simplificado para los escenarios 2030 (decisiones 88 y 92)
+# Frente D (con B) — MICMAC simplificado para los escenarios 2030 (decisiones 88, 92 y 103)
 # Cada impulsor sale de un hallazgo del diagnóstico. La matriz dice cuánto
 # influye el impulsor de la FILA en el de la COLUMNA: 0 nada, 1 poco,
 # 2 moderado, 3 fuerte. Es un juicio del equipo, no una estimación: se edita
@@ -7,46 +7,53 @@
 # Influencia = suma de la fila; dependencia = suma de la columna.
 # Los dos ejes de los escenarios son los impulsores motrices (mucha influencia,
 # poca dependencia) que además son inciertos (pueden ir para un lado o el otro).
-# Envejecimiento de la población se quitó en la decisión 92.
+# Envejecimiento de la población se quitó en la decisión 92. La lista sale del
+# PESTEL del equipo (decisión 103): sin MOV, CON pasa a SEG, RUR incluye las
+# entregas, y entran PRE (la puerta 2) y EST (estructural, no incierto).
 # Escribe: dashboard/datos/s6_impulsores.csv, dashboard/datos/s6_ejes.csv
 # =============================================================================
 
 impulsores <- data.frame(
-  clave = c("HAB", "TIE", "PAG", "ESC", "RUR", "MOV", "PUB", "EFE", "CON"),
+  clave = c("HAB", "TIE", "PAG", "ESC", "RUR", "PUB", "EFE", "SEG", "PRE", "EST"),
   impulsor = c("Habilidades digitales de quienes no compran",
                "Tiendas que acompañan la compra en línea",
                "Práctica con pagos en línea",
                "Escolaridad de la población",
-               "Tiendas de cadena fuera de las ciudades",
-               "Conectividad móvil y precio de los datos",
+               "Tiendas y entregas fuera de las ciudades",
                "Programas públicos de inclusión digital",
                "Pagar en efectivo una compra en línea",
-               "Protección al consumidor y devoluciones"),
+               "Confianza en la seguridad de comprar en línea",
+               "Preferencia por lo presencial",
+               "Ingreso y estrato socioeconómico"),
   categoria = c("Social", "Económico", "Social", "Social", "Económico",
-                "Tecnológico", "Político", "Económico", "Legal"),
+                "Político", "Económico", "Legal", "Social", "Económico"),
   hallazgo = c("«No sé cómo»: 22.7 % del grupo que no compra (hallazgos 12-13)",
                "18.5 % de compradores ya recoge en tienda; hay kioscos desde 2018 (decisión 70)",
                "Las mujeres pagan menos en línea: −5.8 pp con controles (hallazgo 36)",
                "Superior vs. primaria: +42.5 pp (hallazgo 1)",
-               "Localidad rural: −11.2 pp con controles (hallazgo 30)",
-               "85 % de los adultos ya usa internet; la brecha está en comprar (hallazgo 29)",
+               "Localidad rural: −11.2 pp con controles (hallazgo 6); la entrega es el problema más común de quien compra (hallazgo 23)",
                "INEA, INAPAM y Centros de Inclusión Digital (mapa de actores)",
-               "No tener tarjeta: 2.6 % de quienes no compran (hallazgo 15)",
-               "Desconfianza en la seguridad: 10.8 % de quienes no compran"),
-  incierto = c(TRUE, TRUE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE))
+               "No tener tarjeta: 2.6 % de quienes no compran (hallazgo 21)",
+               "Desconfía de la seguridad: 7.4 % (primaria o menos) a 13.6 % (superior) de quienes no compran (hallazgo 14)",
+               "«Prefiero en persona»: 36 % en el estrato bajo y 52 % en el alto; quienes lo dicen casi no hacen transacciones (hallazgos 13 y 34)",
+               "Estrato alto vs. bajo: +14.5 pp en ciudades, con controles (hallazgo 7)"),
+  incierto = c(TRUE, TRUE, TRUE, FALSE, TRUE, TRUE, FALSE, TRUE, TRUE, FALSE))
 
-# Fila influye en columna        HAB TIE PAG ESC RUR MOV PUB EFE CON
+# Fila influye en columna. Las filas y columnas de PRE y EST son borrador
+# (decisión 103), para que el equipo las revise.
+#                                HAB TIE PAG ESC RUR PUB EFE SEG PRE EST
 m <- matrix(c(
-  0, 2, 3, 0, 0, 1, 1, 1, 1,   # HAB habilidades
-  3, 0, 2, 0, 2, 0, 1, 2, 1,   # TIE tiendas que acompañan
-  2, 1, 0, 0, 0, 0, 0, 1, 1,   # PAG pagos
-  3, 1, 2, 0, 0, 1, 1, 0, 0,   # ESC escolaridad
-  1, 2, 0, 0, 0, 1, 1, 1, 0,   # RUR tiendas fuera de ciudades
-  1, 1, 1, 0, 0, 0, 0, 0, 0,   # MOV conectividad
-  3, 1, 1, 1, 0, 1, 0, 0, 1,   # PUB programas públicos
-  0, 1, 1, 0, 0, 0, 0, 0, 0,   # EFE efectivo
-  1, 1, 2, 0, 0, 0, 0, 1, 0),  # CON protección al consumidor
-  nrow = 9, byrow = TRUE, dimnames = list(impulsores$clave, impulsores$clave))
+  0, 2, 3, 0, 0, 1, 1, 1, 2, 0,   # HAB habilidades
+  3, 0, 2, 0, 2, 1, 2, 1, 2, 0,   # TIE tiendas que acompañan
+  2, 1, 0, 0, 0, 0, 1, 1, 1, 0,   # PAG pagos
+  3, 1, 2, 0, 0, 1, 0, 0, 0, 1,   # ESC escolaridad
+  1, 2, 0, 0, 0, 1, 1, 0, 1, 0,   # RUR tiendas y entregas fuera de ciudades
+  3, 1, 1, 1, 0, 0, 0, 1, 0, 0,   # PUB programas públicos
+  0, 1, 1, 0, 0, 0, 0, 0, 1, 0,   # EFE efectivo
+  1, 1, 2, 0, 0, 0, 1, 0, 1, 0,   # SEG confianza en la seguridad (antes CON)
+  1, 2, 1, 0, 0, 0, 1, 0, 0, 0,   # PRE preferencia por lo presencial
+  2, 1, 2, 1, 0, 0, 1, 0, 2, 0),  # EST ingreso y estrato
+  nrow = 10, byrow = TRUE, dimnames = list(impulsores$clave, impulsores$clave))
 stopifnot(all(diag(m) == 0))
 
 impulsores$influencia  <- rowSums(m)

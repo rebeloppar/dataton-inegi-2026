@@ -642,7 +642,7 @@ ui <- page_navbar(
       "el preferible es al que apunta la propuesta, y la retroproyección dice qué tiene que pasar para llegar. Las señales tempranas dicen, cada año, hacia dónde vamos."),
     div(class = "lienzo", navset_underline(
       nav_panel("Cono de futuros", grafica("g_cono", "460px", "s6_cono", "s6_cono.csv")),
-      nav_panel("Impulsores (MICMAC)", grafica("g_micmac", "540px", "s6_impulsores", "s6_impulsores.csv")),
+      nav_panel("Impulsores (MICMAC)", grafica("g_micmac", "600px", "s6_impulsores", "s6_impulsores.csv")),
       nav_panel("Escenarios", escenarios_ui(), pie_grafica("s6_escenarios", "s6_escenarios.csv")),
       nav_panel("Del 2030 a hoy", retro_ui(), pie_grafica("s6_retroproyeccion", "s6_retroproyeccion.csv")),
       nav_panel("Señales tempranas", senales_ui(), pie_grafica("s6_senales", "s6_senales.csv")))),
@@ -1211,11 +1211,11 @@ server <- function(input, output, session) {
       geom_vline(xintercept = cx, colour = col$borde) + geom_hline(yintercept = cy, colour = col$borde) +
       geom_text(data = cuad, aes(x, y, label = etq, hjust = h, vjust = v), colour = col$gris, size = 3.3, fontface = "italic") +
       punto(aes(fill = categoria), size = 4) +
-      ggrepel::geom_text_repel(aes(label = impulsor), size = 3.4, colour = col$tinta, seed = 1, box.padding = 0.45,
+      ggrepel::geom_text_repel(aes(label = vapply(strwrap(impulsor, 26, simplify = FALSE), paste, "", collapse = "\n")), size = 3.3, lineheight = 0.9, colour = col$tinta, seed = 3, box.padding = 0.8, force = 4, point.padding = 0.4,
                                min.segment.length = 0.2, max.overlaps = Inf) +
       scale_fill_manual(values = c(Social = col$azul, Económico = col$ocre, Tecnológico = col$verde,
                                    Político = col$morado, Legal = col$gris, Ambiental = col$gris_claro), name = "Tipo") +
-      scale_x_continuous(expand = expansion(mult = 0.12)) + scale_y_continuous(expand = expansion(mult = 0.2)) +
+      scale_x_continuous(expand = expansion(mult = 0.12)) + scale_y_continuous(expand = expansion(mult = c(0.4, 0.3))) +
       labs(title = "¿Qué impulsores mueven el sistema?",
            subtitle = "Matriz de influencia y dependencia (MICMAC simplificado)",
            caption = "Los ejes de los escenarios son los dos impulsores inciertos con más influencia.",

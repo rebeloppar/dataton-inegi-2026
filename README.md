@@ -31,7 +31,6 @@ Los escenarios, la retroproyección y las señales de la sección 6 (`s6_escenar
 R/
   00_config.R          configuración común: paquetes, rutas, constantes
   prep_endutih.R       prepara la ENDUTIH 2025 → `usu` y `dis`
-  exportar_endutih.R   exporta la ENDUTIH preparada a datos/procesados/
 analisis/
   diagnostico/         primer diagnóstico (cruces, traslape, regresión)
   A_conexion/          frente A: del acceso a la compra

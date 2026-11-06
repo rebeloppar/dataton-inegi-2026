@@ -66,7 +66,7 @@ Si necesitas una columna o categoría nueva, avisa a Rebeca: cambia la gráfica,
 | `s6_retroproyeccion.csv` **(listo)** | D | `anio, hito, como_se_sabe, prueba` | Del preferible en 2030 hacia hoy. «Por definir» se ve en gris |
 | `s6_senales.csv` **(listo)** | B | `senal, indicador, linea_base, apunta_a, prueba` | Señales tempranas con su línea base en la ENDUTIH |
 
-**Opcionales:** si el archivo no existe, su pestaña no aparece (decisión 87). Ritmo de adopción por entidad (`s4_ritmo.csv`), comercios del DENUE (`s4_comercios.csv`) y tamaño del mercado (`s5_mercado.csv`) quedaron fuera. Cada gráfica tiene un enlace «Descargar datos (CSV)».
+**Opcionales:** si el archivo no existe, su pestaña no aparece (decisión 87). El ritmo de adopción por entidad (`s4_ritmo.csv`) volvió en la decisión 104; comercios del DENUE (`s4_comercios.csv`) y tamaño del mercado (`s5_mercado.csv`) quedaron fuera. Cada gráfica tiene un enlace «Descargar datos (CSV)».
 
 Archivos de texto y fijos (no son de prueba):
 

@@ -581,7 +581,7 @@ ui <- page_navbar(
           plotOutput("g_mapa_regiones", height = "380px"),
           grafica("g_regiones", "460px", "s4_regiones", "s4_regiones.csv"))),
       # Pestañas opcionales: solo aparecen si el archivo existe (decisión 87)
-      if (!is.null(ritmo)) nav_panel("Ritmo de adopción",
+      if (!is.null(ritmo)) nav_panel("Ritmo",
         opcional(ritmo, "g_ritmo", "780px", "s4_ritmo", "s4_ritmo.csv",
                  "Frente C: cambio en el % que compra por entidad entre dos levantamientos.")))),
     lo_que_encontramos("s4"))),
@@ -1072,20 +1072,22 @@ server <- function(input, output, session) {
 
   output$g_ritmo <- graficar({
     d <- merge(ritmo, ent_base, by = "cve_ent")
-    d$entidad <- factor(d$entidad, d$entidad[order(d$fin - d$inicio)])
-    largo <- rbind(data.frame(entidad = d$entidad, anio = as.character(d$anio_inicio), v = d$inicio),
-                   data.frame(entidad = d$entidad, anio = as.character(d$anio_fin), v = d$fin))
+    d$entidad <- factor(d$entidad, d$entidad[order(d$avance)])
+    largo <- rbind(data.frame(entidad = d$entidad, anio = d$anio_inicio, v = d$inicio),
+                   data.frame(entidad = d$entidad, anio = d$anio_fin, v = d$fin))
     ggplot(largo, aes(v, entidad)) +
       geom_line(aes(group = entidad), colour = col$borde, linewidth = 1.3) +
       punto(aes(fill = anio), size = 3.4) +
-      geom_text(data = d, aes(x = fin, label = sprintf("+%.0f", fin - inicio)), hjust = -0.6,
-                size = 3, colour = col$gris) +
-      scale_fill_manual(values = setNames(c(col$gris_claro, col$azul), sort(unique(largo$anio))), name = NULL) +
-      scale_x_continuous(labels = pct, expand = expansion(mult = c(0.02, 0.1))) +
-      labs(title = "¿Qué tan rápido se adopta la compra en línea?",
-           subtitle = "% que compra en línea al inicio y al final del periodo; ordenadas por avance (pp)",
-           caption = "Usuarios de internet de 18+.", x = NULL, y = NULL) +
-      theme(panel.grid.major.y = element_blank(), axis.text.y = element_text(colour = col$tinta, size = 9.5))
+      geom_text(data = d, aes(x = fin, label = sprintf("+%.0f (%.0f a %.0f)", avance, li90, ls90)),
+                hjust = -0.25, size = 3, colour = col$gris) +
+      scale_fill_manual(values = setNames(c(col$gris_claro, col$azul), c(d$anio_inicio[1], d$anio_fin[1])), name = NULL) +
+      scale_x_continuous(labels = pct, limits = c(0, NA), expand = expansion(mult = c(0.02, 0.22))) +
+      labs(title = "¿Qué tan rápido se adopta la compra en línea en cada entidad?",
+           subtitle = "% que compra en línea al inicio y al final del periodo; ordenadas por avance en pp (IC 90 %)",
+           caption = "Usuarios de internet de 18+. Promedio de dos años en cada punta. Observado, sin controles.",
+           x = NULL, y = NULL) +
+      theme(panel.grid.major.y = element_blank(), legend.position = "top",
+            axis.text.y = element_text(colour = col$tinta, size = 9.5))
   })
 
   # 5. ¿Qué hacer? ------------------------------------------------------------

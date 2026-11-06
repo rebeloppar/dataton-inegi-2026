@@ -3,7 +3,9 @@
 # Una fila por hogar: gasto monetario trimestral del hogar (tipo_gasto G1) según
 # el lugar de compra, agrupado en:
 #   antad      = supermercados (06), tiendas departamentales (07),
-#                tiendas con membresía (09), tiendas de conveniencia (10)
+#                tiendas con membresía (09)
+#   conveniencia = tiendas de conveniencia (10): también son de la ANTAD, pero
+#                se reportan aparte (comprar un refresco no es el kiosco con asesor)
 #   tradicional = mercado (01), tianguis (02), ambulantes (03), abarrotes (04)
 #   internet   = internet (18)
 #   otro       = el resto de los lugares con lugar de compra (05, 08, 11-17)
@@ -19,10 +21,10 @@ import csv, glob, os
 from collections import defaultdict
 
 base = os.path.join("datos", "enigh_2024")
-grupo = {"06": "antad", "07": "antad", "09": "antad", "10": "antad",
+grupo = {"06": "antad", "07": "antad", "09": "antad", "10": "conveniencia",
          "01": "tradicional", "02": "tradicional", "03": "tradicional", "04": "tradicional",
          "18": "internet"}
-lugares = ["antad", "tradicional", "internet", "otro"]
+lugares = ["antad", "conveniencia", "tradicional", "internet", "otro"]
 
 def tabla(nombre):
     return glob.glob(os.path.join(base, f"conjunto_de_datos_{nombre}_enigh2024_ns",

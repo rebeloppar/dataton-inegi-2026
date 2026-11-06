@@ -11,7 +11,7 @@
 # controles del modelo completo, para ver si se sostiene; también por sexo
 # (decisión 93).
 # Necesita: tr_endutih_residentes_anual_2025.csv en datos/endutih_2025/
-# Escribe: dashboard/datos/s2_hogar.csv, resultados/A3_composicion_hogar.csv
+# Escribe: dashboard/datos/s2_hogar.csv, dashboard/datos/s2_hogar_controles.csv, resultados/A3_composicion_hogar.csv
 # =============================================================================
 
 source(file.path("R", "prep_endutih.R"))
@@ -87,3 +87,14 @@ write.csv(s2h, file.path("resultados", "A3_composicion_hogar.csv"), row.names = 
 write.csv(data.frame(s2h, prueba = FALSE), file.path("dashboard", "datos", "s2_hogar.csv"),
           row.names = FALSE, fileEncoding = "UTF-8")
 cat("\nListo: dashboard/datos/s2_hogar.csv\n")
+
+# Para la gráfica (decisión 99): la diferencia con controles, joven vs. sin
+# joven, para todos y por sexo. La gráfica muestra esto; los porcentajes
+# observados quedan en s2_hogar.csv.
+ctrl <- data.frame(grupo = c("Todos", "Hombres", "Mujeres"), orden = 1:3,
+                   estimacion = round(100 * c(e$estimate, e_s$estimate), 1),
+                   li90 = round(100 * c(e$conf.low, e_s$conf.low), 1),
+                   ls90 = round(100 * c(e$conf.high, e_s$conf.high), 1), prueba = FALSE)
+stopifnot(identical(as.character(e_s$SEXO), c("Hombre", "Mujer")))
+print(ctrl, row.names = FALSE)
+write.csv(ctrl, file.path("dashboard", "datos", "s2_hogar_controles.csv"), row.names = FALSE, fileEncoding = "UTF-8")

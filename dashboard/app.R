@@ -50,7 +50,7 @@ senales    <- leer("s6_senales.csv")
 # Opcionales (deseables)
 tendencia  <- leer_opcional("s1_tendencia.csv")
 conexion   <- leer_opcional("s1_hogar.csv")
-hogar      <- leer_opcional("s2_hogar.csv")
+hogar      <- leer_opcional("s2_hogar_controles.csv")
 ritmo      <- leer_opcional("s4_ritmo.csv")
 
 calculo     <- leer("como_se_calculo.csv")
@@ -184,6 +184,10 @@ tema <- bs_add_rules(tema, "
   .como-leer { border-left:4px solid var(--azul); background:var(--menta); padding:.9rem 1.1rem; border-radius:0 10px 10px 0; margin-bottom:1rem; max-width:110ch; }
 
   /* Lo que encontramos */
+  .muestra { border-left:4px solid var(--azul); background:#F7FAFC; border-radius:0 8px 8px 0;
+             padding:.55rem .9rem; margin:.75rem 0 .5rem; max-width:95ch; font-size:.97rem; }
+  .muestra .et { display:block; font-size:.72rem; font-weight:700; letter-spacing:.05em;
+                 text-transform:uppercase; color:var(--azul); margin-bottom:.1rem; }
   .encontramos { margin-top:2rem; background:var(--menta); border-radius:12px; padding:1.25rem 1.5rem .5rem; }
   .encontramos h3 { font-size:1.15rem; font-weight:700; margin:0 0 .5rem; }
   .hallazgo { display:grid; grid-template-columns: 8.5rem 1fr; gap:1.25rem; padding:.9rem 0; border-top:1px solid var(--borde); align-items:baseline; }
@@ -429,6 +433,9 @@ lo_que_encontramos <- function(seccion) {
 
 seccion <- function(...) div(class = "contenedor", ...)
 
+# Conclusión de una gráfica que no tiene tarjeta en «Lo que encontramos» (decisión 99)
+lo_que_muestra <- function(texto) div(class = "muestra", span(class = "et", "Lo que muestra"), texto)
+
 # --- Interfaz ----------------------------------------------------------------
 ui <- page_navbar(
   id = "nav",
@@ -486,7 +493,9 @@ ui <- page_navbar(
       nav_panel("¿Conectarse o comprar?", grafica("g_eslabon", "440px", "s1_brechas_eslabon", "s1_brechas_eslabon.csv")),
       nav_panel("¿Internet en casa?", opcional(conexion, "g_conexion", "520px", "s1_hogar", "s1_hogar.csv",
                                              "Frente A: adultos en hogar con internet vs. que usan internet.")),
-      nav_panel("¿Qué se compra?", grafica("g_categorias", "520px", "s1_categorias", "s1_categorias.csv")),
+      nav_panel("¿Qué se compra?",
+        lo_que_muestra("En todos los niveles de escolaridad, lo que más se compra en línea es lo de todos los días: uso personal y artículos para el hogar (con primaria o menos, 62 % y 41 %). Son productos que venden las tiendas de cadena: por ahí pueden empezar las primeras compras guiadas."),
+        grafica("g_categorias", "520px", "s1_categorias", "s1_categorias.csv")),
       nav_panel("¿Cómo ha cambiado?",
         p(class = "text-muted small mt-2 mb-0",
           "Nota: el cambio en las categorías a lo largo de los años solo está disponible a nivel nacional; esta gráfica no cambia con el filtro de arriba."),
@@ -510,7 +519,8 @@ ui <- page_navbar(
       nav_panel("¿Se sostiene en las ciudades?",
         grafica("g_robustez", "520px", "s2_robustez", "s2_robustez.csv")),
       nav_panel("Composición del hogar",
-        opcional(hogar, "g_hogar", "420px", "s2_hogar", "s2_hogar.csv",
+        lo_que_muestra("Vivir con un joven que usa internet no hace que las personas de 35+ compren más en línea, ni hombres ni mujeres. Esperar a que la familia enseñe no basta: el acompañamiento tiene que venir de fuera del hogar."),
+        opcional(hogar, "g_hogar", "360px", "s2_hogar", "s2_hogar_controles.csv",
                  "Frente A: compra según la composición del hogar, por sexo.")))),
     lo_que_encontramos("s2"))),
 
@@ -520,7 +530,9 @@ ui <- page_navbar(
     filtro("s3_grupo", cortes_en(razones, problemas)),
     div(class = "lienzo", navset_underline(
       nav_panel("Por qué no compran", grafica("g_razones", "500px", "s3_razones", "s3_razones.csv")),
-      nav_panel("Problemas de quienes sí compran", grafica("g_problemas", "460px", "s3_problemas", "s3_problemas.csv")),
+      nav_panel("Problemas de quienes sí compran",
+        lo_que_muestra("Una vez que compran, casi siempre sale bien: solo 9 % tuvo algún problema, y 7 % entre quienes tienen primaria o menos. La barrera está en empezar, no en malas experiencias. El problema más común es la entrega, que recoger en tienda evita."),
+        grafica("g_problemas", "460px", "s3_problemas", "s3_problemas.csv")),
       nav_panel("Mujeres y hombres", grafica("g_genero", "380px", "s3_genero", "s3_genero.csv")))),
     lo_que_encontramos("s3"))),
 
@@ -528,16 +540,16 @@ ui <- page_navbar(
     cabecera("4", "El territorio pesa aun con controles",
              "Afirmación provisional. Frente C. Pregunta P6."),
     div(class = "lienzo", navset_underline(
-      nav_panel("Mapa y regiones",
-        # Mapa por entidad a la izquierda; a la derecha, el mapa de las regiones
-        # con sus colores y debajo la brecha por región con los mismos colores
-        layout_columns(col_widths = c(6, 6),
-          tagList(plotOutput("g_mapa", height = "500px",
-                             hover = hoverOpts("mapa_hover", delay = 80, delayType = "throttle")),
-                  div(class = "detalle-mapa small", uiOutput("mapa_detalle")),
-                  pie_grafica("s4_entidades", "s4_entidades.csv")),
-          tagList(plotOutput("g_mapa_regiones", height = "340px"),
-                  grafica("g_regiones", "460px", "s4_regiones", "s4_regiones.csv")))),
+      nav_panel("Por entidad",
+        div(style = "max-width:900px",
+          plotOutput("g_mapa", height = "560px", hover = hoverOpts("mapa_hover", delay = 80, delayType = "throttle")),
+          div(class = "detalle-mapa small", uiOutput("mapa_detalle")),
+          pie_grafica("s4_entidades", "s4_entidades.csv"))),
+      nav_panel("Por región",
+        # El mapa de las regiones con sus colores y debajo la brecha con los mismos colores
+        layout_columns(col_widths = c(5, 7),
+          plotOutput("g_mapa_regiones", height = "380px"),
+          grafica("g_regiones", "460px", "s4_regiones", "s4_regiones.csv"))),
       # Pestañas opcionales: solo aparecen si el archivo existe (decisión 87)
       if (!is.null(ritmo)) nav_panel("Ritmo de adopción",
         opcional(ritmo, "g_ritmo", "780px", "s4_ritmo", "s4_ritmo.csv",
@@ -556,7 +568,8 @@ ui <- page_navbar(
             tags$dl(class = "ficha", lapply(seq_len(nrow(propuesta)), function(i)
               tagList(tags$dt(propuesta$campo[i]), tags$dd(campo_propuesta(propuesta[i, ])))))),
           div(class = "col-lg-5", lo_que_encontramos("s5")))),
-      nav_panel("¿Ya van a la tienda?",
+      nav_panel("¿Por qué la tienda?",
+        lo_que_muestra("El grupo ya va a la tienda: 74 % de los hogares encabezados por alguien con hasta secundaria compra en supermercados, departamentales o clubes (83 % en ciudades, 51 % en lo rural). La puerta existe; pero ahí va solo 17 % de su gasto en compras, y casi nada en línea."),
         grafica("g_tienda", "520px", "s5_enigh", "s5_enigh.csv")),
       nav_panel("Estrategias públicas y privadas",
         div(class = "estrategias mt-2",
@@ -631,6 +644,13 @@ server <- function(input, output, session) {
 
   # Si un archivo no trae el corte elegido (p. ej., P5 con grupos más amplios),
   # la gráfica lo dice en lugar de romperse
+  # Con «Nacional», estas gráficas muestran además el corte por escolaridad (decisión 99)
+  con_escolaridad <- function(d, g) {
+    if (g != "Nacional" || !"Escolaridad" %in% d$grupo_var) return(por_grupo(d, g))
+    d <- d[d$grupo_var %in% c("Nacional", "Escolaridad"), ]
+    d$grupo <- factor(d$grupo, unique(d$grupo[order(d$grupo_var != "Nacional", d$orden)]))
+    d
+  }
   por_grupo <- function(d, g) {
     validate(need(g %in% d$grupo_var,
                   paste0("Esta gráfica no tiene el corte «", g, "». Elige otro.")))
@@ -756,8 +776,8 @@ server <- function(input, output, session) {
   })
 
   output$g_categorias <- graficar(calor(
-    por_grupo(categorias, input$s1_grupo), "categoria", "¿Qué se compra en línea?",
-    paste0("% de quienes compraron que compró cada categoría", if (input$s1_grupo == "Nacional") "" else paste0(", por ", tolower(input$s1_grupo))),
+    con_escolaridad(categorias, input$s1_grupo), "categoria", "¿Qué se compra en línea?",
+    paste0("% de quienes compraron que compró cada categoría, ", if (input$s1_grupo == "Nacional") "nacional y por escolaridad" else paste0("por ", tolower(input$s1_grupo))),
     "Respuesta múltiple: los porcentajes no suman 100."))
 
   output$g_tendencia <- graficar({
@@ -876,19 +896,22 @@ server <- function(input, output, session) {
 
   output$g_hogar <- graficar({
     d <- hogar
-    d$composicion <- factor(d$composicion, unique(d$composicion[order(d$orden)]))
-    levels(d$composicion) <- gsub("^(Con otras personas,) ", "\\1\n", levels(d$composicion))
-    levels(d$composicion) <- gsub("^(Con al menos un joven) ", "\\1\n", levels(d$composicion))
-    ggplot(d, aes(estimacion, composicion)) +
-      geom_line(aes(group = composicion), colour = col$borde, linewidth = 1.6) +
-      geom_errorbar(aes(xmin = li90, xmax = ls90, colour = sexo), width = 0.15, orientation = "y", show.legend = FALSE) +
-      punto(aes(fill = sexo), size = 5.5) +
-      scale_fill_manual(values = c(Hombre = col$azul, Mujer = col$morado), name = NULL) +
-      scale_colour_manual(values = c(Hombre = col$azul, Mujer = col$morado), guide = "none") +
-      scale_x_continuous(labels = pct) +
-      labs(title = "¿Vivir con jóvenes ayuda a comprar en línea?",
-           subtitle = "% que compra en línea según la composición del hogar, por sexo",
-           caption = "Usuarios de internet de 35+ (para quien tiene 18-34, el joven es la persona misma). Líneas: intervalo al 90 %.\nCon controles, vivir con un joven que usa internet no se asocia con comprar más: hombres +0.3 pp, mujeres −0.7 pp (ninguna significativa).", x = NULL, y = NULL) +
+    d$grupo <- factor(d$grupo, rev(d$grupo[order(d$orden)]))
+    ggplot(d, aes(estimacion, grupo)) +
+      annotate("rect", xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf, fill = col$frio, alpha = 0.5) +
+      geom_vline(xintercept = 0, colour = col$tinta, linewidth = 0.6) +
+      geom_errorbar(aes(xmin = li90, xmax = ls90), width = 0.18, orientation = "y", colour = col$azul, linewidth = 0.9) +
+      punto(fill = col$azul, size = 5.5) +
+      geom_text(aes(label = sprintf("%+.1f pp", estimacion)), vjust = -1.4, size = 3.6, colour = col$tinta) +
+      annotate("text", x = 0.08, y = 3.42, label = "sin diferencia", hjust = 0, vjust = 0, size = 3.4, colour = col$tinta) +
+      scale_x_continuous(limits = c(-4, 4), breaks = -4:4, labels = function(x) sprintf("%+d pp", x)) +
+      scale_y_discrete(expand = expansion(add = c(0.5, 0.9))) +
+      coord_cartesian(clip = "off") +
+      labs(title = "¿Vivir con jóvenes ayuda a comprar en línea? No, una vez que se compara a personas parecidas",
+           subtitle = "Diferencia en el % que compra: vivir con al menos un joven de 18-34 que usa internet frente a vivir con otras personas sin él",
+           caption = paste("Usuarios de internet de 35+. Con los controles del modelo completo (sexo, edad, escolaridad, localidad, estrato, indígena, discapacidad).",
+                           "Líneas: IC 90 %; todas cruzan el cero. Los porcentajes sin controles están en «Cómo se calculó».", sep = "\n"),
+           x = NULL, y = NULL) +
       theme(panel.grid.major.y = element_blank())
   })
 
@@ -917,8 +940,8 @@ server <- function(input, output, session) {
   })
 
   output$g_problemas <- graficar(calor(
-    por_grupo(problemas, input$s3_grupo), "problema", "Problemas de quienes sí compran",
-    paste0("% de quienes compraron en línea que tuvo cada problema, por ", tolower(input$s3_grupo)),
+    con_escolaridad(problemas, input$s3_grupo), "problema", "Problemas de quienes sí compran",
+    paste0("% de quienes compraron en línea que tuvo cada problema, ", if (input$s3_grupo == "Nacional") "nacional y por escolaridad" else paste0("por ", tolower(input$s3_grupo))),
     "Los tipos de problema son de respuesta múltiple."))
 
   # 4. ¿Dónde? ----------------------------------------------------------------

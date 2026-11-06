@@ -16,7 +16,9 @@ App de Shiny: Inicio y seis secciones. Cada sección tiene una afirmación, sus 
 - *«cannot open file 'dashboard/datos/…'»*: el directorio de trabajo no es la raíz del repositorio; vuelve a entrar por el `.Rproj`.
 - *Sin internet, la letra se ve distinta*: la tipografía se descarga de Google; sin conexión se usa la del sistema.
 
-Probado con R 4.3, shiny 1.8, bslib 0.6, ggplot2 3.4 y ggrepel 0.9.
+Probado con R 4.3 (shiny 1.8, bslib 0.6, ggplot2 3.4, ggrepel 0.9) y con R 4.5 (shiny 1.14, bslib 0.12, ggplot2 4.0, ggrepel 0.9).
+
+**Publicación:** `manifest.json` le dice a Posit Connect Cloud qué versión de R y qué paquetes instalar (los de la segunda combinación). Si cambian los paquetes, se vuelve a generar desde RStudio con `rsconnect::writeManifest("dashboard")` (sin `appPrimaryDoc`).
 
 ## De dónde sale cada gráfica
 

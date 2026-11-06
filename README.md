@@ -59,6 +59,28 @@ source("R/prep_endutih.R")   # deja listos `usu` (datos) y `dis` (diseño muestr
 4. **Toda decisión de análisis** va en `bitacoras/decisiones.md`; **todo hallazgo**, con su cifra y script, en `bitacoras/hallazgos.md`.
 5. **Los datos crudos y los resultados no se suben.** Los resultados se regeneran corriendo los scripts.
 
+## Uso de inteligencia artificial
+
+> **Pendiente:** falta que el resto del equipo esté de acuerdo con esta declaración.
+
+Usamos Claude (Anthropic) como asistente durante todo el proyecto. Aquí decimos qué hizo y qué no.
+
+**Lo que no hizo**
+- No tomó decisiones. El enfoque, el universo de análisis, los controles, la propuesta y qué entra al tablero los decidió el equipo. Cada decisión está en `bitacoras/decisiones.md`, con quién la tomó.
+- No es fuente de ningún dato. Todas las cifras salen de microdatos públicos del INEGI (ENDUTIH 2016-2025, ENIGH 2024) y se reproducen corriendo los scripts del repositorio. Las fuentes externas están citadas.
+- No tuvo la última palabra en lo cualitativo. El equipo revisó y reescribió los textos del tablero y los puntajes del MICMAC.
+
+**Lo que hizo**
+- Escribió la mayor parte del código de análisis (R y Python) y del tablero (Shiny), a partir de lo que el equipo definió.
+- Corrió las estimaciones con los microdatos del INEGI y las cotejó contra las cifras que publica el INEGI.
+- Propuso redacciones para los textos del tablero y borradores del PESTEL y de los puntajes del MICMAC.
+- Buscó fuentes de contexto (por ejemplo, los kioscos de Bodega Aurrera y Coppel) y llevó las bitácoras de decisiones y hallazgos.
+
+**Cómo verificarlo**
+- Los commits hechos con ayuda de la IA llevan la línea «Co-Authored-By: Claude».
+- La IA se equivocó, y lo corregimos. Por ejemplo, etiquetó como «con controles» cifras que no lo eran, y citó un dato desactualizado. Por eso ninguna cifra entra al tablero sin cotejo.
+- Solo usamos datos públicos y anónimos del INEGI; no compartimos datos personales con la IA.
+
 ## Fuentes
 
 - ENDUTIH 2025, INEGI (datos abiertos, CSV). Universo de análisis: usuarios de internet de 18 años o más. Estimaciones con factores de expansión y diseño muestral; intervalos al 90 %.

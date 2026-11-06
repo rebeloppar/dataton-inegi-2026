@@ -511,7 +511,11 @@ ui <- page_navbar(
                  span(span(class = "titulo-paso", x[3]), br(), span(class = "afirm", x[4])),
                  span(class = "ir", "Ver sección")))),
       p(class = "text-muted small mt-3",
-        "Brechas con controles; intervalos al 90 %."))),
+        "Brechas con controles; intervalos al 90 %."),
+      p(class = "text-muted small",
+        "Usamos IA como asistente de código y redacción; las decisiones y la revisión son del equipo. ",
+        tags$a(href = "https://github.com/rebeloppar/dataton-inegi-2026#uso-de-inteligencia-artificial",
+               target = "_blank", "Detalle en el repositorio.")))),
 
   nav_panel("1. Panorama", value = "s1", seccion(
     cabecera("1", "La gente se pierde en el paso de compra",

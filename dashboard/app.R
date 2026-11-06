@@ -511,7 +511,7 @@ ui <- page_navbar(
                  span(span(class = "titulo-paso", x[3]), br(), span(class = "afirm", x[4])),
                  span(class = "ir", "Ver sección")))),
       p(class = "text-muted small mt-3",
-        "Cifras del diagnóstico preliminar; se actualizarán con las finales. Brechas con controles; intervalos al 90 %."))),
+        "Brechas con controles; intervalos al 90 %."))),
 
   nav_panel("1. Panorama", value = "s1", seccion(
     cabecera("1", "La gente se pierde en el paso de compra",
@@ -548,7 +548,6 @@ ui <- page_navbar(
       nav_panel("¿Se sostiene en las ciudades?",
         grafica("g_robustez", "520px", "s2_robustez", "s2_robustez.csv")),
       nav_panel("Composición del hogar",
-        lo_que_muestra("Vivir con un joven que usa internet no hace que las personas de 35+ compren más en línea, ni hombres ni mujeres. Esperar a que la familia enseñe no basta: el acompañamiento tiene que venir de fuera del hogar."),
         opcional(hogar, "g_hogar", "360px", "s2_hogar", "s2_hogar_controles.csv",
                  "Frente A: compra según la composición del hogar, por sexo.")))),
     lo_que_encontramos("s2"))),

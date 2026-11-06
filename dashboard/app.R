@@ -376,8 +376,8 @@ nucleo_propuesta <- function() {
         div(class = "ya", "Lo que ya existe: kioscos con asesor, recoger y pagar en tienda"),
         div(class = "np-pasos",
           paso(1, "Te invitan", "En cada ventana de oportunidad: cuando no está lo que buscas, cuando hay ofertas de artículos grandes."),
-          paso(2, "Lo haces tú, con alguien al lado", "Haces el pedido y el pago tú misma; el asesor acompaña, no compra por ti."),
-          paso(3, "Compras por tu cuenta", "El apoyo ya no hace falta; un recordatorio te avisa de la siguiente oportunidad.")),
+          paso(2, "Lo haces tú, con alguien al lado", "Haces el pedido y el pago tú misma; el asesor explica, pero no toca la pantalla."),
+          paso(3, "Compras por tu cuenta", "La siguiente compra, desde tu teléfono, trae un incentivo que te recuerda la próxima oportunidad.")),
         div(class = "np-apoyo", span("Apoyo del asesor"), div(class = "barra"), span("ninguno")),
         div(class = "np-genero", strong("Lente de género: "), "énfasis en el paso del pago, primeras compras en lo que las mujeres ya compran, todo medido por sexo.")),
       div(class = "np-flecha", "→"),
@@ -477,36 +477,35 @@ ui <- page_navbar(
   nav_panel("Inicio", value = "inicio",
     div(class = "portada", div(class = "portada-interior",
       p(class = "contexto",
-        "Diagnóstico con datos oficiales del INEGI (ENDUTIH 2025) sobre los adultos que ya usan internet, y una propuesta para que más de ellos compren en línea."),
+        "Diagnóstico con datos oficiales del INEGI (ENDUTIH, ENIGH) sobre los adultos que ya usan internet, y una propuesta para que más de ellos compren en línea."),
       h1("Una brecha, dos barreras"),
       p(class = "contexto mb-0",
-        "Entre quienes ya están conectados, comprar en línea depende sobre todo de la escolaridad, la edad y el territorio. Y quienes no compran no lo hacen por la misma razón."),
+        "Entre quienes ya están conectados, comprar en línea depende sobre todo de la escolaridad y la edad. Quienes no compran no lo hacen por la misma razón."),
       div(class = "barreras",
         div(class = "barrera no-pueden",
           h3("No saben cómo"),
           div(class = "quienes", "Sube con la edad y baja con la escolaridad."),
           div(class = "cifra", "43 %"),
-          div(class = "cifra-nota", "de quienes tienen 65+ y primaria o menos, y no compran, dicen «no sé cómo». Entre los de 18-24, 21 %.")),
+          div(class = "cifra-nota", "de quienes tienen 65+, primaria o menos y no compran en línea, dicen «no sé cómo». Entre 18-24 con igual escolaridad, la proporción es de 21 %.")),
         div(class = "barrera no-quieren",
           h3("Prefieren en persona"),
-          div(class = "quienes", "Más común en el estrato alto; ligada a la confianza."),
+          div(class = "quienes", "Más común en el estrato alto."),
           div(class = "cifra", "52 %"),
           div(class = "cifra-nota", "de quienes no compran en el estrato alto prefieren hacerlo en persona. En el estrato bajo, 36 %."))),
       div(class = "datos-clave",
         div(class = "dato", div(class = "valor", "43.7 %"), div(class = "etiqueta", "de los usuarios de internet de 18+ compró en línea (el INEGI publica 37.3 % para 6+)")),
-        div(class = "dato", div(class = "valor", "+42.5 pp"), div(class = "etiqueta", "entre educación superior y primaria, con controles")),
-        div(class = "dato", div(class = "valor", "11.3 millones"), div(class = "etiqueta", "de usuarios con primaria o menos no compran")),
-        div(class = "dato", div(class = "valor", "1–4 %"), div(class = "etiqueta", "dice que no compra por no tener tarjeta"))))),
+        div(class = "dato", div(class = "valor", "+42.5 pp"), div(class = "etiqueta", "de probabilidad de comprar en línea con educación superior que con primaria, a igual edad, estrato y localidad")),
+        div(class = "dato", div(class = "valor", "11.3 millones"), div(class = "etiqueta", "de usuarios con primaria o menos no compran"))))),
     seccion(
       h2("Recorrido", class = "h4 fw-bold mb-2"),
       div(class = "recorrido",
         lapply(list(
-          c("1", "s1", "Panorama", "Del acceso a la compra, dónde se pierde la gente"),
-          c("2", "s2", "¿Quién queda fuera?", "La brecha es de escolaridad, edad y territorio"),
+          c("1", "s1", "Panorama", "Del acceso a la compra, dónde se pierden los usuarios"),
+          c("2", "s2", "¿Quién queda fuera?", "La brecha es de escolaridad, edad y ruralidad"),
           c("3", "s3", "¿Por qué?", "Unos no pueden y otros no quieren"),
-          c("4", "s4", "¿Dónde?", "El territorio pesa aun con controles"),
+          c("4", "s4", "¿Dónde?", "La brecha rural-urbano persiste"),
           c("5", "s5", "¿Qué hacer?", "La tienda como puerta de entrada"),
-          c("6", "s6", "¿Hacia dónde vamos?", "Prospectiva 2030: qué pasa si no hacemos nada")), function(x)
+          c("6", "s6", "¿Hacia dónde vamos?", "Prospectiva 2030: futuros probables, posibles y preferibles")), function(x)
           tags$a(href = "#", onclick = sprintf("Shiny.setInputValue('ir', '%s', {priority: 'event'}); return false;", x[2]),
                  span(class = "num", x[1]),
                  span(span(class = "titulo-paso", x[3]), br(), span(class = "afirm", x[4])),
@@ -515,8 +514,8 @@ ui <- page_navbar(
         "Cifras del diagnóstico preliminar; se actualizarán con las finales. Brechas con controles; intervalos al 90 %."))),
 
   nav_panel("1. Panorama", value = "s1", seccion(
-    cabecera("1", "Del acceso a la compra, la gente se pierde en eslabones distintos",
-             "Afirmación provisional. Frente A. Preguntas P1 y P3."),
+    cabecera("1", "La gente se pierde en el paso de compra",
+             "Preguntas P1 y P3."),
     filtro("s1_grupo", cortes_en(embudo, categorias)),
     div(class = "lienzo", navset_underline(
       nav_panel("Embudo", grafica("g_embudo", "560px", "s1_embudo", "s1_embudo.csv")),
@@ -534,8 +533,8 @@ ui <- page_navbar(
     lo_que_encontramos("s1"))),
 
   nav_panel("2. ¿Quién queda fuera?", value = "s2", seccion(
-    cabecera("2", "La brecha es de escolaridad, edad y territorio",
-             "Otras brechas se explican en buena parte por escolaridad. Frentes A y B. Pregunta P2."),
+    cabecera("2", "La brecha es principalmente de escolaridad, edad y ruralidad",
+             "Otras brechas se explican en buena parte por la escolaridad. Pregunta P2."),
     div(class = "como-leer",
       strong("Cómo leer estas cifras. "),
       "Usamos una regresión: compara a personas que son iguales en todo (edad, sexo, escolaridad, localidad, estrato) excepto en una característica. ",
@@ -556,7 +555,7 @@ ui <- page_navbar(
 
   nav_panel("3. ¿Por qué?", value = "s3", seccion(
     cabecera("3", "Unos no pueden (habilidades) y otros no quieren (prefieren lo presencial)",
-             "Los medios de pago pesan poco. Frente B. Preguntas P4 y P5."),
+             "Los medios de pago pesan poco. Preguntas P4 y P5."),
     filtro("s3_grupo", cortes_en(razones, problemas)),
     div(class = "lienzo", navset_underline(
       nav_panel("Por qué no compran", grafica("g_razones", "500px", "s3_razones", "s3_razones.csv")),
@@ -567,8 +566,8 @@ ui <- page_navbar(
     lo_que_encontramos("s3"))),
 
   nav_panel("4. ¿Dónde?", value = "s4", seccion(
-    cabecera("4", "El territorio pesa aun con controles",
-             "Afirmación provisional. Frente C. Pregunta P6."),
+    cabecera("4", "La brecha rural-urbano persiste. La regional es mínima con controles.",
+             "Pregunta P6."),
     div(class = "lienzo", navset_underline(
       nav_panel("Por entidad",
         layout_columns(col_widths = c(8, 4),
@@ -590,7 +589,7 @@ ui <- page_navbar(
 
   nav_panel("5. ¿Qué hacer?", value = "s5", seccion(
     cabecera("5", "La tienda como puerta de entrada a la compra en línea",
-             "Propuesta en borrador. Frentes D y C. Preguntas P7 y P8."),
+             "Preguntas P7 y P8."),
     div(class = "lienzo", navset_underline(
       nav_panel("La propuesta",
         nucleo_propuesta(),
@@ -636,8 +635,8 @@ ui <- page_navbar(
             pie_grafica("s5_simulador", "s5_simulador.csv")))))))),
 
   nav_panel("6. 2030", value = "s6", seccion(
-    cabecera("6", "2030: qué pasa si no hacemos nada, y qué tendría que pasar",
-             "Análisis prospectivo. Frentes C, B y D. Pregunta P8."),
+    cabecera("6", "2030: futuros probables, posibles y preferibles",
+             "Análisis prospectivo. Pregunta P8."),
     div(class = "como-leer",
       strong("Cómo leer esta sección. "),
       "No es un pronóstico. Usamos el cono de futuros: el futuro probable (si nada cambia) lleva cifras; los futuros plausibles se construyen con los impulsores más influyentes e inciertos y se describen con palabras; ",

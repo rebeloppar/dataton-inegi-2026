@@ -67,14 +67,14 @@ Usamos Claude (Anthropic) como asistente durante todo el proyecto. Aquí decimos
 - No tuvo la última palabra en lo cualitativo. El equipo revisó y reescribió los textos del tablero y los puntajes del MICMAC.
 
 **Lo que hizo**
-- Escribió la mayor parte del código de análisis (R y Python) y del tablero (Shiny), a partir de lo que el equipo definió.
+- Partició en la escritura del código de análisis (R y Python) y del tablero (Shiny), a partir de lo que el equipo definió.
 - Corrió las estimaciones con los microdatos del INEGI y las cotejó contra las cifras que publica el INEGI.
 - Propuso redacciones para los textos del tablero y borradores del PESTEL y de los puntajes del MICMAC.
 - Buscó fuentes de contexto (por ejemplo, los kioscos de Bodega Aurrera y Coppel) y llevó las bitácoras de decisiones y hallazgos.
 
 **Cómo verificarlo**
 - Los commits hechos con ayuda de la IA llevan la línea «Co-Authored-By: Claude».
-- La IA se equivocó, y lo corregimos. Por ejemplo, etiquetó como «con controles» cifras que no lo eran, y citó un dato desactualizado. Por eso ninguna cifra entra al tablero sin cotejo.
+- La IA se equivocó, y lo corregimos. Por ejemplo, citó un dato desactualizado. Por eso ninguna cifra entra al tablero sin cotejo.
 - Solo usamos datos públicos y anónimos del INEGI; no compartimos datos personales con la IA.
 
 ## Fuentes

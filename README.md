@@ -56,8 +56,6 @@ resultados/            tablas intermedias que generan los scripts (no se suben)
 
 ## Uso de inteligencia artificial
 
-> **Pendiente:** falta que el resto del equipo esté de acuerdo con esta declaración.
-
 Usamos Claude (Anthropic) como asistente durante todo el proyecto. Aquí decimos qué hizo y qué no.
 
 **Lo que no hizo**
@@ -67,14 +65,9 @@ Usamos Claude (Anthropic) como asistente durante todo el proyecto. Aquí decimos
 
 **Lo que hizo**
 - Partició en la escritura del código de análisis (R y Python) y del tablero (Shiny), a partir de lo que el equipo definió.
-- Corrió las estimaciones con los microdatos del INEGI y las cotejó contra las cifras que publica el INEGI.
-- Propuso redacciones para los textos del tablero y borradores del PESTEL y de los puntajes del MICMAC.
+- Propuso redacciones para los textos del tablero y borradores del análisis cualitativo.
 - Buscó fuentes de contexto (por ejemplo, los kioscos de Bodega Aurrera y Coppel) y llevó las bitácoras de decisiones y hallazgos.
 
-**Cómo verificarlo**
-- Los commits hechos con ayuda de la IA llevan la línea «Co-Authored-By: Claude».
-- La IA se equivocó, y lo corregimos. Por ejemplo, citó un dato desactualizado. Por eso ninguna cifra entra al tablero sin cotejo.
-- Solo usamos datos públicos y anónimos del INEGI; no compartimos datos personales con la IA.
 
 ## Fuentes
 
